@@ -118,13 +118,18 @@
       return list;
     }
     function hiddenByOpacity(e) { for (; e && e.nodeType === 1; e = e.parentNode) if (getComputedStyle(e).opacity === "0") return true; return false; }
+    var glShown = {};
     function snap() {
       var s = els().map(function (e, i) {
         var c = getComputedStyle(e);
         if (c.visibility === "hidden" || hiddenByOpacity(e)) return i + "|invisible";   // paints nothing either way
         return i + "|" + PROPS.map(function (p) { var v = c[p]; return v === "matrix(1, 0, 0, 1, 0, 0)" ? "none" : v; }).join("|") + "|" + (e.getAttribute("stdDeviation") || "").split(/\s+/).map(parseFloat).join(" ");
       });
-      ["lf-gl", "sh-gl"].forEach(function (id) { var c = $(id); s.push(id + "|" + c.style.visibility + "|" + (c.style.visibility === "visible" ? hash(c.toDataURL()) : 0)); });
+      ["lf-gl", "sh-gl"].forEach(function (id) {
+        var c = $(id), h = c.style.visibility === "visible" ? hash(c.toDataURL()) : 0;
+        if (h !== 0) glShown[id] = true;   // the WebGL blur path actually painted at least once
+        s.push(id + "|" + c.style.visibility + "|" + h);
+      });
       return s.join("\n");
     }
     var times = [], forward = {}, mismatches = [];
@@ -142,6 +147,7 @@
       var a = forward[t].split("\n"), b = snap().split("\n");
       for (var k = 0; k < a.length; k++) if (a[k] !== b[k]) { mismatches.push({ t: t, forward: a[k], shuffled: b[k] }); break; }
     });
+    ["lf-gl", "sh-gl"].forEach(function (id) { if (!glShown[id]) errors.push("WebGL path never exercised: " + id); });
     window.__smoke = { done: true, ok: !mismatches.length && !errors.length, mismatches: mismatches, errors: errors, frames: times.length };
   } catch (e) {
     errors.push(e.message);
