@@ -18,3 +18,13 @@ mean guessing at interfaces.
 **Deferred (spec §12):** custom-animation catalogue (from Tymek's reference videos), the Opus 5.5
 animation video, font licensing, and exact gold/lime values (sampled from source files instead of
 stills). Each becomes an update to `standards/` or `brands/` after Plan 5.
+
+## Notes for Plans 3–4 (from the Plan 2 final review)
+
+- Plan 3: export one machine-readable lib manifest (now only in `lib/test/hygiene.test.js` `EXPECTED`) for `sync-lib` + `lib.lock`; keep `shorts/wipe.js` in its subdirectory; decide whether `test/`, `examples/`, `README` are hashed.
+- Plan 3: extract the hygiene lexer/scanner (`lex`/`scan`) into a shared module for `tools/qa`; fold in its known gaps (quoted/template eases, `color-mix`/`lab`/`lch`, `url(#…)`/`.blur()` false positives, `.mjs`/`.cjs`, regex after `return`).
+- Plan 3: blur-reason tags set at runtime by lib (`setAttribute`) are invisible to static scans — QA check 5 must inspect the rendered DOM; the easing check can use `HFProfile.isProfileEase` over timeline children and must flag tweens with no ease (GSAP's default `power1.out` is off-vocabulary).
+- Plan 3: add timing/shutter drift tests (`HFProfile` `TIMING` + `PROFILE_PRESETS` vs the profile markdown) before cadence-scan consumes them; move the wipe's 0.10 s handoff into `timing.wipe`; the ease-row parser should fail clearly on a cell without backticks; the brief template must mark `direction` required; QA gate check #3 enforces brand `status == approved`.
+- Plan 4: the light-ground glow guard must read `data-hf-mode` and THROW if it is missing (the CLI CSS only emits a comment; new-video/kit must set the attribute).
+- Plan 4: `words()`/`typeOn`/`scriptWord` return durations only — kits need the word spans (add `splitWords(el)` or `opts.onSpans`), and they discard nested markup; `accentWord` should install its CSS itself (idempotent).
+- Plan 4: camera stage, push, marks and text all overwrite inline `transform` — never put two on one element (consider a guard); camera `glFailed` is permanent (revisit only if kits need recovery); extend `visibleBeforeStart` to compare transform/filter; add chained phase→phase wipes on one host to the smoke page.

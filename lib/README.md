@@ -45,8 +45,21 @@ need from root `lib/` unmodified. Improvements go into root `lib/` first.
   carry a stylesheet transform.
 - **One `glowTitle` per glow filter id** — glow intensity is per filter, so two titles sharing an id
   share their intensity.
+- **Await `HFText.ready()` before registering or rendering the timeline.** Odometer strips and
+  `rasterText` images depend on fonts/SVGs that load asynchronously; `ready()` resolves once every
+  font load, measure and raster decode started by any `HFText` binder has finished (it re-checks until
+  no new work started meanwhile). A frame rendered earlier could differ from one rendered later.
 - **WebGL context loss:** after any context loss, `HFCamera.rig` falls back to the DOM pose for the
-  rest of that rig.
+  rest of that rig, and `HFText.odometer` shows its DOM digits for the rest of that odometer.
+- **WebGL context lifetime:** a rig holds a context only inside a blur leg; an odometer only inside
+  `T < t < T + dur` (outside it the DOM digits are the truth, and the label becomes visible just after `T`).
+- **`HFCamera.rig` `bake(ctx, K, t)` is called once, with `t = 0`** (the settled layout), unless
+  `liveBake: true`, which re-bakes every frame inside a leg with that frame's `t`.
+- **`HFMarks.swap` interpolates numeric props only.** A `var(--hf-…)` colour value is not
+  interpolated: it flips at `T`. For a colour change use an attribute/class swap styled by the brand
+  variable (as `HFText.accentWord` does with `data-hf-accent`).
+- **`HFWipe` writes `host.style.filter` every frame** of its phases. Do not put `HFText.defocus`, a
+  glow filter or any other filter on the same host — wrap one in the other instead.
 
 ## Modules
 
@@ -56,7 +69,7 @@ need from root `lib/` unmodified. Improvements go into root `lib/` first.
 | `motion-blur.js` | `HFMotionBlur` | `createCameraBlur(cfg)` → `{render(t), renderRegions(t, regions), updateWorld(src), dispose(), size()}` · `profilePreset(format, kind)` · `analyticMotionVector` |
 | `camera.js` | `HFCamera` | `rig(tl, cfg)` (keyed poses, holds, blur legs/whips, DOM-only when no canvas) · `push(tl, el, segments, opts)` · `track` · `glPose` |
 | `marks.js` | `HFMarks` | `highlight` · `draw` · `swap` · `statusChip` · `seedChip` · `scriptWord` · paths: `ringPath` `scribblePath` `strikePath` `arrowPath` `elbowPath` `outlinePath` |
-| `text.js` | `HFText` | `words` · `typeOn` · `glowTitle` · `defocus` · `accentWord` (+ `installCss()`) · `odometer` · `rasterText` · `glowFilter` / `injectGlow` |
+| `text.js` | `HFText` | `words` · `typeOn` · `glowTitle` · `defocus` · `accentWord` (+ `installCss()`) · `odometer` (`opts.fps`, default 30) · `rasterText` · `glowFilter` / `injectGlow` · `ready()` |
 | `brand.js` | `HFBrand` | `cssVars(tokens, palette, {font, overrides, scale})` · `toCss` · `apply(el, vars[, mode])` (throws if the palette mode can't be determined; sets `data-hf-mode`) · `mode(palette)` · `toGl(colour)` · CLI |
 | `shorts/wipe.js` | `HFWipe` | `wipe(tl, {host, fe, filterId, dir, inAt, outAt})` · `phase(tl, out, in, T, dir)` |
 
@@ -112,6 +125,7 @@ HFCamera.rig(tl, { format: "long-form", width: 1920, height: 1080, stage: stage,
 HFMarks.highlight(tl, document.querySelector("#hl"), 2.5, LF);            // ease.sweep, ≈ 360 px/s @720p
 HFText.words(tl, document.querySelector("#headline"), 3.1, LF);           // rise 7 % H, 0.6 s, 280 ms stagger
 HFText.odometer(tl, document.querySelector("#figure"), 4, 3, "$150,000", LF);
+await HFText.ready();                                                      // fonts/measures landed: frames are final
 window.__timelines["scene"] = tl;
 ```
 
@@ -122,8 +136,8 @@ window.__timelines["scene"] = tl;
   module for clocks, randomness, infinite repeats, hard-coded colours, overshoot or raw eases, and
   untagged Gaussians (colour literals other than marked pure-black alpha masks are banned).
 - `lib/examples/smoke.html` — real GSAP + WebGL in a browser: builds a long-form and a Shorts scene
-  from every module, seeks 30 frames forwards and then shuffled, and compares what paints
-  (including blur-canvas pixels). It fails unless both blur canvases actually painted. Serve the repo root (`python3 -m http.server 8765`), open
+  from every module, seeks 42 frames forwards and then shuffled, and compares what paints
+  (including blur-canvas pixels). It fails unless both camera blur canvases and the odometer canvas actually painted. Serve the repo root (`python3 -m http.server 8765`), open
   `http://localhost:8765/lib/examples/smoke.html`, expect `PASS`.
 
 ## Where things came from (2026-10-03 consolidation)

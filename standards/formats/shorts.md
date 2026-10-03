@@ -225,10 +225,10 @@ is obvious the moment there is any zoom component.
    `PAD_Y = (H/2)(K-1)` and maps the pose for you (`HFCamera.glPose`):
 
    ```js
-   function glPose(t) {                     // DOM pose: translate(dx, dy) scale(z), origin 0 0
-     var d = domTransform(pose(t));
-     return { tx: d.dx - d.z * PAD_X, ty: d.dy - d.z * PAD_Y, s: d.z };   // design p -> texture PAD + p
-   }
+   // HFCamera.rig does exactly this per frame; shown only so you can check a pose by hand.
+   var pose = HFCamera.track(keys, "shorts");             // t -> {cx, cy, z}
+   var dom = HFCamera.domTransform(pose(t), W, H);        // {dx, dy, z}: translate(dx, dy) scale(z), origin 0 0
+   var gl  = HFCamera.glPose(pose(t), W, H, K);           // {tx: dx - z*PAD_X, ty: dy - z*PAD_Y, s: z}
    ```
 
    (The pre-merge forks sampled in canvas units and needed the pose scaled by `K`; the merged
