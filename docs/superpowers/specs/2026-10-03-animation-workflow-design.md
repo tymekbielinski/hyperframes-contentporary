@@ -332,9 +332,12 @@ build one composition over the footage → gate → preview → render one MP4 �
 
 ## 12. Open items / deferred
 
-- Custom-animation catalogue and layouts — from reference videos Tymek will share; extends §6a
-  "Custom" and may add kit variants.
-- Opus 5.5 animation video — to be analysed and folded into `standards/` as an update.
+- ~~Custom-animation catalogue~~ — resolved in Plan 1b: catalogue in `standards/formats/long-form.md`
+  (research: `docs/research/2026-10-03-custom-animation-catalogue.md`); light ground added as a second
+  look (palette `mode`).
+- ~~Opus 5.5 animation video~~ — resolved in Plan 1b: ban list (core), beat grid, director's-brief
+  BRIEF fields, critique loop (QA §2), model/effort, reference → style procedure. Sound stays out of
+  scope (graphics are silent; the editor scores).
 - Font licensing for team machines and client work — each brand's `assets/` records font sources;
   fonts live on the shared drive.
 - Exact gold and lime palette values — to be sampled from source files when the Contentporary brand

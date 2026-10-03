@@ -1,6 +1,6 @@
 # QA Gate
 
-Two stages: an automated gate that blocks the render, then a human sign-off before delivery.
+Three stages: an automated gate that blocks the render, an agent critique loop, then a human sign-off before delivery.
 Automated checks are implemented by `tools/qa` (Plan 3). Until it exists, run each check by hand.
 
 ## 1. Automated gate (blocks render)
@@ -21,10 +21,29 @@ Automated checks are implemented by `tools/qa` (Plan 3). Until it exists, run ea
 **Exceptions:** declared in the BRIEF under `exceptions:`, each with a reason (e.g. a recreated UI
 that has no real screenshot). The gate passes declared exceptions and lists them in the preview pack.
 
-## 2. Human review
+## 2. Critique loop (agent, before the human sees anything)
 
-1. **Preview pack** (generated): a contact sheet of every graphic, a draft render of the hook plus
-   one body scene, the density timeline, and the exceptions list.
+The agent that built the video reviews its own render and fixes what scores low. A good result
+usually takes several rounds, not one shot.
+
+1. Render the preview material: a contact sheet of every graphic, three full-res frames per graphic
+   (entrance, mid, settled), and a 10 fps strip of every camera move.
+2. Score **every graphic** 1–10 on six dimensions, each with one sentence of evidence:
+   - **Smooth** — eases in and settles, holds before the cut, no snap, jitter or overshoot.
+   - **On-brand** — ground mode, surfaces, headline treatment and marks match the brand and palette.
+   - **Readable** — every word legible at phone size and normal speed; nothing cropped or ghosted.
+   - **Synced** — lands on the words it illustrates (check against `transcript.json` times).
+   - **Purposeful** — proves, structures or emphasises something; nothing from the ban list in
+     `standards/core/motion.md`.
+   - **Craft** — real UI detail, depth (backdrop, halo, focus), a micro-detail; not generic.
+3. Fix every graphic scoring **below 8** on any dimension, re-render it, and re-score.
+4. Stop when all scores are 8 or higher, or after **3 rounds**. Anything still below 8 is listed at
+   the top of the preview pack for the runner.
+5. Record every round's scores and fixes in `videos/<slug>/critique.md`.
+
+## 3. Human review
+
+1. **Preview pack** (generated): a contact sheet of every graphic, a draft render of the hook plus one body scene, the density timeline, the exceptions list, and the final critique scores (any graphic still below 8 first).
 2. **Sign-off by whoever ran the build**, using these five questions. Tymek sees the final. Each
    question must be answerable by someone other than Tymek:
    1. **Smooth?** Moves ease in and settle; nothing snaps, jitters or overshoots; scenes hold still

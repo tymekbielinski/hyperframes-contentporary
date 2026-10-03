@@ -213,5 +213,34 @@ class LookAndCatalogueTests(unittest.TestCase):
             self.assertNotIn(banned, cat, banned)
 
 
+class HarnessTests(unittest.TestCase):
+    QA = ROOT / "standards" / "core" / "qa.md"
+    PL = ROOT / "standards" / "core" / "pipeline.md"
+
+    def test_qa_critique_loop(self):
+        t = self.QA.read_text()
+        for s in ["## 2. Critique loop", "## 3. Human review", "critique.md", "below 8",
+                  "3 rounds", "Smooth", "On-brand", "Readable", "Synced", "Purposeful", "Craft"]:
+            self.assertIn(s, t)
+
+    def test_pipeline_harness(self):
+        t = self.PL.read_text()
+        for s in ["film:", "direction:", "references:", "gotchas:", "## Beat grid",
+                  "| t_in | t_out | words | placement | type | beats | ease | marks |",
+                  "Opus 5.5", "high effort", "## Reference → style guide", "critique.md",
+                  "never its content"]:
+            self.assertIn(s, t)
+
+    def test_no_stale_signoff_section_refs(self):
+        for f in [self.PL] + list((ROOT / "standards").rglob("*.md")):
+            t = f.read_text()
+            self.assertNotIn("qa.md` §2) by the runner", t, f)
+            self.assertNotIn("Preview pack → sign-off** by the runner (`standards/core/qa.md` §2)", t, f)
+
+    def test_template_readme_reference_step(self):
+        t = (ROOT / "brands" / "_template" / "README.md").read_text()
+        self.assertIn("Reference → style guide", t)
+
+
 if __name__ == "__main__":
     unittest.main()
