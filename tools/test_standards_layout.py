@@ -47,5 +47,22 @@ class ContentporaryBrandTests(unittest.TestCase):
         self.assertNotIn("../CLAUDE.md", (self.D / "narrative.md").read_text())
 
 
+class CoreMotionTests(unittest.TestCase):
+    F = ROOT / "standards" / "core" / "motion.md"
+
+    def test_ten_rules_and_vocabulary(self):
+        text = self.F.read_text()
+        for n in range(1, 11):
+            self.assertIn(f"\n{n}. **", text, f"rule {n}")
+        for token in ["ease.camera", "ease.enter", "ease.sweep", "ease.cut",
+                      "data-blur-reason", "`focus`", "`glow`", "`wipe`", "HFMotionBlur"]:
+            self.assertIn(token, text)
+
+    def test_dropped_rules_absent(self):
+        text = self.F.read_text().lower()
+        self.assertNotIn("bed never stops", text.replace("no \"bed never stops\"", ""))
+        self.assertNotIn("110–170 ms. always", text)
+
+
 if __name__ == "__main__":
     unittest.main()
