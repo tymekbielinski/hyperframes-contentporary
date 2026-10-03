@@ -134,6 +134,10 @@ def validate_brand(brand_dir: Path) -> list:
 
 
 def validate_choice(brand_dir: Path, palette: str, font=None, overrides=None) -> list:
+    """Validate a BRIEF's palette/font/overrides choice for a brand.
+
+    font is optional here; the QA gate (standards/core/qa.md check 3) requires the BRIEF to set it.
+    """
     brand_dir = Path(brand_dir)
     brand = load_brand(brand_dir)
     t = brand["tokens"]

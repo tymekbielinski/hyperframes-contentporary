@@ -34,7 +34,7 @@ The quality bar is **smoothness**. Scenes may run long and need not be very dyna
   positive words in `status.ok`; a big figure lands at the end.
 
 ## Density
-- **Hook (≈ first 80 s):** ≥ 60 % graphics (reference: 71 %), and no face-only gap > 6 s.
+- **Hook (first `hook_end` seconds, default 80 — set in the BRIEF):** ≥ 60 % graphics (reference: 71 %), and no face-only gap > 6 s.
 - **Body:** at least one graphic, even a short one, every ≤ 30 s. Ranges declared as
   screen-share in the BRIEF are exempt.
 - Scenes run 2–18 s (median ≈ 6 s). Long scenes are chains of 3–5 beats joined by camera travel,
@@ -51,12 +51,14 @@ The quality bar is **smoothness**. Scenes may run long and need not be very dyna
 | `ease.enter` | `power3.out` |
 | `ease.sweep` | `cubic-bezier(0.47, 0.15, 0.2, 0.95)`, ≈ 360 px/s at 720p (0.5 s short, 1.0 s long, thin seed for the first ≈ 4 frames) |
 | `ease.cut` | whip: `ease.camera` over 0.45–0.8 s |
+| `ease.glow` | `expo.out` — glow title settle |
+| `ease.card` | `power2.out` — card entrance (measured, Appendix A) |
 | camera leg | 1.1–2.5 s; peak 0.75–1.2 frame-widths/s; drifts 3.5–4.5 s, peak 0.1–0.3 fw/s |
 | zoom | push/pull avg 5–16 %/s (peak 18–64 %/s) over 1.6–4 s |
 | hold | 0.2–4 s; creep ≤ 0.5 %/s |
 | word entrance | rise ≈ 7 % of frame height + fade + blur→sharp (`focus`), 0.6 s `ease.enter`, stagger 230–330 ms; word by word, never per character |
-| glow title | pops to ≈ 70 % brightness, settles 0.4 s `expo.out`, no scale; halo 60–90 px at 1080p; next word +430 ms; background rack-defocuses behind it |
-| card entrance | rise 35–40 px at 720p, 0.43 s, brightens and sharpens |
+| glow title | pops to ≈ 70 % brightness, settles 0.4 s `ease.glow`, no scale; halo 60–90 px at 1080p; next word +430 ms; background rack-defocuses behind it |
+| card entrance | rise 35–40 px at 720p, 0.43 s `ease.card`, brightens and sharpens |
 | chain gap | 450–500 ms between linked beats; peer sets (e.g. three ✕ chips) land together |
 | odometer | `ease.enter`, 2.2–7 s, lands on the spoken number |
 | motion blur | ordinary legs ≈ none (shutter ≤ 90°); whips ≈ 180° directional `HFMotionBlur` |

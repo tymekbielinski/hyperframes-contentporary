@@ -23,14 +23,16 @@ This repo is shared by the Contentporary team on GitHub
 
 ## Rules for any video task
 
-1. Start with the `/hyperframes` skill for HyperFrames mechanics.
+1. Start with the `/hyperframes` skill for HyperFrames mechanics. There is no separate frame spec
+   file: for `/hyperframes`, the design spec is `brands/<brand>/` (brand.md, tokens.json, the
+   chosen palette).
 2. **Precedence:** `standards/core/` → `standards/formats/<format>.md` → `brands/<brand>/` → the
    video's `BRIEF.md`. A lower layer supplies values and never overrides a rule above it.
 3. Read, in order: `standards/core/motion.md` (core motion law), the format profile
    (`standards/formats/long-form.md` or `shorts.md`), the brand (`brands/<brand>/brand.md`,
    `tokens.json`, the chosen palette), then `standards/core/pipeline.md`.
 4. **Motion blur is never a Gaussian.** Movement blur uses `lib/motion-blur.js` (`HFMotionBlur`).
-   Gaussian blur only with `data-blur-reason` = `focus`, `glow` or `wipe` (Shorts).
+   Gaussian blur only with `data-blur-reason` = `focus`, `glow` or `wipe` (Shorts: wipe feather and element smear).
 5. Long-form never has running captions (key-line lower thirds only). Shorts captions follow the
    BRIEF's `captions` flag.
 6. Every video passes `standards/core/qa.md` (automated gate, then sign-off by whoever ran the build).
@@ -43,7 +45,8 @@ This repo is shared by the Contentporary team on GitHub
 ## Shared library — `lib/`
 
 Shared by every brand and video; styled only by brand tokens. See `lib/README.md`. Never hand-edit
-a project's copy; improvements go into root `lib/` first.
+a project's copy; improvements go into root `lib/` first. Until `tools/sync-lib` exists (Plan 3), copy the needed
+root `lib/` files into the project unmodified. `lib/README.md` is rewritten in Plan 2.
 
 ## Tests
 

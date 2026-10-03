@@ -11,10 +11,10 @@ Automated checks are implemented by `tools/qa` (Plan 3). Until it exists, run ea
 | 2 | No lib fork | the project's `lib.lock` hashes equal root `lib/` |
 | 3 | BRIEF complete | `format`, `brand` (status `approved`), `palette`, `font`, `captions` (Shorts) present; `python3 tools/brandcheck.py` passes and the palette/font/overrides choice is valid (`brandcheck.validate_choice`) |
 | 4 | Seek-safety | static scan: no `Math.random`, `Date.now`, `repeat: -1`, CSS `infinite` animations |
-| 5 | Blur law | every `feGaussianBlur` / `blur()` carries `data-blur-reason` = `focus`, `glow` or `wipe` (`wipe` only in Shorts); camera and whip blur only via `HFMotionBlur` |
+| 5 | Blur law | every `feGaussianBlur` / `blur()` carries `data-blur-reason` = `focus`, `glow` or `wipe` (`wipe` only in Shorts: wipe feather and element smear); camera and whip blur only via `HFMotionBlur` |
 | 6 | Easing vocabulary | no raw curves outside the named `ease.*` tokens |
 | 7 | Captions | long-form: no caption layer except `kit.lower-third`; Shorts: matches the `captions` flag |
-| 8 | Density | long-form: hook ≥ 60 % graphics, no face gap > 6 s, body gaps ≤ 30 s (BRIEF `screen_share` ranges exempt); Shorts ≈ 45 % |
+| 8 | Density | long-form: hook (first `hook_end` s, default 80) ≥ 60 % graphics, no face gap > 6 s, body gaps ≤ 30 s (BRIEF `screen_share` ranges exempt); Shorts 35–55 % |
 | 9 | Settle before cut | the last 0.3 s of each full-frame scene is still (frame difference) |
 | 10 | Render traps | text verified in rendered frames, not only snapshots (`standards/formats/shorts.md` §9b traps apply to every format); seek-flicker scan |
 

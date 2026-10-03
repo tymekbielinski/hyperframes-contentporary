@@ -13,7 +13,7 @@ never overrides a rule here. Replaces `context/motion-craft.md` and the brand-ag
    grows", animate `scaleY` on a wrapper or tween between pre-measured transforms. Technique
    reference: `standards/reference/motion-waapi.md`.
 2. **Move → hold → move.** Elements and the camera travel, settle, then rest. During a hold the
-   camera may creep at most 0.5 %/s. There is no "bed never stops" rule and no mandatory idle
+   camera may creep at most 0.5 %/s, unless the format profile sets a hold-push rate. There is no "bed never stops" rule and no mandatory idle
    animation: stillness is used deliberately as contrast.
 3. **No overshoot by default.** No bounce, elastic or `back.out` unless the format profile names the
    exact exception.
@@ -23,17 +23,21 @@ never overrides a rule here. Replaces `context/motion-craft.md` and the brand-ag
    - `ease.enter` — element entrances (words, cards, chips, counters).
    - `ease.sweep` — highlight blocks, underlines, connectors drawing.
    - `ease.cut` — transitions between scenes inside a graphic (whips, wipes).
+
    A profile may add named extras (e.g. `ease.camera.slow`).
 5. **Blur law.**
-   - Blur that represents **movement** — camera legs, whips, fast element travel, odometer digit
+   - Blur that represents **movement** — camera legs, whips, fast element travel of static content, odometer digit
      roll — uses `HFMotionBlur` (`lib/motion-blur.js`): directional, along the per-pixel velocity,
-     with the shutter set by the format profile.
+     with the shutter set by the format profile. `HFMotionBlur` cannot texture an element whose
+     own content is animating while it moves. That element-level smear may use a directional
+     Gaussian only in Shorts, tagged `wipe`; in long-form such an element moves without smear.
    - Gaussian blur (`feGaussianBlur`, CSS `blur()`) is allowed only for non-motion purposes, and
      every use carries `data-blur-reason` with one of:
      - `focus` — focus/defocus: backdrop rack-defocus behind a title, words sharpening as they
        enter, depth-of-field on a thumbnail inside a card.
      - `glow` — glow and bloom.
-     - `wipe` — the Shorts masked wipe feather (Shorts only; see `standards/formats/shorts.md`).
+     - `wipe` — Shorts only: the masked wipe feather and element-level smear (see
+       `standards/formats/shorts.md`).
    - A Gaussian standing in for a camera move is never acceptable.
 6. **Graphics sync to speech.** An element lands on its spoken word, up to 0.3 s early. Cards and
    nodes lead their phrase by 0.3–0.5 s. Cuts land on the key word ±0.1 s. On-screen text may

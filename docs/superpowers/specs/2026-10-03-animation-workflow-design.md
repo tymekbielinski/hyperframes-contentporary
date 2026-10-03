@@ -76,17 +76,20 @@ of `context/design-system.md`.
 
 1. **Seek-safe or it doesn't ship.** One paused timeline; no randomness; no infinite repeats;
    animate transform / opacity / filter only. (Existing HyperFrames contract.)
-2. **Move → hold → move.** Elements travel, settle, then rest. Hold creep ≤ 0.5 %/s.
-   No "bed never stops", no mandatory idles.
+2. **Move → hold → move.** Elements travel, settle, then rest. During a hold the camera may creep
+   at most 0.5 %/s, unless the format profile sets a hold-push rate. No "bed never stops", no mandatory idles.
 3. **No overshoot by default.** No bounce / elastic / back.out unless a format profile names the
    exception.
 4. **Named easing vocabulary.** All motion uses `ease.camera`, `ease.enter`, `ease.sweep`,
    `ease.cut` (+ profile-defined extras). Values are set by the format profile. No ad-hoc curves.
 5. **Blur law.**
-   - Blur that represents *movement* (camera legs, whips, fast element travel) uses
-     `HFMotionBlur` — directional, with the shutter set by the format profile.
+   - Blur that represents *movement* (camera legs, whips, fast element travel of static content,
+     odometer digit roll) uses `HFMotionBlur` — directional, with the shutter set by the format
+     profile. `HFMotionBlur` cannot texture an element whose own content is animating while it
+     moves; that element-level smear may use a directional Gaussian only in Shorts, tagged `wipe`
+     (in long-form such an element moves without smear).
    - Gaussian blur is allowed only for non-motion purposes: focus/defocus (backdrop rack-defocus,
-     word blur→sharp entrance), glow/bloom, and the Shorts wipe feather (named exception).
+     word blur→sharp entrance), glow/bloom, and — Shorts only — the wipe feather and element smear (`wipe`, named exception).
 6. **Sync to speech.** Elements land on their word (lead 0–0.3 s); cards/nodes lead their phrase
    by 0.3–0.5 s; cuts land on the key word ±0.1 s. On-screen text may paraphrase speech.
 7. **Footage ↔ full-frame graphic is a hard cut.** Transitions happen inside graphics as camera
@@ -129,7 +132,7 @@ lower third, side screen text, mini animations — animating on/off over the fac
   one instance may extend into website → booking → glow title.
 
 **Density:**
-- **Hook (≈ first 80 s):** ≥ 60 % graphics (reference: 71 %), no face-only gap > 6 s.
+- **Hook (first `hook_end` s, default 80 — BRIEF field):** ≥ 60 % graphics (reference: 71 %), no face-only gap > 6 s.
 - **Body:** at least one graphic (even short) every ≤ 30 s. Screen-share ranges are exempt.
 - Scenes 2–18 s, median ≈ 6 s; long scenes are chains of 3–5 beats joined by camera travel.
 - **Shared canvas:** a long argument is one composition the face cuts into; on return it resumes
@@ -143,11 +146,14 @@ lower third, side screen text, mini animations — animating on/off over the fac
 | `ease.camera.slow` | `sine.inOut` — emphasis pushes only, avg 3–4.5 %/s over 2–5 s |
 | `ease.enter` | `power3.out` |
 | `ease.sweep` | `cubic-bezier(0.47, 0.15, 0.2, 0.95)`, ≈ 360 px/s @720p (0.5–1.0 s) |
+| `ease.cut` | whip: `ease.camera` over 0.45–0.8 s |
+| `ease.glow` | `expo.out` — glow title settle |
+| `ease.card` | `power2.out` — card entrance (measured, Appendix A) |
 | camera leg | 1.1–2.5 s; peak 0.75–1.2 frame-widths/s; drifts 3.5–4.5 s, peak 0.1–0.3 fw/s |
 | zoom | avg 5–16 %/s, peak 18–64 %/s |
 | hold | 0.2–4 s, creep ≤ 0.5 %/s |
 | word entrance | rise ≈ 7 % frame height + fade + blur→sharp, 0.6 s, stagger 230–330 ms; word-level only |
-| glow title | pop to ≈ 70 %, settle 0.4 s `expo.out`, no scale; halo 60–90 px @1080; next word +430 ms |
+| glow title | pop to ≈ 70 %, settle 0.4 s `ease.glow`, no scale; halo 60–90 px @1080; next word +430 ms |
 | chain gap | 450–500 ms; peer sets land together |
 | motion blur | ordinary legs ≈ none (shutter ≤ 90°); whips ≈ 180° directional `HFMotionBlur` |
 | backdrop defocus | blur σ ≈ 4.5 px @1080 + brightness → 0.6 over 0.5 s, front-loaded |
@@ -162,12 +168,15 @@ README. Over-footage layouts → ProRes 4444 with alpha (`hyperframes render --f
 ### 6b. Shorts — `standards/formats/shorts.md`
 
 Mostly `context/design-system.md` §1, §6–§8, moved unchanged:
-- Full-frame only — no overlays on the face. ≈ 45 % graphics; scenes 1.4–8.8 s; scene ends land
+- Full-frame only — no overlays on the face. ≈ 45 % graphics (QA band 35–55 %); scenes 1.4–8.8 s; scene ends land
   on the footage's own cuts (`probe-cuts`, scene threshold 0.20; end = source cut + exit duration).
 - Masked motion-blurred wipe: `cubic-bezier(0.65, 0, 0.35, 1)`, 0.42 s in / 0.36 s out,
   Gaussian feather as the named exception.
+- Easing tokens: `ease.camera` and `ease.cut` = `cubic-bezier(0.65, 0, 0.35, 1)`; `ease.enter` =
+  `power3.out` (provisional, not measured); `ease.sweep` = `cubic-bezier(0.47, 0.15, 0.2, 0.95)`
+  (provisional, from long-form). Hold push ≈ 3.4 %/s is the profile hold-push rate.
 - Punchy timings: chips seed → expand; type-on ≈ 67 ms/char; peers 125 ms; chained beats
-  300–630 ms; global recolour 133 ms; hold push ≈ 3.4 %/s; taller multi-phase camera worlds.
+  300–630 ms; global recolour 133 ms; hold push ≈ 3.4 %/s (profile rate, overrides core creep cap); taller multi-phase camera worlds.
 - Captions per project (flag in BRIEF). If the footage already carries them, never re-add.
 - Delivery: one finished MP4.
 - §8c motion-blur numbers rewritten for any aspect ratio (no hard-coded 1080×1920).
@@ -187,10 +196,10 @@ brands/<name>/
 
 **Palette roles** (every palette fills every slot): `ground` (deep, lit centre, grid, dots),
 `surface` (glass fill, bevel, halo), `text` (primary, secondary), `accent` (highlight block,
-keywords, connectors, title glow), `accent.script` (handwriting), `status.ok`, `status.x`.
+keywords, connectors, title glow), `accentScript` (handwriting), `status.ok`, `status.x`.
 
 **Per-video choices** (in the BRIEF): `palette:` (one of the brand's palettes), optional one-off
-overrides (e.g. `accent.script: "#BACE7A"`), and `font:` (one of the brand's allowed headline
+overrides (e.g. `accentScript: "#BACE7A"`), and `font:` (one of the brand's allowed headline
 fonts).
 
 **Kit variants:** variants live in shared `lib/kit/`, styled only by tokens. A brand lists its
@@ -249,10 +258,10 @@ hand-built from `camera` / `marks` / `text`, so they inherit the motion law auto
 | 2 | No lib fork | `lib.lock` hashes == root `lib/` |
 | 3 | BRIEF complete | format, brand (`approved`), palette, font, captions flag (Shorts) |
 | 4 | Seek-safety | static scan: `Math.random`, `Date.now`, infinite repeats, CSS infinite animations |
-| 5 | Blur law | every `feGaussianBlur` / `blur()` carries a reason tag (`focus`/`glow`/`wipe`); camera/whip blur only via `HFMotionBlur` |
+| 5 | Blur law | every `feGaussianBlur` / `blur()` carries a reason tag (`focus`/`glow`/`wipe`; `wipe` only in Shorts: wipe feather and element smear); camera/whip blur only via `HFMotionBlur` |
 | 6 | Easing vocabulary | no raw curves outside `ease.*` tokens |
 | 7 | Captions | long-form: no caption layer except `kit.lower-third`; Shorts: matches flag |
-| 8 | Density | long-form: hook ≥ 60 %, no face gap > 6 s, body gaps ≤ 30 s (BRIEF screen-share ranges exempt); Shorts ≈ 45 % |
+| 8 | Density | long-form: hook (first `hook_end` s, default 80) ≥ 60 %, no face gap > 6 s, body gaps ≤ 30 s (BRIEF screen-share ranges exempt); Shorts 35–55 % |
 | 9 | Settle before cut | last 0.3 s of each full-frame scene is still (frame-diff) |
 | 10 | Render traps | text verified in rendered frames (design-system §9b traps); seek-flicker scan |
 
@@ -283,7 +292,7 @@ videos/<slug>/  BRIEF.md · transcript.json · storyboard.md · assets/captures/
 ```
 
 **BRIEF fields:** `format`, `brand`, `palette`, `font`, overrides, `captions` (Shorts),
-`screen_share` ranges (long-form), `exceptions`, source footage path.
+`hook_end` (long-form, default 80), `screen_share` ranges (long-form), `exceptions`, source footage path.
 
 **Long-form:**
 1. Intake — `tools/new-video` scaffolds and syncs lib; inputs: basic-edit export (proxy OK) +

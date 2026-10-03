@@ -18,12 +18,14 @@ font: helvetica              # one of the brand's headline fonts
 overrides:                   # optional one-off palette role overrides
   accentScript: "#BACE7A"
 captions: false              # Shorts only: true | false
+hook_end: 80                 # long-form only: end of the hook in seconds (default 80)
 screen_share:                # long-form only: ranges exempt from the 30 s cadence rule
   - [302.5, 317.0]
 exceptions:                  # optional, each with a reason
   - "F09: recreated Google Calendar — no shareable real account"
 source: "shared drive path to the basic-edit export / footage"
 ```
+Override keys are palette role paths, dot-separated and flat — e.g. `accent.block`, `accentScript` — not nested YAML.
 
 ## Long-form
 1. **Intake.** `tools/new-video` (Plan 3) scaffolds `videos/<slug>/` and syncs `lib/`. Inputs: the

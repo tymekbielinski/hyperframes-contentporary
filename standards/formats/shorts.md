@@ -6,9 +6,17 @@ supplies the Shorts values. Measured frame-by-frame from Tymek's two reference r
 not in this file: Contentporary's reel values live in `brands/contentporary/palettes/reel-dark.json`
 and `reel-light.json`.
 
-**Easing values:** `ease.cut` = the wipe below, `cubic-bezier(0.65, 0, 0.35, 1)`; `ease.camera` =
-`cubic-bezier(0.65, 0, 0.35, 1)` (house bezier, solved by bisection); `ease.enter` = per beat sheet
-below (chips seed-and-expand; headline type scales down from oversize).
+**Easing values** (closed table; no other curve names in this profile):
+
+| Token | Value |
+|---|---|
+| `ease.camera` | `cubic-bezier(0.65, 0, 0.35, 1)` (profile ease, solved by bisection) |
+| `ease.cut` | `cubic-bezier(0.65, 0, 0.35, 1)` — deliberately the same curve as `ease.camera` (the wipe) |
+| `ease.enter` | `power3.out` — provisional: entrance curves were not measured in the reels (timings in the beat sheets are) |
+| `ease.sweep` | `cubic-bezier(0.47, 0.15, 0.2, 0.95)` — provisional, carried from the long-form measurement |
+
+hold push: ≈ 3.4 %/s (profile hold-push rate; overrides the core 0.5 %/s creep cap)
+
 **Presentation:** screenshots are composited slightly rotated (~1–3°) with a soft drop shadow.
 
 ## 1. The structural rule everything else hangs off
@@ -123,6 +131,9 @@ Reel B, 24.7 → 28.0. The canonical *chain*.
 | 27.3–28.0 | red underline **draws left→right, trailing the words** | finishes after the last word |
 | 28.0 | **hard cut** | |
 
+**Do not copy the 24.70 crossfade.** Blur crossfades are dropped from the standard (spec §11); a scene
+change inside a graphic uses the masked wipe (§1).
+
 **The chip entrance grammar is its own thing:** a coloured dot appears, then the pill *grows
 sideways* out of it to expose the label. That is not scale-down-from-oversize. Use it for anything
 tag-like; keep scale-down entrances for headline type.
@@ -158,7 +169,7 @@ The recipe, as built on short4's funnel:
    inside the frame's *width* so no camera position ever crops horizontally.
 2. **Hold zoom constant** and move only in Y. A pure pan means the blur is single-axis and can be
    derived exactly; mixing zoom in adds a radial component a directional blur can't represent.
-3. **Ease every leg on the house bezier** — `cubic-bezier(0.65, 0, 0.35, 1)`, solved by bisection
+3. **Ease every leg on the profile ease (`ease.camera`)** — `cubic-bezier(0.65, 0, 0.35, 1)`, solved by bisection
    through a keyframe track so the pose stays a pure function of time and survives seeking.
 4. **Blur with the real library — `lib/motion-blur.js` (`HFMotionBlur`). Never a Gaussian.**
    See § 8c. A `feGaussianBlur` driven off camera velocity *looks* like motion blur in a still and
@@ -254,7 +265,7 @@ the letters with nothing to show through — they look sliced off. Keep `line-he
 gradient-filled text; never set it below the font size (e.g. `56px` type on a `62px` line box).
 
 ## Density and delivery
-- ≈ 45 % of runtime is full-frame graphics; scenes 1.4–8.8 s; full-frame only, no overlays on the face.
+- ≈ 45 % of runtime is full-frame graphics (QA band: 35–55 %); scenes 1.4–8.8 s; full-frame only, no overlays on the face.
 - Delivery: one finished MP4 (1080×1920, 30 fps).
 
 ## Checklist (run with `standards/core/qa.md`)

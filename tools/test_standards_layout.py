@@ -97,7 +97,7 @@ class QaPipelineTests(unittest.TestCase):
     def test_pipeline_brief_fields(self):
         t = (ROOT / "standards" / "core" / "pipeline.md").read_text()
         for key in ["format:", "brand:", "palette:", "font:", "overrides:", "captions:",
-                    "screen_share:", "exceptions:", "source:"]:
+                    "hook_end:", "screen_share:", "exceptions:", "source:"]:
             self.assertIn(key, t)
         for s in ["Long-form", "Shorts", "client-ops", "shared drive"]:
             self.assertIn(s, t)
@@ -142,6 +142,16 @@ class MigrationTests(unittest.TestCase):
         for s in ["git pull", "standards/core/motion.md", "standards/formats/",
                   "brands/", "standards/core/qa.md", "Precedence"]:
             self.assertIn(s, t)
+
+
+class EasingTableTests(unittest.TestCase):
+    def test_profiles_define_core_tokens_in_table_rows(self):
+        import re
+        for name in ("long-form.md", "shorts.md"):
+            t = (ROOT / "standards" / "formats" / name).read_text()
+            for tok in ("ease.camera", "ease.enter", "ease.sweep", "ease.cut"):
+                self.assertTrue(re.search(r"^\| `%s` " % re.escape(tok), t, re.M),
+                                f"{name}: {tok} missing from a table row")
 
 
 if __name__ == "__main__":

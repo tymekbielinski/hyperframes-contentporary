@@ -12,7 +12,8 @@ Every Contentporary video keeps these, whatever palette or headline font it pick
   Never a dark drop shadow (long-form). Card radius ≈ 36 px, stat cards ≈ 31 px at 1080p;
   highlight blocks are sharp-cornered.
 - **Headlines:** white, with a soft glow (halo 60–90 px at 1080p) on dark ground; one or two accent
-  words in the palette's `accent.text`.
+  words in long-form; exactly one accent word per headline in Shorts — in the palette's
+  `accent.text`.
 - **Accent words:** a sharp-cornered `accent.block` behind a key stat or phrase, or a payoff word in
   the signature script (`accentScript`), negative in the accent colour, positive in `status.ok`.
 - **Marks:** highlight block, scribble underline, underline, curved arrow, curved/elbow connectors

@@ -26,8 +26,7 @@ density and motion live in `standards/formats/`; this file only says what the st
 
 ## Tone
 - Confident, plain, second person ("you"). No hype words, no "in this video I'll show you".
-- Never optimize the edit for views/likes/retention theatrics over clarity — north star is
-  qualified call volume, not watch time for its own sake.
+- Never optimize the edit for views/likes/retention theatrics over clarity.
 
 ## Visual grammar per beat type
 - Hook → full-frame statement or result-first shot; no logo/branding yet.
