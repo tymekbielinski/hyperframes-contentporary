@@ -105,6 +105,12 @@ you'd pre-rasterise the needed states or render those elements separately.
 Working reference (original project): `videos/users-companies-30s/compositions/examples/vector-blur-test.html`
 (not carried over — port a fresh example if one is needed here).
 
+### World size (added 2026-09-07)
+The shader now samples the world texture in its **own pixel units** (`uWorld`), so the output
+canvas and the world texture no longer have to share a size: a 704×1080 panel can pan over a
+2992×1568 rasterised screenshot at native resolution. `updateWorld(src)` reads the new size from
+`src`; pass `worldSize: [w, h]` to pin it. A W×H world on a W×H canvas behaves exactly as before.
+
 ---
 
 # HFDemoTransitions — transition + camera kit for scene-driven shorts
