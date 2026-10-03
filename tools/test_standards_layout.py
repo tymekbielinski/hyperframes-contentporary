@@ -103,5 +103,46 @@ class QaPipelineTests(unittest.TestCase):
             self.assertIn(s, t)
 
 
+class MigrationTests(unittest.TestCase):
+    STALE = ["context/", "PIPELINE.md", "../CLAUDE.md", "script-template.md",
+             "motion-craft.md", "design-system.md", "frame.md"]
+
+    def active_docs(self):
+        files = [ROOT / "CLAUDE.md"]
+        for d in ["standards", "brands"]:
+            files += [p for p in (ROOT / d).rglob("*.md")]
+        return files
+
+    def test_old_files_gone(self):
+        for rel in ["context/design-system.md", "context/motion-craft.md", "context/frame.md",
+                    "context/custom.md", "context/voice.md", "context/narrative.md",
+                    "context/motion-waapi.md", "PIPELINE.md", "templates/script-template.md"]:
+            self.assertFalse((ROOT / rel).exists(), rel)
+        self.assertTrue((ROOT / "standards" / "reference" / "motion-waapi.md").is_file())
+
+    def test_no_stale_references_in_active_docs(self):
+        allowed = {  # provenance lines that name the old file on purpose
+            ("standards/core/motion.md", "context/"),
+            ("standards/core/motion.md", "context/motion-craft.md"),
+            ("standards/core/motion.md", "context/design-system.md"),
+            ("standards/core/motion.md", "motion-craft.md"),
+            ("standards/core/motion.md", "design-system.md"),
+        }
+        problems = []
+        for f in self.active_docs():
+            rel = str(f.relative_to(ROOT))
+            text = f.read_text()
+            for s in self.STALE:
+                if s in text and (rel, s) not in allowed:
+                    problems.append(f"{rel}: {s}")
+        self.assertEqual(problems, [])
+
+    def test_claude_md_points_at_new_layout(self):
+        t = (ROOT / "CLAUDE.md").read_text()
+        for s in ["git pull", "standards/core/motion.md", "standards/formats/",
+                  "brands/", "standards/core/qa.md", "Precedence"]:
+            self.assertIn(s, t)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -8,7 +8,7 @@ either freezes or renders garbage, and it needs a React build this project doesn
 **Use the Web Animations API (WAAPI) instead** — it gives the same declarative, spring-y ergonomics,
 needs **zero install** (native browser API), and is a first-class seekable HyperFrames adapter. The
 renderer drives it via `document.getAnimations()` → set `currentTime` → pause. Verified rendering:
-`videos/users-companies/compositions/examples/waapi-demo.html`.
+a standalone test composition (the original waapi-demo.html was not carried over from the client pipeline).
 
 ## The contract (follow exactly, or the frame won't seek)
 
@@ -47,7 +47,7 @@ document.querySelectorAll(".token").forEach((el, i) =>
 
 A `<template>`-wrapped file must be mounted from `index.html`. To render one file on its own, make its
 root a plain `<div id="root" data-composition-id="…" data-width data-height data-duration>` (no
-`<template>` wrapper), then: `npx hyperframes render --composition compositions/examples/waapi-demo.html`.
+`<template>` wrapper), then: `npx hyperframes render --composition compositions/<your-test>.html`.
 
 ## When to still reach for GSAP
 
