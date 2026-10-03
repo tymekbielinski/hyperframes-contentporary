@@ -9,6 +9,23 @@ demos), scoped down to only the brand-agnostic pieces — the animation library,
 reference, and the pipeline pattern. Client brand tokens, fonts, and old video projects were left
 behind. See `PIPELINE.md`'s header for the full port rationale.
 
+## Stay in sync with the team — pull first
+
+This repo is shared by the Contentporary team on GitHub
+(`https://github.com/tymekbielinski/hyperframes-contentporary`, branch `main`).
+
+- **At the start of every session, before reading or editing anything:** run `git status`, then
+  `git pull`. Tell the user what came in (new commits, or "already up to date").
+- **If the pull is blocked by local changes:** do not discard them. `git stash`, `git pull`,
+  `git stash pop`, and report any conflicts to the user instead of resolving them silently.
+- **If `origin` still points at the old `hyperframes` URL:** run
+  `git remote set-url origin https://github.com/tymekbielinski/hyperframes-contentporary.git`.
+- **Before pushing:** pull again so you push on top of teammates' latest work. Commit and push
+  only when the user asks.
+- **Not in Git:** footage, audio, renders and edit exports (`*.mp4`, `*.mov`, `*.wav`, `*.mp3`,
+  `*.xml`, `*.edl`, `*.srt`, … — see `.gitignore`). A pull will not bring these; if a project
+  references media that isn't on disk, tell the user to get it from the team's shared drive.
+
 Rules for any video task in this folder:
 1. Start with the `/hyperframes` skill; it routes to the right workflow.
 2. Load the context set before authoring: `context/design-system.md` (READ FIRST),
