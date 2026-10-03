@@ -64,5 +64,27 @@ class CoreMotionTests(unittest.TestCase):
         self.assertNotIn("110–170 ms. always", text)
 
 
+class FormatProfileTests(unittest.TestCase):
+    LF = ROOT / "standards" / "formats" / "long-form.md"
+    SH = ROOT / "standards" / "formats" / "shorts.md"
+
+    def test_long_form_values(self):
+        t = self.LF.read_text()
+        for s in ["cubic-bezier(0.32, 0, 0.18, 1)", "power3.out", "≥ 60 %", "≤ 30 s",
+                  "lower third", "ProRes 4444", "TIMECODES.csv", "chapter roadmap",
+                  "screen-share"]:
+            self.assertIn(s, t)
+        self.assertIn("**Not used in long-form:** light leaks", t)
+        self.assertEqual(t.lower().count("light leak"), 1)
+
+    def test_shorts_values(self):
+        t = self.SH.read_text()
+        for s in ["cubic-bezier(0.65, 0, 0.35, 1)", "0.42s", "0.36s", "gt(scene,0.20)",
+                  "data-blur-reason=\"wipe\"", "captions", "W·K"]:
+            self.assertIn(s, t)
+        self.assertNotIn("1080K × 1920K", t)
+        self.assertNotIn("public/lib/", t)
+
+
 if __name__ == "__main__":
     unittest.main()
