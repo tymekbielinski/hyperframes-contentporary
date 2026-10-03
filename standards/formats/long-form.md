@@ -127,7 +127,7 @@ scored to a beat grid here.
 | card entrance | rise 35–40 px at 720p, 0.43 s `ease.card`, brightens and sharpens |
 | chain gap | 450–500 ms between linked beats; peer sets (e.g. three ✕ chips) land together |
 | odometer | `ease.enter`, 2.2–7 s, lands on the spoken number |
-| motion blur | ordinary legs ≈ none (shutter ≤ 90°); whips ≈ 180° directional `HFMotionBlur` |
+| motion blur | directional `HFMotionBlur`, shutter per move: ordinary legs 90° (`HFMotionBlur.profilePreset("long-form", "leg")`, reads as ≈ none); whips 180° (`"whip"`); odometer digit roll 144° (`"roll"`) |
 | backdrop defocus | blur σ ≈ 4.5 px at 1080p + brightness → 0.6 over 0.5 s, front-loaded (`focus`) |
 | screenshots | axis-aligned in bordered cards; dark ground: light halo, no dark drop shadow; light ground: soft neutral shadow from `surface.halo` |
 

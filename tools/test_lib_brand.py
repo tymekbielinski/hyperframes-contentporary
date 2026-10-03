@@ -46,6 +46,17 @@ class BrandJsContractTests(unittest.TestCase):
         self.assertEqual(got["roles"], bc.PALETTE_ROLES)
         self.assertNotIn("mode", got["roles"])
 
+    def test_css_variables_named_in_docs_exist(self):
+        r = run_brand_js(str(ROOT / "brands" / "contentporary"), "--palette", "red", "--json")
+        known = set(json.loads(r.stdout))
+        docs = [ROOT / "CLAUDE.md", ROOT / "lib" / "README.md"] + list((ROOT / "standards").rglob("*.md"))
+        named = set()
+        for f in docs:
+            named |= set(re.findall(r"var\((--hf-[a-z0-9-]+)\)", f.read_text()))
+            named |= set(re.findall(r'"(--hf-[a-z0-9-]+)"', f.read_text()))
+        self.assertTrue(named, "expected at least one brand variable in the docs")
+        self.assertEqual(sorted(named - known), [])
+
     def test_brief_choice_errors_match_brandcheck(self):
         d = ROOT / "brands" / "contentporary"
         self.assertTrue(bc.validate_choice(d, "red", overrides={"accent.blok": "#FFFFFF"}))
