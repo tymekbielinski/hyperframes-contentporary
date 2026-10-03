@@ -22,6 +22,7 @@ KNOWN_MARKS = [
     "status-chip", "script-word", "strike", "ring", "group-outline", "tool-chip",
 ]
 STATUSES = ("draft", "approved")
+PALETTE_MODES = ("dark", "light")
 
 _HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
 _RGBA = re.compile(r"^rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*(0|1|0?\.\d+)\s*\)$")
@@ -51,6 +52,10 @@ def _get(data, keys):
 
 def validate_palette(data: dict, label: str) -> list:
     errors = []
+    if "mode" not in data:
+        errors.append(f"{label}: missing mode")
+    elif data["mode"] not in PALETTE_MODES:
+        errors.append(f"{label}: mode must be 'dark' or 'light', got {data['mode']!r}")
     for path, keys in _role_paths():
         value, found = _get(data, keys)
         if not found:

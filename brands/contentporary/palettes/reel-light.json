@@ -1,5 +1,6 @@
 {
   "name": "reel-light",
+  "mode": "light",
   "use": "Shorts, when the screenshot being annotated is light-mode. Measured from the two reference reels.",
   "ground": { "deep": "#E5E5E5", "centre": "#ECECEC", "grid": "#E0E0E0", "dots": "#E0E0E0" },
   "surface": { "fill": "#F2F2F2", "fillAlt": "#F2F2F2", "bevel": "#F2F2F2", "halo": "rgba(0,0,0,0.08)" },

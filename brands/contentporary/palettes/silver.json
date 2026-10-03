@@ -1,0 +1,13 @@
+{
+  "name": "silver",
+  "mode": "light",
+  "use": "Light long-form look: silver radial ground, frosted white glass, dark text without glow, coral/red marks. Sampled from 'The Problem With Clay.com' and the Liam Ottley breakdown (compressed 720p, ±6).",
+  "ground": { "deep": "#D2D2D2", "centre": "#F4F4F4", "grid": "#E6E6E6", "dots": "#E6E6E6" },
+  "surface": { "fill": "#FAFAFA", "fillAlt": "#EDEDED", "bevel": "#FFFFFF", "halo": "rgba(0,0,0,0.08)" },
+  "text": { "primary": "#3A3A3A", "secondary": "#6E6E6E" },
+  "accent": { "block": "#F0BCBE", "text": "#E8605F", "glow": "#F78065", "line": "#EB7B7F" },
+  "accentScript": "#D17251",
+  "status": { "ok": "#C1DB3E", "x": "#E8605F" },
+  "extras": { "coralLine": "#F78065", "tagBlock": "#E8626E", "secondLine": "#2FA4C9", "terminal": "#2B2B2B", "terminalBorder": "#643C28" },
+  "provisional": ["ground.grid", "ground.dots", "text.secondary", "surface.fillAlt"]
+}

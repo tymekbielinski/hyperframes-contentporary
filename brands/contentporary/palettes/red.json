@@ -1,5 +1,6 @@
 {
   "name": "red",
+  "mode": "dark",
   "use": "Long-form default. Measured from the AE reference video HrYMfy6MZtA.",
   "ground": { "deep": "#070707", "centre": "#252525", "grid": "#1F1F1F", "dots": "#2A2A2A" },
   "surface": { "fill": "#1C1B1B", "fillAlt": "#343233", "bevel": "#9A9A9A", "halo": "rgba(255,255,255,0.06)" },

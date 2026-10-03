@@ -1,5 +1,6 @@
 {
   "name": "lime",
+  "mode": "dark",
   "use": "Lime accent palette from the custom mini animation still. Provisional: sampled from a still.",
   "ground": { "deep": "#070707", "centre": "#252525", "grid": "#1F1F1F", "dots": "#2A2A2A" },
   "surface": { "fill": "#1C1B1B", "fillAlt": "#343233", "bevel": "#9A9A9A", "halo": "rgba(255,255,255,0.06)" },

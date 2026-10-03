@@ -1,5 +1,6 @@
 {
   "name": "reel-dark",
+  "mode": "dark",
   "use": "Shorts, when the screenshot being annotated is dark-mode. Measured from the two reference reels.",
   "ground": { "deep": "#0C0C0C", "centre": "#161616", "grid": "#1A1A1A", "dots": "#1A1A1A" },
   "surface": { "fill": "#404040", "fillAlt": "#404040", "bevel": "#404040", "halo": "rgba(0,0,0,0)" },

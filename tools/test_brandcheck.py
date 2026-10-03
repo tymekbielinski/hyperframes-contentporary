@@ -9,6 +9,7 @@ import brandcheck as bc
 def good_palette(name="red"):
     return {
         "name": name,
+        "mode": "dark",
         "ground": {"deep": "#070707", "centre": "#252525", "grid": "#1F1F1F", "dots": "#2A2A2A"},
         "surface": {"fill": "#1C1B1B", "fillAlt": "#343233", "bevel": "#9A9A9A",
                     "halo": "rgba(255,255,255,0.06)"},
@@ -57,6 +58,17 @@ class ColourTests(unittest.TestCase):
 
 
 class PaletteTests(unittest.TestCase):
+    def test_mode_required(self):
+        p = good_palette()
+        del p["mode"]
+        self.assertIn("red.json: missing mode", bc.validate_palette(p, "red.json"))
+
+    def test_mode_must_be_dark_or_light(self):
+        p = good_palette()
+        p["mode"] = "grey"
+        self.assertIn("red.json: mode must be 'dark' or 'light', got 'grey'",
+                      bc.validate_palette(p, "red.json"))
+
     def test_good_palette_is_valid(self):
         self.assertEqual(bc.validate_palette(good_palette(), "red.json"), [])
 

@@ -27,7 +27,8 @@ class ContentporaryBrandTests(unittest.TestCase):
 
     def test_palettes_and_fonts_per_spec(self):
         t = bc.load_brand(self.D)["tokens"]
-        self.assertEqual(sorted(t["palettes"]), ["gold", "lime", "red", "reel-dark", "reel-light"])
+        self.assertEqual(sorted(t["palettes"]),
+                         ["gold", "lime", "paper", "red", "reel-dark", "reel-light", "silver"])
         self.assertEqual(sorted(t["fonts"]["headline"]), ["geometric", "helvetica"])
 
     def test_reference_values_kept(self):
@@ -152,6 +153,40 @@ class EasingTableTests(unittest.TestCase):
             for tok in ("ease.camera", "ease.enter", "ease.sweep", "ease.cut"):
                 self.assertTrue(re.search(r"^\| `%s` " % re.escape(tok), t, re.M),
                                 f"{name}: {tok} missing from a table row")
+
+
+class GroundModeTests(unittest.TestCase):
+    D = ROOT / "brands" / "contentporary"
+
+    @staticmethod
+    def luminance(hex_colour):
+        r, g, b = (int(hex_colour[i:i + 2], 16) for i in (1, 3, 5))
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+    def test_light_palettes_exist_and_validate(self):
+        brand = bc.load_brand(self.D)
+        self.assertEqual(bc.validate_brand(self.D), [])
+        modes = {name: p["mode"] for name, p in brand["palettes"].items()}
+        self.assertEqual(modes["silver"], "light")
+        self.assertEqual(modes["paper"], "light")
+        self.assertEqual(modes["red"], "dark")
+        self.assertEqual(modes["reel-light"], "light")
+
+    def test_light_text_is_darker_than_ground(self):
+        for name, p in bc.load_brand(self.D)["palettes"].items():
+            if p["mode"] == "light":
+                self.assertLess(self.luminance(p["text"]["primary"]),
+                                self.luminance(p["ground"]["centre"]), name)
+
+    def test_template_declares_mode(self):
+        d = ROOT / "brands" / "_template"
+        self.assertEqual(bc.load_brand(d)["palettes"]["base"]["mode"], "dark")
+
+    def test_brand_md_has_two_ground_modes(self):
+        t = (self.D / "brand.md").read_text()
+        for s in ["Dark ground", "Light ground", "`silver`", "`paper`", "mode"]:
+            self.assertIn(s, t)
+        self.assertNotIn("pure-white grounds", t)
 
 
 if __name__ == "__main__":
