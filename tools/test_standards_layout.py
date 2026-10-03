@@ -86,5 +86,22 @@ class FormatProfileTests(unittest.TestCase):
         self.assertNotIn("public/lib/", t)
 
 
+class QaPipelineTests(unittest.TestCase):
+    def test_qa_has_ten_checks_and_signoff(self):
+        t = (ROOT / "standards" / "core" / "qa.md").read_text()
+        for n in range(1, 11):
+            self.assertIn(f"| {n} |", t)
+        for s in ["whoever ran the build", "Promotion rule", "exceptions:", "lib.lock"]:
+            self.assertIn(s, t)
+
+    def test_pipeline_brief_fields(self):
+        t = (ROOT / "standards" / "core" / "pipeline.md").read_text()
+        for key in ["format:", "brand:", "palette:", "font:", "overrides:", "captions:",
+                    "screen_share:", "exceptions:", "source:"]:
+            self.assertIn(key, t)
+        for s in ["Long-form", "Shorts", "client-ops", "shared drive"]:
+            self.assertIn(s, t)
+
+
 if __name__ == "__main__":
     unittest.main()
