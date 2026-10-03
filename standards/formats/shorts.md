@@ -17,6 +17,9 @@ and `reel-light.json`.
 
 hold push: ≈ 3.4 %/s (profile hold-push rate; overrides the core 0.5 %/s creep cap)
 
+motion blur: camera legs 252° (`HFMotionBlur.profilePreset("shorts", "leg")`); odometer digit roll 144°
+(`"roll"`). Shorts have no whips — a scene change inside a graphic uses the wipe.
+
 **Presentation:** screenshots are composited slightly rotated (~1–3°) with a soft drop shadow.
 
 ## 1. The structural rule everything else hangs off
@@ -67,6 +70,9 @@ at the start, zero at the end — smears hardest at the instant the scene appear
 
 Solve the bezier deterministically (bisection, ~24 iterations) rather than reaching for CustomEase;
 the renderer seeks, so the curve has to be a pure function of time.
+
+`lib/shorts/wipe.js` (`HFWipe.wipe`) implements all of the above; compositions call it rather than
+re-deriving the mask.
 
 ### Land scene boundaries ON the footage's own cuts
 
@@ -170,18 +176,22 @@ The recipe, as built on short4's funnel:
 2. **Hold zoom constant** and move only in Y. A pure pan means the blur is single-axis and can be
    derived exactly; mixing zoom in adds a radial component a directional blur can't represent.
 3. **Ease every leg on the profile ease (`ease.camera`)** — `cubic-bezier(0.65, 0, 0.35, 1)`, solved by bisection
-   through a keyframe track so the pose stays a pure function of time and survives seeking.
+   through a keyframe track so the pose stays a pure function of time and survives seeking
+   (`HFCamera.rig` in `lib/camera.js` does this).
 4. **Blur with the real library — `lib/motion-blur.js` (`HFMotionBlur`). Never a Gaussian.**
    See § 8c. A `feGaussianBlur` driven off camera velocity *looks* like motion blur in a still and
    is wrong in motion: it is an isotropic smudge, not a trail along the per-pixel velocity field.
 
    ```js
-   var blur = HFMotionBlur.createCameraBlur({
-     canvas: glCanvas, world: bakedTextureImg,
-     camera: { T: pose },              // pure function of local time -> {tx,ty,s}
-     fps: 30, preset: "medium", bg: [0.031, 0.035, 0.043, 1]
+   var ground = getComputedStyle(document.documentElement).getPropertyValue("--hf-ground-deep").trim();
+   HFCamera.rig(tl, {
+     format: "shorts", width: 1080, height: 1920, stage: stageEl, canvas: glCanvas, dur: TOT, K: 2.1,
+     keys: [{ t: 0, cx: 540, cy: 640, z: 1.28 }, { t: 1.55, cx: 540, cy: 640, z: 1.28 },
+            { t: 2.15, cx: 540, cy: 1500, z: 1.28 }],          // hold, then a leg
+     legs: [[1.55, 2.15]],                                     // blur shows only inside these windows
+     bake: function (ctx, K, t) { /* paint the settled layout, design coords */ },
+     bgCss: ground, bg: HFBrand.toGl(ground)                   // opaque bake + out-of-bounds colour
    });
-   // during a leg: hide the DOM stage, show the canvas, and blur.render(t) each frame
    ```
 
 5. **Put every leg in a quiet gap** — nothing may animate inside a move window, or the smear
@@ -203,30 +213,36 @@ is obvious the moment there is any zoom component.
 
 ### Wiring it up
 
-1. **Sync the shared library into the project** (`tools/sync-lib`; never hand-copy or edit the copy) and load `lib/motion-blur.js` after GSAP.
+1. **Sync the shared library into the project** (`tools/sync-lib`; never hand-copy or edit the copy) and load, after GSAP,
+   `lib/profile.js`, `lib/motion-blur.js` and `lib/camera.js` (load order: `lib/README.md`).
 2. **Bake a world texture per leg.** The blur samples a *static* image, so each camera leg needs a
    still of the settled layout as it appears during that leg. Generate a standalone bake page that
    mounts the card's scoped `<style>` plus its stage subtree at 1:1, with the elements visible for
    that leg forced to `opacity:1`, then screenshot it.
-3. **The texture must carry the canvas aspect ratio.** The shader maps it onto world rect
-   `[0,uRes.x] × [0,uRes.y]`, so a texture of any other aspect is silently stretched. For a
-   canvas of W × H, pick a blow-up factor `K`, size the texture `W·K × H·K`, place the stage
-   origin at `PAD_X = (W/2)(K-1)`, `PAD_Y = (H/2)(K-1)`, and scale the pose by `K`:
+3. **World units are the texture's own pixels.** The shader divides by the texture size (`uWorld`),
+   so a texture of any size or aspect maps 1:1 — nothing is stretched. For a canvas of W × H,
+   `HFCamera.rig` bakes a `W·K × H·K` texture with the stage origin at `PAD_X = (W/2)(K-1)`,
+   `PAD_Y = (H/2)(K-1)` and maps the pose for you (`HFCamera.glPose`):
 
    ```js
-   function pose(t) {                       // stage point (W/2, cy) -> canvas centre at zoom Z
-     var Z = zOf(t), cy = cyOf(t);
-     return { tx: W / 2 - Z * (W / 2 + PAD_X), ty: H / 2 - Z * (cy + PAD_Y), s: Z * K };
-   }
+   // HFCamera.rig does exactly this per frame; shown only so you can check a pose by hand.
+   var pose = HFCamera.track(keys, "shorts");             // t -> {cx, cy, z}
+   var dom = HFCamera.domTransform(pose(t), W, H);        // {dx, dy, z}: translate(dx, dy) scale(z), origin 0 0
+   var gl  = HFCamera.glPose(pose(t), W, H, K);           // {tx: dx - z*PAD_X, ty: dy - z*PAD_Y, s: z}
    ```
+
+   (The pre-merge forks sampled in canvas units and needed the pose scaled by `K`; the merged
+   library does not.)
 
    Padding exists so a pulled-back or off-centre camera still samples real pixels instead of
    running off the texture edge.
 4. **Bake OPAQUE.** The pass averages RGBA across samples; a straight-alpha PNG averages its
    transparent texels and blows the whole frame out to white. Paint the scene's ground into the
    texture and pass the matching `bg` for out-of-bounds samples.
-5. **Hand off cleanly.** During a leg, `opacity:0` the DOM stage and show the canvas; restore on
-   exit. Nothing may animate inside a leg window or the texture stops matching the DOM.
+5. **Hand off cleanly.** During a leg the rig stacks the opaque blur canvas over the stage and shows
+   it; outside legs it hides the canvas and frees the WebGL context. The stage itself is never hidden
+   (a hidden `<video>` stops seeking). Nothing may animate inside a leg window or the texture stops
+   matching the DOM.
 
 ### The one place the library does not apply
 
@@ -256,7 +272,7 @@ combination is not. For a centred, word-animated label, **use a solid colour**:
 ```css
 /* was: background-image: linear-gradient(...); background-clip: text;
         color: transparent; -webkit-text-fill-color: transparent; */
-color: #F4F6F8;
+color: var(--hf-text-primary);   /* brand variable from lib/brand.js */
 ```
 
 **2. `line-height` shorter than the glyphs crops gradient text.** `background-clip: text` paints

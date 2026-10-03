@@ -1,176 +1,157 @@
-# HFMotionBlur — reusable analytic motion blur for HyperFrames
+# Shared library — `lib/`
 
-Deterministic, seek-safe motion blur derived from the animation's own math (not
-inferred from rendered pixels). A WebGL fragment shader marches samples along the
-**analytic per-pixel velocity** of a camera transform, so translation, zoom
-(radial) and any angle all blur correctly. The scene content is rasterised to a
-texture **once**, so there is no per-frame DOM cloning and therefore no
-content-desync glitch. Not part of HyperFrames — it's a plain, dependency-free
-module you drop into a project.
+One motion library for every brand and both formats. Every module is a **pure function of time**
+(seek-safe: the renderer seeks frames in any order, across parallel workers), is **styled only by
+brand CSS variables**, and uses only the **closed easing vocabulary** of the format profile.
+Rules: `standards/core/motion.md` → `standards/formats/<format>.md`. Spec: §8 of
+`docs/superpowers/specs/2026-10-03-animation-workflow-design.md`.
 
-## Use it in a new project
+Plain browser scripts (each also loads in node for tests); GSAP must already be on the page. No
+other runtime dependencies.
 
-1. **Copy the module in:** `cp lib/motion-blur.js videos/<your-project>/lib/`
-2. In a composition, add a `<canvas>` the renderer will capture, and include the module:
-   ```html
-   <canvas id="gl" width="1920" height="1080"></canvas>
-   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-   <script src="lib/motion-blur.js"></script>  <!-- path relative to the composition -->
-   ```
-3. Provide the two things that vary per project — **content** and the **camera transform** —
-   and let the module own the blur:
-   ```js
-   // CONTENT (you own): rasterise your UI onto a 2D canvas (transparent where empty)
-   var world = document.createElement("canvas"); world.width = 1920; world.height = 1080;
-   var ctx = world.getContext("2d"); /* ...draw... */
+## Load order
 
-   // CAMERA (you own): a PURE function of time, transform-origin 0,0
-   function camPoseAt(t) { return { tx: /*..*/, ty: /*..*/, s: /*..*/ }; }  // or {x,y,scale}
-
-   // BLUR (module owns):
-   var blur = HFMotionBlur.createCameraBlur({
-     canvas: document.getElementById("gl"),
-     world: world,
-     camera: { T: camPoseAt },
-     fps: 30, shutter: 1.0, spacing: 1.5, maxN: 48,
-     bg: [1, 1, 1, 1]           // clear colour; pass null for transparent-over-DOM
-   });
-
-   var tl = gsap.timeline({ paused: true });
-   window.__timelines["your-id"] = tl;
-   var drv = { v: 0 };
-   tl.to(drv, { v: 1, duration: DUR, ease: "none", onUpdate: function(){ blur.render(drv.v * DUR); } }, 0);
-   blur.render(0);
-   ```
-
-## API
-
-- `HFMotionBlur.analyticMotionVector(T, t, eps?)` → `{tx, ty, s, rot}` — the core primitive
-  (central-difference derivative of a transform function). Everything else derives from this.
-- `HFMotionBlur.createCameraBlur(cfg)` → `{ render(t), updateWorld(src), motionVector(t) }`
-  - `cfg.world` — HTMLCanvasElement / HTMLImageElement / ImageBitmap (RGBA).
-  - `cfg.camera.T(t)` — analytic transform, `{tx,ty,s}` or `{x,y,scale}`, origin 0,0.
-  - `cfg.fps` `cfg.shutter` (frames; 1.0 ≈ 360°, 0.5 ≈ 180° film) `cfg.spacing` (px/ghost)
-    `cfg.maxN` (sample cap) `cfg.bg` (`[r,g,b,a]` 0–1, or `null` for transparent).
-  - `render(t)` — call from the timeline `onUpdate`; returns the sample count used.
-  - `updateWorld(src)` — swap the texture when content changes (see caveat).
-- `HFMotionBlur.blurPreset(name, overrides?)` → `{shutter, spacing, maxN, ease, note}` — a named
-  blur setting. `HFMotionBlur.PRESETS` is the full table.
-
-## Blur presets — bridge from `motion-design` material/weight easing
-
-Instead of hand-tuning `shutter`/`spacing`/`maxN`, pick a **material or weight** name from the
-LottieFiles `motion-design` skill and pass it as `cfg.preset`. The blur then reads as the move is
-*meant to feel*. Any explicit `cfg.shutter`/`spacing`/`maxN` still overrides the preset.
-
-```js
-var p = HFMotionBlur.blurPreset("elastic");   // -> { shutter:0.6, spacing:1.0, maxN:72, ease:"back.out(1.7)", ... }
-
-var blur = HFMotionBlur.createCameraBlur({
-  canvas: gl, world: world, camera: { T: camPoseAt },
-  fps: 30, preset: "elastic"                   // fills shutter/spacing/maxN
-});
-// apply the MATCHING ease to the camera tween (blur only reads the 3 knobs):
-tl.to(cam, { x: -640, ease: p.ease, duration: DUR, onUpdate: function(){ blur.render(...); } }, 0);
+```html
+<script src="vendor/gsap.min.js"></script>
+<script src="lib/profile.js"></script>      <!-- HFProfile: eases + timings per format -->
+<script src="lib/motion-blur.js"></script>  <!-- HFMotionBlur -->
+<script src="lib/camera.js"></script>       <!-- HFCamera  (needs profile, motion-blur) -->
+<script src="lib/marks.js"></script>        <!-- HFMarks   (needs profile) -->
+<script src="lib/text.js"></script>         <!-- HFText    (needs profile, motion-blur) -->
+<script src="lib/brand.js"></script>        <!-- HFBrand -->
+<script src="lib/shorts/wipe.js"></script>  <!-- HFWipe    (Shorts only; needs profile) -->
 ```
 
-| Preset | shutter | spacing | maxN | ease | reads as |
-|--------|--------:|--------:|-----:|------|----------|
-| `rigid` | 1.0 | 1.5 | 48 | `power2.inOut` | metal/stone — clean, no overshoot |
-| `elastic` | 0.6 | 1.0 | 72 | `back.out(1.7)` | rubber — snap-back spike, dense samples |
-| `fluid` | 1.8 | 1.75 | 80 | `sine.inOut` | water/paint — long smeary trail |
-| `paper` | 0.5 | 1.5 | 40 | `power2.out` | cards — 180° filmic |
-| `gas` | 2.5 | 2.5 | 96 | `sine.inOut` | smoke/fog — diffuse, very long |
-| `glass` | 0.35 | 2.0 | 24 | `power4.out` | brittle — crisp, minimal smear |
-| `heavy` | 1.2 | 1.25 | 64 | `power3.out` | modals/overlays — decisive |
-| `medium` | 0.7 | 1.5 | 48 | `power2.inOut` | cards/panels |
-| `light` | 0.4 | 2.0 | 24 | `power2.out` | tooltips/icons — snappy |
-| `film` | 0.5 | 1.5 | 48 | `power2.inOut` | neutral 180° baseline (default fallback) |
+Projects never hand-copy or edit these: until `tools/sync-lib` exists (Plan 3), copy the files you
+need from root `lib/` unmodified. Improvements go into root `lib/` first.
 
-**Why the knobs move together:** `shutter` sets trail length (`EXP = shutter/fps`) — heavier/fluid
-materials get longer trails. An **overshoot** ease (`elastic`, `back`) reverses velocity at the
-snap-back, spiking peak per-pixel velocity; the trail would band/strobe unless sampled denser, so
-those presets carry a higher `maxN` and lower `spacing`. This keeps blur direction consistent with
-the `motion-design` easing tables rather than guessed per shot.
+## Contract (what every module guarantees, and what callers must do)
 
-## Scope & caveat
+- **`format` is required** (`"long-form"` or `"shorts"`) on every binder. It picks eases, timings and
+  the motion-blur shutter. An ease token the format does not define throws, naming both
+  (e.g. `ease.glow` in Shorts — the glow title is long-form only).
+- **Binders add tweens at explicit times** to your paused timeline. Anything evaluated per frame
+  (camera, pushes, glow, odometer, wipe) uses **one driver tween** over a pure function of `t`, so
+  the result never depends on the order frames were seeked.
+- **Pre-start state is written at build time** and equals each tween's from-state, so a frame before
+  an element's time looks the same whether the playhead got there forwards or backwards.
+- **No colours in the library.** Style marks and text with the brand variables below, e.g.
+  `stroke: var(--hf-accent-line)`, `color: var(--hf-text-primary)`. The only literals allowed are
+  pure-black alpha masks, marked `/* hf-allow: alpha-mask */`.
+- **Every Gaussian is tagged** `data-blur-reason` (`focus` / `glow`; `wipe` in Shorts), and each
+  Gaussian site carries its own tag on the same or the previous line
+  (enforced by `lib/test/hygiene.test.js`). Movement blur is only ever `HFMotionBlur`.
+- **Marks and text helpers overwrite an element's inline `transform`.** Elements they animate must not
+  carry a stylesheet transform.
+- **One `glowTitle` per glow filter id** — glow intensity is per filter, so two titles sharing an id
+  share their intensity.
+- **Await `HFText.ready()` before registering or rendering the timeline.** Odometer strips and
+  `rasterText` images depend on fonts/SVGs that load asynchronously; `ready()` resolves once every
+  font load, measure and raster decode started by any `HFText` binder has finished (it re-checks until
+  no new work started meanwhile). A frame rendered earlier could differ from one rendered later.
+- **WebGL context loss:** after any context loss, `HFCamera.rig` falls back to the DOM pose for the
+  rest of that rig, and `HFText.odometer` shows its DOM digits for the rest of that odometer.
+- **WebGL context lifetime:** a rig holds a context only inside a blur leg; an odometer only inside
+  `T < t < T + dur` (outside it the DOM digits are the truth, and the label becomes visible just after `T`).
+- **`HFCamera.rig` `bake(ctx, K, t)` is called once, with `t = 0`** (the settled layout), unless
+  `liveBake: true`, which re-bakes every frame inside a leg with that frame's `t`.
+- **`HFMarks.swap` interpolates numeric props only.** A `var(--hf-…)` colour value is not
+  interpolated: it flips at `T`. For a colour change use an attribute/class swap styled by the brand
+  variable (as `HFText.accentWord` does with `data-hf-accent`).
+- **`HFWipe` writes `host.style.filter` every frame** of its phases. Do not put `HFText.defocus`, a
+  glow filter or any other filter on the same host — wrap one in the other instead.
 
-Handles **camera motion** (pan / zoom / — extendable to rotation). It does **not**
-capture live, changing DOM per frame: the DOM→texture path (`<foreignObject>`) is
-asynchronous, which a synchronous seeked renderer can't wait on mid-frame. So this
-is ideal for content that's **static during the move** (draw it once, blur the
-camera). For content that animates *while* the camera moves (typing, count-ups),
-you'd pre-rasterise the needed states or render those elements separately.
+## Modules
 
-Working reference (original project): `videos/users-companies-30s/compositions/examples/vector-blur-test.html`
-(not carried over — port a fresh example if one is needed here).
+| Module | Global | Main API |
+|---|---|---|
+| `profile.js` | `HFProfile` | `ease(format, token)` → `p ⇒ eased` · `easeSpec` · `tokens(format)` · `timing(format)` · `bezier(x1,y1,x2,y2)` |
+| `motion-blur.js` | `HFMotionBlur` | `createCameraBlur(cfg)` → `{render(t), renderRegions(t, regions), updateWorld(src), dispose(), size()}` · `profilePreset(format, kind)` · `analyticMotionVector` |
+| `camera.js` | `HFCamera` | `rig(tl, cfg)` (keyed poses, holds, blur legs/whips, DOM-only when no canvas) · `push(tl, el, segments, opts)` · `track` · `glPose` |
+| `marks.js` | `HFMarks` | `highlight` · `draw` · `swap` · `statusChip` · `seedChip` · `scriptWord` · paths: `ringPath` `scribblePath` `strikePath` `arrowPath` `elbowPath` `outlinePath` |
+| `text.js` | `HFText` | `words` · `typeOn` · `glowTitle` · `defocus` · `accentWord` (+ `installCss()`) · `odometer` (`opts.fps`, default 30) · `rasterText` · `glowFilter` / `injectGlow` · `ready()` |
+| `brand.js` | `HFBrand` | `cssVars(tokens, palette, {font, overrides, scale})` · `toCss` · `apply(el, vars[, mode])` (throws if the palette mode can't be determined; sets `data-hf-mode`) · `mode(palette)` · `toGl(colour)` · CLI |
+| `shorts/wipe.js` | `HFWipe` | `wipe(tl, {host, fe, filterId, dir, inAt, outAt})` · `phase(tl, out, in, T, dir)` |
 
-### World size (added 2026-09-07)
-The shader now samples the world texture in its **own pixel units** (`uWorld`), so the output
-canvas and the world texture no longer have to share a size: a 704×1080 panel can pan over a
-2992×1568 rasterised screenshot at native resolution. `updateWorld(src)` reads the new size from
-`src`; pass `worldSize: [w, h]` to pin it. A W×H world on a W×H canvas behaves exactly as before.
+### Motion-blur shutter by format (`HFMotionBlur.profilePreset(format, kind)`)
 
----
+| format | kind | shutter | angle | use |
+|---|---|---:|---:|---|
+| long-form | `leg` | 0.25 | 90° | ordinary camera legs (reads as ≈ no blur) |
+| long-form | `whip` | 0.5 | 180° | whips |
+| long-form | `roll` | 0.4 | 144° | odometer digit roll |
+| shorts | `leg` | 0.7 | 252° | camera legs through a tall stage |
+| shorts | `roll` | 0.4 | 144° | odometer digit roll |
 
-# HFDemoTransitions — transition + camera kit for scene-driven shorts
+World units are the world texture's own pixels (`uWorld`), so any canvas size can pan over any
+texture size; nothing assumes 1920×1080. The generic material presets (`PRESETS`, `blurPreset`)
+remain for frozen-era callers only.
 
-Ported from a product-demo pipeline; the camera-rig/transition mechanics are generic and apply
-equally to educational and narrative content. Plain module, GSAP required on the page. Seek-safe: helpers only
-add tweens to your paused timeline at explicit times — no wall-clock, no
-`repeat: -1`, no tween-time DOM measurement. All colors come from your CSS /
-`frame.md` tokens; the module never sets a color.
+### Brand variables (`lib/brand.js`)
 
-## Use it in a new project
+Every palette role becomes `--hf-<role>-<sub>` in kebab-case: `--hf-ground-deep`,
+`--hf-ground-centre`, `--hf-ground-grid`, `--hf-ground-dots`, `--hf-surface-fill`,
+`--hf-surface-fill-alt`, `--hf-surface-bevel`, `--hf-surface-halo`, `--hf-text-primary`,
+`--hf-text-secondary`, `--hf-accent-block`, `--hf-accent-text`, `--hf-accent-glow`,
+`--hf-accent-line`, `--hf-accent-script`, `--hf-status-ok`, `--hf-status-x`; palette extras become
+`--hf-extras-<name>`. Fonts: `--hf-font-headline` (+ `-weight`, the BRIEF's `font:` choice),
+`--hf-font-body` (+ `-weight`), `--hf-font-script`, `--hf-font-captions`. Layout:
+`--hf-card-radius`, `--hf-stat-radius`, `--hf-frame-padding`.
 
-1. `cp lib/demo-transitions.js videos/<your-project>/lib/`
-2. Load GSAP (+ CustomEase for the plateau ease; falls back to `expo.inOut`),
-   then `<script src="lib/demo-transitions.js"></script>`.
-3. Scene contract: scene 1 visible; scenes 2+ `opacity: 0` in CSS. Outgoing and
-   incoming animate at the same `T` — the transition IS the exit.
+Generate a project's stylesheet at build time (deterministic, no fetch while rendering):
+
+```bash
+node lib/brand.js brands/contentporary --palette red --font helvetica > compositions/brand.css
+```
+
+CLI CSS output starts with an `/* hf-mode: dark|light */` comment; `HFBrand.apply` sets
+`data-hf-mode` on the root and throws if the palette's mode can't be determined.
+
+Overrides from the BRIEF: `--override accentScript=<colour>` (repeatable). A palette role that is
+missing, a font the brand does not have, or an override that is not a palette role exits 1 with
+the reason.
+
+## Example — a long-form custom scene
 
 ```js
-var ease = HFDemoTransitions.registerPlateau();          // "plateau"
 var tl = gsap.timeline({ paused: true });
-window.__timelines["main"] = tl;
+var LF = { format: "long-form", frameHeight: 1080 };
+var ground = getComputedStyle(document.documentElement).getPropertyValue("--hf-ground-deep").trim();
 
-// Tier 0 — camera legs + persistent micro-drift (poses precomputed at setup)
-HFDemoTransitions.cameraLeg(tl, "#cam", { x: -640, y: -210, scale: 1.8 }, 2.0);
-HFDemoTransitions.microDrift(tl, "#drift", 0, 12, { seed: 3 });
-
-// Tier 1 — primary world swap
-HFDemoTransitions.blurCrossfade(tl, "#s1", "#s2", 6.0, { blur: 12 });
-
-// Tier 2 — accents (once each). #dip is a full-frame overlay you style with
-// the primary brand color, starting opacity: 0.
-HFDemoTransitions.zoomThrough(tl, "#s2", "#s3", 10.0);
-HFDemoTransitions.colorDip(tl, "#s3", "#s4", "#dip", 14.0);
+HFCamera.rig(tl, { format: "long-form", width: 1920, height: 1080, stage: stage, dur: 8,
+  keys: [{ t: 0, cx: 960, cy: 540, z: 1 }, { t: 0.6, cx: 960, cy: 540, z: 1 },     // hold
+         { t: 2.4, cx: 1300, cy: 450, z: 1.3 }],                                   // leg on ease.camera
+  canvas: glCanvas, legs: [[0.6, 2.4]], bake: paintSettledLayout, bgCss: ground, bg: HFBrand.toGl(ground) });
+HFMarks.highlight(tl, document.querySelector("#hl"), 2.5, LF);            // ease.sweep, ≈ 360 px/s @720p
+HFText.words(tl, document.querySelector("#headline"), 3.1, LF);           // rise 7 % H, 0.6 s, 280 ms stagger
+HFText.odometer(tl, document.querySelector("#figure"), 4, 3, "$150,000", LF);
+await HFText.ready();                                                      // fonts/measures landed: frames are final
+window.__timelines["scene"] = tl;
 ```
 
-## API
+## Testing
 
-- `registerPlateau()` → ease name; registers `"plateau"` (compressed ease-in-out).
-- `cameraLeg(tl, camEl, {x,y,scale}, T, dur?)` — one 0.6–0.9s plateau leg.
-- `microDrift(tl, driftEl, T, total, {amp,rot,breathe,period,seed}?)` — finite,
-  seeded handheld drift filling `[T, T+total]`; layer on a sub-wrapper so it
-  composes with legs.
-- `blurCrossfade(tl, oldEl, newEl, T, {duration,blur,lag}?)` — primary transition.
-- `zoomThrough(tl, oldEl, newEl, T, {duration,push,blur}?)` — accent.
-- `colorDip(tl, oldEl, newEl, dipEl, T, {duration,hold}?)` — accent; caller
-  styles `dipEl`.
+- `node --test "lib/test/*.test.js"` (use the glob form; the directory form fails on node 22) — determinism and contract tests (also run by
+  `python3 -m unittest discover -s tools -p 'test_*.py' -v`). `lib/test/hygiene.test.js` scans every
+  module for clocks, randomness, infinite repeats, hard-coded colours, overshoot or raw eases, and
+  untagged Gaussians (colour literals other than marked pure-black alpha masks are banned).
+- `lib/examples/smoke.html` — real GSAP + WebGL in a browser: builds a long-form and a Shorts scene
+  from every module, seeks 42 frames forwards and then shuffled, and compares what paints
+  (including blur-canvas pixels). It fails unless both camera blur canvases and the odometer canvas actually painted. Serve the repo root (`python3 -m http.server 8765`), open
+  `http://localhost:8765/lib/examples/smoke.html`, expect `PASS`.
 
-## deep-glow.js — HFDeepGlow (multi-scale bloom)
+## Where things came from (2026-10-03 consolidation)
 
-Physically-inspired "Deep Glow" as a seek-safe SVG filter (bright-pass → multi-radius
-blur → weighted additive composite → intensity + tone). NOT a single Gaussian.
+| Before | Now |
+|---|---|
+| three `motion-blur.js` forks (root, video 09, Shorts copies) | `motion-blur.js` (root `uWorld` + 09 `renderRegions`, `dispose`, context-loss guards) |
+| video 09 `house.js` `camera`, `push`, `bezierY` | `camera.js` `rig`, `push`; `profile.js` `bezier` |
+| `demo-transitions.js` `cameraLeg` | `camera.js` `rig` without a canvas (retired: `microDrift`, `blurCrossfade`, `zoomThrough`, `colorDip` contradict core law) |
+| `house.js` marks + Shorts prelude `draw`, `chipIn`, `peers` | `marks.js` |
+| `house.js` `words`, `typewrite`, `handwrite`, `odometer`, `rasterText`; prelude `kineticText`, `words` | `text.js` (`handwrite` → `marks.scriptWord`) |
+| `deep-glow.js` | `text.js` `glowFilter` / `injectGlow` / `setGlowIntensity` (retired as a file) |
+| Shorts prelude `wipeInOut`, `house.js` `wipeIn/wipeOut/phaseWipe` | `shorts/wipe.js` |
 
-```js
-var id = HFDeepGlow.inject({ threshold: 0.5, intensity: 1.2, tint: "source" });
-el.style.filter = "url(#" + id + ")";
-// animate the bloom from the timeline (motion-aware):
-tl.to(g, { v: 1.7, ease: "expo.out", onUpdate: () => HFDeepGlow.setIntensity(id, g.v) }, T);
-```
-
-Sub-compositions can't reference `../../lib/*` (path check), so inline the `<filter>` markup
-(`HFDeepGlow.filterMarkup(id, opts)`) into the composition and drive `setIntensity` locally.
-Best on bright text over a dark band (glow brightens toward the tint).
+Dropped on purpose: `popIn` / `kineticText` overshoot (`back.out`), `slamEase` and other off-table
+curves, `house.js` `drift` (mandatory idle), the Satoshi-only font fetch (fonts are passed in).
+`videos/*` keep their own frozen copies and are not migrated.

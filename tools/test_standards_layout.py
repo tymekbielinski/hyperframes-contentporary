@@ -86,6 +86,18 @@ class FormatProfileTests(unittest.TestCase):
         self.assertNotIn("1080K × 1920K", t)
         self.assertNotIn("public/lib/", t)
 
+    def test_profiles_point_at_the_shared_library(self):
+        sh, lf = self.SH.read_text(), self.LF.read_text()
+        self.assertNotIn("#F4F6F8", sh)
+        self.assertIn("var(--hf-text-primary)", sh)
+        self.assertIn('profilePreset("shorts", "leg")', sh)
+        self.assertIn("HFWipe.wipe", sh)
+        self.assertIn("HFCamera.rig", sh)
+        self.assertNotIn("s: Z * K", sh)
+        self.assertNotIn('preset: "medium"', sh)
+        self.assertIn('profilePreset("long-form", "leg")', lf)
+        self.assertIn('"whip"', lf)
+
 
 class QaPipelineTests(unittest.TestCase):
     def test_qa_has_ten_checks_and_signoff(self):
@@ -141,8 +153,9 @@ class MigrationTests(unittest.TestCase):
     def test_claude_md_points_at_new_layout(self):
         t = (ROOT / "CLAUDE.md").read_text()
         for s in ["git pull", "standards/core/motion.md", "standards/formats/",
-                  "brands/", "standards/core/qa.md", "Precedence"]:
+                  "brands/", "standards/core/qa.md", "Precedence", "lib/README.md", "lib/test/"]:
             self.assertIn(s, t)
+        self.assertNotIn("rewritten in Plan 2", t)
 
 
 class EasingTableTests(unittest.TestCase):

@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>lib smoke test</title>
+<!-- Seek-safety smoke test for the shared library, in a real browser with real GSAP + WebGL.
+     Serve the repo root (python3 -m http.server 8765) and open /lib/examples/smoke.html.
+     Result: window.__smoke = { done, ok, mismatches, errors } and the #result line. -->
+<style>
+  body { margin: 0; background: #111; color: #ddd; font: 14px system-ui, sans-serif; }
+  #result { padding: 8px 12px; }
+  .panel { position: relative; overflow: hidden; transform-origin: 0 0; background: var(--hf-ground-deep); color: var(--hf-text-primary); font-family: var(--hf-font-headline); }
+  #lf { width: 1920px; height: 1080px; transform: scale(0.3); margin-bottom: -756px; }
+  #sh { width: 1080px; height: 1920px; transform: scale(0.3); margin-bottom: -1344px; }
+  .stage { position: absolute; left: 0; top: 0; }
+  .card { position: absolute; border-radius: var(--hf-card-radius); background: var(--hf-surface-fill); }
+  .hl { position: absolute; height: 70px; background: var(--hf-accent-block); }
+  svg { position: absolute; left: 0; top: 0; overflow: visible; }
+  path { fill: none; stroke: var(--hf-accent-line); stroke-width: 6; }
+  .title { position: absolute; font-size: 120px; font-weight: 700; }
+  .odo { position: absolute; left: 1100px; top: 700px; font-size: 140px; font-weight: 700; color: var(--hf-text-primary); }
+  .pill { position: absolute; height: 78px; width: 340px; border-radius: 39px; background: var(--hf-accent-block); }
+  .pill span { position: absolute; left: 30px; top: 18px; font-size: 36px; }
+</style>
+</head>
+<body>
+<div id="result">running…</div>
+
+<div id="lf" class="panel">
+  <div id="lf-bg" class="stage" style="width:1920px;height:1080px">
+    <div id="lf-stage" class="stage" style="width:1920px;height:1080px">
+      <div class="card" style="left:200px;top:200px;width:700px;height:400px"></div>
+      <div class="card" style="left:1100px;top:250px;width:600px;height:350px"></div>
+      <div id="lf-hl" class="hl" style="left:220px;top:640px;width:540px"></div>
+      <svg width="1920" height="1080"><path id="lf-ring"/><path id="lf-arrow"/></svg>
+    </div>
+  </div>
+  <canvas id="lf-gl"></canvas>
+  <div id="lf-title" class="title" style="left:300px;top:820px"><span id="w1">Predictable</span> <span id="w2">Funnel</span></div>
+  <div id="lf-odo" class="odo">$150,000</div>
+</div>
+
+<div id="sh" class="panel">
+  <div id="sh-host" class="stage" style="width:1080px;height:1920px;visibility:hidden">
+    <div id="sh-stage" class="stage" style="width:1080px;height:2800px">
+      <div class="card" style="left:90px;top:300px;width:900px;height:600px"></div>
+      <div class="card" style="left:90px;top:1300px;width:900px;height:500px"></div>
+      <div class="card" style="left:90px;top:2100px;width:900px;height:500px"></div>
+      <div id="sh-words" class="title" style="left:90px;top:1000px;font-size:80px">We Handle Everything!</div>
+      <div id="sh-pill" class="pill" style="left:120px;top:1400px"><span id="sh-label">STRATEGY</span></div>
+    </div>
+  </div>
+  <canvas id="sh-gl"></canvas>
+  <svg width="0" height="0"><filter id="mb-sh"><feGaussianBlur id="sh-fe" stdDeviation="0 0"/></filter></svg>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="../profile.js"></script>
+<script src="../motion-blur.js"></script>
+<script src="../camera.js"></script>
+<script src="../marks.js"></script>
+<script src="../text.js"></script>
+<script src="../brand.js"></script>
+<script src="../shorts/wipe.js"></script>
+<script>
+(async function () {
+  var errors = [];
+  window.addEventListener("error", function (e) { errors.push(String(e.message)); });
+  var $ = function (id) { return document.getElementById(id); };
+  try {
+    var tokens = await (await fetch("../../brands/contentporary/tokens.json")).json();
+    var red = await (await fetch("../../brands/contentporary/palettes/red.json")).json();
+    var reel = await (await fetch("../../brands/contentporary/palettes/reel-dark.json")).json();
+    HFBrand.apply($("lf"), HFBrand.cssVars(tokens, red));
+    HFBrand.apply($("sh"), HFBrand.cssVars(tokens, reel, { scale: 1 }));
+    HFText.installCss();
+
+    var tl = gsap.timeline({ paused: true });
+    var LF = { format: "long-form", frameHeight: 1080 }, SH = { format: "shorts", frameHeight: 1920 };
+    function cssVar(el, n) { return getComputedStyle(el).getPropertyValue(n).trim(); }
+
+    // long-form: camera with a leg + a whip, marks, glow title over a defocused backdrop, odometer, push
+    HFCamera.rig(tl, { format: "long-form", width: 1920, height: 1080, stage: $("lf-stage"), dur: 6,
+      keys: [{ t: 0, cx: 960, cy: 540, z: 1 }, { t: 0.5, cx: 960, cy: 540, z: 1 }, { t: 2, cx: 1300, cy: 450, z: 1.3 },
+             { t: 3, cx: 1300, cy: 450, z: 1.3 }, { t: 3.6, cx: 600, cy: 500, z: 1.1 }],
+      canvas: $("lf-gl"), legs: [[0.5, 2], { from: 3, to: 3.6, kind: "whip" }], bg: HFBrand.toGl(cssVar($("lf"), "--hf-ground-deep")),
+      bgCss: cssVar($("lf"), "--hf-ground-deep"),
+      bake: function (ctx) { ctx.fillStyle = cssVar($("lf"), "--hf-surface-fill"); ctx.fillRect(200, 200, 700, 400); ctx.fillRect(1100, 250, 600, 350); } });
+    $("lf-ring").setAttribute("d", HFMarks.ringPath(560, 400, 380, 230, 2));
+    var arrow = HFMarks.arrowPath(900, 700, 1150, 520, 90); $("lf-arrow").setAttribute("d", arrow.shaft);
+    HFMarks.highlight(tl, $("lf-hl"), 2.2, LF);
+    HFMarks.draw(tl, [$("lf-ring"), $("lf-arrow")], 2.4, 0.8, LF);
+    HFText.defocus(tl, $("lf-bg"), 4.0, LF);
+    HFText.glowTitle(tl, [$("w1"), $("w2")], 4.1, LF);
+    HFText.odometer(tl, $("lf-odo"), 1, 3, "$150,000", LF);
+    HFCamera.push(tl, $("lf-title"), [{ T: 4.6, dur: 1.4, from: 1, to: 1.04 }], { format: "long-form" });
+
+    // Shorts: wipe in/out, camera leg through a tall stage, words, seed chip
+    HFWipe.wipe(tl, { host: $("sh-host"), fe: $("sh-fe"), filterId: "mb-sh", dir: "down", inAt: 0.2, outAt: 5.8 });
+    HFCamera.rig(tl, { format: "shorts", width: 1080, height: 1920, stage: $("sh-stage"), dur: 6,
+      keys: [{ t: 0, cx: 540, cy: 640, z: 1.2 }, { t: 1.6, cx: 540, cy: 640, z: 1.2 }, { t: 2.2, cx: 540, cy: 1500, z: 1.2 }],
+      canvas: $("sh-gl"), legs: [[1.6, 2.2]], bg: HFBrand.toGl(cssVar($("sh"), "--hf-ground-deep")), bgCss: cssVar($("sh"), "--hf-ground-deep"), K: 2.1,
+      bake: function (ctx) { ctx.fillStyle = cssVar($("sh"), "--hf-surface-fill"); ctx.fillRect(90, 300, 900, 600); ctx.fillRect(90, 1300, 900, 500); } });
+    HFText.words(tl, $("sh-words"), 2.4, SH);
+    HFMarks.seedChip(tl, { pill: $("sh-pill"), label: $("sh-label") }, 3.0, SH);
+
+    await document.fonts.ready;
+    await HFText.ready();   // the README contract: every async font/measure/raster has landed before any frame
+    await new Promise(function (r) { setTimeout(r, 300); });
+
+    function hash(s) { var x = 5381; for (var i = 0; i < s.length; i++) x = ((x << 5) + x + s.charCodeAt(i)) | 0; return x; }
+    // Compare what the renderer would paint (computed values), not inline-style spelling:
+    // "never rendered" and "rendered at its from-value" must look identical.
+    var PROPS = ["transform", "opacity", "filter", "visibility", "maskImage", "webkitMaskImage", "strokeDashoffset", "color"];
+    function els() {
+      var ids = ["lf-stage", "lf-bg", "lf-hl", "lf-ring", "lf-arrow", "w1", "w2", "lf-title", "sh-host", "sh-stage", "sh-pill", "sh-label", "sh-fe"];
+      var list = ids.map($);
+      [].push.apply(list, document.querySelectorAll("#sh-words span, #lf-odo span"));
+      list.push($("lf-odo").querySelector("div"), odoCanvas());   // the odometer's GL window + its canvas
+      return list;
+    }
+    // Queried per snapshot: after a release the odometer swaps in a fresh canvas element.
+    function odoCanvas() { return $("lf-odo").querySelector("div > canvas"); }
+    function glCanvas(id) { return id === "lf-odo-gl" ? odoCanvas() : $(id); }
+    function glVisible(id) { return id === "lf-odo-gl" ? odoCanvas().parentNode.style.visibility === "visible" : $(id).style.visibility === "visible"; }
+    function hiddenByOpacity(e) { for (; e && e.nodeType === 1; e = e.parentNode) if (getComputedStyle(e).opacity === "0") return true; return false; }
+    var glShown = {};
+    function snap() {
+      var s = els().map(function (e, i) {
+        var c = getComputedStyle(e);
+        if (c.visibility === "hidden" || hiddenByOpacity(e)) return i + "|invisible";   // paints nothing either way
+        return i + "|" + PROPS.map(function (p) { var v = c[p]; return v === "matrix(1, 0, 0, 1, 0, 0)" ? "none" : v; }).join("|") + "|" + (e.getAttribute("stdDeviation") || "").split(/\s+/).map(parseFloat).join(" ");
+      });
+      ["lf-gl", "sh-gl", "lf-odo-gl"].forEach(function (id) {
+        var c = glCanvas(id), vis = glVisible(id), h = vis ? hash(c.toDataURL()) : 0;
+        if (h !== 0) glShown[id] = true;   // the WebGL blur path actually painted at least once
+        s.push(id + "|" + vis + "|" + h);
+      });
+      return s.join("\n");
+    }
+    var times = [], forward = {}, mismatches = [];
+    for (var t = 0; t <= 6; t += 0.2) times.push(+t.toFixed(2));
+    // Extra samples strictly inside each wipe phase (in: 0.2..0.62, out: 5.44..5.8) so wipe mask/visibility parity is compared.
+    [0.3, 0.45, 0.55, 0.61, 0.62, 5.45, 5.5, 5.65, 5.75, 5.79, 5.9, 6].forEach(function (x) { if (times.indexOf(x) === -1) times.push(x); });
+    times.sort(function (a, b) { return a - b; });
+    times.forEach(function (t) { tl.seek(t, false); forward[t] = snap(); });
+    var order = times.slice(), seed = 11;
+    for (var i = order.length - 1; i > 0; i--) { seed = (seed * 9301 + 49297) % 233280; var j = seed % (i + 1), tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
+    // Deterministic backward seeks into the wipe windows (jump to the end, then back into each phase).
+    order.push(6, 0.45, 5.9, 5.5, 5.75, 0.3, 5.45, 0.55, 0.61, 5.79, 0.62, 0);
+    order.forEach(function (t) {
+      tl.seek(t, false);
+      var a = forward[t].split("\n"), b = snap().split("\n");
+      for (var k = 0; k < a.length; k++) if (a[k] !== b[k]) { mismatches.push({ t: t, forward: a[k], shuffled: b[k] }); break; }
+    });
+    ["lf-gl", "sh-gl", "lf-odo-gl"].forEach(function (id) { if (!glShown[id]) errors.push("WebGL path never exercised: " + id); });
+    window.__smoke = { done: true, ok: !mismatches.length && !errors.length, mismatches: mismatches, errors: errors, frames: times.length };
+  } catch (e) {
+    errors.push(e.message);
+    window.__smoke = { done: true, ok: false, mismatches: [], errors: errors };
+  }
+  $("result").textContent = (window.__smoke.ok ? "PASS" : "FAIL") + " " + JSON.stringify(window.__smoke);
+})();
+</script>
+</body>
+</html>
