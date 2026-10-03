@@ -33,10 +33,76 @@ The quality bar is **smoothness**. Scenes may run long and need not be very dyna
 - **Proof clip:** client footage in a rounded card; the client's key words appear word by word,
   positive words in `status.ok`; a big figure lands at the end.
 
+## Custom catalogue
+
+Built per moment from `camera` / `marks` / `text` primitives, in the chosen palette (dark or light
+ground). Measured from 6 of Tymek's editor-animated videos plus the reference
+(`docs/research/2026-10-03-custom-animation-catalogue.md`). Pick the simplest type that proves the
+point: A and B first, C for structure, D when the face should stay on screen.
+
+**A. Proof on real UI**
+
+| ID | Type | Layout and motion | Use for |
+|---|---|---|---|
+| A1 | Screenshot focus + highlight | sharp card ≈ 55–60 % W on a blurred, faded copy (≈ 35 %) of the same screenshot; enters 0.9 → 1 with blur→sharp over 0.25 s; highlight/marker sweeps 0.3 s after landing; optional key-text recolour; hold 0.6–1 s | a claim or quote that is real |
+| A2 | Screenshot camera pass | page at 150–250 % (flat) or tilted 45–60° in 3D; 2–3 camera legs ≈ 2 s with readable stops; marks land at the stops; optional synthetic cursor arriving 0.3 s before its mark; may end dimmed and hand off to B1 | prices, pages, tools, long documents |
+| A3 | Counter on screenshot | push-in ≈ 0.8 s; the real number counts with deceleration (odometer, `ease.enter`); underline under its label | growth numbers |
+| A4 | Proof clip in framed card | rounded card ≈ 56 % W pushing to ≈ 72 %; the client's own words appear word by word beneath (positive words `status.ok`); big figure lands at the end | client results |
+| A5 | Case-study card stack | centred card ≈ 55–62 % W, 1–2 cards peeking behind; ≈ 1 s per card; the front card steps away (3D tilt) to reveal the next; metric chip per card | several results in a row |
+| A6 | Channel flash montage | blurred channel pages 0.7–1.3 s each, hard-cut back to back | breadth of proof |
+
+**B. Headline scenes**
+
+| ID | Type | Layout and motion | Use for |
+|---|---|---|---|
+| B1 | Backdrop headline | a screenshot or clip appears sharp ≈ 1 s, then dims to ≈ 15 % and blurs (0.5 s, `focus`); a 1–2 line headline builds word by word; an underline/marker lands on the emphasis phrase — red/accent = problem, `status.ok` = positive; list variant adds a bullet ≈ every 1.3 s | the house device for a key line |
+| B2 | Headline + labelled callouts | headline mid-frame; 3 callouts in a triangle, each a curved arrow then an icon + script label, 0.75–1.2 s apart | a method with named parts |
+| B3 | Big stat / counter title | a huge number counts up (≈ 1.2–1.4 s) — ghost word behind it, or over the source clip / a cutout; hand-drawn arrow + script subtitle | the one number to remember |
+| B4 | Punch word | a single word full-frame on a vignette | a hard "no" / turn |
+
+**C. Diagram canvases** — usually one persistent canvas the face cuts into; on return it resumes
+
+| ID | Type | Layout and motion | Use for |
+|---|---|---|---|
+| C1 | Flow strip | A → dashed line (swap glyph or arrow) → B, icons ≈ 12 % W; caption word by word; canvas pans as nodes arrive | substitution, cause → effect |
+| C2 | Tree | vertical tree; connectors draw top → bottom; camera glides down 2–3 s or tours column by column | comparison, org, formula |
+| C3 | Funnel / bands | 3-band shape builds; camera steps band to band; bullets per band | funnels, tiers |
+| C4 | Orbit / flywheel | nodes on a ring around a title; camera visits each node while a dashed segment draws to the next; pull back | loops, systems |
+| C5 | Card roster | 3–4 glass or tinted cards ("#n" script labels or coloured tiles); camera pushes into one card, its bullets type one per spoken phrase (≈ 2.5–3 s), then pans to the next | numbered lists, components |
+| C6 | Range line / annotated chart | line with two dots, colour shifts from `status.x` to `status.ok` as labels land; charts take a strike-through mark | ranges, before/after |
+| C7 | Avatar + escalating ticker | avatar on a vertical line; a chip slides out; the number jumps odometer-style; camera lifts up the line | costs or results climbing |
+| C8 | Focus card, dim siblings | one card ≈ 38 % W, neighbours ≈ 20 % opacity + blur (`focus`), ✕/✓ badge | picking one option |
+
+**D. Mini animations over the face** — the face stays visible; animate on and off over the footage
+
+| ID | Type | Layout and motion | Use for |
+|---|---|---|---|
+| D1 | Tiles flanking the face | glass tiles at ≈ 9–38 % and 62–91 % of frame width (logo or 3D icon + label/stat, ✕/✓), 0.7 s apart | platforms, two numbers |
+| D2 | Side screenshot + script + highlight | screenshot on the empty side (≈ 60 % W) with an alpha fade toward the face; script word + words build; `accent.block` wipes behind the key phrase | a claim with its proof |
+| D3 | Caption bar | semi-transparent bar fading at its outer edge, `status.ok` or `status.x` tint, upper corner; face punched in to clear it | a positive/negative claim |
+| D4 | Tool chip stack | 2–4 stacked glass pills with app logos, one after another; may hand off to the CTA | tools, deliverables |
+| D5 | Name lower third | script first name + bold surname + curved arrow, beside the speaker, ≈ 2.7 s | introductions |
+
+Recurring across all types: real screenshots as proof (often over a blurred copy of themselves),
+word-by-word text, meaning-coded emphasis colour, a script accent word, hand-drawn marks, camera stops
+where marks land. 3D icons and a synthetic cursor are allowed when sourced from a real asset
+(record them in `assets/captures/MANIFEST.md`).
+
+## Section formats
+
+Recorded sections — a board walkthrough or a slide deck with the face in a corner picture-in-picture —
+are not built in this pipeline. Treat them like screen-share: declare their ranges in the BRIEF under
+`screen_share`, they are exempt from the cadence rule, and graphics go on top only on request.
+
+## Sound
+
+Graphics are **silent** and timed to speech. The editor owns music and sound effects; nothing is
+scored to a beat grid here.
+
 ## Density
 - **Hook (first `hook_end` seconds, default 80 — set in the BRIEF):** ≥ 60 % graphics (reference: 71 %), and no face-only gap > 6 s.
 - **Body:** at least one graphic, even a short one, every ≤ 30 s. Ranges declared as
-  screen-share in the BRIEF are exempt.
+  screen-share in the BRIEF are exempt. Face punch-ins do not count as graphics.
 - Scenes run 2–18 s (median ≈ 6 s). Long scenes are chains of 3–5 beats joined by camera travel,
   not one static layout.
 - **Shared canvas:** a long argument is one composition the face cuts into (2–6 s cut-ins). On
@@ -85,3 +151,4 @@ Proof-clip words are the client's quote, not captions.
 - [ ] No captions except key-line lower thirds
 - [ ] All CTAs use the identical `cta-youtube` treatment
 - [ ] Colours and fonts come from the brand palette/font chosen in the BRIEF (plus declared overrides)
+- [ ] No face-only stretch > 30 s in the body (punch-ins do not count)

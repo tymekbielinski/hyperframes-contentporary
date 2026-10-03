@@ -54,6 +54,21 @@ never overrides a rule here. Replaces `context/motion-craft.md` and the brand-ag
     (marks). Pass 2 may reinterpret pass 1 — recolouring existing elements is stronger than
     rebuilding. Which marks and which colours come from the brand.
 
+## The look — banned generic output
+
+The prompt is a small part of the result; these bans are the rest of the harness. A scene that does
+any of these fails review, in every format and for every brand:
+- A whole scene that is **centred text on a gradient** or flat colour, with nothing real in it.
+- **fade in → hold → fade out** on a flat ground as the only motion.
+- **everything at once** — all elements appearing on the same frame, or one uniform stagger applied
+  to unrelated elements (use the profile's peer-set and chain-gap rhythms).
+- **stock icons**, emoji or clip-art where a real screenshot, real logo or brand icon exists; generic
+  illustrations standing in for UI.
+- Headlines of **more than two lines**, or paragraphs of on-screen text.
+- Default/library eases, bounce, elastic, spins, glitch, 3D flips, push slides, light leaks.
+- Glows, gradients or colours that are not in the brand palette chosen in the BRIEF.
+- A graphic that restates the speech without adding proof, structure or emphasis.
+
 ## Craft notes (apply everywhere)
 - Odometers: each digit column rolls vertically with its own motion blur, and digits lock
   right-to-left, leading digit last.

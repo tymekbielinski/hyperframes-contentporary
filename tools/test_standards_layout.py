@@ -189,5 +189,29 @@ class GroundModeTests(unittest.TestCase):
         self.assertNotIn("pure-white grounds", t)
 
 
+class LookAndCatalogueTests(unittest.TestCase):
+    def test_core_ban_list(self):
+        t = (ROOT / "standards" / "core" / "motion.md").read_text()
+        self.assertIn("## The look — banned generic output", t)
+        for s in ["centred text on a gradient", "fade in → hold → fade out", "everything at once",
+                  "stock icons", "more than two lines"]:
+            self.assertIn(s, t)
+
+    def test_long_form_catalogue(self):
+        t = (ROOT / "standards" / "formats" / "long-form.md").read_text()
+        self.assertIn("## Custom catalogue", t)
+        for cid in ["A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4",
+                    "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "D1", "D2", "D3", "D4", "D5"]:
+            self.assertIn(f"| {cid} |", t, cid)
+        for s in ["## Section formats", "## Sound", "silent", "punch-ins do not count"]:
+            self.assertIn(s, t)
+
+    def test_catalogue_copies_no_banned_technique(self):
+        t = (ROOT / "standards" / "formats" / "long-form.md").read_text()
+        cat = t.split("## Custom catalogue", 1)[1].split("\n## ", 1)[0].lower()
+        for banned in ["dissolve", "crossfade", "cross-fade", "light leak", "overshoot", "bounce"]:
+            self.assertNotIn(banned, cat, banned)
+
+
 if __name__ == "__main__":
     unittest.main()
