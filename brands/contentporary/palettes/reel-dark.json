@@ -1,0 +1,11 @@
+{
+  "name": "reel-dark",
+  "use": "Shorts, when the screenshot being annotated is dark-mode. Measured from the two reference reels.",
+  "ground": { "deep": "#0C0C0C", "centre": "#161616", "grid": "#1A1A1A", "dots": "#1A1A1A" },
+  "surface": { "fill": "#404040", "fillAlt": "#404040", "bevel": "#404040", "halo": "rgba(0,0,0,0)" },
+  "text": { "primary": "#FBFBFB", "secondary": "#A8A9AB" },
+  "accent": { "block": "#EE4B4A", "text": "#EE4B4A", "glow": "#EE4B4A", "line": "#EE4B4A" },
+  "accentScript": "#F0504F",
+  "status": { "ok": "#A6FF69", "x": "#EE4B4A" },
+  "extras": { "title": "#F9F9F9", "ghostNumeral": "#192012", "emphasisGreen": "#A6FF69", "stateBlue": "#4285F4" }
+}

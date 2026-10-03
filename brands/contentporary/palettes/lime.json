@@ -1,0 +1,12 @@
+{
+  "name": "lime",
+  "use": "Lime accent palette from the custom mini animation still. Provisional: sampled from a still.",
+  "ground": { "deep": "#070707", "centre": "#252525", "grid": "#1F1F1F", "dots": "#2A2A2A" },
+  "surface": { "fill": "#1C1B1B", "fillAlt": "#343233", "bevel": "#9A9A9A", "halo": "rgba(255,255,255,0.06)" },
+  "text": { "primary": "#F4F4F4", "secondary": "#ACACAC" },
+  "accent": { "block": "#D5FF74", "text": "#DCFD81", "glow": "#DCFD81", "line": "#D5FF74" },
+  "accentScript": "#DCFD81",
+  "status": { "ok": "#5C9064", "x": "#975154" },
+  "extras": { "onBlockText": "#3E5A12" },
+  "provisional": ["extras.onBlockText"]
+}

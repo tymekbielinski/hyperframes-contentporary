@@ -1,0 +1,12 @@
+{
+  "name": "reel-light",
+  "use": "Shorts, when the screenshot being annotated is light-mode. Measured from the two reference reels.",
+  "ground": { "deep": "#E5E5E5", "centre": "#ECECEC", "grid": "#E0E0E0", "dots": "#E0E0E0" },
+  "surface": { "fill": "#F2F2F2", "fillAlt": "#F2F2F2", "bevel": "#F2F2F2", "halo": "rgba(0,0,0,0.08)" },
+  "text": { "primary": "#464646", "secondary": "#6B6B6B" },
+  "accent": { "block": "#EE4B4A", "text": "#EE4B4A", "glow": "#EE4B4A", "line": "#EE4B4A" },
+  "accentScript": "#F0504F",
+  "status": { "ok": "#57A22F", "x": "#EE4B4A" },
+  "extras": { "emphasisGreen": "#57A22F", "stateBlue": "#4285F4" },
+  "provisional": ["text.secondary", "ground.grid", "ground.dots"]
+}
