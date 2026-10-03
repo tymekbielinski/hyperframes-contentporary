@@ -1,0 +1,13 @@
+{
+  "name": "gold",
+  "mode": "dark",
+  "use": "Warm palette from the template stills (title, step card, side text). Provisional: sampled from stills, re-sample from source files.",
+  "ground": { "deep": "#050505", "centre": "#292929", "grid": "#1E1E1E", "dots": "#262626" },
+  "surface": { "fill": "#110E0D", "fillAlt": "#2A2623", "bevel": "#A89A88", "halo": "rgba(255,235,210,0.08)" },
+  "text": { "primary": "#F2F2F2", "secondary": "#B5ADA4" },
+  "accent": { "block": "#FBB560", "text": "#F9D09F", "glow": "#FDCC91", "line": "#FBB560" },
+  "accentScript": "#F4F4F4",
+  "status": { "ok": "#8FA36A", "x": "#A0605A" },
+  "extras": { "ambientGlow": "#542C10" },
+  "provisional": ["status", "surface.fillAlt", "surface.bevel", "text.secondary"]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "paper",
+  "mode": "light",
+  "use": "Light long-form look: white→grey vertical gradient, dark-brown headline on an orange highlight block, lime stats, red annotations. Sampled from 'The Stupidly Simple YouTube Strategy' (compressed 720p, ±6).",
+  "ground": { "deep": "#E0E0E0", "centre": "#FFFFFF", "grid": "#EEEEEE", "dots": "#EEEEEE" },
+  "surface": { "fill": "#FFFFFF", "fillAlt": "#F2F2F2", "bevel": "#E6E6E6", "halo": "rgba(0,0,0,0.06)" },
+  "text": { "primary": "#482818", "secondary": "#7A5A48" },
+  "accent": { "block": "#FFCA89", "text": "#D84848", "glow": "#FFCA89", "line": "#D84848" },
+  "accentScript": "#D84848",
+  "status": { "ok": "#98C868", "x": "#D84848" },
+  "extras": { "statLime": "#A8E878", "darkScene": "#181818", "punchVignette": "#341709" },
+  "provisional": ["ground.grid", "ground.dots", "text.secondary", "accentScript", "surface.bevel"]
+}

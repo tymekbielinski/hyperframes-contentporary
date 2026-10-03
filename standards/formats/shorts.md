@@ -1,16 +1,23 @@
-# Contentporary — Graphic Design System
+# Format Profile — Shorts
 
-**Normative.** Reverse-engineered frame-by-frame from two of Tymek's own reels. Every number below
-was measured at native frame rate from the source files, not estimated:
+Applies to Shorts (9:16, 1080×1920, 30 fps) for every brand. Inherits `standards/core/motion.md`;
+supplies the Shorts values. Measured frame-by-frame from Tymek's two reference reels
+(`tymek.bielinski_DXPO0upgpDE.mp4` = Reel A, `tymek ad v3.mp4` = Reel B). Colours and fonts are
+not in this file: Contentporary's reel values live in `brands/contentporary/palettes/reel-dark.json`
+and `reel-light.json`.
 
-- **Reel A** — `tymek.bielinski_DXPO0upgpDE.mp4` · 720×1280 · 30fps · 43.77s · organic short
-- **Reel B** — `tymek ad v3.mp4` · 1440×2560 · 30fps · 63.21s · paid ad
+**Easing values** (closed table; no other curve names in this profile):
 
-`motion-craft.md` is the *abstract* motion standard. **This file is the concrete house style** — the
-actual grammar, palette, and structure of Contentporary's graphics. Where the two disagree, this
-file wins, and § 9 lists the specific places `motion-craft.md` over-generalizes these reels.
+| Token | Value |
+|---|---|
+| `ease.camera` | `cubic-bezier(0.65, 0, 0.35, 1)` (profile ease, solved by bisection) |
+| `ease.cut` | `cubic-bezier(0.65, 0, 0.35, 1)` — deliberately the same curve as `ease.camera` (the wipe) |
+| `ease.enter` | `power3.out` — provisional: entrance curves were not measured in the reels (timings in the beat sheets are) |
+| `ease.sweep` | `cubic-bezier(0.47, 0.15, 0.2, 0.95)` — provisional, carried from the long-form measurement |
 
----
+hold push: ≈ 3.4 %/s (profile hold-push rate; overrides the core 0.5 %/s creep cap)
+
+**Presentation:** screenshots are composited slightly rotated (~1–3°) with a soft drop shadow.
 
 ## 1. The structural rule everything else hangs off
 
@@ -29,16 +36,14 @@ Measured hard cuts:
 **Roughly 45% of the runtime is full-frame graphics.** That is the format. A short with graphics
 sprinkled over the speaker is a different, weaker product — it is not what these reels do.
 
-Corollary — **the graphic scene REPLACES the captions too.** Re-checked frame by frame: no
-burned-in caption appears over any graphic scene in either reel (reel A's calendar t=4.6-9.5,
-channel t=18.9-24.2 and funnel t=25.9-34.7 all run caption-free; same in reel B). The subtitle
-layer belongs to the talking head only. So a composition never needs to dodge a caption corridor —
-but be aware that heavy graphic coverage removes the subtitle layer for that share of the runtime.
+**Captions are a per-project flag** (`captions:` in the BRIEF). If the source footage already
+carries burned-in captions, never re-add them. Either way, no caption appears over a full-frame
+graphic scene: the subtitle layer belongs to the talking head only.
 
 ### The scene transition — a bezier-eased motion-blurred wipe
 
 Scenes change on a travelling soft-edged **mask**, not a cut and not an opacity fade. The card's
-content is smeared along the travel axis by a directional `feGaussianBlur`, and the reveal is a
+content is smeared along the travel axis by a directional `feGaussianBlur` (the named Gaussian exception — tag it `data-blur-reason="wipe"`), and the reveal is a
 moving gradient mask whose feather decays in lockstep with the smear, so edge and content sharpen
 together as the wipe lands. (Masking, not `clip-path` — clipping applies *after* the filter and
 keeps a razor edge no matter how blurred the content is.)
@@ -83,101 +88,6 @@ exit reveals slivers of the outgoing shot); ending before it is the failure case
 
 A scene *start* has no such constraint — it can begin mid-shot.
 
----
-
-## 2. The artifact is always a REAL screenshot
-
-Not one drawn box, invented chart, or generic icon appears in either reel. Every scene is built on
-captured product UI:
-
-| Reel | Scene | Real artifact used |
-|---|---|---|
-| A | calendar | a real dark-mode date picker, March 2026 |
-| A | channel | a real YouTube channel page + real thumbnails with real durations (42:07, 47:07, 10:30) |
-| A | funnel | three real competitor thumbnails |
-| A | booking | a real Cal.com booking page |
-| B | proof | a real Stripe payments dashboard (dates, Paid chips, descriptions) |
-| B | channel | a real YouTube channel header with real sub count |
-| B | receipt | a real payment-receipt card |
-| B | capacity | a real "Free Trial Capacity" widget |
-
-**Rule: if you cannot screenshot it, do not build the scene.** Source the real UI first; the
-graphic is an annotation *of a real thing*, never an illustration of an idea. This is the whole
-credibility mechanism.
-
-Screenshots are composited **slightly rotated (~1–3°) with a soft drop shadow**, floating above the
-ground — never flush, never dead-on flat.
-
----
-
-## 3. Two grounds, chosen by the screenshot's own chrome
-
-There is no single background. The ground **matches the mode of the UI being shown**.
-
-### Dark ground (Reel A)
-```
-bg            #0C0C0C     near-black, not pure black
-card surface  #404040     opaque mid-grey (the date picker's own fill)
-label grey    #A8A9AB
-value white   #FBFBFB
-title white   #F9F9F9     with a soft white outer glow
-```
-Behind the card sits a **heavily blurred, oversized brand mark** — in the calendar scene, an
-out-of-focus Google Calendar/Meet logo throwing green, yellow and blue light across the black. Plus
-a **coloured glow floor** that changes with the argument: blue-teal arc top-left during the "booked"
-phase, red glow from below during the "uneducated" phase. *The background is lit by the story.*
-
-### Light ground (Reel B)
-```
-ground centre #ECECEC     soft radial — brighter in the middle
-ground edge   #E5E5E5
-card / sheet  #F2F2F2     with a soft drop shadow
-ink           #464646     headings (true value likely ~#3A3A3A; video is compressed)
-```
-Carries a **very faint blueprint grid** — thin light rules, barely visible, giving the white a
-surface instead of a void.
-
----
-
-## 4. One annotation palette, shared by both grounds
-
-```
-ANNOTATION RED   #EE4B4A     highlight blocks, arrows, underlines, boxes, pips
-                             (measured: #EA5253 reel A pips · #EE4B4A reel B block · #F0504F handwriting)
-EMPHASIS GREEN   #57A22F     the one accent word in a dark headline (light ground)
-                 #A6FF69     the same role on the dark ground — lime, with glow
-STATE BLUE       ~#4285F4    "before" state only, always replaced by red
-```
-
-**Red is the annotation voice — it is what Tymek's pen looks like.** Green is what a *good* number
-looks like. Blue only ever exists to be turned red.
-
----
-
-## 5. The annotation vocabulary — seven marks, nothing else
-
-Every graphic moment in both reels is one of these seven, drawn in ANNOTATION RED:
-
-1. **Hand-drawn curved arrow with arrowhead** — an arc, not a straight line, pointing at a thing.
-   ~2px at 720w. Used constantly.
-2. **Hand-drawn underline** — slightly wobbly, under one data point *inside the screenshot*
-   (e.g. under "2.82K subscribers" in the real channel header).
-3. **Solid highlight block** — sharp-cornered red fill behind white text, sized to the number
-   (`$50,000.00`). A marker slab, not a rounded chip.
-4. **Hand-drawn ellipse / ring** around a number.
-5. **Hand-drawn outline grouping several items** — in the funnel scene, a red trapezoid drawn
-   around three stacked thumbnails with horizontal dividers, so the shape itself carries the meaning.
-6. **Handwriting** — marginalia in a marker script (`$5,000/month → 4 videos`), red for the
-   subject, dark for the comparison, with a drawn arrow between them.
-7. **Tinted tool chips** — a rounded pill carrying a real product icon and an uppercase label,
-   tinted to that product's own brand colour (blue STRATEGY, purple SCRIPTING, orange EDITING,
-   green POSTING), connected to the artifact by a thin red arc.
-
-Ghost numerals sit *behind* content as a watermark, never as a label — reel A's funnel has enormous
-`1` `2` `3` in `#192012`, barely above the black.
-
----
-
 ## 6. Measured motion — the calendar scene, beat by beat
 
 Reel A, 4.567 → 9.533 (4.97s). This is the canonical two-pass build; copy its shape.
@@ -221,6 +131,9 @@ Reel B, 24.7 → 28.0. The canonical *chain*.
 | 27.3–28.0 | red underline **draws left→right, trailing the words** | finishes after the last word |
 | 28.0 | **hard cut** | |
 
+**Do not copy the 24.70 crossfade.** Blur crossfades are dropped from the standard (spec §11); a scene
+change inside a graphic uses the masked wipe (§1).
+
 **The chip entrance grammar is its own thing:** a coloured dot appears, then the pill *grows
 sideways* out of it to expose the label. That is not scale-down-from-oversize. Use it for anything
 tag-like; keep scale-down entrances for headline type.
@@ -256,7 +169,7 @@ The recipe, as built on short4's funnel:
    inside the frame's *width* so no camera position ever crops horizontally.
 2. **Hold zoom constant** and move only in Y. A pure pan means the blur is single-axis and can be
    derived exactly; mixing zoom in adds a radial component a directional blur can't represent.
-3. **Ease every leg on the house bezier** — `cubic-bezier(0.65, 0, 0.35, 1)`, solved by bisection
+3. **Ease every leg on the profile ease (`ease.camera`)** — `cubic-bezier(0.65, 0, 0.35, 1)`, solved by bisection
    through a keyframe track so the pose stays a pure function of time and survives seeking.
 4. **Blur with the real library — `lib/motion-blur.js` (`HFMotionBlur`). Never a Gaussian.**
    See § 8c. A `feGaussianBlur` driven off camera velocity *looks* like motion blur in a still and
@@ -290,20 +203,20 @@ is obvious the moment there is any zoom component.
 
 ### Wiring it up
 
-1. **`cp lib/motion-blur.js videos/<slug>/public/lib/`** and load it after GSAP.
+1. **Sync the shared library into the project** (`tools/sync-lib`; never hand-copy or edit the copy) and load `lib/motion-blur.js` after GSAP.
 2. **Bake a world texture per leg.** The blur samples a *static* image, so each camera leg needs a
    still of the settled layout as it appears during that leg. Generate a standalone bake page that
    mounts the card's scoped `<style>` plus its stage subtree at 1:1, with the elements visible for
    that leg forced to `opacity:1`, then screenshot it.
 3. **The texture must carry the canvas aspect ratio.** The shader maps it onto world rect
-   `[0,uRes.x] × [0,uRes.y]`, so a texture of any other aspect is silently stretched. Pick a
-   blow-up factor `K`, size the texture `1080K × 1920K`, place the stage origin at
-   `PAD_X = 540(K-1)`, and scale the pose by `K`:
+   `[0,uRes.x] × [0,uRes.y]`, so a texture of any other aspect is silently stretched. For a
+   canvas of W × H, pick a blow-up factor `K`, size the texture `W·K × H·K`, place the stage
+   origin at `PAD_X = (W/2)(K-1)`, `PAD_Y = (H/2)(K-1)`, and scale the pose by `K`:
 
    ```js
-   function pose(t) {                       // stage point (540, cy) -> canvas centre at zoom Z
+   function pose(t) {                       // stage point (W/2, cy) -> canvas centre at zoom Z
      var Z = zOf(t), cy = cyOf(t);
-     return { tx: 540 - Z * (540 + PAD_X), ty: 960 - Z * (cy + PAD_Y), s: Z * K };
+     return { tx: W / 2 - Z * (W / 2 + PAD_X), ty: H / 2 - Z * (cy + PAD_Y), s: Z * K };
    }
    ```
 
@@ -323,21 +236,8 @@ element-level smear (a panel sliding in while its own content animates) still us
 `feGaussianBlur`, as card-04's row slams do. That is a documented limitation of the technique, not
 a licence to approximate a camera move.
 
-## 9. Where `motion-craft.md` over-generalizes these reels
-
-Recorded so future work doesn't inherit the wrong abstraction. `motion-craft.md` was derived partly
-from these files but flattens three things:
-
-| `motion-craft.md` says | These reels actually do |
-|---|---|
-| "The bed never stops — a slow scale/drift runs under every hold" | The calendar card is **dead still for 1.2s** during the pip build. Stillness is used as contrast; the camera moves *between* phases and during holds, not always. |
-| "Every entrance scales DOWN from 1.6–2.5× oversize" | True for headline type. **Chips seed-and-expand horizontally**; pips fade/scale up; screenshots simply cut in at full size with no entrance at all. |
-| "Stagger is 110–170 ms. Always." | True for **peer sets** (pips: 125 ms). **Chained beats run 300–630 ms apart.** Two different rhythms; the doc collapses them into one. |
-
-Also: neither reel uses a caption corridor — the graphics own the frame, so the captions simply run
-on top of them.
-
----
+In Shorts this smear is filed under the same named exception as the wipe: tag it
+`data-blur-reason="wipe"`. It does not exist in long-form.
 
 ## 9b. Two render-only text traps
 
@@ -364,37 +264,16 @@ only inside the element's background box, so a box shorter than the ascenders le
 the letters with nothing to show through — they look sliced off. Keep `line-height >= 1.3` on any
 gradient-filled text; never set it below the font size (e.g. `56px` type on a `62px` line box).
 
-## 10. Typography
+## Density and delivery
+- ≈ 45 % of runtime is full-frame graphics (QA band: 35–55 %); scenes 1.4–8.8 s; full-frame only, no overlays on the face.
+- Delivery: one finished MP4 (1080×1920, 30 fps).
 
-Identified visually from compressed source, so treat the specific names as **best match**, not
-certainty — but all three roles are unambiguous and all candidates are installed on this machine.
-
-| Role | Character | Best match (installed) |
-|---|---|---|
-| **Graphic-scene titles** (`Meetings`, `From New Clients`, `Previous agency`) | neo-grotesque, bold, tight | **HelveticaNowDisplay Bold** (SF Pro Display Bold is the likely original) |
-| **Burned-in captions** (`next to nothing`, `and film`) | rounded geometric, heavy, circular bowls, single-storey `g` | **Garet Heavy** (Poppins Bold is the same family of look) |
-| **Marginalia / handwriting** (`$5,000/month → 4 videos`) | marker script | a handwriting face — `Caveat` ships with the recut skill; `NanumPenScript` is installed |
-| **In-screenshot UI text** | whatever the real product uses | never restyled — it is a screenshot |
-
-Titles carry a **soft outer glow** on the dark ground so they lift off the black.
-
-Headline emphasis: **one word only** takes the accent colour (`From` dark + `New Clients` green).
-
----
-
-## 11. Build checklist for a Contentporary graphic scene
-
-- [ ] It is a **full-frame scene the edit cuts to**, not an overlay
-- [ ] The artifact is a **real screenshot**, sourced before any animation was written
-- [ ] The ground matches the screenshot's mode — `#0C0C0C` dark or `#ECECEC` light
-- [ ] The background is **lit**: a blurred oversized brand mark, a coloured glow that tracks the
-      argument, or a faint grid — never a flat fill
-- [ ] The screenshot sits **rotated 1–3° with a soft shadow**
-- [ ] Pass 1 builds plainly; **pass 2 annotates in red** using only the seven marks in § 5
-- [ ] Peer sets stagger at **~125 ms**; chained beats sit **300–630 ms** apart with visible dead air
-- [ ] A state change across a whole set is a **hard 130 ms swap**, not a stagger
-- [ ] Type-on runs at **~67 ms/char**; word-by-word runs at **~200 ms/word**
-- [ ] The camera **travels** across anything document-shaped (7–16 %/s), and holds still while a
-      discrete set builds
-- [ ] Exactly one accent word per headline
-- [ ] Scene ends on a **hard cut** back to the speaker
+## Checklist (run with `standards/core/qa.md`)
+- [ ] Full-frame scene the edit cuts to, not an overlay; scene ends land on the footage's own cuts
+- [ ] Built on a real screenshot (or faithful recreation), rotated 1–3° with a soft shadow
+- [ ] Ground matches the screenshot's UI mode (`reel-dark` / `reel-light` or the brand's equivalent)
+- [ ] Pass 1 builds plainly; pass 2 annotates with the brand's marks
+- [ ] Peer sets ~125 ms apart; chained beats 300–630 ms with visible dead air; set recolour = one 133 ms swap
+- [ ] Type-on ~67 ms/char; word-by-word ~200 ms/word
+- [ ] Camera travels across document-shaped screenshots (7–16 %/s) and holds while a discrete set builds
+- [ ] Captions match the BRIEF flag and never sit over a graphic scene

@@ -1,7 +1,11 @@
 # Narrative — how Contentporary content is told
 
-Source of truth for tone and structure: the root `CLAUDE.md` (Content Types, Key Principles).
-This file translates those rules into beat-level guidance for HyperFrames animation.
+Contentporary's own content rules for its channel: tone, beat structure and CTA treatment. Graphic
+density and motion live in `standards/formats/`; this file only says what the story is.
+
+- **CTA destination:** https://contentporary.io/ ("book some time below").
+- **Offer:** done-for-you YouTube for B2B high-ticket businesses.
+- **North-star metric:** qualified call volume.
 
 ## Content types this pipeline serves
 - **YouTube long-form** — 3 pillars: YouTube Strategy, Business Figure Breakdowns, Tool/System Rebuilds.
@@ -16,19 +20,13 @@ This file translates those rules into beat-level guidance for HyperFrames animat
 3. **BODY (bulk)** — follows the script's bullet outline, not a word-for-word read. Each beat =
    one idea on screen. Demonstration over tutorial: show the systematic thinking (research method,
    the breakdown, the rebuild) — don't teach step-by-step tactics that attract non-buyers.
-4. **CTA #1** — placed right after the first body point, written verbatim per the script.
+4. **CTA #1** — placed right after the first body point, verbatim per the script. Long-form uses the
+   `cta-youtube` kit template; every CTA in a video uses the identical treatment.
 5. **PAYOFF + CTA #2 (outro)** — restate the result/insight, close with the verbatim outro CTA.
-
-## Pacing
-- No beat longer than ~12s without a visual change. Cut dead air; keep 0.3–0.5s beat gaps.
-- Long-form: steady, confident pace — the ICP self-qualifies by watching 15-minute deep-dives, so
-  don't rush the demonstration for the sake of retention tricks.
-- Shorts: one insight, no sub-beats — hook, proof, single payoff.
 
 ## Tone
 - Confident, plain, second person ("you"). No hype words, no "in this video I'll show you".
-- Never optimize the edit for views/likes/retention theatrics over clarity — north star is
-  qualified call volume, not watch time for its own sake.
+- Never optimize the edit for views/likes/retention theatrics over clarity.
 
 ## Visual grammar per beat type
 - Hook → full-frame statement or result-first shot; no logo/branding yet.

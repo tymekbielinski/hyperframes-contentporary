@@ -1,0 +1,12 @@
+{
+  "name": "red",
+  "mode": "dark",
+  "use": "Long-form default. Measured from the AE reference video HrYMfy6MZtA.",
+  "ground": { "deep": "#070707", "centre": "#252525", "grid": "#1F1F1F", "dots": "#2A2A2A" },
+  "surface": { "fill": "#1C1B1B", "fillAlt": "#343233", "bevel": "#9A9A9A", "halo": "rgba(255,255,255,0.06)" },
+  "text": { "primary": "#F4F4F4", "secondary": "#ACACAC" },
+  "accent": { "block": "#F26666", "text": "#D74B50", "glow": "#F96E71", "line": "#EA9EA4" },
+  "accentScript": "#D74B50",
+  "status": { "ok": "#5C9064", "x": "#975154" },
+  "extras": { "glowHalo": "#431D1D", "lineGlow": "#622F31", "roadmapCard": "#341010", "connector": "#777777" }
+}

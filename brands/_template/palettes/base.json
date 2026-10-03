@@ -1,0 +1,10 @@
+{
+  "name": "base",
+  "mode": "dark",
+  "ground": { "deep": "#000000", "centre": "#000000", "grid": "#000000", "dots": "#000000" },
+  "surface": { "fill": "#000000", "fillAlt": "#000000", "bevel": "#000000", "halo": "rgba(255,255,255,0.06)" },
+  "text": { "primary": "#FFFFFF", "secondary": "#000000" },
+  "accent": { "block": "#000000", "text": "#000000", "glow": "#000000", "line": "#000000" },
+  "accentScript": "#000000",
+  "status": { "ok": "#000000", "x": "#000000" }
+}
