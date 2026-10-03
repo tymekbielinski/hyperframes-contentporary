@@ -58,7 +58,7 @@ never overrides a rule here. Replaces `context/motion-craft.md` and the brand-ag
 
 The prompt is a small part of the result; these bans are the rest of the harness. A scene that does
 any of these fails review, in every format and for every brand:
-- A whole scene that is **centred text on a gradient** or flat colour, with nothing real in it.
+- A whole scene that is **centred text on a gradient** or flat colour, with nothing real in it (the single-beat B4 punch word in the long-form catalogue is the one exception).
 - **fade in → hold → fade out** on a flat ground as the only motion.
 - **everything at once** — all elements appearing on the same frame, or one uniform stagger applied
   to unrelated elements (use the profile's peer-set and chain-gap rhythms).

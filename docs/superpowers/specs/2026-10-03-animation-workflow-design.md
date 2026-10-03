@@ -183,6 +183,8 @@ Mostly `context/design-system.md` §1, §6–§8, moved unchanged:
 
 ## 7. Brands — `brands/<name>/`
 
+*Superseded in detail by `brands/` after Plan 1b (2026-10-03).*
+
 A brand supplies values and assets, never motion.
 
 ```
@@ -250,6 +252,8 @@ hand-built from `camera` / `marks` / `text`, so they inherit the motion law auto
 
 ## 9. QA gate — `standards/core/qa.md`
 
+*Superseded in detail by `standards/core/qa.md` after Plan 1b (2026-10-03).*
+
 ### 9a. Automated (blocks render)
 
 | # | Check | Method |
@@ -280,6 +284,8 @@ lists them in the preview pack.
   brand — never only into a BRIEF or agent memory.
 
 ## 10. Pipeline — `standards/core/pipeline.md`
+
+*Superseded in detail by `standards/core/pipeline.md` after Plan 1b (2026-10-03).*
 
 **Entry point:** project skill `.claude/skills/contentporary-video/` (in git, shared with the
 team). Routes "make the graphics for `<video>`" to format, brand and checklist. `CLAUDE.md` shrinks

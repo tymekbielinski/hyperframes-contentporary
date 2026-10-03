@@ -182,9 +182,40 @@ class GroundModeTests(unittest.TestCase):
         d = ROOT / "brands" / "_template"
         self.assertEqual(bc.load_brand(d)["palettes"]["base"]["mode"], "dark")
 
+    @staticmethod
+    def contrast(a, b):
+        def lum(h):
+            cs = [int(h[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+            cs = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in cs]
+            return 0.2126 * cs[0] + 0.7152 * cs[1] + 0.0722 * cs[2]
+        la, lb = lum(a), lum(b)
+        return (max(la, lb) + 0.05) / (min(la, lb) + 0.05)
+
+    def test_text_contrast_all_brands_and_palettes(self):
+        for d in sorted((ROOT / "brands").iterdir()):
+            if not (d / "tokens.json").is_file() and not d.is_dir():
+                continue
+            if not d.is_dir():
+                continue
+            for name, p in bc.load_brand(d)["palettes"].items():
+                txt = p["text"]["primary"]
+                for g in ("centre", "deep"):
+                    self.assertGreaterEqual(self.contrast(txt, p["ground"][g]), 4.5, (d.name, name, g))
+                lt, lc = self.luminance(txt), self.luminance(p["ground"]["centre"])
+                if p["mode"] == "light":
+                    self.assertLess(lt, lc, (d.name, name))
+                else:
+                    self.assertGreater(lt, lc, (d.name, name))
+
+    def test_long_form_and_qa_ground_rules(self):
+        lf = (ROOT / "standards" / "formats" / "long-form.md").read_text()
+        qa = (ROOT / "standards" / "core" / "qa.md").read_text()
+        self.assertIn("never a flip", lf)
+        self.assertIn("(face punch-ins are not graphics)", qa)
+
     def test_brand_md_has_two_ground_modes(self):
         t = (self.D / "brand.md").read_text()
-        for s in ["Dark ground", "Light ground", "`silver`", "`paper`", "mode"]:
+        for s in ["Dark ground", "Light ground", "`silver`", "`paper`", "`mode`"]:
             self.assertIn(s, t)
         self.assertNotIn("pure-white grounds", t)
 
@@ -232,8 +263,9 @@ class HarnessTests(unittest.TestCase):
             self.assertIn(s, t)
 
     def test_no_stale_signoff_section_refs(self):
-        for f in [self.PL] + list((ROOT / "standards").rglob("*.md")):
+        for f in list((ROOT / "standards").rglob("*.md")) + [ROOT / "CLAUDE.md"]:
             t = f.read_text()
+            self.assertNotIn("automated gate, then sign-off", t, f)
             self.assertNotIn("qa.md` §2) by the runner", t, f)
             self.assertNotIn("Preview pack → sign-off** by the runner (`standards/core/qa.md` §2)", t, f)
 

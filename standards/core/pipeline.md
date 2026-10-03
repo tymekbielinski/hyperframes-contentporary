@@ -16,7 +16,7 @@ left without a named framework writes its own renderer.
 ## BRIEF fields
 ```yaml
 format: long-form            # long-form | shorts
-film: "One line: what this video's graphics must make the viewer feel or believe."
+film: "One line: what this video's graphics must make the viewer feel or believe."   # required
 direction: "One line of art direction, e.g. 'one canvas per argument; proof first, then the number'."
 references:                  # optional: reference videos/stills whose grammar to borrow
   - "youtube.com/watch?v=HrYMfy6MZtA — camera travel, backdrop headlines"
@@ -44,7 +44,7 @@ runner before any code:
 
 | t_in | t_out | words | placement | type | beats | ease | marks |
 |---|---|---|---|---|---|---|---|
-| 62.2 | 68.0 | "it's a system that prints…" | full-frame | kit roadmap (C-canvas) | line draws 0–1.2 · node 1 docks 1.4 · push to node 2.4 | ease.camera / ease.enter | — |
+| 62.2 | 68.0 | "it's a system that prints…" | full-frame | roadmap | line draws 0–1.2 · node 1 docks 1.4 · push to node 2.4 | ease.camera / ease.enter | — |
 | 74.1 | 79.4 | "1.2 million views" | full-frame | A1 | card lands 0.0 · highlight 0.3 · headline words 1.0–2.4 · hold | ease.enter / ease.sweep | highlight-block, script-word |
 
 `type` is a kit name or a catalogue ID from `standards/formats/long-form.md`. Density is checked on

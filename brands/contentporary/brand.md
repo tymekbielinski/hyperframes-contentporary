@@ -9,16 +9,18 @@ Every Contentporary video keeps these, whatever palette or headline font it pick
   - **Dark ground** (`red`, `gold`, `lime`, `reel-dark`): a lit centre falling off to near-black
     corners (vignette edge ≈ 50 % of centre brightness), a faint grid (≈ 4 columns per frame) with a
     dot matrix, a soft light sweep. Dark glass cards with a bevelled 1–2 px light border and a faint
-    light halo — never a dark drop shadow. Headlines white with a soft glow (halo 60–90 px at 1080p).
+    light halo — never a dark drop shadow in long-form (Shorts screenshots keep their soft shadow, see
+    `standards/formats/shorts.md`). Headlines white with a soft glow (halo 60–90 px at 1080p).
   - **Light ground** (`silver`, `paper`, `reel-light`): a silver or white radial/vertical gradient
     with a soft vignette (no grid on `paper`). Frosted white glass cards with a hairline border and a
     soft neutral shadow (`surface.halo`). Headlines in `text.primary` (dark), **no glow**; emphasis by
-    marker/highlight block, scribble underline, or white text on an `accent.block` / tag block.
+    marker/highlight block, scribble underline, dark `text.primary` on an `accent.block` marker, or white text on a saturated tag block (`extras.tagBlock`).
   - Card radius ≈ 36 px, stat cards ≈ 31 px at 1080p in both modes; highlight blocks are sharp-cornered.
 - **Accent-word count:** one or two accent words in long-form; exactly one accent word per headline
   in Shorts — in the palette's `accent.text`.
 - **Accent words:** a sharp-cornered `accent.block` behind a key stat or phrase, or a payoff word in
-  the signature script (`accentScript`), negative in the accent colour, positive in `status.ok`.
+  the signature script (`accentScript`), negative in the accent colour, positive in `status.ok` — as text colour on the dark ground; on the
+  light ground `status.ok` is a fill (block, underline, chip) behind dark `text.primary`.
 - **Marks:** highlight block, scribble underline, underline, curved arrow, curved/elbow connectors
   that draw, ✕/✓ status chips, script payoff word, strike-through. Shorts also use the reel set:
   ring, group outline, tinted tool chips.
@@ -48,8 +50,9 @@ visual language above must still hold.
 glass pill) · `key-line` lower third (one key line, bottom-centre, white→warm gradient) ·
 `grid-panel-chips` side text (left-half grid panel, glass number chips, face on the right) ·
 `watch-page-dive` CTA · `wave-nodes` chapter roadmap (glowing wavy line, numbered nodes, icon cards).
+On the light ground every kit variant drops its glow: dark `text.primary` with a scribble underline or an `accent.block` marker; the roadmap path is drawn in `accent.line` without bloom; side-text panels use frosted white glass instead of the dark grid panel.
 
 ## Never
-- Flat fills in either mode; dark drop shadows under cards on the dark ground; glow on light-ground headlines.
+- Flat fills in either mode; dark drop shadows under long-form cards on the dark ground; glow on light-ground headlines.
 - More than one script word per line. Accent colours outside the chosen palette and BRIEF overrides.
 - Light leaks.
