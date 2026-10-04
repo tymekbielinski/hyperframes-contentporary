@@ -6,6 +6,7 @@
     "kit/cta-youtube.js",
     "kit/kit.js",
     "kit/lower-third.js",
+    "kit/roadmap.js",
     "kit/side-text.js",
     "kit/subtitle.js",
     "kit/title.js",
@@ -28,6 +29,7 @@
     "kit/lower-third.js",
     "kit/side-text.js",
     "kit/cta-youtube.js",
+    "kit/roadmap.js",
     "shorts/wipe.js"
   ]
 }
