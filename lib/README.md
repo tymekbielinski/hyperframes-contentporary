@@ -162,8 +162,8 @@ no colour literal.
 - **The CTA camera is a DOM camera** (no motion blur on the dive): live footage cannot be baked into a blur
   texture yet. The scene ends on the footage itself, so if the face moves in the CTA's last 0.3 s, waive it
   in the BRIEF: `check 9 [<cta slot id>]: the CTA ends on live footage`.
-- **Hidden scenes:** a component measures its text even when the scene is `display:none` (title, kicker,
-  words, marker and lower-third widths come from `HFText.measureWidth`), so build after the font gates below.
+- **Hidden scenes:** a component measures its text even when the scene is `display:none` (the title underline,
+  subtitle marker and lower-third gradient widths come from `HFText.measureWidth`), so build after the font gates below.
 - **Brand proof sheet:** `python3 tools/proof_sheet.py <brand>` builds `videos/proof-<brand>/` — title,
   subtitle, lower third and side text in every palette — for onboarding approval.
 
