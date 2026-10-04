@@ -61,13 +61,18 @@ this table before building.
 3. **Capture.** Real screenshots or faithful recreations into `assets/captures/`, each recorded in
    `MANIFEST.md` (URL, UI mode, what's visible, caveats).
 4. **Build.** Full-frame scenes as one reel (shared canvases where an argument spans face cut-ins);
-   over-footage layouts as separate transparent compositions. Use `lib/kit` and the
+   over-footage layouts as standalone transparent documents in `compositions/overlays/` (no `<template>`
+   wrapper — each renders on its own with `-c`). Use `lib/kit` and the
    `camera` / `marks` / `text` primitives.
 5. **Automated gate** (`standards/core/qa.md` §1).
 6. **Critique loop** (`standards/core/qa.md` §2) — scores and fixes into `critique.md`.
 7. **Preview pack → sign-off** by the runner (`standards/core/qa.md` §3).
-8. **Render and slice.** Full-frame: silent MP4 clips + `TIMECODES.csv` + README. Over-footage:
-   ProRes 4444 with alpha. Into `deliver/`, then the shared drive (media never goes into Git).
+8. **Render and slice.** `npx hyperframes render videos/<slug> -o videos/<slug>/renders/reel.mp4`; each
+   over-footage layout `npx hyperframes render videos/<slug> -c compositions/overlays/<name>.html --format=mov
+   -o videos/<slug>/renders/overlays/<name>.mov`; then `python3 tools/slice.py videos/<slug> --reel
+   videos/<slug>/renders/reel.mp4 --overlays videos/<slug>/renders/overlays`. Full-frame: silent MP4 clips +
+   `TIMECODES.csv` + README. Over-footage: ProRes 4444 with alpha. Into `deliver/`, then the shared
+   drive (media never goes into Git).
 9. **Hand-off.** The editor places the clips on the timeline. Client videos: V1 via `client-ops`.
 10. **Feedback.** Apply the promotion rule. Commit and push code and docs only.
 
@@ -80,7 +85,7 @@ this table before building.
 5. **Automated gate.**
 6. **Critique loop.**
 7. **Preview pack → sign-off.**
-8. **Render** one finished MP4; hand off as above.
+8. **Render** one finished MP4 (`npx hyperframes render videos/<slug> -o videos/<slug>/deliver/<slug>.mp4`); hand off as above.
 9. **Feedback** as above.
 
 ## Reference → style guide
