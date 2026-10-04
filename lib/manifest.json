@@ -4,6 +4,7 @@
     "brand.js",
     "camera.js",
     "kit/kit.js",
+    "kit/lower-third.js",
     "kit/subtitle.js",
     "kit/title.js",
     "marks.js",
@@ -22,6 +23,7 @@
     "kit/kit.js",
     "kit/title.js",
     "kit/subtitle.js",
+    "kit/lower-third.js",
     "shorts/wipe.js"
   ]
 }
