@@ -212,6 +212,23 @@ class ChoiceTests(unittest.TestCase):
         self.assertEqual(len(errs), 1)
         self.assertTrue(errs[0].startswith("acme/palettes: red.json is not valid JSON ("), errs)
 
+    def test_non_object_palette_is_a_named_error(self):
+        for body in ("[1]", "null"):
+            (self.brand / "palettes" / "red.json").write_text(body)
+            expect = ["acme/palettes/red.json: must be a JSON object"]
+            self.assertEqual(bc.validate_brand(self.brand), expect, body)
+            self.assertEqual(bc.validate_choice(self.brand, "red"), expect, body)
+
+    def test_non_utf8_json_is_a_named_error(self):
+        (self.brand / "tokens.json").write_bytes(b"\xff\xfe{}")
+        self.assertEqual(bc.validate_choice(self.brand, "red"), ["acme: tokens.json is not valid UTF-8"])
+        self.assertEqual(bc.validate_brand(self.brand), ["acme: tokens.json is not valid UTF-8"])
+
+    def test_non_utf8_palette_is_a_named_error(self):
+        (self.brand / "palettes" / "red.json").write_bytes(b"\xff\xfe")
+        self.assertEqual(bc.validate_brand(self.brand), ["acme/palettes: red.json is not valid UTF-8"])
+        self.assertEqual(bc.validate_choice(self.brand, "red"), ["acme/palettes: red.json is not valid UTF-8"])
+
     def test_draft_brand_cannot_be_used(self):
         t = good_tokens("draftco")
         t["status"] = "draft"

@@ -141,6 +141,13 @@ class ValidateBriefTests(unittest.TestCase):
                 (dst / "palettes" / p.name).write_text(p.read_text())
             self.assertIn("brand contentporary is not approved (status: draft)", pj.validate_brief(dict(GOOD_LF), t))
 
+    def test_wrong_format_fields_are_named(self):
+        sh = dict(GOOD_LF, format="shorts", palette="reel-dark", captions=True)
+        errs = pj.validate_brief(sh, ROOT)
+        self.assertIn("hook_end is long-form-only", errs)
+        self.assertIn("screen_share is long-form-only", errs)
+        self.assertIn("captions is Shorts-only", pj.validate_brief(dict(GOOD_LF, captions=False), ROOT))
+
     def test_hook_end_default(self):
         self.assertEqual(pj.hook_end({}), 80.0)
         self.assertEqual(pj.hook_end({"hook_end": 45}), 45.0)
@@ -164,6 +171,20 @@ class StoryboardTests(unittest.TestCase):
         with self.assertRaisesRegex(pj.ProjectError, "placement must be full-frame or over-footage, got 'overlay'"):
             pj.parse_storyboard(GRID.replace("over-footage", "overlay"))
 
+    def test_separator_gap_nonfinite_negative(self):
+        no_sep = GRID.replace("|---|---|---|---|---|---|---|---|\n", "")
+        with self.assertRaisesRegex(pj.ProjectError, r"line 4: expected the \|---\| separator"):
+            pj.parse_storyboard(no_sep)
+        gap = GRID.replace("\n| 74.1", "\n\n| 74.1")
+        with self.assertRaisesRegex(pj.ProjectError, r"line 6: blank line inside the beat grid"):
+            pj.parse_storyboard(gap)
+        with self.assertRaisesRegex(pj.ProjectError, "finite seconds"):
+            pj.parse_storyboard(GRID.replace("| 62.2 |", "| nan |"))
+        with self.assertRaisesRegex(pj.ProjectError, "finite seconds"):
+            pj.parse_storyboard(GRID.replace("| 68.0 |", "| inf |"))
+        with self.assertRaisesRegex(pj.ProjectError, "t_in -1.0 must not be negative"):
+            pj.parse_storyboard(GRID.replace("| 62.2 |", "| -1.0 |"))
+
     def test_empty_grid_is_empty(self):
         self.assertEqual(pj.parse_storyboard("| " + " | ".join(pj.GRID_COLUMNS) + " |\n|---|---|---|---|---|---|---|---|\n"), [])
 
@@ -183,6 +204,9 @@ class SlotsTranscriptTests(unittest.TestCase):
     def test_transcript_duration(self):
         with tempfile.TemporaryDirectory() as t:
             self.assertIsNone(pj.transcript_duration(t))
+            (Path(t) / "transcript.json").write_text("42")
+            with self.assertRaisesRegex(pj.ProjectError, "root must be a list"):
+                pj.transcript_duration(t)
             (Path(t) / "transcript.json").write_text(json.dumps([{"text": "a", "start": 0.1, "end": 0.4}, {"text": "b", "start": 0.5, "end": 61.25}]))
             self.assertEqual(pj.transcript_duration(t), 61.25)
             (Path(t) / "transcript.json").write_text(json.dumps({"words": [{"text": "a", "start": 0, "end": 9.5}]}))

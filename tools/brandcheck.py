@@ -46,6 +46,10 @@ def _read_json(path: Path, label: str):
         return json.loads(path.read_text())
     except FileNotFoundError:
         raise BrandError(f"{label}: missing {path.name}")
+    except UnicodeDecodeError:
+        raise BrandError(f"{label}: {path.name} is not valid UTF-8")
+    except OSError as e:
+        raise BrandError(f"{label}: {path.name} cannot be read ({e.strerror or e})")
     except json.JSONDecodeError as e:
         raise BrandError(f"{label}: {path.name} is not valid JSON ({e.msg} at line {e.lineno})")
 
@@ -98,7 +102,10 @@ def load_brand(brand_dir: Path) -> dict:
     for name in tokens.get("palettes") or []:
         f = brand_dir / "palettes" / f"{name}.json"
         if f.is_file():
-            palettes[name] = _read_json(f, f"{brand_dir.name}/palettes")
+            data = _read_json(f, f"{brand_dir.name}/palettes")
+            if not isinstance(data, dict):
+                raise BrandError(f"{brand_dir.name}/palettes/{name}.json: must be a JSON object")
+            palettes[name] = data
     return {"tokens": tokens, "palettes": palettes}
 
 

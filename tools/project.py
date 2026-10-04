@@ -4,6 +4,7 @@ Field rules: standards/core/pipeline.md (BRIEF fields, beat grid) and standards/
 Standard library only — the BRIEF's YAML is a small subset parsed here (no PyYAML).
 """
 import json
+import math
 import re
 from pathlib import Path
 
@@ -160,11 +161,17 @@ def validate_brief(brief: dict, root=ROOT) -> list:
         errors.append("overrides must be a map of palette role paths to colours")
         overrides = None
     captions = brief.get("captions")
+    if fmt == "shorts":
+        for k in ("hook_end", "screen_share"):
+            if brief.get(k) is not None:
+                errors.append(f"{k} is long-form-only")
     if fmt == "shorts" and not isinstance(captions, bool):
         errors.append("captions is required for Shorts (true or false)")
     if fmt == "long-form":
         if captions is True:
             errors.append("captions: long-form has no running captions (key-line lower thirds only)")
+        elif captions is not None:
+            errors.append("captions is Shorts-only")
         hook = brief.get("hook_end")
         if hook is not None and not (_num(hook) and hook > 0):
             errors.append(f"hook_end must be a positive number of seconds, got {hook!r}")
@@ -222,9 +229,14 @@ def parse_storyboard(text: str, label: str = "storyboard.md") -> list:
     if start is None:
         raise ProjectError(f"{label}: no beat-grid table (header: | {' | '.join(GRID_COLUMNS)} |)")
     rows = []
+    sep = lines[start + 1] if start + 1 < len(lines) else ""
+    if not re.fullmatch(r"\s*\|(\s*:?-+:?\s*\|)+\s*", sep):
+        raise ProjectError(f"{label} line {start + 2}: expected the |---| separator row under the beat-grid header")
     for i in range(start + 2, len(lines)):
         line = lines[i]
         if not line.strip().startswith("|"):
+            if any(l.strip().startswith("|") for l in lines[i + 1:]):
+                raise ProjectError(f"{label} line {i + 1}: blank line inside the beat grid (rows after it would be dropped)")
             break
         cells = _cells(line)
         where = f"{label} line {i + 1}"
@@ -235,6 +247,10 @@ def parse_storyboard(text: str, label: str = "storyboard.md") -> list:
             row["t_in"], row["t_out"] = float(row["t_in"]), float(row["t_out"])
         except ValueError:
             raise ProjectError(f"{where}: t_in and t_out must be seconds, got {cells[0]!r}, {cells[1]!r}")
+        if not all(math.isfinite(row[k]) for k in ("t_in", "t_out")):
+            raise ProjectError(f"{where}: t_in and t_out must be finite seconds, got {cells[0]!r}, {cells[1]!r}")
+        if row["t_in"] < 0:
+            raise ProjectError(f"{where}: t_in {row['t_in']} must not be negative")
         if row["t_out"] <= row["t_in"]:
             raise ProjectError(f"{where}: t_out {row['t_out']} must be after t_in {row['t_in']}")
         if row["placement"] not in PLACEMENTS:
@@ -291,6 +307,8 @@ def transcript_duration(project):
         data = json.loads(path.read_text())
     except json.JSONDecodeError as e:
         raise ProjectError(f"{path} is not valid JSON ({e.msg} at line {e.lineno})")
+    if not isinstance(data, (list, dict)):
+        raise ProjectError(f"{path}: root must be a list of words or an object with 'words'")
     words = data if isinstance(data, list) else (data.get("words") or data.get("segments") or [])
     ends = [w["end"] for w in words if isinstance(w, dict) and _num(w.get("end"))]
     return max(ends) if ends else None
