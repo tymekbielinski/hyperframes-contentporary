@@ -58,6 +58,7 @@ keeps a razor edge no matter how blurred the content is.)
 | duration out | **0.36s** | |
 | blur | `14px` in / `12px` out, scaled by `4q(1-q)` | peaks mid-travel, nothing at either end |
 | mask feather | `8 + 34 · 4q(1-q)` (%) | softest while moving fastest, tight at rest |
+| phase handoff | **0.10s** | inside one scene, the incoming phase starts its wipe-in 0.10 s after the outgoing phase starts its wipe-out (`HFWipe.phase`) |
 
 **The easing is the whole point.** `power2.out` on the way in and `power2.in` on the way out both
 put peak velocity *exactly at the cut* — the transition starts and ends at full speed, which reads
