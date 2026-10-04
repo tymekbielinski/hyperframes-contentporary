@@ -95,3 +95,22 @@ test("cli: JSON out, exit 1 on findings, 2 on bad usage", function () {
   assert.match(err, /usage/);
   fs.rmSync(dir, { recursive: true });
 });
+
+test("composition ruleset: HTML mode holes closed", function () {
+  var ch = function (r) { return r.map(function (f) { return f.check; }); };
+  // `>` inside an attribute value does not end the tag
+  assert.deepEqual(ch(comp("<div data-x=\"a>b\" style=\"filter:blur(4px)\"></div>")), [5]);
+  assert.deepEqual(ch(comp("<div data-x='a>b' style=\"filter:blur(4px)\" data-blur-reason=\"focus\"></div>")), []);
+  // `//` is not a comment in <style> or attributes
+  assert.deepEqual(ch(comp("<style>.a{background:url(http://x/y.png);animation:spin 1s infinite}</style>")), [4]);
+  assert.deepEqual(ch(comp("<script src=https://cdn/x.js></script><script>Math.random()</script>")), [4]);
+  assert.deepEqual(ch(comp("<script>// Math.random() note\nvar a = 1;</script>")), []);
+  assert.deepEqual(ch(comp("<style>/* animation: a 1s infinite */ .a{color:red}</style>")), []);
+  // `</script>` inside a JS string ends the body in browsers too; the rest is prose
+  assert.deepEqual(ch(comp("<script>var s=\"</script>\"; Math.random();</script>")), []);
+  // WAAPI infinite iterations
+  assert.deepEqual(ch(comp("<script>el.animate(k, { duration: 1, iterations: Infinity });</script>")), [4]);
+  // .htm and .svg are HTML-masked too
+  assert.deepEqual(ch(comp("<p>don't</p><script>Math.random()</script>", "long-form", "c.htm")), [4]);
+  assert.deepEqual(ch(comp("<text>it's</text><style>.a{animation:s 1s infinite}</style>", "long-form", "c.svg")), [4]);
+});

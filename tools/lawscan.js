@@ -16,7 +16,7 @@ var REASONS = ["focus", "glow", "wipe"];
 // [pattern, check number, message, rulesets]. Check numbers follow standards/core/qa.md §1.
 var RULES = [
   [/Math\.random|Date\.now|performance\.now/, 4, "non-deterministic clock/randomness (core law 1)", "lib composition"],
-  [/["'`]?repeat["'`]?\s*:\s*(-1|Infinity)/, 4, "infinite repeat (core law 1)", "lib composition"],
+  [/["'`]?(?:repeat|iterations)["'`]?\s*:\s*(-1|Infinity)/, 4, "infinite repeat (core law 1)", "lib composition"],
   [/animation(?:-iteration-count)?\s*:[^;{}"'`]*\binfinite\b/i, 4, "CSS infinite animation (core law 1)", "lib composition"],
   [/(?<!url\()#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})(?![0-9a-z_-])/i, 0, "hard-coded colour — use brand CSS variables", "lib"],
   [/\b(rgba?|hsla?|oklch|oklab|lab|lch|hwb|color-mix)\(/i, 0, "hard-coded colour function — use brand CSS variables", "lib"],
@@ -30,7 +30,8 @@ var REGEX_KEYWORD = /(?:^|[^\w$.])(?:return|typeof|case|do|else|in|of|void|yield
 
 // Walk JS/CSS source tracking string state, so `/*` inside a string is not a comment.
 // Returns the source with comments blanked (newlines kept) and the 0-based lines of real alpha-mask markers.
-function lex(raw) {
+function lex(raw, mode) {
+  var css = mode === "css";   // CSS: only /* */ comments, no `//` and no regex literals
   var out = "", marks = {}, i = 0, n = raw.length, q = null, line = 0;
   while (i < n) {
     var c = raw[i], d = raw[i + 1];
@@ -47,9 +48,9 @@ function lex(raw) {
       if (MARKER.test(text)) marks[line] = true;
       out += text.replace(/[^\n]/g, " "); line += (text.match(/\n/g) || []).length; i = end; continue;
     }
-    if (c === "/" && d === "/") { while (i < n && raw[i] !== "\n") { out += " "; i++; } continue; }
+    if (!css && c === "/" && d === "/") { while (i < n && raw[i] !== "\n") { out += " "; i++; } continue; }
     var before = out.slice(-40);
-    if (c === "/" && (/[(,=:\[!&|?{};]\s*$|^\s*$/.test(before) || REGEX_KEYWORD.test(before))) {   // regex literal: skip it so a quote inside is not a string
+    if (!css && c === "/" && (/[(,=:\[!&|?{};]\s*$|^\s*$/.test(before) || REGEX_KEYWORD.test(before))) {   // regex literal: skip it so a quote inside is not a string
       var j = i + 1, cls = false;
       while (j < n && raw[j] !== "\n" && (cls || raw[j] !== "/")) { if (raw[j] === "\\") j++; else if (raw[j] === "[") cls = true; else if (raw[j] === "]") cls = false; j++; }
       out += raw.slice(i, j + 1); i = j + 1; continue;
@@ -60,18 +61,50 @@ function lex(raw) {
   return { src: out, marks: marks };
 }
 
-// HTML → the same text with HTML comments and the prose between tags blanked (newlines kept), so an
-// apostrophe in copy never opens a "string". Tags, <script> and <style> bodies are kept verbatim.
-function htmlMask(raw) {
-  var re = /<!--[\s\S]*?(?:-->|$)|<(script|style)\b[^>]*>[\s\S]*?(?:<\/\1\s*>|$)|<[^>]*>?/gi, out = "", last = 0, m;
-  function blank(s) { return s.replace(/[^\n]/g, " "); }
+// HTML → segments {kind: "prose"|"comment"|"tag"|"script"|"style", text}. Tags are matched quote-aware
+// (a `>` inside an attribute value does not end the tag). A <script>/<style> body ends at the first
+// `</script`/`</style` even inside a JS string — that is how browsers parse it, so what follows is prose.
+function htmlSegments(raw) {
+  var Q = "(?:\"[^\"]*\"|'[^']*'|[^'\">])*";
+  var re = new RegExp("<!--[\\s\\S]*?(?:-->|$)|(<(script|style)\\b" + Q + ">)([\\s\\S]*?)(<\\/\\2\\s*>|$)|<" + Q + ">?", "gi");
+  var segs = [], last = 0, m;
   while ((m = re.exec(raw))) {
-    out += blank(raw.slice(last, m.index));
-    out += m[0].indexOf("<!--") === 0 ? blank(m[0]) : m[0];
+    if (m.index > last) segs.push({ kind: "prose", text: raw.slice(last, m.index) });
+    if (m[0].indexOf("<!--") === 0) segs.push({ kind: "comment", text: m[0] });
+    else if (m[2]) {
+      segs.push({ kind: "tag", text: m[1] }, { kind: m[2].toLowerCase(), text: m[3] });
+      if (m[4]) segs.push({ kind: "tag", text: m[4] });
+    } else segs.push({ kind: "tag", text: m[0] });
     last = re.lastIndex;
     if (m[0] === "") re.lastIndex++;
   }
-  return out + blank(raw.slice(last));
+  if (last < raw.length) segs.push({ kind: "prose", text: raw.slice(last) });
+  return segs;
+}
+
+function blank(s) { return s.replace(/[^\n]/g, " "); }
+
+// HTML → the same text with HTML comments and the prose between tags blanked (newlines kept), so an
+// apostrophe in copy never opens a "string". Tags, <script> and <style> bodies are kept verbatim.
+function htmlMask(raw) {
+  return htmlSegments(raw).map(function (g) { return g.kind === "prose" || g.kind === "comment" ? blank(g.text) : g.text; }).join("");
+}
+
+// Mask + lex an HTML document: `//` comments and regex literals exist only in <script> bodies;
+// <style> bodies get CSS comments only; tags and attributes are kept verbatim.
+function lexHtml(raw) {
+  var out = "", marks = {}, line = 0;
+  htmlSegments(raw).forEach(function (g) {
+    var t = g.text;
+    if (g.kind === "prose" || g.kind === "comment") out += blank(t);
+    else if (g.kind === "script" || g.kind === "style") {
+      var lx = lex(t, g.kind === "style" ? "css" : "js");
+      out += lx.src;
+      Object.keys(lx.marks).forEach(function (k) { marks[line + Number(k)] = true; });
+    } else out += t;
+    line += (t.match(/\n/g) || []).length;
+  });
+  return { src: out, marks: marks };
 }
 
 function reasonsOn(line) {
@@ -88,8 +121,7 @@ function scan(rel, raw, opts) {
   opts = opts || {};
   var ruleset = opts.ruleset || "lib", comp = ruleset === "composition", fmt = opts.format || "long-form";
   if (comp && fmt !== "long-form" && fmt !== "shorts") throw new Error("lawscan: format must be long-form or shorts, got " + JSON.stringify(fmt));
-  var src = /\.html?$/i.test(rel) ? htmlMask(raw) : raw;
-  var out = [], lx = lex(src), lines = lx.src.split("\n"), tagUsed = {};
+  var out = [], lx = /\.(html?|svg)$/i.test(rel) ? lexHtml(raw) : lex(raw), lines = lx.src.split("\n"), tagUsed = {};
   function hit(i, check, message) { out.push({ file: rel, line: i + 1, check: check, message: message }); }
   function free(i) { return i < 0 || i >= lines.length ? 0 : (lines[i].match(/data-blur-reason/g) || []).length - (tagUsed[i] || 0); }
   lines.forEach(function (line, i) {
@@ -139,7 +171,7 @@ function cli(argv, io) {
   return found.length ? 1 : 0;
 }
 
-module.exports = { lex: lex, htmlMask: htmlMask, scan: scan, format: format, cli: cli, RULES: RULES, REASONS: REASONS };
+module.exports = { lex: lex, htmlMask: htmlMask, lexHtml: lexHtml, scan: scan, format: format, cli: cli, RULES: RULES, REASONS: REASONS };
 if (require.main === module) {
   process.exitCode = cli(process.argv.slice(2), { out: function (s) { process.stdout.write(s); }, err: function (s) { process.stderr.write(s); } });
 }
