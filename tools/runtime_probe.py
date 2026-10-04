@@ -26,7 +26,7 @@ def hyperframes_cmd() -> list:
     return shlex.split(os.environ.get("HF_CLI", "npx --yes hyperframes"))
 
 
-def _run(cmd, timeout_s):
+def run_with_timeout(cmd, timeout_s):
     """subprocess.run with a timeout, in its own process group (the whole group is killed on timeout, so no
     Chrome is orphaned). Every failure to run or finish becomes a ProbeError."""
     try:
@@ -43,6 +43,9 @@ def _run(cmd, timeout_s):
         p.communicate()
         raise ProbeError(f"{' '.join(str(c) for c in cmd[:3])} timed out after {timeout_s:.0f} s")
     return subprocess.CompletedProcess(cmd, p.returncode, out, err)
+
+
+_run = run_with_timeout     # the original private name, kept for existing callers
 
 
 def find_chrome(allow_npx=True):

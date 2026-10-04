@@ -81,7 +81,7 @@ def run_hf(args, timeout_s, what):
     """The HyperFrames CLI with a timeout, killed as a process group on timeout; a CompletedProcess, or an Infra
     message when it could not run or finish."""
     try:
-        return runtime_probe._run(runtime_probe.hyperframes_cmd() + args, timeout_s)
+        return runtime_probe.run_with_timeout(runtime_probe.hyperframes_cmd() + args, timeout_s)
     except runtime_probe.ProbeError as e:
         return Infra(f"{what}: {e} (set HF_CLI to a working HyperFrames CLI)")
 
@@ -221,10 +221,11 @@ def boundaries(project, fmt, rows) -> list:
     return [t for r in rows if r["placement"] == "full-frame" for t in (r["t_in"], r["t_out"])]
 
 
-def flicker_findings(diffs, fps, cut_times) -> list:
+def flicker_findings(diffs, fps, cut_times, compare) -> list:
+    """compare: scan_flicker.frame_comparer(render) — confirms the picture returned to its prior frame."""
     cut_frames = {round(t * fps) + k for t in cut_times for k in (-1, 0, 1)}
     return [f"flicker at frame {f} ({f / fps:.2f} s): step {step} vs local {local}"
-            for f, step, local in scan_flicker.find_flicker(diffs) if f not in cut_frames]
+            for f, step, local in scan_flicker.find_flicker(diffs, compare) if f not in cut_frames]
 
 
 def scope_matches(scope, finding) -> bool:
@@ -280,7 +281,7 @@ def check_render(project, fmt, rows, render_path, merged10):
     c9 = guarded(9, lambda: result(9, settle_findings(diffs, scene_windows(project, fmt, rows), fps), note))
     try:
         cuts = boundaries(project, fmt, rows) + (media.scene_cuts(render_path) if fmt == "shorts" else [])
-        c10 = result(10, merged10 + flicker_findings(diffs, fps, cuts), note)
+        c10 = result(10, merged10 + flicker_findings(diffs, fps, cuts, scan_flicker.frame_comparer(render_path)), note)
     except Exception as e:
         c10 = result(10, merged10 + [internal(e)], note)
     return c9, c10

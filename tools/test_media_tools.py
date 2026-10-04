@@ -107,6 +107,17 @@ class ProbeCutsTests(unittest.TestCase):
 
 
 @unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+def clip(path, source, boxes, secs=3):
+    """A 160×90, 30 fps synthetic clip: lavfi `source` with white 60×40 boxes, each "box@<x>,<y>:<enable expr>"."""
+    parts = []
+    for b in boxes:
+        pos, enable = b[len("box@"):].split(":", 1)
+        x, y = pos.split(",")
+        parts.append(f"drawbox=x={x}:y={y}:w=60:h=40:color=white:t=fill:enable='{enable}'")
+    synth._ffmpeg(["-f", "lavfi", "-i", f"{source}{':' if '=' in source else '='}s=160x90:r=30:d={secs}", "-vf", ",".join(parts), "-pix_fmt", "yuv420p", str(path)])
+    return path
+
+
 class FlickerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -114,26 +125,37 @@ class FlickerTests(unittest.TestCase):
         d = Path(cls.tmp.name)
         cls.smooth = synth.moving(d / "smooth.mp4", 3)
         cls.glitch = synth.moving(d / "glitch.mp4", 3, glitch_frame=45)
-        cls.appear = d / "appear.mp4"                          # a box pops in at frame 45 and stays
-        synth._ffmpeg(["-f", "lavfi", "-i", "testsrc2=s=160x90:r=30:d=3", "-vf",
-                       "drawbox=x=20:y=20:w=60:h=40:color=white:t=fill:enable='gte(n,45)'", "-pix_fmt", "yuv420p", str(cls.appear)])
+        cls.appear = clip(d / "appear.mp4", "testsrc2", ["box@20,20:gte(n,45)"])                   # pops in, stays
+        cls.block3 = clip(d / "block3.mp4", "testsrc2", ["box@20,20:between(n,45,47)"])            # 3-frame wrong-state block
+        cls.block6 = clip(d / "block6.mp4", "testsrc2", ["box@20,20:between(n,45,50)"])            # 6-frame block
+        cls.stagger = clip(d / "stagger.mp4", "testsrc2", ["box@10,10:gte(n,45)", "box@90,40:gte(n,49)"])   # 4 frames apart
+        cls.stagger_still = clip(d / "stagger_still.mp4", "color=c=0x202020", ["box@10,10:gte(n,45)", "box@90,40:gte(n,49)"])
 
     @classmethod
     def tearDownClass(cls):
         cls.tmp.cleanup()
 
     def test_find_flicker_rule(self):
+        def pictures(levels):
+            """A fake compare: frame f shows picture levels.get(f, 0); distance = |level difference|."""
+            return lambda pairs: [abs(levels.get(a, 0) - levels.get(b, 0)) for a, b in pairs]
         smooth = [3.0, 3.2, 3.1, 3.4, 3.3, 3.2, 3.1, 3.0]
-        self.assertEqual(scan_flicker.find_flicker(smooth), [])
-        spiky = smooth[:4] + [30.0, 28.0] + smooth[4:]          # out and back: both steps reported
-        self.assertEqual(scan_flicker.find_flicker(spiky), [(5, 30.0, 3.2), (6, 28.0, 3.2)])
-        gapped = smooth[:4] + [30.0, 3.1, 28.0] + smooth[4:]    # back two frames later still counts
-        self.assertEqual([h[0] for h in scan_flicker.find_flicker(gapped)], [5, 7])
+        self.assertEqual(scan_flicker.find_flicker(smooth, pictures({})), [])
+        spiky = smooth[:4] + [30.0, 28.0] + smooth[4:]          # frame 5 away, frame 6 back: both steps reported
+        self.assertEqual(scan_flicker.find_flicker(spiky, pictures({5: 100})), [(5, 30.0, 3.2), (6, 28.0, 3.2)])
+        self.assertEqual(scan_flicker.find_flicker(spiky, pictures({5: 100, 6: 200})), [])   # two jumps, no return
+        block = smooth[:4] + [30.0] + [3.1] * 7 + [28.0] + smooth[4:]   # frames 5–12 away, back at 13: still counts
+        self.assertEqual([h[0] for h in scan_flicker.find_flicker(block, pictures({f: 100 for f in range(5, 13)}))], [5, 13])
+        late = smooth[:4] + [30.0] + [3.1] * 8 + [28.0] + smooth[4:]    # 9 frames away: beyond MAX_RETURN
+        self.assertEqual(scan_flicker.find_flicker(late, pictures({f: 100 for f in range(5, 14)})), [])
         step = smooth[:4] + [30.0] + smooth[4:]                 # one isolated step: a hard appear, not flicker
-        self.assertEqual(scan_flicker.find_flicker(step), [])
-        self.assertEqual(scan_flicker.find_flicker([0.0] * 6 + [8.7] + [0.0] * 6), [])
+        self.assertEqual(scan_flicker.find_flicker(step, pictures({f: 100 for f in range(5, 20)})), [])
+        self.assertEqual(scan_flicker.find_flicker([0.0] * 6 + [8.7] + [0.0] * 6, pictures({})), [])
+        seen = []
+        scan_flicker.find_flicker(smooth[:4] + [30.0, 3.1, 3.1, 28.0] + smooth[4:], lambda pairs: seen.extend(pairs) or [0.0] * len(pairs))
+        self.assertEqual(seen, [(4, 8), (4, 7)])               # before-out vs after-back, before-out vs last away frame
         ramp = [1, 2, 4, 8, 12, 16, 12, 8, 4, 2, 1]    # a camera move: big but smooth
-        self.assertEqual(scan_flicker.find_flicker([float(x) for x in ramp]), [])
+        self.assertEqual(scan_flicker.find_flicker([float(x) for x in ramp], pictures({})), [])
 
     def test_smooth_motion_passes(self):
         self.assertEqual(scan_flicker.scan(self.smooth)["flicker"], [])
@@ -148,6 +170,14 @@ class FlickerTests(unittest.TestCase):
 
     def test_single_hard_appear_is_not_flicker(self):
         self.assertEqual(scan_flicker.scan(self.appear)["flicker"], [])
+
+    def test_multi_frame_glitch_blocks_are_reported(self):
+        self.assertEqual([hit[0] for hit in scan_flicker.scan(self.block3)["flicker"]], [45, 48])
+        self.assertEqual([hit[0] for hit in scan_flicker.scan(self.block6)["flicker"]], [45, 51])
+
+    def test_staggered_pop_ins_are_not_flicker(self):
+        self.assertEqual(scan_flicker.scan(self.stagger)["flicker"], [])
+        self.assertEqual(scan_flicker.scan(self.stagger_still)["flicker"], [])
 
     def test_bad_file_does_not_stop_the_scan(self):
         out, err = io.StringIO(), io.StringIO()
