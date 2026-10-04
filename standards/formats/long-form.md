@@ -143,6 +143,8 @@ Proof-clip words are the client's quote, not captions.
 - **Full-frame scenes:** silent MP4 clips (1920×1080, 30 fps) named by timeline timecode, plus
   `TIMECODES.csv` and a README for the editor.
 - **Over-footage layouts:** ProRes 4444 with alpha (`npx hyperframes render --format=mov`).
+- `python3 tools/slice.py videos/<slug> --reel <reel.mp4> --overlays <dir>` cuts the clips frame-exact,
+  verifies the overlays and writes `TIMECODES.csv` + `README.txt` into `deliver/`.
 - Hand-off to the shared drive; media never goes into Git.
 
 ## Checklist (run with `standards/core/qa.md`)

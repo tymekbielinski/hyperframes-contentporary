@@ -24,12 +24,34 @@ KNOWN_MARKS = [
 STATUSES = ("draft", "approved")
 PALETTE_MODES = ("dark", "light")
 
-_HEX = re.compile(r"^#[0-9A-Fa-f]{6}$")
-_RGBA = re.compile(r"^rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*(0|1|0?\.\d+)\s*\)$")
+_HEX = re.compile(r"#[0-9A-Fa-f]{6}")
+_RGBA = re.compile(r"rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(0|1|0?\.\d+)\s*\)")
+
+
+class BrandError(Exception):
+    """A brand folder that cannot be read (missing folder or file, malformed JSON)."""
 
 
 def is_colour(value) -> bool:
-    return isinstance(value, str) and bool(_HEX.match(value) or _RGBA.match(value))
+    if not isinstance(value, str):
+        return False
+    if _HEX.fullmatch(value):
+        return True
+    m = _RGBA.fullmatch(value)
+    return bool(m) and all(int(c) <= 255 for c in m.groups()[:3])
+
+
+def _read_json(path: Path, label: str):
+    try:
+        return json.loads(path.read_text())
+    except FileNotFoundError:
+        raise BrandError(f"{label}: missing {path.name}")
+    except UnicodeDecodeError:
+        raise BrandError(f"{label}: {path.name} is not valid UTF-8")
+    except OSError as e:
+        raise BrandError(f"{label}: {path.name} cannot be read ({e.strerror or e})")
+    except json.JSONDecodeError as e:
+        raise BrandError(f"{label}: {path.name} is not valid JSON ({e.msg} at line {e.lineno})")
 
 
 def _role_paths():
@@ -69,13 +91,21 @@ def validate_palette(data: dict, label: str) -> list:
 
 
 def load_brand(brand_dir: Path) -> dict:
+    """Read tokens.json and every listed palette. Raises BrandError naming the folder and file."""
     brand_dir = Path(brand_dir)
-    tokens = json.loads((brand_dir / "tokens.json").read_text())
+    if not brand_dir.is_dir():
+        raise BrandError(f"brand folder {brand_dir} not found")
+    tokens = _read_json(brand_dir / "tokens.json", brand_dir.name)
+    if not isinstance(tokens, dict):
+        raise BrandError(f"{brand_dir.name}: tokens.json must be a JSON object")
     palettes = {}
-    for name in tokens.get("palettes", []):
+    for name in tokens.get("palettes") or []:
         f = brand_dir / "palettes" / f"{name}.json"
         if f.is_file():
-            palettes[name] = json.loads(f.read_text())
+            data = _read_json(f, f"{brand_dir.name}/palettes")
+            if not isinstance(data, dict):
+                raise BrandError(f"{brand_dir.name}/palettes/{name}.json: must be a JSON object")
+            palettes[name] = data
     return {"tokens": tokens, "palettes": palettes}
 
 
@@ -84,7 +114,10 @@ def validate_brand(brand_dir: Path) -> list:
     folder = brand_dir.name
     if not (brand_dir / "tokens.json").is_file():
         return [f"{folder}: missing tokens.json"]
-    brand = load_brand(brand_dir)
+    try:
+        brand = load_brand(brand_dir)
+    except BrandError as e:
+        return [str(e)]
     t = brand["tokens"]
     errors = []
 
@@ -144,7 +177,10 @@ def validate_choice(brand_dir: Path, palette: str, font=None, overrides=None) ->
     font is optional here; the QA gate (standards/core/qa.md check 3) requires the BRIEF to set it.
     """
     brand_dir = Path(brand_dir)
-    brand = load_brand(brand_dir)
+    try:
+        brand = load_brand(brand_dir)
+    except BrandError as e:
+        return [str(e)]
     t = brand["tokens"]
     name = t.get("name", brand_dir.name)
     errors = []
@@ -170,6 +206,9 @@ def main(argv) -> int:
         print("usage: python3 tools/brandcheck.py brands/<name>")
         return 2
     brand_dir = Path(argv[1])
+    if not brand_dir.is_dir():
+        print(f"brand folder {brand_dir} not found")
+        return 1
     errors = validate_brand(brand_dir)
     for e in errors:
         print(e)

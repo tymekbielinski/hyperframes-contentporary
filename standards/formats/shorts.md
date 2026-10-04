@@ -58,6 +58,7 @@ keeps a razor edge no matter how blurred the content is.)
 | duration out | **0.36s** | |
 | blur | `14px` in / `12px` out, scaled by `4q(1-q)` | peaks mid-travel, nothing at either end |
 | mask feather | `8 + 34 · 4q(1-q)` (%) | softest while moving fastest, tight at rest |
+| phase handoff | **0.10s** | inside one scene, the incoming phase starts its wipe-in 0.10 s after the outgoing phase starts its wipe-out (`HFWipe.phase`) |
 
 **The easing is the whole point.** `power2.out` on the way in and `power2.in` on the way out both
 put peak velocity *exactly at the cut* — the transition starts and ends at full speed, which reads
@@ -80,7 +81,8 @@ The underlying clip has its own jump cuts. A graphic scene that ends a few frame
 leaves an orphaned tail of the outgoing shot — it flashes for 2-8 frames and then hard-cuts, which
 reads as a glitch, not an edit.
 
-Probe the source first:
+Probe the source first — `python3 tools/probe_cuts.py <footage>` lists every cut and its scene end
+(cut + 0.36 s), running exactly this:
 
 ```bash
 ffmpeg -v info -i input-video.mp4 -filter_complex "select='gt(scene,0.20)',metadata=print:file=-" \
@@ -213,7 +215,7 @@ is obvious the moment there is any zoom component.
 
 ### Wiring it up
 
-1. **Sync the shared library into the project** (`tools/sync-lib`; never hand-copy or edit the copy) and load, after GSAP,
+1. **Sync the shared library into the project** (`python3 tools/sync_lib.py videos/<slug>`; never hand-copy or edit the copy) and load, after GSAP,
    `lib/profile.js`, `lib/motion-blur.js` and `lib/camera.js` (load order: `lib/README.md`).
 2. **Bake a world texture per leg.** The blur samples a *static* image, so each camera leg needs a
    still of the settled layout as it appears during that leg. Generate a standalone bake page that

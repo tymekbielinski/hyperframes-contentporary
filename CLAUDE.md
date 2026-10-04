@@ -35,7 +35,7 @@ This repo is shared by the Contentporary team on GitHub
    Gaussian blur only with `data-blur-reason` = `focus`, `glow` or `wipe` (Shorts: wipe feather and element smear).
 5. Long-form never has running captions (key-line lower thirds only). Shorts captions follow the
    BRIEF's `captions` flag.
-6. Every video passes `standards/core/qa.md` (automated gate, agent critique loop, then sign-off by whoever ran the build).
+6. Every video passes `standards/core/qa.md` (automated gate `python3 tools/qa.py videos/<slug>`, agent critique loop, then sign-off by whoever ran the build).
 7. **Promotion rule:** a finding that changes how future videos are made goes into `standards/` or
    `brands/`, never only into a BRIEF or agent memory.
 8. New client → `brands/_template/README.md`. Validate any brand with
@@ -47,10 +47,24 @@ This repo is shared by the Contentporary team on GitHub
 Shared by every brand and video; styled only by brand tokens (CSS variables from `lib/brand.js`).
 Modules: `profile.js` (format eases + timings), `motion-blur.js`, `camera.js`, `marks.js`, `text.js`,
 `brand.js`, `shorts/wipe.js` — API and load order in `lib/README.md`. Never hand-edit a project's copy;
-improvements go into root `lib/` first. Until `tools/sync-lib` exists (Plan 3), copy the needed root
-`lib/` files into the project unmodified.
+improvements go into root `lib/` first, then re-sync. `python3 tools/sync_lib.py videos/<slug>` copies the
+modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on any drift.
+
+## Tools — `tools/`
+
+`new_video.py` (scaffold a project; delete its `#hf-placeholder` once the first scene exists) ·
+`sync_lib.py` (lib copy + `lib.lock`) · `cadence_scan.py` (density) · `probe_cuts.py` (Shorts source
+cuts) · `qa.py` (the automated gate) · `preview_pack.py` (sign-off pack; shows NOT RUN / UNKNOWN when
+the gate has not run) · `slice.py` (long-form delivery) · `scan_flicker.py` · `brandcheck.py`. Each
+prints its usage with no arguments; the commands in context are in `standards/core/pipeline.md`.
+`qa.py` probes through `npx hyperframes preview`, which stamps inert `data-hf-id` attributes into
+`index.html` and the composition files (and writes `.hyperframes/`): commit the stamps or discard them, never
+commit `.hyperframes/` (`standards/core/qa.md`). A preview pack whose project changed after the last qa run
+shows the gate as STALE, never PASS.
 
 ## Tests
 
 `python3 -m unittest discover -s tools -p 'test_*.py' -v` — includes the `lib/` node suite
-(alone: `node --test "lib/test/*.test.js"`; browser seek check: `lib/examples/smoke.html`).
+(alone: `node --test "lib/test/*.test.js" "tools/*.test.js"`; browser seek check: `lib/examples/smoke.html`).
+Media-tool tests generate their own clips with ffmpeg; the runtime-probe test needs the
+chrome-headless-shell HyperFrames downloads (`npx hyperframes browser ensure`).

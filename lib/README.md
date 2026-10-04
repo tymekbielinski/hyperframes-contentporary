@@ -22,8 +22,11 @@ other runtime dependencies.
 <script src="lib/shorts/wipe.js"></script>  <!-- HFWipe    (Shorts only; needs profile) -->
 ```
 
-Projects never hand-copy or edit these: until `tools/sync-lib` exists (Plan 3), copy the files you
-need from root `lib/` unmodified. Improvements go into root `lib/` first.
+Projects never hand-copy or edit these. `python3 tools/sync_lib.py videos/<slug>` copies the modules
+listed in `lib/manifest.json` (the one machine-readable module list; `loadOrder` is the order above)
+into `videos/<slug>/lib/` and writes `lib.lock` (sha256 per module); `--check` exits 1 on an edited
+copy, a stale lock or a stray file. `test/`, `examples/` and this README are not synced. Improvements
+go into root `lib/` first, then re-sync.
 
 ## Contract (what every module guarantees, and what callers must do)
 
@@ -133,8 +136,10 @@ window.__timelines["scene"] = tl;
 
 - `node --test "lib/test/*.test.js"` (use the glob form; the directory form fails on node 22) — determinism and contract tests (also run by
   `python3 -m unittest discover -s tools -p 'test_*.py' -v`). `lib/test/hygiene.test.js` scans every
-  module for clocks, randomness, infinite repeats, hard-coded colours, overshoot or raw eases, and
-  untagged Gaussians (colour literals other than marked pure-black alpha masks are banned).
+  module with `tools/lawscan.js` (the scanner QA checks 4–6 also run over compositions) for clocks,
+  randomness, infinite repeats, hard-coded colours, overshoot or raw eases, and untagged Gaussians
+  (colour literals other than marked pure-black alpha masks are banned). `lib/test/drift.test.js`
+  fails when `HFProfile` timings or `HFMotionBlur` shutters drift from the profile markdown.
 - `lib/examples/smoke.html` — real GSAP + WebGL in a browser: builds a long-form and a Shorts scene
   from every module, seeks 42 frames forwards and then shuffled, and compares what paints
   (including blur-canvas pixels). It fails unless both camera blur canvases and the odometer canvas actually painted. Serve the repo root (`python3 -m http.server 8765`), open
