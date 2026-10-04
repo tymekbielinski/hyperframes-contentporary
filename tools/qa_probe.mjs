@@ -46,7 +46,7 @@ async function pageProbe(opts) {
   const seen = new Set();
   for (const id of ids) {
     const tl = tls[id];
-    if (!tl || typeof tl.getChildren !== "function") continue;
+    if (!tl || typeof tl.getChildren !== "function" || typeof tl.seek !== "function") return { error: `window.__timelines.${id} is not a GSAP timeline (needs getChildren and seek)` };
     for (const tw of tl.getChildren(true, true, false)) {
       if (seen.has(tw)) continue;
       seen.add(tw);
@@ -70,6 +70,8 @@ async function pageProbe(opts) {
   const drivers = ids.map((id) => tls[id]).filter((tl) => tl && typeof tl.seek === "function" && (tl === rootTl || !rootTl || !nestedIn(tl, rootTl)));
   const attrDur = rootEl ? parseFloat(rootEl.getAttribute("data-duration")) : NaN;
   const dur = Number.isFinite(attrDur) && attrDur > 0 ? attrDur : Math.max(0, ...drivers.map((tl) => tl.duration()));
+  if (seen.size === 0) return { error: "the timelines contain no tweens — nothing to check" };
+  if (!(dur > 0)) return { error: "the composition has zero duration — nothing to sample" };
   const n = Math.max(2, opts.samples);
   const times = Array.from({ length: n }, (_, i) => Math.min(dur, (dur * i) / (n - 1)));
 
@@ -139,13 +141,20 @@ async function main() {
   if (typeof WebSocket === "undefined") { process.stderr.write("qa_probe needs node ≥ 22 (global WebSocket)\n"); return 2; }
   if (!existsSync(a.chrome)) { process.stderr.write("chrome not found: " + a.chrome + "\n"); return 2; }
   const profile = mkdtempSync(join(tmpdir(), "hf-qa-probe-"));
+  let spawnError = null, chromeExited = false;
   const chrome = spawn(a.chrome, ["--headless", "--remote-debugging-port=0", "--user-data-dir=" + profile, "--no-first-run",
     "--no-default-browser-check", "--hide-scrollbars", "--mute-audio", `--window-size=${a.width},${a.height}`, "about:blank"],
     { stdio: "ignore" });
-  let ws;
+  chrome.on("error", (e) => { spawnError = e; });
+  chrome.on("exit", () => { chromeExited = true; });
+  const cleanup = () => { try { chrome.kill("SIGKILL"); } catch (e) { /* gone */ } try { rmSync(profile, { recursive: true, force: true }); } catch (e) { /* best effort */ } };
+  // Own overall deadline: if Python (or anything) is slow to give up, this process still ends and takes Chrome with it.
+  const overall = setTimeout(() => { process.stderr.write("qa_probe: overall deadline exceeded\n"); cleanup(); process.exit(2); }, 2 * a.timeout + 30000);
+  let ws, loadTimer;
   try {
     const portFile = join(profile, "DevToolsActivePort");
-    const port = await waitFor(() => existsSync(portFile) && readFileSync(portFile, "utf8").split("\n")[0], 15000, "Chrome to start");
+    const port = await waitFor(() => spawnError ? (() => { throw new Error("could not start Chrome: " + spawnError.message); })()
+      : chromeExited ? (() => { throw new Error("Chrome exited before it was ready"); })() : existsSync(portFile) && readFileSync(portFile, "utf8").split("\n")[0], 15000, "Chrome to start");
     const pages = await waitFor(async () => {
       const list = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
       return list.filter((t) => t.type === "page").length ? list : null;
@@ -160,16 +169,22 @@ async function main() {
       if (m.method === "Runtime.exceptionThrown") errors.push(m.params.exceptionDetails.exception?.description || m.params.exceptionDetails.text);
       waiters.forEach((w) => w(m));
     };
-    const send = (method, params = {}) => new Promise((ok) => { const i = ++id; pending.set(i, ok); ws.send(JSON.stringify({ id: i, method, params })); });
+    const send = (method, params = {}, ms = 15000) => new Promise((ok, fail) => {
+      const i = ++id;
+      const t = setTimeout(() => { pending.delete(i); fail(new Error(`DevTools ${method} timed out`)); }, ms);
+      pending.set(i, (m) => { clearTimeout(t); ok(m); });
+      ws.send(JSON.stringify({ id: i, method, params }));
+    });
     const loaded = new Promise((ok) => waiters.push((m) => { if (m.method === "Page.loadEventFired") ok(); }));
     await send("Page.enable");
     await send("Runtime.enable");
     await send("Emulation.setDeviceMetricsOverride", { width: a.width, height: a.height, deviceScaleFactor: 1, mobile: false });
     const nav = await send("Page.navigate", { url: a.url });
     if (nav.result && nav.result.errorText) throw new Error("navigation failed: " + nav.result.errorText);
-    await Promise.race([loaded, new Promise((_, fail) => setTimeout(() => fail(new Error("page load timed out")), a.timeout))]);
+    await Promise.race([loaded, new Promise((_, fail) => { loadTimer = setTimeout(() => fail(new Error("page load timed out")), a.timeout); })]);
+    clearTimeout(loadTimer);
     const res = await send("Runtime.evaluate", { expression: `(${pageProbe.toString()})(${JSON.stringify({ format: a.format, samples: a.samples, timeout: a.timeout })})`,
-      awaitPromise: true, returnByValue: true });
+      awaitPromise: true, returnByValue: true }, a.timeout + 30000);
     if (res.result.exceptionDetails) throw new Error("probe threw: " + (res.result.exceptionDetails.exception?.description || res.result.exceptionDetails.text));
     const out = res.result.result.value;
     if (out.error) throw new Error(out.error);
@@ -178,12 +193,15 @@ async function main() {
     return 0;
   } catch (e) {
     process.stderr.write("qa_probe: " + e.message + "\n");
+    process.stdout.write(JSON.stringify({ error: e.message }) + "\n");
     return 2;
   } finally {
+    clearTimeout(overall);
+    clearTimeout(loadTimer);
     try { ws && ws.close(); } catch (e) { /* closing anyway */ }
     chrome.kill("SIGKILL");
     await new Promise((r) => setTimeout(r, 200));
-    rmSync(profile, { recursive: true, force: true });
+    cleanup();
   }
 }
 
