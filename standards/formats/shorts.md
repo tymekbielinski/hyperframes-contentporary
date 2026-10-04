@@ -81,7 +81,8 @@ The underlying clip has its own jump cuts. A graphic scene that ends a few frame
 leaves an orphaned tail of the outgoing shot — it flashes for 2-8 frames and then hard-cuts, which
 reads as a glitch, not an edit.
 
-Probe the source first:
+Probe the source first — `python3 tools/probe_cuts.py <footage>` lists every cut and its scene end
+(cut + 0.36 s), running exactly this:
 
 ```bash
 ffmpeg -v info -i input-video.mp4 -filter_complex "select='gt(scene,0.20)',metadata=print:file=-" \

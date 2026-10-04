@@ -73,7 +73,7 @@ this table before building.
 
 ## Shorts
 1. **Intake** as above, with the vertical footage and the `captions` flag.
-2. **Beat grid** with `tools/probe-cuts`: scene ends land on the footage's own cuts
+2. **Beat grid** with `python3 tools/probe_cuts.py <footage>`: scene ends land on the footage's own cuts
    (`standards/formats/shorts.md` §1).
 3. **Capture** as above.
 4. **Build** one composition over the footage.

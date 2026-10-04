@@ -1,0 +1,118 @@
+import io
+import json
+import tempfile
+import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
+
+import media
+import probe_cuts
+import scan_flicker
+import synth
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+@unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+class MediaTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        d = Path(cls.tmp.name)
+        cls.cuts = synth.segments(d / "cuts.mp4", [("red", 1), ("blue", 1), ("white", 1)])
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_video_info(self):
+        info = media.video_info(self.cuts)
+        self.assertEqual((info["width"], info["height"], info["fps"], info["frames"]), (160, 90, 30.0, 90))
+        self.assertAlmostEqual(info["duration"], 3.0, places=2)
+
+    def test_missing_file_is_a_named_error(self):
+        with self.assertRaisesRegex(media.MediaError, "nope.mp4 not found"):
+            media.video_info("nope.mp4")
+
+    def test_scene_cuts_at_the_0_20_threshold(self):
+        self.assertEqual(media.scene_cuts(self.cuts), [1.0, 2.0])
+
+    def test_frame_diffs_one_per_frame_pair(self):
+        d = media.frame_diffs(self.cuts)
+        self.assertEqual(len(d), 89)
+        self.assertEqual(d[0], 0.0)
+        self.assertGreater(d[29], 10)    # red → blue between frames 29 and 30
+
+    def test_extract_frame_flattens_alpha_over_a_backdrop(self):
+        with tempfile.TemporaryDirectory() as t:
+            mov = synth.prores(Path(t) / "a.mov", 1)            # red at 50 % alpha
+            png = media.extract_frame(mov, 0.5, Path(t) / "a.png", width=160, background="0x3a3a3a")
+            self.assertEqual(media.video_info(png)["pix_fmt"], "rgb24")
+            r, g, b = media.run(["ffmpeg", "-v", "error", "-i", str(png), "-vf", "crop=1:1:80:45", "-f", "rawvideo",
+                                 "-pix_fmt", "rgb24", "-"], binary=True)
+            self.assertGreater(r, g + 60, (r, g, b))           # red over grey, not grey alone
+            self.assertGreater(g, 15, (r, g, b))                # and the grey shows through
+
+    def test_gray_frames(self):
+        frames = media.gray_frames(self.cuts, 2)
+        self.assertEqual((len(frames), len(frames[0])), (6, 32 * 18))
+        self.assertGreater(frames[5][0], frames[3][0])   # white is brighter than blue
+
+
+@unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+class ProbeCutsTests(unittest.TestCase):
+    def test_scene_end_is_cut_plus_exit(self):
+        self.assertEqual(probe_cuts.scene_ends([1.0, 2.5]), [{"cut": 1.0, "scene_end": 1.36}, {"cut": 2.5, "scene_end": 2.86}])
+        self.assertEqual(probe_cuts.scene_ends([1.0], 0.5), [{"cut": 1.0, "scene_end": 1.5}])
+
+    def test_defaults_match_shorts_profile(self):
+        md = (ROOT / "standards" / "formats" / "shorts.md").read_text()
+        self.assertIn("gt(scene,%.2f)" % probe_cuts.THRESHOLD, md)
+        self.assertIn("| duration out | **%.2fs** |" % probe_cuts.EXIT, md)
+
+    def test_cli_json(self):
+        with tempfile.TemporaryDirectory() as t:
+            f = synth.segments(Path(t) / "c.mp4", [("red", 1), ("white", 1)])
+            out = io.StringIO()
+            with redirect_stdout(out):
+                self.assertEqual(probe_cuts.main(["probe_cuts.py", str(f), "--json"]), 0)
+            self.assertEqual(json.loads(out.getvalue()), [{"cut": 1.0, "scene_end": 1.36}])
+            with redirect_stdout(io.StringIO()):
+                self.assertEqual(probe_cuts.main(["probe_cuts.py", str(Path(t) / "missing.mp4")]), 2)
+
+
+@unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+class FlickerTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        d = Path(cls.tmp.name)
+        cls.smooth = synth.moving(d / "smooth.mp4", 3)
+        cls.glitch = synth.moving(d / "glitch.mp4", 3, glitch_frame=45)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_find_flicker_rule(self):
+        smooth = [3.0, 3.2, 3.1, 3.4, 3.3, 3.2, 3.1, 3.0]
+        self.assertEqual(scan_flicker.find_flicker(smooth), [])
+        spiky = smooth[:4] + [30.0] + smooth[4:]
+        self.assertEqual(scan_flicker.find_flicker(spiky), [(5, 30.0, 3.15)])
+        ramp = [1, 2, 4, 8, 12, 16, 12, 8, 4, 2, 1]    # a camera move: big but smooth
+        self.assertEqual(scan_flicker.find_flicker([float(x) for x in ramp]), [])
+
+    def test_smooth_motion_passes(self):
+        self.assertEqual(scan_flicker.scan(self.smooth)["flicker"], [])
+
+    def test_one_frame_glitch_is_reported(self):
+        self.assertEqual([hit[0] for hit in scan_flicker.scan(self.glitch)["flicker"]], [45, 46])
+        out = io.StringIO()
+        with redirect_stdout(out):
+            self.assertEqual(scan_flicker.main(["scan_flicker.py", str(self.glitch)]), 1)
+            self.assertEqual(scan_flicker.main(["scan_flicker.py", str(self.smooth)]), 0)
+        self.assertIn("FLICKER=2", out.getvalue())
+
+
+if __name__ == "__main__":
+    unittest.main()
