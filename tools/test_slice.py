@@ -80,6 +80,46 @@ class SliceTests(unittest.TestCase):
         self.assertLess(abs(first[-1][0] - red), 4, "scene 1 ends on its own last frame")
         self.assertLess(abs(second[0][0] - blue), 4, "scene 2 starts on its own first frame")
 
+    def test_failure_leaves_previous_delivery_untouched(self):
+        sl.slice_project(self.p, self.reel, self.overlays)
+        out = self.p / "deliver"
+        before = {f.name: f.read_bytes() for f in out.iterdir()}
+        real, calls = sl._cut, []
+
+        def flaky(*a):
+            calls.append(1)
+            if len(calls) == 2:
+                raise sl.SliceError("boom")
+            return real(*a)
+        sl._cut = flaky
+        try:
+            with self.assertRaisesRegex(sl.SliceError, "boom"):
+                sl.slice_project(self.p, self.reel, self.overlays)
+        finally:
+            sl._cut = real
+        self.assertEqual({f.name: f.read_bytes() for f in out.iterdir()}, before)
+
+    def test_short_reel_is_refused_by_frame_count(self):
+        with self.assertRaisesRegex(sl.SliceError, "frames, expected 60"):
+            real = sl.plan
+            clips = real(self.p, self.reel, self.overlays)
+            clips[1]["src_start"] = 3.5   # runs off the end of the 4 s reel
+            sl._cut(self.reel, clips[1], Path(self.tmp.name) / "x.mp4", 30.0)
+
+    def test_fps_mismatch(self):
+        with self.assertRaisesRegex(sl.SliceError, "reel runs at 30 fps but --fps is 25"):
+            sl.plan(self.p, self.reel, self.overlays, fps=25.0)
+
+    def test_clips_are_silent(self):
+        reel = Path(self.tmp.name) / "audio.mp4"
+        media.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(self.reel), "-f", "lavfi", "-i", "sine=d=4",
+                   "-c:v", "copy", "-c:a", "aac", "-shortest", str(reel)])
+        probe = lambda f: media.run([media.tool("ffprobe"), "-v", "error", "-select_streams", "a",
+                                     "-show_entries", "stream=codec_type", "-of", "csv=p=0", str(f)]).strip()
+        self.assertEqual(probe(reel), "audio", "the test reel has audio")
+        sl.slice_project(self.p, reel, self.overlays)
+        self.assertEqual(probe(self.p / "deliver" / "scene-01_00-10-00.mp4"), "")
+
     def test_duration_mismatch_names_slot_and_row(self):
         (self.p / "storyboard.md").write_text(GRID.replace("| 30.5 | 32.5 |", "| 30.5 | 33.5 |"))
         with self.assertRaisesRegex(sl.SliceError, r"slot 02-proof lasts 2\.00 s but storyboard row 3 \(line 5\) lasts 3\.00 s"):

@@ -57,6 +57,8 @@ def plan(project, reel, overlays_dir=None, fps=30.0) -> list:
     if len(slots) != len(full):
         raise SliceError(f"index.html has {len(slots)} scene slots but storyboard.md has {len(full)} full-frame rows")
     reel_info = media.video_info(reel)
+    if abs(reel_info["fps"] - fps) > 0.01:
+        raise SliceError(f"the reel runs at {reel_info['fps']:g} fps but --fps is {fps:g} — re-render or pass --fps")
     clips, tol = [], TOLERANCE_FRAMES / fps
     for n, (slot, row) in enumerate(zip(slots, full), 1):
         want = row["t_out"] - row["t_in"]
@@ -77,6 +79,8 @@ def plan(project, reel, overlays_dir=None, fps=30.0) -> list:
         if info["codec"] != "prores" or "4444" not in str(info["profile"]) or not str(info["pix_fmt"]).startswith("yuva"):
             raise SliceError(f"{mov.name} is {info['codec']} {info['profile']} {info['pix_fmt']}, not ProRes 4444 with alpha "
                              "— render it with npx hyperframes render --format=mov")
+        if abs(info["fps"] - fps) > 0.01:
+            raise SliceError(f"{mov.name} runs at {info['fps']:g} fps but --fps is {fps:g}")
         want = row["t_out"] - row["t_in"]
         if abs(info["duration"] - want) > tol:
             raise SliceError(f"{mov.name} lasts {info['duration']:.2f} s but storyboard row {row['row']} "
@@ -92,6 +96,9 @@ def _cut(reel, clip, out, fps):
     media.run([media.tool("ffmpeg"), "-nostdin", "-v", "error", "-y", "-ss", f"{start:.6f}", "-i", str(reel),
                 "-frames:v", str(clip["frames"]), "-an", "-c:v", "libx264", "-preset", "slow", "-crf", "14",
                 "-pix_fmt", "yuv420p", "-r", f"{fps:g}", "-movflags", "+faststart", str(out)])
+    got = media.video_info(out)["frames"]
+    if got != clip["frames"]:
+        raise SliceError(f"{clip['file']} has {got} frames, expected {clip['frames']} — the reel is shorter than its slot; re-render")
 
 
 def _readme(slug, clips, fps):
@@ -116,25 +123,34 @@ def slice_project(project, reel, overlays_dir=None, out_dir=None, fps=30.0) -> l
     clips = plan(project, reel, overlays_dir, fps)
     out = Path(out_dir) if out_dir else project / "deliver"
     out.mkdir(parents=True, exist_ok=True)
-    for old in list(out.glob("scene-*.mp4")) + list(out.glob("overlay-*.mov")):
-        old.unlink()   # slice owns these names; a re-slice must not leave stale clips behind
-    rows = []
-    for c in clips:
-        if c["kind"] == "full-frame":
-            _cut(reel, c, out / c["file"], fps)
-        else:
-            shutil.copyfile(c["src"], out / c["file"])
-        in_f = round(c["t_in"] * fps)
-        out_f = in_f + c["frames"]
-        rows.append({"kind": c["kind"], "scene": c["scene"], "file": c["file"], "timeline_in_tc": tc(c["t_in"], fps),
-                     "timeline_out_tc": tc(out_f / fps, fps), "timeline_in_s": f"{c['t_in']:.2f}",
-                     "timeline_out_s": f"{out_f / fps:.2f}", "in_frame": in_f, "out_frame": out_f,
-                     "duration_s": f"{c['frames'] / fps:.2f}", "frames": c["frames"], "title": c["title"]})
-    with open(out / "TIMECODES.csv", "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=COLUMNS)
-        w.writeheader()
-        w.writerows(rows)
-    (out / "README.txt").write_text(_readme(project.name, clips, fps))
+    tmp = out / ".slice-tmp"
+    shutil.rmtree(tmp, ignore_errors=True)
+    tmp.mkdir()
+    try:
+        rows = []
+        for c in clips:
+            if c["kind"] == "full-frame":
+                _cut(reel, c, tmp / c["file"], fps)
+            else:
+                shutil.copyfile(c["src"], tmp / c["file"])
+            in_f = round(c["t_in"] * fps)
+            out_f = in_f + c["frames"]
+            rows.append({"kind": c["kind"], "scene": c["scene"], "file": c["file"], "timeline_in_tc": tc(c["t_in"], fps),
+                         "timeline_out_tc": tc(out_f / fps, fps), "timeline_in_s": f"{c['t_in']:.2f}",
+                         "timeline_out_s": f"{out_f / fps:.2f}", "in_frame": in_f, "out_frame": out_f,
+                         "duration_s": f"{c['frames'] / fps:.2f}", "frames": c["frames"], "title": c["title"]})
+        with open(tmp / "TIMECODES.csv", "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=COLUMNS)
+            w.writeheader()
+            w.writerows(rows)
+        (tmp / "README.txt").write_text(_readme(project.name, clips, fps))
+        # everything succeeded: only now replace the old delivery (slice owns these names)
+        for old in list(out.glob("scene-*.mp4")) + list(out.glob("overlay-*.mov")):
+            old.unlink()
+        for new in tmp.iterdir():
+            new.replace(out / new.name)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
     return rows
 
 
