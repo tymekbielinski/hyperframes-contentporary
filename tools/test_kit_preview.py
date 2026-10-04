@@ -48,8 +48,7 @@ class KitPreviewTests(unittest.TestCase):
         self.assertNotIn("<template>", ov)
         self.assertNotIn("../", ov, "overlays use root-relative paths")
         self.assertIn('<script src="lib/kit/kit.js"></script>', ov)
-        if (ROOT / "lib" / "kit" / "side-text.js").is_file():   # arrives with Task 10; the manifest then loads it
-            self.assertIn('<script src="lib/kit/side-text.js"></script>', ov)
+        self.assertIn('<script src="lib/kit/side-text.js"></script>', ov)
         self.assertIn('href="compositions/brand.css"', ov)
         self.assertIn('data-hf-mode="dark"', ov)
         for f in (p / "compositions").rglob("*.html"):
