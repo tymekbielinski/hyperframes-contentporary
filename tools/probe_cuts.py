@@ -30,7 +30,7 @@ def main(argv) -> int:
     try:
         rows = scene_ends(media.scene_cuts(a.footage, a.threshold), a.exit_dur)
     except media.MediaError as e:
-        print(e)
+        print(e, file=sys.stderr)
         return 2
     if a.json:
         print(json.dumps(rows))

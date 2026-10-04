@@ -5,7 +5,10 @@ similar size. Render flicker — parallel workers rendering blocks of frames fro
 shows a single frame pair whose step dwarfs its neighbours. Ported from video 09's scan-flicker.py
 (same thresholds); frame differences now come from ffmpeg (tools/media.py), so no numpy.
 
-Usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]   (exit 1 if any file flickers)
+A standalone run reports intended hard cuts (scene changes) too: a cut is one huge frame step, exactly
+like a glitch. The QA gate (qa.py check 10) excludes the known cut times.
+
+Usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]   (exit 1 if any file flickers, 2 on a bad file)
 """
 import statistics
 import sys
@@ -41,19 +44,20 @@ def scan(path) -> dict:
 
 def main(argv) -> int:
     if len(argv) < 2:
-        print("usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]")
+        print("usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]  (reports intended hard cuts too; qa.py excludes them)")
         return 2
-    bad = 0
+    bad = errors = 0
     for f in argv[1:]:
         try:
             r = scan(f)
         except media.MediaError as e:
-            print(e)
-            return 2
+            print(e, file=sys.stderr)
+            errors += 1
+            continue
         bad += bool(r["flicker"])
         print("%-30s frames=%4d median=%.2f  FLICKER=%d %s" % (
             Path(f).name, r["frames"], r["median"], len(r["flicker"]), r["flicker"][:10]))
-    return 1 if bad else 0
+    return 2 if errors else (1 if bad else 0)
 
 
 if __name__ == "__main__":

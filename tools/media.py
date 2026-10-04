@@ -37,16 +37,33 @@ def _need(path) -> str:
 def video_info(path) -> dict:
     """{"duration", "width", "height", "fps", "codec", "profile", "pix_fmt", "frames"} of the first video stream."""
     out = run([tool("ffprobe"), "-v", "error", "-select_streams", "v:0", "-count_packets",
-                "-show_entries", "format=duration:stream=codec_name,profile,pix_fmt,width,height,r_frame_rate,nb_read_packets",
+                "-show_entries", "format=duration:stream=codec_name,profile,pix_fmt,width,height,r_frame_rate,avg_frame_rate,nb_read_packets",
                 "-of", "json", _need(path)])
-    data = json.loads(out)
+    return _parse_info(path, json.loads(out))
+
+
+def _rate(text) -> float:
+    num, _, den = (text or "0/0").partition("/")
+    try:
+        return float(num) / float(den or 1)
+    except (ValueError, ZeroDivisionError):
+        return 0.0
+
+
+def _parse_info(path, data) -> dict:
     if not data.get("streams"):
         raise MediaError(f"{path} has no video stream")
     s = data["streams"][0]
-    num, _, den = s.get("r_frame_rate", "0/1").partition("/")
-    return {"duration": float(data.get("format", {}).get("duration", 0.0)), "width": int(s["width"]),
-            "height": int(s["height"]), "fps": float(num) / float(den or 1), "codec": s.get("codec_name"),
-            "profile": s.get("profile"), "pix_fmt": s.get("pix_fmt"), "frames": int(s.get("nb_read_packets", 0))}
+    fps = _rate(s.get("r_frame_rate")) or _rate(s.get("avg_frame_rate"))
+    if not fps:
+        raise MediaError(f"{path}: cannot determine the frame rate (r_frame_rate {s.get('r_frame_rate')!r})")
+    try:
+        duration = float(data.get("format", {}).get("duration", 0.0))
+    except (TypeError, ValueError):
+        raise MediaError(f"{path}: unknown duration ({data.get('format', {}).get('duration')!r})")
+    return {"duration": duration, "width": int(s["width"]), "height": int(s["height"]), "fps": fps,
+            "codec": s.get("codec_name"), "profile": s.get("profile"), "pix_fmt": s.get("pix_fmt"),
+            "frames": int(s.get("nb_read_packets", 0))}
 
 
 def _metadata_values(text: str, key: str) -> list:
@@ -88,4 +105,6 @@ def extract_frame(path, t: float, out_png, width: int = 480, background=None) ->
         graph = (f"scale={width}:-2,format=rgba,split[fg][s];[s]drawbox=x=0:y=0:w=iw:h=ih:color={background}@1:t=fill[bg];"
                  "[bg][fg]overlay=format=auto,format=rgb24")
     run(src + ["-filter_complex", graph, "-frames:v", "1", str(out_png)])
+    if not Path(out_png).is_file():
+        raise MediaError(f"no frame at t={t:.3f}s in {path}")
     return Path(out_png)

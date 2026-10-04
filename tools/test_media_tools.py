@@ -2,7 +2,7 @@ import io
 import json
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 import media
@@ -53,6 +53,28 @@ class MediaTests(unittest.TestCase):
             self.assertGreater(r, g + 60, (r, g, b))           # red over grey, not grey alone
             self.assertGreater(g, 15, (r, g, b))                # and the grey shows through
 
+    def test_extract_frame_past_the_end_is_a_named_error(self):
+        with tempfile.TemporaryDirectory() as t:
+            with self.assertRaisesRegex(media.MediaError, "no frame at t=99.000s"):
+                media.extract_frame(self.cuts, 99, Path(t) / "x.png")
+
+    def test_video_info_parsing_edge_cases(self):
+        good = {"streams": [{"width": 1, "height": 1, "r_frame_rate": "0/0", "avg_frame_rate": "25/1"}],
+                "format": {"duration": "2.0"}}
+        self.assertEqual(media._parse_info("f", good)["fps"], 25.0)
+        with self.assertRaisesRegex(media.MediaError, "unknown duration"):
+            media._parse_info("f", {**good, "format": {"duration": "N/A"}})
+        bad = {"streams": [{"width": 1, "height": 1, "r_frame_rate": "0/0", "avg_frame_rate": "0/0"}], "format": {}}
+        with self.assertRaisesRegex(media.MediaError, "frame rate"):
+            media._parse_info("f", bad)
+
+    def test_path_with_spaces_and_unicode(self):
+        with tempfile.TemporaryDirectory() as t:
+            f = synth.segments(Path(t) / "my clip é日本.mp4", [("red", 1), ("white", 1)])
+            self.assertEqual(media.scene_cuts(f), [1.0])
+            self.assertEqual(len(media.frame_diffs(f)), 59)
+            self.assertEqual(media.extract_frame(f, 0.5, Path(t) / "frame é.png").is_file(), True)
+
     def test_gray_frames(self):
         frames = media.gray_frames(self.cuts, 2)
         self.assertEqual((len(frames), len(frames[0])), (6, 32 * 18))
@@ -77,8 +99,11 @@ class ProbeCutsTests(unittest.TestCase):
             with redirect_stdout(out):
                 self.assertEqual(probe_cuts.main(["probe_cuts.py", str(f), "--json"]), 0)
             self.assertEqual(json.loads(out.getvalue()), [{"cut": 1.0, "scene_end": 1.36}])
-            with redirect_stdout(io.StringIO()):
+            err = io.StringIO()
+            with redirect_stdout(io.StringIO()) as so, redirect_stderr(err):
                 self.assertEqual(probe_cuts.main(["probe_cuts.py", str(Path(t) / "missing.mp4")]), 2)
+            self.assertEqual(so.getvalue(), "")
+            self.assertIn("missing.mp4 not found", err.getvalue())
 
 
 @unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
@@ -112,6 +137,14 @@ class FlickerTests(unittest.TestCase):
             self.assertEqual(scan_flicker.main(["scan_flicker.py", str(self.glitch)]), 1)
             self.assertEqual(scan_flicker.main(["scan_flicker.py", str(self.smooth)]), 0)
         self.assertIn("FLICKER=2", out.getvalue())
+
+    def test_bad_file_does_not_stop_the_scan(self):
+        out, err = io.StringIO(), io.StringIO()
+        with redirect_stdout(out), redirect_stderr(err):
+            code = scan_flicker.main(["scan_flicker.py", "nope.mp4", str(self.smooth)])
+        self.assertEqual(code, 2)
+        self.assertIn("smooth.mp4", out.getvalue())
+        self.assertIn("nope.mp4 not found", err.getvalue())
 
 
 if __name__ == "__main__":
