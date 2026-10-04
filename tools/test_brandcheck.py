@@ -56,6 +56,11 @@ class ColourTests(unittest.TestCase):
         for v in ["#fff", "red", "rgb(1,2,3)", "F26666", "#F2666", "", None, 12]:
             self.assertFalse(bc.is_colour(v), v)
 
+    def test_rejects_trailing_newline_and_out_of_range_channels(self):
+        for v in ["#F26666\n", "rgba(0,0,0,1)\n", "rgba(256,0,0,1)", "rgba(0,999,0,0.5)"]:
+            self.assertFalse(bc.is_colour(v), repr(v))
+        self.assertTrue(bc.is_colour("rgba(255,255,255,0.5)"))
+
 
 class PaletteTests(unittest.TestCase):
     def test_mode_required(self):
@@ -189,6 +194,23 @@ class ChoiceTests(unittest.TestCase):
     def test_override_value_must_be_colour(self):
         self.assertEqual(bc.validate_choice(self.brand, "red", None, {"accent.block": "lime"}),
                          ["override 'accent.block' is not a colour: 'lime'"])
+
+    def test_missing_brand_folder_is_a_named_error(self):
+        ghost = Path(self.tmp.name) / "ghost"
+        self.assertEqual(bc.validate_choice(ghost, "red"), [f"brand folder {ghost} not found"])
+
+    def test_malformed_tokens_is_a_named_error(self):
+        (self.brand / "tokens.json").write_text("{ nope")
+        errs = bc.validate_choice(self.brand, "red")
+        self.assertEqual(len(errs), 1)
+        self.assertTrue(errs[0].startswith("acme: tokens.json is not valid JSON ("), errs)
+        self.assertEqual(bc.validate_brand(self.brand), errs)
+
+    def test_malformed_palette_is_a_named_error(self):
+        (self.brand / "palettes" / "red.json").write_text("[1,")
+        errs = bc.validate_brand(self.brand)
+        self.assertEqual(len(errs), 1)
+        self.assertTrue(errs[0].startswith("acme/palettes: red.json is not valid JSON ("), errs)
 
     def test_draft_brand_cannot_be_used(self):
         t = good_tokens("draftco")
