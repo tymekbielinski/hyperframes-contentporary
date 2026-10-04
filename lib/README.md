@@ -22,8 +22,11 @@ other runtime dependencies.
 <script src="lib/shorts/wipe.js"></script>  <!-- HFWipe    (Shorts only; needs profile) -->
 ```
 
-Projects never hand-copy or edit these: until `tools/sync-lib` exists (Plan 3), copy the files you
-need from root `lib/` unmodified. Improvements go into root `lib/` first.
+Projects never hand-copy or edit these. `python3 tools/sync_lib.py videos/<slug>` copies the modules
+listed in `lib/manifest.json` (the one machine-readable module list; `loadOrder` is the order above)
+into `videos/<slug>/lib/` and writes `lib.lock` (sha256 per module); `--check` exits 1 on an edited
+copy, a stale lock or a stray file. `test/`, `examples/` and this README are not synced. Improvements
+go into root `lib/` first, then re-sync.
 
 ## Contract (what every module guarantees, and what callers must do)
 

@@ -213,7 +213,7 @@ is obvious the moment there is any zoom component.
 
 ### Wiring it up
 
-1. **Sync the shared library into the project** (`tools/sync-lib`; never hand-copy or edit the copy) and load, after GSAP,
+1. **Sync the shared library into the project** (`python3 tools/sync_lib.py videos/<slug>`; never hand-copy or edit the copy) and load, after GSAP,
    `lib/profile.js`, `lib/motion-blur.js` and `lib/camera.js` (load order: `lib/README.md`).
 2. **Bake a world texture per leg.** The blur samples a *static* image, so each camera leg needs a
    still of the settled layout as it appears during that leg. Generate a standalone bake page that

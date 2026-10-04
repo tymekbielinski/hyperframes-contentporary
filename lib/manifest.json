@@ -1,0 +1,5 @@
+{
+  "note": "Runtime modules of the shared library. tools/sync_lib.py copies exactly these into videos/<slug>/lib/ and pins them in lib.lock; test/, examples/ and README.md stay in root lib/. loadOrder is the <script> order (lib/README.md); shorts/ modules load in Shorts projects only.",
+  "modules": ["brand.js", "camera.js", "marks.js", "motion-blur.js", "profile.js", "shorts/wipe.js", "text.js"],
+  "loadOrder": ["profile.js", "motion-blur.js", "camera.js", "marks.js", "text.js", "brand.js", "shorts/wipe.js"]
+}

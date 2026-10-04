@@ -47,8 +47,8 @@ This repo is shared by the Contentporary team on GitHub
 Shared by every brand and video; styled only by brand tokens (CSS variables from `lib/brand.js`).
 Modules: `profile.js` (format eases + timings), `motion-blur.js`, `camera.js`, `marks.js`, `text.js`,
 `brand.js`, `shorts/wipe.js` — API and load order in `lib/README.md`. Never hand-edit a project's copy;
-improvements go into root `lib/` first. Until `tools/sync-lib` exists (Plan 3), copy the needed root
-`lib/` files into the project unmodified.
+improvements go into root `lib/` first, then re-sync. `python3 tools/sync_lib.py videos/<slug>` copies the
+modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on any drift.
 
 ## Tests
 
