@@ -57,7 +57,7 @@ this table before building.
 1. **Intake.** `python3 tools/new_video.py <slug> --format long-form` scaffolds `videos/<slug>/` and
    syncs `lib/` (`python3 tools/sync_lib.py videos/<slug>` re-syncs later). Inputs: the
    basic-edit export (a proxy is fine) and its transcript (`npx hyperframes transcribe`).
-2. **Beat grid.** Write `storyboard.md` (see Beat grid) from the transcript: every graphic with its kit name or catalogue ID, placement, beats, ease tokens and marks. Check density on the table (hook ≥ 60 %, body gaps ≤ 30 s, punch-ins don't count). The runner approves it.
+2. **Beat grid.** Write `storyboard.md` (see Beat grid) from the transcript: every graphic with its kit name or catalogue ID, placement, beats, ease tokens and marks. Check density on the table with `python3 tools/cadence_scan.py videos/<slug>` (hook ≥ 60 %, body gaps ≤ 30 s, punch-ins don't count). The runner approves it.
 3. **Capture.** Real screenshots or faithful recreations into `assets/captures/`, each recorded in
    `MANIFEST.md` (URL, UI mode, what's visible, caveats).
 4. **Build.** Full-frame scenes as one reel (shared canvases where an argument spans face cut-ins);
