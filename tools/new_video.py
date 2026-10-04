@@ -95,9 +95,13 @@ INDEX = """<!doctype html>
   <body>
     <!-- {slug} — {placement_note} -->
     <div id="root" data-composition-id="main" data-hf-mode="{mode}" data-start="0" data-duration="5" data-width="{w}" data-height="{h}">
+      <!-- placeholder so an empty reel still advances; delete when the first scene is added -->
+      <div id="hf-placeholder" aria-hidden="true" style="position:absolute;left:0;top:0;width:1px;height:1px;background:var(--hf-text-primary)"></div>
     </div>
     <script>
-      window.__timelines["main"] = gsap.timeline({{ paused: true }});
+      const tl = gsap.timeline({{ paused: true }});
+      tl.to("#hf-placeholder", {{ x: 1, duration: 5, ease: "none" }}, 0);
+      window.__timelines["main"] = tl;
     </script>
   </body>
 </html>

@@ -47,6 +47,8 @@ class ScaffoldTests(unittest.TestCase):
         self.assertIn('data-hf-mode="dark"', lf)
         self.assertIn('data-width="1920" data-height="1080"', lf)
         self.assertNotIn("lib/shorts/wipe.js", lf)
+        self.assertIn('<div id="hf-placeholder" aria-hidden="true"', lf)
+        self.assertIn('tl.to("#hf-placeholder", { x: 1, duration: 5, ease: "none" }, 0);', lf)
         self.assertLess(lf.index("lib/profile.js"), lf.index("lib/camera.js"))
         sh = (nv.scaffold("s9-demo", "shorts", palette="reel-light", videos_dir=self.videos) / "index.html").read_text()
         self.assertIn('data-hf-mode="light"', sh)
