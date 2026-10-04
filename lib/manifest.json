@@ -3,6 +3,7 @@
   "modules": [
     "brand.js",
     "camera.js",
+    "kit/cta-youtube.js",
     "kit/kit.js",
     "kit/lower-third.js",
     "kit/side-text.js",
@@ -26,6 +27,7 @@
     "kit/subtitle.js",
     "kit/lower-third.js",
     "kit/side-text.js",
+    "kit/cta-youtube.js",
     "shorts/wipe.js"
   ]
 }
