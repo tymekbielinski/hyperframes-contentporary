@@ -50,6 +50,14 @@ Modules: `profile.js` (format eases + timings), `motion-blur.js`, `camera.js`, `
 improvements go into root `lib/` first, then re-sync. `python3 tools/sync_lib.py videos/<slug>` copies the
 modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on any drift.
 
+## Tools — `tools/`
+
+`new_video.py` (scaffold a project; delete its `#hf-placeholder` once the first scene exists) ·
+`sync_lib.py` (lib copy + `lib.lock`) · `cadence_scan.py` (density) · `probe_cuts.py` (Shorts source
+cuts) · `qa.py` (the automated gate) · `preview_pack.py` (sign-off pack; shows NOT RUN / UNKNOWN when
+the gate has not run) · `slice.py` (long-form delivery) · `scan_flicker.py` · `brandcheck.py`. Each
+prints its usage with no arguments; the commands in context are in `standards/core/pipeline.md`.
+
 ## Tests
 
 `python3 -m unittest discover -s tools -p 'test_*.py' -v` — includes the `lib/` node suite

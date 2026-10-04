@@ -287,5 +287,49 @@ class HarnessTests(unittest.TestCase):
         self.assertIn("Reference → style guide", t)
 
 
+class ToolsDocsTests(unittest.TestCase):
+    DOCS = ["CLAUDE.md", "lib/README.md", "standards/core/qa.md", "standards/core/pipeline.md",
+            "standards/formats/long-form.md", "standards/formats/shorts.md"]
+
+    def test_no_plan_3_placeholders_left(self):
+        for rel in self.DOCS:
+            t = (ROOT / rel).read_text()
+            for stale in ["(Plan 3)", "tools/sync-lib", "tools/new-video", "tools/probe-cuts", "`tools/qa`"]:
+                self.assertNotIn(stale, t, f"{rel}: {stale}")
+
+    def test_every_documented_tool_exists(self):
+        import re
+        seen = set()
+        for rel in self.DOCS:
+            for tool in re.findall(r"python3 tools/([\w-]+\.py)", (ROOT / rel).read_text()):
+                seen.add(tool)
+                self.assertTrue((ROOT / "tools" / tool).is_file(), f"{rel}: tools/{tool}")
+        self.assertTrue({"new_video.py", "sync_lib.py", "cadence_scan.py", "probe_cuts.py", "qa.py",
+                         "preview_pack.py", "slice.py"} <= seen, seen)
+
+    def test_qa_doc_names_the_gate_and_waiver_syntax(self):
+        t = (ROOT / "standards" / "core" / "qa.md").read_text()
+        for s in ["python3 tools/qa.py videos/<slug>", "check <n>: <reason>", "python3 tools/preview_pack.py",
+                  "renders/qa-report.json"]:
+            self.assertIn(s, t)
+
+    def test_claude_md_has_tools_section(self):
+        t = (ROOT / "CLAUDE.md").read_text()
+        self.assertIn("## Tools", t)
+        for tool in ["new_video.py", "sync_lib.py", "cadence_scan.py", "probe_cuts.py", "qa.py",
+                     "preview_pack.py", "slice.py", "scan_flicker.py", "brandcheck.py"]:
+            self.assertIn(tool, t)
+        self.assertIn("hf-placeholder", t)
+
+    def test_roadmap_marks_plan_3_done_and_plan_4_ready(self):
+        t = (ROOT / "docs/superpowers/plans/2026-10-03-animation-workflow-roadmap.md").read_text()
+        row3 = [l for l in t.splitlines() if l.startswith("| 3 |")][0]
+        row4 = [l for l in t.splitlines() if l.startswith("| 4 |")][0]
+        self.assertIn("**Done** (branch `tools-v1`)", row3)
+        self.assertIn("Ready to write", row4)
+        self.assertIn("## Notes for Plan 4 (from Plan 3)", t)
+        self.assertIn("hf-placeholder", t)
+
+
 if __name__ == "__main__":
     unittest.main()

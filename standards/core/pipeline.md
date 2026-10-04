@@ -55,7 +55,9 @@ this table before building.
 
 ## Long-form
 1. **Intake.** `python3 tools/new_video.py <slug> --format long-form` scaffolds `videos/<slug>/` and
-   syncs `lib/` (`python3 tools/sync_lib.py videos/<slug>` re-syncs later). Inputs: the
+   syncs `lib/` (`python3 tools/sync_lib.py videos/<slug>` re-syncs later). The scaffold's `index.html`
+   holds a 1px `#hf-placeholder` so the empty project renders; delete it when the first scene exists
+   (QA check 1 fails otherwise, and no waiver covers it). Inputs: the
    basic-edit export (a proxy is fine) and its transcript (`npx hyperframes transcribe`).
 2. **Beat grid.** Write `storyboard.md` (see Beat grid) from the transcript: every graphic with its kit name or catalogue ID, placement, beats, ease tokens and marks. Check density on the table with `python3 tools/cadence_scan.py videos/<slug>` (hook ≥ 60 %, body gaps ≤ 30 s, punch-ins don't count). The runner approves it.
 3. **Capture.** Real screenshots or faithful recreations into `assets/captures/`, each recorded in
@@ -71,8 +73,9 @@ this table before building.
    over-footage layout `npx hyperframes render videos/<slug> -c compositions/overlays/<name>.html --format=mov
    -o videos/<slug>/renders/overlays/<name>.mov`; then `python3 tools/slice.py videos/<slug> --reel
    videos/<slug>/renders/reel.mp4 --overlays videos/<slug>/renders/overlays`. Full-frame: silent MP4 clips +
-   `TIMECODES.csv` + README. Over-footage: ProRes 4444 with alpha. Into `deliver/`, then the shared
-   drive (media never goes into Git).
+   `TIMECODES.csv` + README. Over-footage: ProRes 4444 with alpha. Into `deliver/` (replaced atomically: built
+   in a temp directory, swapped in only when every clip verifies), then the shared drive (media never goes
+   into Git).
 9. **Hand-off.** The editor places the clips on the timeline. Client videos: V1 via `client-ops`.
 10. **Feedback.** Apply the promotion rule. Commit and push code and docs only.
 

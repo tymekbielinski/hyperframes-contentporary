@@ -11,13 +11,24 @@ mean guessing at interfaces.
 |---|---|---|---|---|
 | 1 | **Standards & brand layer** | `standards/` (core motion law, QA doc, pipeline doc, long-form + Shorts profiles), `brands/_template/`, `brands/contentporary/`, `tools/brandcheck.py` (brand + BRIEF-choice validator), migration of `context/`, `PIPELINE.md`, `templates/`, slim `CLAUDE.md` | — | **Written:** `2026-10-03-plan-1-standards-and-brand.md` |
 | 2 | **Shared library consolidation** | `lib/profile.js` (format eases + timings), `lib/motion-blur.js` (3 forks merged, any aspect), `lib/camera.js`, `lib/marks.js`, `lib/text.js`, `lib/brand.js` (reads Plan 1 tokens/palettes), `lib/shorts/wipe.js`; `demo-transitions.js` retired; node unit tests for determinism (pose/value is a pure function of t) | 1 (token schema) | **Done** (branch `lib-v1`) |
-| 3 | **Tools & automated QA gate** | `tools/sync-lib` + `lib.lock`, `tools/new-video` (scaffold + BRIEF template), `tools/probe-cuts`, `tools/cadence-scan`, `tools/slice` (clips + CSV, MP4 + ProRes 4444 alpha), `tools/scan-flicker`, `tools/qa` (runs all 10 checks of spec §9a, uses `brandcheck.py`), preview-pack generator | 1, 2 (lock hashes, blur/easing scans need lib API names) | **Written:** `2026-10-04-plan-3-tools-and-qa.md` |
-| 4 | **Kit components** | `lib/kit/` — `title`, `subtitle`, `lower-third`, `side-text`, `cta-youtube`, `roadmap`, each with its first named variant matched to the template stills and reference video; brand proof-sheet composition rendered for Contentporary (all palettes) | 2, 3 | To write after Plan 3 |
+| 3 | **Tools & automated QA gate** | `tools/sync-lib` + `lib.lock`, `tools/new-video` (scaffold + BRIEF template), `tools/probe-cuts`, `tools/cadence-scan`, `tools/slice` (clips + CSV, MP4 + ProRes 4444 alpha), `tools/scan-flicker`, `tools/qa` (runs all 10 checks of spec §9a, uses `brandcheck.py`), preview-pack generator | 1, 2 (lock hashes, blur/easing scans need lib API names) | **Done** (branch `tools-v1`) |
+| 4 | **Kit components** | `lib/kit/` — `title`, `subtitle`, `lower-third`, `side-text`, `cta-youtube`, `roadmap`, each with its first named variant matched to the template stills and reference video; brand proof-sheet composition rendered for Contentporary (all palettes) | 2, 3 | **Ready to write** |
 | 5 | **Entry skill & pilot** | `.claude/skills/contentporary-video/` (routes format/brand/checklist), final `CLAUDE.md` pointer, end-to-end pilot: one long-form graphics package + one Short through the full pipeline, review findings promoted into `standards/` | 1–4 | To write after Plan 4 |
 
 **Deferred (spec §12):** custom-animation catalogue (from Tymek's reference videos), the Opus 5.5
 animation video, font licensing, and exact gold/lime values (sampled from source files instead of
 stills). Each becomes an update to `standards/` or `brands/` after Plan 5.
+
+## Notes for Plan 4 (from Plan 3)
+
+- `tools/new_video.py` writes `data-hf-mode` on the `#root` of `index.html` and QA check 3 verifies it against the palette; the light-ground glow guard can read `closest("[data-hf-mode]")`. Standalone overlay documents must set it on their own root.
+- The scaffold's `#hf-placeholder` is exempted from the easing check in `tools/qa_probe.mjs` by id (coupled to `new_video.py`); QA check 1 fails, non-waivably, if it survives next to real scenes. Do not name a kit element `hf-placeholder`.
+- Kit components must pass every QA check, including the runtime probe (`qa_probe.mjs`: seek, easing vocabulary, blur reasons, text traps); the proof-sheet should be run through `python3 tools/qa.py`.
+- Over-footage kit layouts (lower-third, side-text, catalogue D) are standalone documents in `compositions/overlays/` rendered with `-c … --format=mov` (a `<template>` sub-composition cannot render alone). Never give a kit element an id/class containing `caption` — QA check 7 reads that as a caption layer.
+- Every kit tween takes an `HFProfile.ease` token (or is an `ease: "none"` driver with `onUpdate`); the probe flags anything else, including a tween with no ease.
+- Waivers (BRIEF `exceptions:`) cannot waive infrastructure findings; scoped waivers match whole paths or words, so a kit exception needs the real path.
+- Reuse in kit tests: `tools/project.py` (BRIEF, beat grid, slots), `tools/media.py`, `tools/synth.py` (lavfi test clips), `tools/runtime_probe.py` (named errors, timeouts).
+- Deferred minors from Plan 3: glitches during fast camera moves can be missed by the flicker rule; a deliberate flash under 8 frames reads as a glitch (waivable); lowercase `## round N` in `critique.md` is ignored by the preview pack; flicker thresholds may need tuning in the pilot (Plan 5).
 
 ## Notes for Plans 3–4 (from the Plan 2 final review)
 

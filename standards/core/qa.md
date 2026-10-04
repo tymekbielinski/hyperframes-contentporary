@@ -9,6 +9,16 @@ density on the edited timeline as well as on the beat grid. Check 1 also fails w
 is still in `index.html` once any scene exists. Density warnings (`cadence_scan`) and runtime-probe
 warnings are printed in the report but do not fail a check on their own.
 
+Each check runs in isolation: one that crashes or times out is reported FAIL (`internal error`), the
+rest still run. The gate deletes the previous `renders/qa-report.json` when it starts, so a stale
+report never survives a run that did not finish. Runtime-probe and render calls have timeouts and
+raise named errors (not a hang). Check 10's flicker rule: a frame spike and a partner spike within
+8 frames after which the picture returns to the frame before it (motion-aware: the return tolerance
+grows with the scene's own movement), which flags glitch blocks but not staggered pop-ins. The standalone
+`python3 tools/scan_flicker.py` also lists intended cuts. With `--edit`, density takes its face reference
+from `--face-ref`, else the storyboard's face frames (outside the graphics rows ±0.5 s), else the
+median of all frames, which prints a loud warning; over-footage rows count as `other` in edit mode.
+
 ## 1. Automated gate (blocks render)
 
 | # | Check | Method |
