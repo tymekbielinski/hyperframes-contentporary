@@ -162,8 +162,77 @@ no colour literal.
 - **The CTA camera is a DOM camera** (no motion blur on the dive): live footage cannot be baked into a blur
   texture yet. The scene ends on the footage itself, so if the face moves in the CTA's last 0.3 s, waive it
   in the BRIEF: `check 9 [<cta slot id>]: the CTA ends on live footage`.
+- **Hidden scenes:** a component measures its text even when the scene is `display:none` (title, kicker,
+  words, marker and lower-third widths come from `HFText.measureWidth`), so build after the font gates below.
 - **Brand proof sheet:** `python3 tools/proof_sheet.py <brand>` builds `videos/proof-<brand>/` — title,
   subtitle, lower third and side text in every palette — for onboarding approval.
+
+### Kit snippets
+
+**(a) A kit template scene** (`compositions/<id>.html`; the host root carries no `data-hf-mode` — the
+index root does). Fonts first, then the call, then `HFText.ready()`, then register:
+
+```html
+<template>
+  <style>#root { position: absolute; inset: 0; overflow: hidden; }</style>
+  <div id="root" data-composition-id="01-title" data-width="1920" data-height="1080"><div class="kit-host"></div></div>
+  <script>
+    (async function () {
+      var tl = gsap.timeline({ paused: true });
+      await document.fonts.ready;
+      await HFText.loadFaces(document.querySelector('[data-composition-id="01-title"]'));
+      var host = document.querySelector('[data-composition-id="01-title"] .kit-host');
+      HFKit.title(tl, host, { format: "long-form", at: 0.2, text: "Printing Prediction System", underline: 1 });
+      await HFText.ready();
+      window.__timelines["01-title"] = tl;
+    })();
+  </script>
+</template>
+```
+
+**(b) An over-footage overlay** (`compositions/overlays/<id>.html`, a standalone document rendered with
+`-c … --format=mov`): it carries its own `data-hf-mode` root, and the `<script>` list is the root-relative
+`lib/manifest.json` `loadOrder` — profile, motion-blur, camera, marks, text, brand, `kit/kit.js`, then the component:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920, height=1080">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script src="lib/profile.js"></script>
+  <script src="lib/motion-blur.js"></script>
+  <script src="lib/camera.js"></script>
+  <script src="lib/marks.js"></script>
+  <script src="lib/text.js"></script>
+  <script src="lib/brand.js"></script>
+  <script src="lib/kit/kit.js"></script>
+  <script src="lib/kit/lower-third.js"></script>
+  <link rel="stylesheet" href="compositions/brand.css">
+  <style>
+    html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+    #lt-root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div id="lt-root" data-composition-id="lt" data-hf-mode="dark" data-start="0" data-duration="4" data-width="1920" data-height="1080"><div class="kit-host"></div></div>
+  <script>
+    (async function () {
+      var tl = gsap.timeline({ paused: true });
+      await document.fonts.ready;
+      await HFText.loadFaces(document.getElementById("lt-root"));
+      var host = document.querySelector("#lt-root .kit-host");
+      HFKit.lowerThird(tl, host, { format: "long-form", at: 0.3, text: "and I've helped online entrepreneurs", out: 3.4 });
+      await HFText.ready();
+      window.__timelines["lt"] = tl;
+    })();
+  </script>
+</body>
+</html>
+```
+
+`python3 tools/kit_preview.py` writes both shapes (the exact GSAP URL is `new_video.GSAP`).
 
 ## Example — a long-form custom scene
 

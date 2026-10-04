@@ -47,8 +47,8 @@ This repo is shared by the Contentporary team on GitHub
 Shared by every brand and video; styled only by brand tokens (CSS variables from `lib/brand.js`).
 Modules: `profile.js` (format eases + timings), `motion-blur.js`, `camera.js`, `marks.js`, `text.js`,
 `brand.js`, `shorts/wipe.js`, and the long-form kit `kit/` (`HFKit.title`, `subtitle`, `lowerThird`,
-`sideText`, `ctaYoutube`, `roadmap` — templated graphics are kit calls) — API and load order in `lib/README.md`. Never hand-edit a project's copy;
-improvements go into root `lib/` first, then re-sync. `python3 tools/sync_lib.py videos/<slug>` copies the
+`sideText`, `ctaYoutube`, `roadmap` — templated graphics are kit calls) — API and load order in
+`lib/README.md`. Never hand-edit a project's copy; improvements go into root `lib/` first, then re-sync. `python3 tools/sync_lib.py videos/<slug>` copies the
 modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on any drift.
 
 ## Tools — `tools/`
@@ -57,7 +57,8 @@ modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on 
 `sync_lib.py` (lib copy + `lib.lock`) · `cadence_scan.py` (density) · `probe_cuts.py` (Shorts source
 cuts) · `qa.py` (the automated gate) · `preview_pack.py` (sign-off pack; shows NOT RUN / UNKNOWN when
 the gate has not run) · `slice.py` (long-form delivery) · `scan_flicker.py` · `brandcheck.py` ·
-`proof_sheet.py` (brand proof sheet: the kit in every palette, for onboarding approval). Each
+`proof_sheet.py` (brand proof sheet: the kit in every palette, for onboarding approval) ·
+`kit_preview.py` (preview project with each kit component in a palette, for stills). Each
 prints its usage with no arguments; the commands in context are in `standards/core/pipeline.md`.
 `qa.py` probes through `npx hyperframes preview`, which stamps inert `data-hf-id` attributes into
 `index.html` and the composition files (and writes `.hyperframes/`): commit the stamps or discard them, never

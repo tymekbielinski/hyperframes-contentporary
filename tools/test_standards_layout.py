@@ -374,12 +374,15 @@ class KitDocsTests(unittest.TestCase):
             row = [l for l in t.splitlines() if l.startswith(f"| `{calls[name]}` |")]
             self.assertEqual(len(row), 1, name)
             self.assertIn(f"| `{variant}` |", row[0])
-            self.assertIn(calls[name], (ROOT / "brands" / "contentporary" / "brand.md").read_text())
-            self.assertIn(calls[name], (ROOT / "lib" / "README.md").read_text())
+            readme = (ROOT / "lib" / "README.md").read_text()
+            self.assertTrue([l for l in readme.splitlines() if l.startswith(f"| `{calls[name]}(tl, host, o)` |")], f"README API row for {calls[name]}")
+            self.assertIn(f"(`{calls[name]}`", (ROOT / "brands" / "contentporary" / "brand.md").read_text())
 
     def test_onboarding_and_claude_md_name_the_proof_sheet(self):
         self.assertIn("python3 tools/proof_sheet.py <client-slug>", (ROOT / "brands" / "_template" / "README.md").read_text())
-        self.assertIn("proof_sheet.py", (ROOT / "CLAUDE.md").read_text())
+        claude = (ROOT / "CLAUDE.md").read_text()
+        self.assertIn("`proof_sheet.py` (", claude)
+        self.assertIn("`kit_preview.py` (", claude)
         self.assertTrue((ROOT / "tools" / "proof_sheet.py").is_file())
 
     def test_lib_readme_documents_the_plan_2_review_hooks(self):
