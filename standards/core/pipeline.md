@@ -6,8 +6,11 @@ Two production models, both built on real talking-head footage. Entry point: the
 ## Project layout (both formats)
 ```
 videos/<slug>/  BRIEF.md · transcript.json · storyboard.md · critique.md · assets/captures/MANIFEST.md
-                compositions/ · lib/ + lib.lock · deliver/
+                index.html · compositions/ (brand.css; long-form: overlays/) · lib/ + lib.lock · deliver/
+                renders/ (never committed: drafts, qa-report.json, preview/)
 ```
+`python3 tools/new_video.py <slug> --format long-form|shorts [--palette <p>] [--font <f>]` creates all of
+it (brand from `--brand`, default `contentporary`) and never overwrites an existing project.
 
 **Model and effort:** build with Claude Opus 5.5 at **high effort**; use max effort for custom
 diagram canvases (catalogue group C) and for critique-loop fixes. Always build in HyperFrames: a model
@@ -51,7 +54,8 @@ runner before any code:
 this table before building.
 
 ## Long-form
-1. **Intake.** `tools/new-video` (Plan 3) scaffolds `videos/<slug>/` and syncs `lib/`. Inputs: the
+1. **Intake.** `python3 tools/new_video.py <slug> --format long-form` scaffolds `videos/<slug>/` and
+   syncs `lib/` (`python3 tools/sync_lib.py videos/<slug>` re-syncs later). Inputs: the
    basic-edit export (a proxy is fine) and its transcript (`npx hyperframes transcribe`).
 2. **Beat grid.** Write `storyboard.md` (see Beat grid) from the transcript: every graphic with its kit name or catalogue ID, placement, beats, ease tokens and marks. Check density on the table (hook ≥ 60 %, body gaps ≤ 30 s, punch-ins don't count). The runner approves it.
 3. **Capture.** Real screenshots or faithful recreations into `assets/captures/`, each recorded in
