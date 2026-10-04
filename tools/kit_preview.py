@@ -49,6 +49,7 @@ SCENE = """<template>
     (async function () {{
       var tl = gsap.timeline({{ paused: true }});
       await document.fonts.ready;
+      await HFText.loadFaces(document.querySelector('[data-composition-id="{id}"]'));
       var host = document.querySelector('[data-composition-id="{id}"] .kit-host');
       {call}
       await HFText.ready();
@@ -76,6 +77,7 @@ OVERLAY = """<!doctype html>
     (async function () {{
       var tl = gsap.timeline({{ paused: true }});
       await document.fonts.ready;
+      await HFText.loadFaces(document.getElementById("{id}-root"));
       var host = document.querySelector("#{id}-root .kit-host");
       {call}
       await HFText.ready();

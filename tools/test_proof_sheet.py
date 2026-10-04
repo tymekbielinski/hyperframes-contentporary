@@ -57,6 +57,8 @@ class ProofSheetTests(unittest.TestCase):
                 self.assertIn(call, text)
             self.assertNotRegex(text, r"""(?:id|class)\s*=\s*["'][^"']*caption""", "QA check 7 must not see a caption layer")
             self.assertNotIn("hf-placeholder", text)
+            self.assertLess(text.index("HFText.loadFaces("), text.index("HFKit.title("), "faces load before the kit builds")
+            self.assertLess(text.index("document.fonts.ready"), text.index("HFText.loadFaces("))
 
     def test_refuses_unknown_brand_and_existing_project(self):
         with self.assertRaisesRegex(ValueError, "ghost not found"):

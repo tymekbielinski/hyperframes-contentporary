@@ -52,6 +52,10 @@ go into root `lib/` first, then re-sync.
   `rasterText` images depend on fonts/SVGs that load asynchronously; `ready()` resolves once every
   font load, measure and raster decode started by any `HFText` binder has finished (it re-checks until
   no new work started meanwhile). A frame rendered earlier could differ from one rendered later.
+- **Build order for text that is measured (kit components, `HFMarks.highlight`):** `await document.fonts.ready;
+  await HFText.loadFaces(root)` before building. A scene that starts later is `display:none` at build; `loadFaces`
+  requests the faces of every element under `root` (hidden ones too) and every declared `@font-face`, so the build
+  measures the real face, not the fallback.
 - **WebGL context loss:** after any context loss, `HFCamera.rig` falls back to the DOM pose for the
   rest of that rig, and `HFText.odometer` shows its DOM digits for the rest of that odometer.
 - **WebGL context lifetime:** a rig holds a context only inside a blur leg; an odometer only inside

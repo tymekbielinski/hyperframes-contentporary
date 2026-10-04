@@ -65,6 +65,11 @@ class KitPreviewTests(unittest.TestCase):
         self.assertIn('data-hf-mode="dark"', ov)
         for f in (p / "compositions").rglob("*.html"):
             self.assertNotRegex(f.read_text(), r"""(?:id|class)\s*=\s*["'][^"']*caption""", f.name)
+        for f in (p / "compositions").rglob("*.html"):
+            t = f.read_text()
+            if "HFKit." in t:
+                self.assertLess(t.index("document.fonts.ready"), t.index("HFText.loadFaces("), f.name)
+                self.assertLess(t.index("HFText.loadFaces("), t.index("HFKit."), f.name + ": faces load before the build")
 
     def test_light_palette_and_subset(self):
         p, looks = kp.build(["lower-third"], palette="silver", videos_dir=self.videos)

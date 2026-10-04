@@ -53,6 +53,7 @@ SCENE = """<template>
     (async function () {{
       var tl = gsap.timeline({{ paused: true }});
       await document.fonts.ready;
+      await HFText.loadFaces(document.querySelector('[data-composition-id="{id}"]'));
       var hosts = document.querySelectorAll('[data-composition-id="{id}"] .kit-host');
       var LF = {{ format: "long-form" }};
       HFKit.title(tl, hosts[0], Object.assign({{ at: 0.2, text: {title}, underline: 1 }}, LF));
