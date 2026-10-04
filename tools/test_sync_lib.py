@@ -25,6 +25,10 @@ class ManifestTests(unittest.TestCase):
     def test_real_manifest_lists_existing_modules(self):
         m = sl.load_manifest(ROOT)
         self.assertIn("shorts/wipe.js", m["modules"])
+        kit = [x for x in m["loadOrder"] if x.startswith("kit/")]
+        self.assertEqual(kit[0], "kit/kit.js", "the kit core loads before its components")
+        self.assertEqual(sorted(kit), sorted("kit/" + f.name for f in (ROOT / "lib" / "kit").glob("*.js")))
+        self.assertGreater(m["loadOrder"].index("kit/kit.js"), m["loadOrder"].index("brand.js"))
         self.assertEqual(m["loadOrder"][0], "profile.js")
         for rel in m["modules"]:
             self.assertTrue((ROOT / "lib" / rel).is_file(), rel)

@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SLUG = re.compile(r"[a-z0-9][a-z0-9-]{0,63}")
 SIZES = {"long-form": (1920, 1080), "shorts": (1080, 1920)}
 GSAP = "https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"
+FORMAT_ONLY = {"shorts": "shorts", "kit": "long-form"}   # lib/<dir>/ modules that load in one format only
 
 BRIEF = """# BRIEF — {slug}
 
@@ -146,7 +147,7 @@ def scaffold(slug, fmt, brand="contentporary", palette=None, font=None, videos_d
         raise ValueError("lib/brand.js failed: " + css.stderr.strip())
 
     w, h = SIZES[fmt]
-    order = [m for m in sync_lib.load_manifest(root)["loadOrder"] if fmt == "shorts" or not m.startswith("shorts/")]
+    order = [m for m in sync_lib.load_manifest(root)["loadOrder"] if FORMAT_ONLY.get(m.split("/")[0], fmt) == fmt]
     files = {
         "BRIEF.md": BRIEF.format(slug=slug, format=fmt, brand=brand, palette=palette, font=font,
                                  format_fields=LONG_FORM_FIELDS if fmt == "long-form" else SHORTS_FIELDS),

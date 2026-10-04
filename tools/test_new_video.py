@@ -28,6 +28,7 @@ class ScaffoldTests(unittest.TestCase):
                     "index.html", "lib.lock", "lib/profile.js"]:
             self.assertTrue((p / rel).is_file(), rel)
         self.assertTrue((p / "lib" / "shorts" / "wipe.js").is_file(), "every manifest module is synced")
+        self.assertTrue((p / "lib" / "kit" / "kit.js").is_file(), "kit modules are synced too")
         self.assertEqual(sync_lib.check(p), [])
 
     def test_brief_template_fails_only_on_required_direction_and_film(self):
@@ -54,6 +55,9 @@ class ScaffoldTests(unittest.TestCase):
         self.assertIn('data-hf-mode="light"', sh)
         self.assertIn('data-width="1080" data-height="1920"', sh)
         self.assertIn('<script src="lib/shorts/wipe.js"></script>', sh)
+        self.assertNotIn("lib/kit/", sh, "the kit is long-form only")
+        self.assertIn('<script src="lib/kit/kit.js"></script>', lf)
+        self.assertLess(lf.index("lib/brand.js"), lf.index("lib/kit/kit.js"))
         brief = pj.read_brief(self.videos / "s9-demo")
         self.assertIs(brief["captions"], False)
         self.assertNotIn("hook_end", brief)
