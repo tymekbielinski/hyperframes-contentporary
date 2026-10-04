@@ -87,10 +87,65 @@ class BuildTests(unittest.TestCase):
         self.assertIn("No renders/qa-report.json", page)
         self.assertIn("over-footage · 01-key-line", page)
 
-    def test_qa_report_is_summarised_and_rebuild_replaces_the_pack(self):
+    def write_qa(self, ok=True, render=None, inputs_hash=None, **extra):
+        (self.p / "renders").mkdir(exist_ok=True)
+        report = {"ok": ok, "checks": [{"n": 9, "name": "Settle before cut", "status": "PASS" if ok else "FAIL",
+                                        "findings": [] if ok else ["02-proof: still moving"]}],
+                  "generated_at": "2026-10-04T12:00:00+00:00", "render": str(Path(render or self.reel).resolve()),
+                  "inputs_hash": inputs_hash or pp.pj.inputs_hash(self.p), **extra}
+        (self.p / "renders" / "qa-report.json").write_text(json.dumps(report))
+
+    def gate_heading(self, page):
+        return page.split("<h2>Drafts")[0].split("Automated gate")[1]
+
+    def test_current_passing_report_shows_pass(self):
+        self.write_qa()
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("Automated gate — <span class='pass'>PASS</span>", page)
+        self.assertNotIn("STALE", page)
+
+    def test_project_changed_since_qa_is_stale_never_pass(self):
+        self.write_qa()
+        (self.p / "storyboard.md").write_text((self.p / "storyboard.md").read_text() + "\n")
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("Automated gate — <span class='fail'>STALE</span> (project changed since the last qa run)", page)
+        self.assertNotIn("<span class='pass'>PASS</span>", self.gate_heading(page))
+
+    def test_pack_render_differs_from_the_qa_render_is_stale(self):
+        other = synth.segments(Path(self.tmp.name) / "other.mp4", [("red", 2), ("blue", 2)])
+        self.write_qa(render=other)
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("<span class='fail'>STALE</span>", page)
+        self.assertIn("not the render the last qa run checked", page)
+        self.assertNotIn("<span class='pass'>PASS</span>", self.gate_heading(page))
+
+    def test_report_without_an_inputs_hash_is_stale(self):
         (self.p / "renders").mkdir()
-        (self.p / "renders" / "qa-report.json").write_text(json.dumps(
-            {"ok": False, "checks": [{"n": 9, "name": "Settle before cut", "status": "FAIL", "findings": ["02-proof: still moving"]}]}))
+        (self.p / "renders" / "qa-report.json").write_text(json.dumps({"ok": True, "checks": []}))
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("<span class='fail'>STALE</span>", page)
+        self.assertNotIn("<span class='pass'>PASS</span>", self.gate_heading(page))
+
+    def test_over_footage_rows_without_overlay_renders_warn(self):
+        (self.p / "storyboard.md").write_text((self.p / "storyboard.md").read_text()
+                                              + '| 104.0 | 106.0 | "key line" | over-footage | lower-third | — | — | — |\n')
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("1 over-footage row(s) in the grid but no --overlays", page)
+        self.assertNotIn("but no --overlays", pp.build(self.p, self.reel, self.overlays).read_text())
+
+    def test_edit_density_from_the_qa_report_is_shown(self):
+        edit = {"format": "long-form", "source": "edit: cut.mp4", "duration": 120.0, "hook_end": 80, "full_frame": [[10.0, 12.0]],
+                "over_footage": [], "screen_share": [], "reference": "grid", "advisory": False,
+                "warnings": ["detected change outside any planned graphic — punch-in or unplanned graphic? at 50.0–51.0 s"],
+                "results": [{"name": "hook graphics ≥ 60 %", "ok": False, "value": 0.03, "detail": "2.5% of 0–80 s"}]}
+        self.write_qa(ok=False, checks=[{"n": 8, "name": "Density", "status": "FAIL", "findings": [], "density": [{"source": "plan"}, edit]}])
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("Density on the edit (edit: cut.mp4)", page)
+        self.assertIn("punch-in or unplanned graphic? at 50.0–51.0 s", page)
+        self.assertIn("FAIL — hook graphics ≥ 60 %: 2.5% of 0–80 s", page)
+
+    def test_qa_report_is_summarised_and_rebuild_replaces_the_pack(self):
+        self.write_qa(ok=False)
         pp.build(self.p, self.reel)
         stray = self.p / "renders" / "preview" / "frames" / "999.png"
         stray.write_text("old")

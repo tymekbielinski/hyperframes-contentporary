@@ -3,6 +3,7 @@
 Field rules: standards/core/pipeline.md (BRIEF fields, beat grid) and standards/core/qa.md check 3.
 Standard library only — the BRIEF's YAML is a small subset parsed here (no PyYAML).
 """
+import hashlib
 import json
 import math
 import re
@@ -312,3 +313,49 @@ def transcript_duration(project):
     words = data if isinstance(data, list) else (data.get("words") or data.get("segments") or [])
     ends = [w["end"] for w in words if isinstance(w, dict) and _num(w.get("end"))]
     return max(ends) if ends else None
+
+
+# ---------------------------------------------------------------- cross-checks shared by slice.py and qa.py
+
+PAIR_TOLERANCE_FRAMES = 1.5
+
+
+def slot_pairing(slots, rows, fps, tolerance_frames=PAIR_TOLERANCE_FRAMES):
+    """Long-form: index.html slots pair with the full-frame grid rows in timeline order, one to one, and each
+    pair must agree on duration within ±tolerance_frames. Returns (pairs, problems); problems name the rows/slots."""
+    full = sorted((r for r in rows if r["placement"] == "full-frame"), key=lambda r: r["t_in"])
+    if len(slots) != len(full):
+        extra = [f"row {r['row']} (line {r['line']}, {r['t_in']:g}–{r['t_out']:g} s) has no slot" for r in full[len(slots):]]
+        extra += [f"slot {s['id']} has no row" for s in slots[len(full):]]
+        return [], [f"index.html has {len(slots)} scene slots but storyboard.md has {len(full)} full-frame rows "
+                    f"(paired in timeline order: {'; '.join(extra)})"]
+    tol, problems = tolerance_frames / fps, []
+    for slot, row in zip(slots, full):
+        want = row["t_out"] - row["t_in"]
+        if abs(slot["dur"] - want) > tol:
+            problems.append(f"slot {slot['id']} lasts {slot['dur']:.2f} s but storyboard row {row['row']} "
+                            f"(line {row['line']}) lasts {want:.2f} s — fix one so they agree")
+    return list(zip(slots, full)), problems
+
+
+def inputs_hash(project, root=ROOT) -> str:
+    """sha256 over everything a QA result depends on: BRIEF.md, storyboard.md, index.html, lib.lock, every file
+    under compositions/, and the files of the brand the BRIEF references. Render outputs are not inputs."""
+    project, root = Path(project), Path(root)
+    files = [(n, project / n) for n in ("BRIEF.md", "storyboard.md", "index.html", "lib.lock")]
+    comp = project / "compositions"
+    if comp.is_dir():
+        files += [(p.relative_to(project).as_posix(), p) for p in sorted(comp.rglob("*")) if p.is_file()]
+    try:
+        brand = read_brief(project).get("brand")
+    except (ProjectError, UnicodeDecodeError, OSError):
+        brand = None
+    if isinstance(brand, str) and brand and (root / "brands" / brand).is_dir():
+        bdir = root / "brands" / brand
+        files += [(f"brands/{brand}/{p.relative_to(bdir).as_posix()}", p) for p in sorted(bdir.rglob("*")) if p.is_file()]
+    h = hashlib.sha256()
+    for name, path in files:
+        h.update(name.encode() + b"\0")
+        h.update(path.read_bytes() if path.is_file() else b"<missing>")
+        h.update(b"\0")
+    return h.hexdigest()

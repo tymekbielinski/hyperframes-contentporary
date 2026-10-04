@@ -66,8 +66,11 @@ def _parse_info(path, data) -> dict:
             "frames": int(s.get("nb_read_packets", 0))}
 
 
+NUMBER = r"[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?"   # ffmpeg prints tiny values in scientific notation (3.47222e-05)
+
+
 def _metadata_values(text: str, key: str) -> list:
-    return [float(v) for v in re.findall(re.escape(key) + r"=([-\d.]+)", text)]
+    return [float(v) for v in re.findall(re.escape(key) + "=(" + NUMBER + ")", text)]
 
 
 def frame_diffs(path, size=(320, 180)) -> list:

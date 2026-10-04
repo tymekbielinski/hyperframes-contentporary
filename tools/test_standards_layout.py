@@ -330,6 +330,28 @@ class ToolsDocsTests(unittest.TestCase):
         self.assertIn("## Notes for Plan 4 (from Plan 3)", t)
         self.assertIn("hf-placeholder", t)
 
+    def test_final_review_docs(self):
+        qa = (ROOT / "standards" / "core" / "qa.md").read_text()
+        for s in ["compositions/overlays/", "/preview/comp/", "data-hf-id", "STALE", "inputs_hash", "nothing measured",
+                  "punch-in", "advisory", "--face-ref", "--threshold", "1920×1080", "600",
+                  "may also report cuts where the picture returns"]:
+            self.assertIn(s, qa, s)
+        self.assertNotIn("also lists intended cuts", qa)
+        qa_py = (ROOT / "tools" / "qa.py").read_text()
+        self.assertIn('"--face-ref"', qa_py, "qa.md documents --face-ref, so qa.py must accept it")
+        self.assertIn('"--threshold"', qa_py)
+        self.assertIn("data-hf-id", (ROOT / "CLAUDE.md").read_text())
+        flicker = (ROOT / "tools" / "scan_flicker.py").read_text()
+        self.assertIn("may also report cuts where the picture returns", flicker)
+        self.assertNotIn("reports intended hard cuts too", flicker)
+        road = (ROOT / "docs/superpowers/plans/2026-10-03-animation-workflow-roadmap.md").read_text()
+        old = road.split("## Notes for Plans 3–4 (from the Plan 2 final review)", 1)[1].split("\n## ", 1)[0]
+        plan3 = [l for l in old.splitlines() if l.startswith("- ") and "Plan 3" in l]
+        self.assertEqual(len(plan3), 4, plan3)
+        self.assertTrue(all("Done in Plan 3" in l for l in plan3), plan3)
+        notes4 = road.split("## Notes for Plan 4 (from Plan 3)", 1)[1].split("\n## ", 1)[0]
+        self.assertIn("root-relative", notes4)
+
 
 if __name__ == "__main__":
     unittest.main()

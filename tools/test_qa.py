@@ -4,6 +4,7 @@ import os
 import re
 import shlex
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -23,15 +24,28 @@ if args[0] == "check":
     print("fake hyperframes check: " + os.environ.get("FAKE_HF_CHECK_MSG", "ok"))
     sys.exit(int(os.environ.get("FAKE_HF_CHECK", "0")))
 if args[0] == "render":
+    if "-c" in args:                     # an overlay document rendered on its own
+        if os.environ.get("FAKE_HF_OVERLAY_FAIL"):
+            print("overlay render exploded", file=sys.stderr)
+            sys.exit(1)
+        shutil.copyfile(os.environ["FAKE_HF_OVERLAY_SRC"], args[args.index("-o") + 1])
+        sys.exit(0)
     shutil.copyfile(os.environ["FAKE_HF_RENDER_SRC"], args[args.index("-o") + 1])
     sys.exit(0)
 sys.exit(3)
 """
 HEADER = "| t_in | t_out | words | placement | type | beats | ease | marks |\n|---|---|---|---|---|---|---|---|\n"
-GOOD_GRID = HEADER + (
-    '| 0.0 | 50.0 | "hook" | full-frame | B1 | — | ease.enter | — |\n'
-    '| 52.0 | 80.0 | "proof" | full-frame | A1 | — | ease.enter | — |\n'
-    '| 100.0 | 104.0 | "key line" | over-footage | lower-third | — | ease.enter | — |\n')
+GOOD_GRID = HEADER + (            # pairs with SLOTS: two 2 s full-frame scenes (the reel), one over-footage layout
+    '| 0.0 | 2.0 | "hook" | full-frame | B1 | — | ease.enter | — |\n'
+    '| 2.0 | 4.0 | "proof" | full-frame | A1 | — | ease.enter | — |\n'
+    '| 3.0 | 3.5 | "key line" | over-footage | lower-third | — | ease.enter | — |\n')
+OVERLAY = """<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"></head>
+<body><div id="lt" data-composition-id="lt" data-hf-mode="dark" data-start="0" data-duration="2" data-width="1920" data-height="1080">
+<div id="line">Key line</div></div>
+<script>var tl = gsap.timeline({ paused: true }); window.__timelines["lt"] = tl;</script></body></html>
+"""
+OVERLAY_REL = "compositions/overlays/lt.html"
 SCENE = """<template>
 <div id="root" data-composition-id="01-hook" data-width="1920" data-height="1080"><div id="h1">Proof first</div>
 <svg><filter id="g"><feGaussianBlur data-blur-reason="glow" stdDeviation="6"/></filter></svg></div>
@@ -62,6 +76,20 @@ def clean_probe(project, fmt):
     return {"timelines": 2, "tweens": 4, "samples": 24, "findings": []}
 
 
+def overlay_probe(overlay):
+    """A fake probe: the reel is clean; `overlay` is the result for compositions/overlays/lt.html."""
+    def probe(project, fmt):
+        return {"timelines": 2, "tweens": 4, "samples": 30, "findings": [], "errors": [],
+                "overlays": [dict(overlay, file=OVERLAY_REL)]}
+    return probe
+
+
+def big(src, out):
+    """Upscale a 160×90 synthetic clip to 1920×1080 (the long-form render size) without changing its content."""
+    synth._ffmpeg(["-i", str(src), "-vf", "scale=1920:1080:flags=neighbor", "-pix_fmt", "yuv420p", "-r", "30", str(out)])
+    return out
+
+
 @unittest.skipUnless(synth.HAVE_FFMPEG and shutil.which("node"), "needs ffmpeg and node")
 class GateTests(unittest.TestCase):
     @classmethod
@@ -71,9 +99,13 @@ class GateTests(unittest.TestCase):
         settled = synth.moving_then_still(d / "settled.mp4", 1.5, 0.5)
         moving = synth.moving(d / "moving.mp4", 2)
         glitched = synth.moving_then_still(d / "glitched.mp4", 1.5, 0.5, glitch_frame=20)
-        cls.good_reel = synth.concat(d / "good.mp4", [settled, settled])          # two scenes, both settle
-        cls.unsettled_reel = synth.concat(d / "unsettled.mp4", [settled, moving])  # scene 2 moves into its cut
-        cls.glitch_reel = synth.concat(d / "glitch.mp4", [settled, glitched])      # one-frame glitch at reel frame 80
+        cls.small_reel = synth.concat(d / "good-small.mp4", [settled, settled])
+        cls.good_reel = big(cls.small_reel, d / "good.mp4")                                           # two scenes, both settle
+        cls.unsettled_reel = big(synth.concat(d / "unsettled-small.mp4", [settled, moving]), d / "unsettled.mp4")  # scene 2 moves into its cut
+        cls.glitch_reel = big(synth.concat(d / "glitch-small.mp4", [settled, glitched]), d / "glitch.mp4")      # one-frame glitch at reel frame 80
+        cls.settled_overlay = big(settled, d / "ov-settled.mp4")      # a 2 s overlay render that settles
+        cls.moving_overlay = big(moving, d / "ov-moving.mp4")          # still moving at its end
+        cls.glitch_overlay = big(glitched, d / "ov-glitch.mp4")        # one-frame glitch at frame 20
         cls.title_pop = d / "title_pop.mp4"                                         # a 1000×120 title pops in at 1 s and stays
         synth._ffmpeg(["-f", "lavfi", "-i", "color=c=0x101418:s=1920x1080:r=30:d=4", "-vf",
                        "drawbox=x=460:y=480:w=1000:h=120:color=0xF2F2F2:t=fill:enable='gte(n,30)'",
@@ -88,16 +120,19 @@ class GateTests(unittest.TestCase):
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        self.env = {k: os.environ.get(k) for k in ("HF_CLI", "FAKE_HF_CHECK", "FAKE_HF_RENDER_SRC", "FAKE_HF_SLEEP")}
+        self.env = {k: os.environ.get(k) for k in ("HF_CLI", "FAKE_HF_CHECK", "FAKE_HF_RENDER_SRC", "FAKE_HF_SLEEP",
+                                                   "FAKE_HF_OVERLAY_SRC", "FAKE_HF_OVERLAY_FAIL")}
         os.environ["HF_CLI"] = self.hf_cli
         os.environ["FAKE_HF_CHECK"] = "0"
+        os.environ["FAKE_HF_OVERLAY_SRC"] = str(self.settled_overlay)
+        os.environ.pop("FAKE_HF_OVERLAY_FAIL", None)
         self.p = new_video.scaffold("10-demo", "long-form", videos_dir=Path(self.tmp.name))
         brief = (self.p / "BRIEF.md").read_text()
         brief = brief.replace('film: ""', 'film: "Believe the system is predictable"')
         brief = brief.replace('direction: ""', 'direction: "One canvas per argument"')
         (self.p / "BRIEF.md").write_text(brief)
         (self.p / "storyboard.md").write_text(GOOD_GRID)
-        (self.p / "transcript.json").write_text(json.dumps([{"text": "x", "start": 0, "end": 110}]))
+        (self.p / "transcript.json").write_text(json.dumps([{"text": "x", "start": 0, "end": 4}]))
         (self.p / "index.html").write_text(with_slots((self.p / "index.html").read_text()))
         (self.p / "compositions" / "01-hook.html").write_text(SCENE)
 
@@ -309,6 +344,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual(c["findings"], ['compositions/03-caps.html:1: caption layer (class="captions word-layer")'])
 
     def test_check_8_density_on_the_plan(self):
+        (self.p / "transcript.json").write_text(json.dumps([{"text": "x", "start": 0, "end": 110}]))
         (self.p / "storyboard.md").write_text(HEADER + '| 0.0 | 30.0 | "hook" | full-frame | B1 | — | — | — |\n')
         c = self.gate()["checks"][7]
         self.assertEqual(c["status"], "FAIL")
@@ -351,6 +387,162 @@ class GateTests(unittest.TestCase):
         r = self.gate(render=None)
         self.assertEqual(self.status(r)[9], "PASS", qa.format_report(r))
         self.assertTrue((self.p / "renders" / "qa-draft.mp4").is_file())
+
+    # ---- final-review fix wave -------------------------------------------------------------------------
+
+    def add_overlay(self):
+        (self.p / OVERLAY_REL).write_text(OVERLAY)
+
+    def test_check_9_slots_must_pair_with_full_frame_rows(self):
+        (self.p / "storyboard.md").write_text(GOOD_GRID + '| 6.0 | 8.0 | "extra" | full-frame | C1 | — | ease.enter | — |\n')
+        c = self.gate()["checks"][8]
+        self.assertEqual(c["status"], "FAIL")
+        self.assertTrue(any("index.html has 2 scene slots but storyboard.md has 3 full-frame rows" in f
+                            and "row 4 (line 6, 6–8 s) has no slot" in f for f in c["findings"]), c["findings"])
+        (self.p / "storyboard.md").write_text(GOOD_GRID.replace("| 2.0 | 4.0 |", "| 2.0 | 4.5 |"))
+        c = self.gate()["checks"][8]
+        self.assertIn("slot 02-proof lasts 2.00 s but storyboard row 2 (line 4) lasts 2.50 s — fix one so they agree", c["findings"])
+        st = self.status(self.gate(render=None, skip_render=True))
+        self.assertEqual(st[9], "FAIL", "the cross-check needs no render: a mismatch is a FAIL, not a SKIP")
+
+    def test_check_9_full_frame_rows_without_slots_measure_nothing(self):
+        index = (self.p / "index.html").read_text()
+        (self.p / "index.html").write_text(re.sub(r'\s*<div id="s0[12]"[^\n]*</div>', "", index))
+        c = self.gate()["checks"][8]
+        self.assertEqual(c["status"], "FAIL")
+        self.assertTrue(any("nothing measured" in f for f in c["findings"]), c["findings"])
+
+    def test_shorts_rows_without_scenes_measure_nothing(self):
+        rows = [{"row": 1, "line": 3, "t_in": 1.0, "t_out": 4.0, "placement": "over-footage", "type": "A1"}]
+        self.assertTrue(any("nothing measured" in f for f in qa.plan_findings(self.p, "shorts", rows, 30)))
+        self.assertEqual(qa.plan_findings(self.p, "shorts", [], 30), [])
+        self.assertEqual(qa.plan_findings(self.p, "shorts", [dict(rows[0], placement="full-frame")], 30), [])
+
+    def test_report_records_time_render_and_inputs_hash(self):
+        r = self.gate()
+        saved = json.loads((self.p / "renders" / "qa-report.json").read_text())
+        self.assertRegex(saved["generated_at"], r"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d")
+        self.assertEqual(saved["render"], str(Path(self.good_reel).resolve()))
+        self.assertEqual(saved["inputs_hash"], qa.pj.inputs_hash(self.p, qa.ROOT))
+        self.assertEqual(r["inputs_hash"], saved["inputs_hash"])
+
+    def test_report_is_written_atomically(self):
+        real, calls = os.replace, []
+        with mock.patch.object(qa.os, "replace", side_effect=lambda a, b: calls.append((Path(a), Path(b))) or real(a, b)):
+            self.gate()
+        out = self.p / "renders" / "qa-report.json"
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(calls[0][1], out)
+        self.assertNotEqual(calls[0][0], out)
+        self.assertEqual(sorted(p.name for p in out.parent.glob("qa-report*")), ["qa-report.json"])
+
+    def test_check_3_brand_js_timeout_and_undecodable_brand_css(self):
+        brief = qa.pj.read_brief(self.p)
+        with mock.patch.object(qa.subprocess, "run", side_effect=subprocess.TimeoutExpired(["node"], 60)):
+            c = qa.check_brief(self.p, brief)
+        self.assertEqual(c["status"], "FAIL")
+        self.assertTrue(any("lib/brand.js timed out after 60 s" in f for f in c["findings"]), c["findings"])
+        (self.p / "compositions" / "brand.css").write_bytes(b"/* caf\xe9 */\n")
+        c = qa.check_brief(self.p, brief)
+        self.assertTrue(any("compositions/brand.css is not UTF-8 text" in f for f in c["findings"]), c["findings"])
+
+    def test_check_10_lists_page_errors(self):
+        def probe(project, fmt):
+            return {"samples": 24, "findings": [], "errors": ["TypeError: x is undefined"]}
+        c = self.gate(probe=probe)["checks"][9]
+        self.assertEqual(c["status"], "FAIL")
+        self.assertIn("page error: TypeError: x is undefined", c["findings"])
+
+    def test_cli_forwards_face_ref_and_threshold_to_the_edit_density(self):
+        seen = []
+        real = qa.cadence_scan.report
+
+        def fake(project, edit=None, **kw):
+            seen.append((edit, kw))
+            return real(project)
+        with mock.patch.object(qa.cadence_scan, "report", side_effect=fake), \
+                mock.patch.object(qa.runtime_probe, "probe_project", side_effect=lambda *a, **k: clean_probe(None, None)):
+            with redirect_stdout(io.StringIO()):
+                qa.main(["qa.py", str(self.p), "--render", str(self.good_reel), "--edit", "cut.mp4",
+                         "--face-ref", "1.5", "--threshold", "20"])
+        self.assertIn(("cut.mp4", {"face_ref": 1.5, "threshold": 20.0}), seen)
+
+    def test_check_8_advisory_edit_results_warn_but_do_not_fail(self):
+        real = qa.cadence_scan.report
+
+        def fake(project, edit=None, **kw):
+            r = real(project)
+            if not edit:
+                return r
+            return dict(r, source="edit (advisory — no storyboard grid): cut.mp4", advisory=True,
+                        results=[{"name": "hook graphics ≥ 60 %", "ok": False, "value": 0.1, "detail": "10.0% of 0–4 s"}])
+        with mock.patch.object(qa.cadence_scan, "report", side_effect=fake):
+            c = self.gate(edit="cut.mp4")["checks"][7]
+        self.assertEqual(c["status"], "PASS", c)
+        self.assertTrue(any("advisory" in w and "hook graphics" in w for w in c["warnings"]), c)
+
+    def test_render_at_the_wrong_resolution_fails_9_and_10(self):
+        r = self.gate(render=self.small_reel)
+        for i in (8, 9):
+            c = r["checks"][i]
+            self.assertEqual(c["status"], "FAIL")
+            self.assertIn("render is 160×90, expected 1920×1080 (long-form)", " ".join(c["findings"]))
+
+    def test_probe_sample_count_is_reported(self):
+        r = self.gate()
+        self.assertEqual(r["probe"]["samples"], 24)
+        self.assertIn("runtime probe: 24 samples", qa.format_report(r))
+
+    def test_overlay_runtime_findings_reach_checks_5_6_10(self):
+        self.add_overlay()
+        r = self.gate(probe=overlay_probe({"samples": 30, "errors": ["ReferenceError: HFText is not defined"], "findings": [
+            {"check": 5, "message": "lt div#line: CSS filter blur() without data-blur-reason", "t": 1.0},
+            {"check": 6, "message": "lt: tween on div#line at 0 s has no ease", "t": None},
+            {"check": 10, "message": "lt p#g: gradient text with line-height 1×", "t": 0.5}]}))
+        st = self.status(r)
+        self.assertEqual((st[5], st[6], st[10]), ("FAIL", "FAIL", "FAIL"), qa.format_report(r))
+        self.assertEqual(r["checks"][4]["findings"], [OVERLAY_REL + ": runtime @ 1.0 s: lt div#line: CSS filter blur() without data-blur-reason"])
+        self.assertEqual(r["checks"][5]["findings"], [OVERLAY_REL + ": runtime: lt: tween on div#line at 0 s has no ease"])
+        self.assertIn(OVERLAY_REL + ": page error: ReferenceError: HFText is not defined", r["checks"][9]["findings"])
+        self.assertIn(OVERLAY_REL + ": 30 samples", qa.format_report(r))
+
+    def test_clean_overlay_passes_all_ten(self):
+        self.add_overlay()
+        r = self.gate(probe=overlay_probe({"samples": 30, "findings": [], "errors": []}))
+        self.assertEqual(self.status(r), {n: "PASS" for n in range(1, 11)}, qa.format_report(r))
+        self.assertTrue((self.p / "renders" / "qa-overlays" / "lt.mp4").is_file())
+
+    def test_overlay_that_was_not_probed_or_failed_to_probe_is_infra(self):
+        self.add_overlay()
+        r = self.gate()                                   # clean_probe knows nothing about the overlay
+        for i in (4, 5, 9):
+            self.assertIn(qa.Infra(f"runtime probe did not cover {OVERLAY_REL}"), r["checks"][i]["findings"])
+        r = self.gate(probe=overlay_probe({"error": "no timeline registered on window.__timelines"}))
+        for i in (4, 5, 9):
+            self.assertIn(f"runtime probe failed: {OVERLAY_REL}: no timeline registered on window.__timelines", r["checks"][i]["findings"])
+
+    def test_overlay_render_settle_and_flicker(self):
+        self.add_overlay()
+        probe = overlay_probe({"samples": 30, "findings": [], "errors": []})
+        os.environ["FAKE_HF_OVERLAY_SRC"] = str(self.moving_overlay)
+        c9 = self.gate(probe=probe)["checks"][8]
+        self.assertEqual(c9["status"], "FAIL")
+        self.assertEqual(len(c9["findings"]), 1, c9)
+        self.assertTrue(c9["findings"][0].startswith(OVERLAY_REL + ": still moving in its last 0.3 s"), c9)
+        os.environ["FAKE_HF_OVERLAY_SRC"] = str(self.glitch_overlay)
+        c10 = self.gate(probe=probe)["checks"][9]
+        self.assertEqual([f.split(" (")[0] for f in c10["findings"]], [OVERLAY_REL + ": flicker at frame 20", OVERLAY_REL + ": flicker at frame 21"], c10)
+        os.environ["FAKE_HF_OVERLAY_FAIL"] = "1"
+        r = self.gate(probe=probe)
+        for i in (8, 9):
+            self.assertTrue(any(f.startswith(OVERLAY_REL + ": draft render failed") and isinstance(f, qa.Infra)
+                                for f in r["checks"][i]["findings"]), r["checks"][i])
+
+    def test_skip_render_skips_overlay_renders_too(self):
+        self.add_overlay()
+        r = self.gate(render=None, skip_render=True, probe=overlay_probe({"samples": 30, "findings": [], "errors": []}))
+        self.assertEqual((self.status(r)[9], self.status(r)[10]), ("SKIP", "SKIP"), qa.format_report(r))
+        self.assertFalse((self.p / "renders" / "qa-overlays").exists())
 
     def test_cli(self):
         out = io.StringIO()

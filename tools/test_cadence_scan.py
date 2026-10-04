@@ -154,6 +154,9 @@ class ReferenceTests(unittest.TestCase):
         cls.mid = synth.segments(Path(cls.tmp.name) / "mid.mp4",
                                  [("0x808080", 3), ("navy", 4), ("0x808080", 3)], noise=True)
         cls.face = synth.segments(Path(cls.tmp.name) / "face.mp4", [("0x808080", 8)], noise=True)
+        # a planned graphic 3–7 s, then a face punch-in (a different framing of the face) 8–9 s
+        cls.punch = synth.segments(Path(cls.tmp.name) / "punch.mp4",
+                                   [("0x808080", 3), ("navy", 4), ("0x808080", 1), ("0x303030", 1), ("0x808080", 2)], noise=True)
 
     @classmethod
     def tearDownClass(cls):
@@ -193,6 +196,38 @@ class ReferenceTests(unittest.TestCase):
         p = self.proj("e", [(20, 22, "full-frame")])
         r = cs.report(p, edit=str(self.face))
         self.assertTrue(any("0 %" in w for w in r["warnings"]), r["warnings"])
+
+    def test_punch_ins_never_count_with_a_grid(self):
+        p = self.proj("f", [(3, 7, "full-frame")])
+        r = cs.report(p, edit=str(self.punch))
+        self.assertEqual(len(r["full_frame"]), 1, r["full_frame"])
+        a, b = r["full_frame"][0]
+        self.assertAlmostEqual(a, 3.0, delta=0.25)
+        self.assertAlmostEqual(b, 7.0, delta=0.25)
+        self.assertAlmostEqual(r["results"][0]["value"], 4 / 11, delta=0.03)
+        hits = [w for w in r["warnings"] if w.startswith("detected change outside any planned graphic")]
+        self.assertEqual(len(hits), 1, r["warnings"])
+        self.assertIn("punch-in or unplanned graphic?", hits[0])
+        self.assertRegex(hits[0], r"at 8\.\d–9\.\d s")
+        self.assertFalse(r.get("advisory"))
+
+    def test_detected_span_overlapping_a_row_within_the_margin_is_kept(self):
+        p = self.proj("g", [(3.4, 7, "full-frame")])        # the graphic starts 0.4 s before its planned row
+        r = cs.report(p, edit=str(self.mid))
+        self.assertEqual(len(r["full_frame"]), 1, r["full_frame"])
+        self.assertAlmostEqual(r["full_frame"][0][0], 3.0, delta=0.25)
+        self.assertFalse([w for w in r["warnings"] if w.startswith("detected change outside")], r["warnings"])
+
+    def test_edit_without_a_grid_is_advisory(self):
+        p = self.proj("h", [])
+        r = cs.report(p, edit=str(self.punch), duration=11)
+        self.assertTrue(r["advisory"])
+        self.assertIn("advisory", r["source"])
+        self.assertTrue(any("punch-ins may be miscounted" in w for w in r["warnings"]), r["warnings"])
+        self.assertEqual(len(r["full_frame"]), 2, r["full_frame"])       # nothing to filter against
+        self.assertIn("advisory", cs.format_report(r))
+        (p / "storyboard.md").unlink()                                      # no storyboard at all: still advisory
+        self.assertTrue(cs.report(p, edit=str(self.punch), duration=11)["advisory"])
 
 
 if __name__ == "__main__":

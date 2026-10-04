@@ -69,6 +69,22 @@ tl.to(document.getElementById("hf-placeholder"), { x: 1, duration: 2, ease: "non
 tl.to(document.getElementById("other"), { x: 1, duration: 2, ease: "none" }, 0);
 window.__timelines = { main: tl };</script></body></html>""" % FAKE_GSAP
 
+# A 10-minute reel: the only untagged blur lives inside one 3 s slot (300–303 s). 24 evenly spaced samples
+# (every 26 s) step over it; per-slot sampling (start+ε, middle, end−ε) must find it. 1000 short tweens push
+# the tween-boundary samples past the cap.
+LONG_PAGE = """<!doctype html><html><head><meta charset="utf-8"><script src="profile.js"></script><script>%s</script></head><body>
+<div id="root" data-composition-id="main" data-duration="600">
+  <div id="s1" data-composition-id="s1" data-start="0" data-duration="300"></div>
+  <div id="s2" data-composition-id="s2" data-start="300" data-duration="3"><div id="brief"></div></div>
+  <div id="s3" data-composition-id="s3" data-start="303" data-duration="297"></div>
+</div>
+<script>var tl = new TL(), brief = document.getElementById("brief");
+var E = function (t) { return HFProfile.ease("long-form", t); };
+for (var i = 0; i < 1000; i++) tl.to("#x" + i, { x: 1, duration: 0.25, ease: E("ease.enter") }, i * 0.59);
+tl.to({ t: 0 }, { t: 1, duration: 600, ease: "none", onUpdate: function (t) {
+  brief.style.filter = (t > 300 && t < 303) ? "blur(3px)" : "none"; } }, 0);
+window.__timelines = { main: tl };</script></body></html>""" % FAKE_GSAP
+
 NO_TWEENS_PAGE = """<!doctype html><html><head><meta charset="utf-8"><script>%s</script></head><body>
 <div id="root" data-composition-id="main"></div><script>window.__timelines = { main: new TL() };</script></body></html>""" % FAKE_GSAP
 
@@ -88,6 +104,7 @@ class ProbeTests(unittest.TestCase):
         (d / "placeholder.html").write_text(PLACEHOLDER_PAGE)
         (d / "notweens.html").write_text(NO_TWEENS_PAGE)
         (d / "notgsap.html").write_text(NOT_GSAP_PAGE)
+        (d / "long.html").write_text(LONG_PAGE)
         handler = functools.partial(QuietHandler, directory=str(d))
         cls.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
         threading.Thread(target=cls.server.serve_forever, daemon=True).start()
@@ -105,7 +122,7 @@ class ProbeTests(unittest.TestCase):
     def test_counts(self):
         self.assertEqual(self.result["timelines"], 2)
         self.assertEqual(self.result["tweens"], 8)
-        self.assertEqual(self.result["samples"], 9)
+        self.assertGreaterEqual(self.result["samples"], 9)     # 9 evenly spaced + tween starts/ends
 
     def test_eases(self):
         m = self.messages(6)
@@ -129,6 +146,14 @@ class ProbeTests(unittest.TestCase):
         m = self.messages(10)
         self.assertTrue(any("p#cropped" in x and "line-height 1" in x for x in m), m)
         self.assertTrue(any("p#ghost" in x and "ghosts in the render" in x for x in m), m)
+
+    def test_per_slot_sampling_finds_a_blur_inside_one_short_slot_of_a_long_reel(self):
+        r = rp.probe_url(self.base + "/long.html", "long-form", (640, 360), timeout_ms=20000)
+        hits = [f for f in r["findings"] if f["check"] == 5 and "#brief" in f["message"]]
+        self.assertEqual(len(hits), 1, r["findings"])
+        self.assertTrue(300 < hits[0]["t"] < 303, hits[0])
+        self.assertGreater(r["samples"], 24)
+        self.assertLessEqual(r["samples"], 600, "samples are capped")
 
     def test_page_without_timelines_is_an_error(self):
         with self.assertRaisesRegex(rp.ProbeError, "no timeline registered"):
@@ -229,6 +254,49 @@ class FailurePathTests(unittest.TestCase):
             rp.probe_url = old
         self.assertEqual(len(r["warnings"]), 1)
         self.assertIn("preview --stop failed", err.getvalue())
+
+    def test_overlays_are_probed_through_the_studio_comp_route(self):
+        self.fake('{"result": {"state": "started", "serverUrl": "http://x", "projectName": "p"}}')
+        urls, old = [], rp.probe_url
+
+        def fake_probe(url, *a, **k):
+            urls.append(url)
+            if url.endswith("bad.html"):
+                raise rp.ProbeError("no timeline registered on window.__timelines")
+            return {"samples": 30, "findings": [{"check": 5, "message": url.rsplit("/", 1)[1], "t": 1.0}], "errors": []}
+        rp.probe_url = fake_probe
+        try:
+            r = rp.probe_project("/tmp", "long-form", (1920, 1080),
+                                 overlays=["compositions/overlays/lt.html", "compositions/overlays/bad.html"])
+        finally:
+            rp.probe_url = old
+        self.assertEqual(urls, ["http://x/api/projects/p/preview", "http://x/api/projects/p/preview/comp/compositions/overlays/lt.html",
+                                "http://x/api/projects/p/preview/comp/compositions/overlays/bad.html"])
+        self.assertEqual(r["overlays"][0]["file"], "compositions/overlays/lt.html")
+        self.assertEqual(r["overlays"][0]["findings"][0]["message"], "lt.html")
+        self.assertEqual(r["overlays"][1], {"file": "compositions/overlays/bad.html",
+                                            "error": "no timeline registered on window.__timelines"})
+        self.assertTrue(any("--stop" in c for c in self.calls), "one preview server for the reel and every overlay")
+
+    def test_overlay_url_from_a_probe_url(self):
+        self.assertEqual(rp.overlay_url("http://h:3930/api/projects/p/preview", "compositions/overlays/a b.html"),
+                         "http://h:3930/api/projects/p/preview/comp/compositions/overlays/a%20b.html")
+        self.assertIsNone(rp.overlay_url("http://127.0.0.1:8000/index.html", "compositions/overlays/a.html"))
+
+
+class FindChromeTests(unittest.TestCase):
+    def test_newest_version_wins_numerically(self):
+        import os
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as home:
+            cache = Path(home) / ".cache" / "puppeteer" / "chrome-headless-shell"
+            for v in ("mac_arm-9.0.100.0", "mac_arm-131.0.6778.85", "mac_arm-99.0.1.0"):
+                exe = cache / v / "chrome-headless-shell-mac-arm64" / "chrome-headless-shell"
+                exe.parent.mkdir(parents=True)
+                exe.write_text("")
+            env = {k: v for k, v in os.environ.items() if k != "HF_CHROME"}
+            with mock.patch.dict(os.environ, env, clear=True), mock.patch.object(Path, "home", return_value=Path(home)):
+                self.assertIn("mac_arm-131.0.6778.85", rp.find_chrome(allow_npx=False))
 
 
 def subprocess_result(cmd, rc, out, err):

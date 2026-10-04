@@ -57,6 +57,10 @@ modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on 
 cuts) · `qa.py` (the automated gate) · `preview_pack.py` (sign-off pack; shows NOT RUN / UNKNOWN when
 the gate has not run) · `slice.py` (long-form delivery) · `scan_flicker.py` · `brandcheck.py`. Each
 prints its usage with no arguments; the commands in context are in `standards/core/pipeline.md`.
+`qa.py` probes through `npx hyperframes preview`, which stamps inert `data-hf-id` attributes into
+`index.html` and the composition files (and writes `.hyperframes/`): commit the stamps or discard them, never
+commit `.hyperframes/` (`standards/core/qa.md`). A preview pack whose project changed after the last qa run
+shows the gate as STALE, never PASS.
 
 ## Tests
 

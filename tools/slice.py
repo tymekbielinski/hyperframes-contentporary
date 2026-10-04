@@ -22,7 +22,8 @@ import project as pj
 
 COLUMNS = ["kind", "scene", "file", "timeline_in_tc", "timeline_out_tc", "timeline_in_s", "timeline_out_s",
            "in_frame", "out_frame", "duration_s", "frames", "title"]
-TOLERANCE_FRAMES = 1.5
+TOLERANCE_FRAMES = pj.PAIR_TOLERANCE_FRAMES
+SIZE = (1920, 1080)     # long-form delivery
 
 
 class SliceError(Exception):
@@ -45,26 +46,30 @@ def _title(words: str) -> str:
     return words.strip().strip('"“”').strip()
 
 
+def _check_size(what, info):
+    if (info["width"], info["height"]) != SIZE:
+        raise SliceError(f"{what} is {info['width']}×{info['height']}, expected {SIZE[0]}×{SIZE[1]} (long-form) — re-render it")
+
+
 def plan(project, reel, overlays_dir=None, fps=30.0) -> list:
     """Every clip to write, as dicts (one per TIMECODES.csv row plus the cut/copy source). Raises SliceError."""
     project = Path(project)
     if pj.read_brief(project).get("format") != "long-form":
         raise SliceError("slice is for long-form; a Short is delivered as one finished MP4 (render it to deliver/<slug>.mp4)")
     rows = pj.read_storyboard(project)
-    full = sorted((r for r in rows if r["placement"] == "full-frame"), key=lambda r: r["t_in"])
     over = sorted((r for r in rows if r["placement"] == "over-footage"), key=lambda r: r["t_in"])
     slots = pj.composition_slots(project)
-    if len(slots) != len(full):
-        raise SliceError(f"index.html has {len(slots)} scene slots but storyboard.md has {len(full)} full-frame rows")
+    pairs, problems = pj.slot_pairing(slots, rows, fps, TOLERANCE_FRAMES)
+    if problems and not pairs:          # a count mismatch: nothing to pair
+        raise SliceError(problems[0])
     reel_info = media.video_info(reel)
+    _check_size("the reel", reel_info)
     if abs(reel_info["fps"] - fps) > 0.01:
         raise SliceError(f"the reel runs at {reel_info['fps']:g} fps but --fps is {fps:g} — re-render or pass --fps")
+    if problems:
+        raise SliceError(problems[0])
     clips, tol = [], TOLERANCE_FRAMES / fps
-    for n, (slot, row) in enumerate(zip(slots, full), 1):
-        want = row["t_out"] - row["t_in"]
-        if abs(slot["dur"] - want) > tol:
-            raise SliceError(f"slot {slot['id']} lasts {slot['dur']:.2f} s but storyboard row {row['row']} "
-                             f"(line {row['line']}) lasts {want:.2f} s — fix one so they agree")
+    for n, (slot, row) in enumerate(pairs, 1):
         if slot["start"] + slot["dur"] > reel_info["duration"] + tol:
             raise SliceError(f"slot {slot['id']} ends at {slot['start'] + slot['dur']:.2f} s, after the reel ({reel_info['duration']:.2f} s) — re-render")
         clips.append({"kind": "full-frame", "scene": slot["id"], "n": n, "t_in": row["t_in"],
@@ -76,6 +81,7 @@ def plan(project, reel, overlays_dir=None, fps=30.0) -> list:
                          f"{overlays_dir or '(no --overlays dir)'} has {len(movs)} .mov files")
     for n, (mov, row) in enumerate(zip(movs, over), 1):
         info = media.video_info(mov)
+        _check_size(mov.name, info)
         if info["codec"] != "prores" or "4444" not in str(info["profile"]) or not str(info["pix_fmt"]).startswith("yuva"):
             raise SliceError(f"{mov.name} is {info['codec']} {info['profile']} {info['pix_fmt']}, not ProRes 4444 with alpha "
                              "— render it with npx hyperframes render --format=mov")

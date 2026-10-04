@@ -9,6 +9,7 @@ import media
 import slice as sl
 import synth
 
+HD = (1920, 1080)
 HEADER = "| t_in | t_out | words | placement | type | beats | ease | marks |\n|---|---|---|---|---|---|---|---|\n"
 INDEX = """<div id="root" data-composition-id="main" data-hf-mode="dark">
   <div data-composition-id="01-hook" data-composition-src="compositions/01-hook.html" data-start="0" data-duration="2"></div>
@@ -37,10 +38,10 @@ class SliceTests(unittest.TestCase):
         (self.p / "BRIEF.md").write_text("```yaml\nformat: long-form\n```\n")
         (self.p / "index.html").write_text(INDEX)
         (self.p / "storyboard.md").write_text(GRID)
-        self.reel = synth.moving(d / "reel.mp4", 4)
+        self.reel = synth.segments(d / "reel.mp4", [("red", 2), ("blue", 2)], size=HD)   # solid colours: 1080p encodes stay fast
         self.overlays = d / "overlays"
         self.overlays.mkdir()
-        synth.prores(self.overlays / "01-key-line.mov", 1)
+        synth.prores(self.overlays / "01-key-line.mov", 1, size=HD)
 
     def tearDown(self):
         self.tmp.cleanup()
@@ -69,7 +70,7 @@ class SliceTests(unittest.TestCase):
         self.assertIn("ProRes 4444 with alpha", readme)
 
     def test_cut_is_frame_exact_at_scene_boundaries(self):
-        reel = synth.segments(Path(self.tmp.name) / "two.mp4", [("red", 2), ("blue", 2)])
+        reel = synth.segments(Path(self.tmp.name) / "two.mp4", [("red", 2), ("blue", 2)], size=HD)
         sl.slice_project(self.p, reel, self.overlays)
         first = media.gray_frames(self.p / "deliver" / "scene-01_00-10-00.mp4", 30)
         second = media.gray_frames(self.p / "deliver" / "scene-02_00-30-15.mp4", 30)
@@ -132,13 +133,22 @@ class SliceTests(unittest.TestCase):
 
     def test_overlay_must_be_prores_4444_alpha(self):
         (self.overlays / "01-key-line.mov").unlink()
-        synth.prores(self.overlays / "01-key-line.mov", 1, alpha=False)
+        synth.prores(self.overlays / "01-key-line.mov", 1, size=HD, alpha=False)
         with self.assertRaisesRegex(sl.SliceError, "not ProRes 4444 with alpha"):
             sl.plan(self.p, self.reel, self.overlays)
 
     def test_missing_overlays_dir(self):
         with self.assertRaisesRegex(sl.SliceError, r"1 over-footage rows but \(no --overlays dir\) has 0 \.mov files"):
             sl.plan(self.p, self.reel)
+
+    def test_reel_and_overlays_must_be_1920x1080(self):
+        small = synth.moving(Path(self.tmp.name) / "small.mp4", 4)
+        with self.assertRaisesRegex(sl.SliceError, r"the reel is 160×90, expected 1920×1080 \(long-form\)"):
+            sl.plan(self.p, small, self.overlays)
+        (self.overlays / "01-key-line.mov").unlink()
+        synth.prores(self.overlays / "01-key-line.mov", 1)
+        with self.assertRaisesRegex(sl.SliceError, r"01-key-line.mov is 160×90, expected 1920×1080 \(long-form\)"):
+            sl.plan(self.p, self.reel, self.overlays)
 
     def test_shorts_are_refused(self):
         (self.p / "BRIEF.md").write_text("```yaml\nformat: shorts\n```\n")

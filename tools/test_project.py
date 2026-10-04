@@ -213,5 +213,54 @@ class SlotsTranscriptTests(unittest.TestCase):
             self.assertEqual(pj.transcript_duration(t), 9.5)
 
 
+class PairingAndHashTests(unittest.TestCase):
+    ROWS = [{"row": 1, "line": 3, "t_in": 10.0, "t_out": 12.0, "placement": "full-frame"},
+            {"row": 2, "line": 4, "t_in": 20.0, "t_out": 21.0, "placement": "over-footage"},
+            {"row": 3, "line": 5, "t_in": 30.5, "t_out": 32.5, "placement": "full-frame"}]
+    SLOTS = [{"id": "01-hook", "src": "a", "start": 0.0, "dur": 2.0}, {"id": "02-proof", "src": "b", "start": 2.0, "dur": 2.0}]
+
+    def test_pairing_ok_within_one_and_a_half_frames(self):
+        slots = [dict(self.SLOTS[0]), dict(self.SLOTS[1], dur=2.0 + 1.4 / 30)]
+        pairs, problems = pj.slot_pairing(slots, self.ROWS, 30)
+        self.assertEqual(problems, [])
+        self.assertEqual([(s["id"], r["row"]) for s, r in pairs], [("01-hook", 1), ("02-proof", 3)])
+
+    def test_pairing_names_duration_and_count_mismatches(self):
+        slots = [dict(self.SLOTS[0]), dict(self.SLOTS[1], dur=3.0)]
+        _, problems = pj.slot_pairing(slots, self.ROWS, 30)
+        self.assertEqual(problems, ["slot 02-proof lasts 3.00 s but storyboard row 3 (line 5) lasts 2.00 s — fix one so they agree"])
+        _, problems = pj.slot_pairing(self.SLOTS[:1], self.ROWS, 30)
+        self.assertEqual(len(problems), 1)
+        self.assertTrue(problems[0].startswith("index.html has 1 scene slots but storyboard.md has 2 full-frame rows"), problems)
+        self.assertIn("row 3 (line 5, 30.5–32.5 s) has no slot", problems[0])
+        _, problems = pj.slot_pairing(self.SLOTS + [{"id": "03-x", "src": "c", "start": 4.0, "dur": 1.0}], self.ROWS, 30)
+        self.assertIn("slot 03-x has no row", problems[0])
+
+    def test_inputs_hash_tracks_every_input(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)
+            (p / "BRIEF.md").write_text("```yaml\nformat: long-form\nbrand: contentporary\n```\n")
+            (p / "storyboard.md").write_text("s")
+            (p / "index.html").write_text("i")
+            (p / "lib.lock").write_text("l")
+            (p / "compositions" / "overlays").mkdir(parents=True)
+            (p / "compositions" / "overlays" / "lt.html").write_text("o")
+            (p / "renders").mkdir()
+            h = pj.inputs_hash(p, ROOT)
+            self.assertRegex(h, r"^[0-9a-f]{64}$")
+            (p / "renders" / "qa-draft.mp4").write_text("render output is not an input")
+            self.assertEqual(pj.inputs_hash(p, ROOT), h)
+            for rel in ("storyboard.md", "index.html", "lib.lock", "compositions/overlays/lt.html", "BRIEF.md"):
+                before = pj.inputs_hash(p, ROOT)
+                (p / rel).write_text((p / rel).read_text() + " ")
+                self.assertNotEqual(pj.inputs_hash(p, ROOT), before, rel)
+            fake_root = p / "root"
+            (fake_root / "brands" / "contentporary").mkdir(parents=True)
+            (fake_root / "brands" / "contentporary" / "tokens.json").write_text("{}")
+            before = pj.inputs_hash(p, fake_root)
+            (fake_root / "brands" / "contentporary" / "tokens.json").write_text("{ }")
+            self.assertNotEqual(pj.inputs_hash(p, fake_root), before, "a referenced brand file changed")
+
+
 if __name__ == "__main__":
     unittest.main()

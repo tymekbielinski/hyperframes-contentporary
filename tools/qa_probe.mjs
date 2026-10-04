@@ -1,7 +1,7 @@
 // qa_probe — the runtime half of QA checks 5, 6 and 10. Node ≥ 22 built-ins only (global WebSocket + fetch).
 //
 //   node tools/qa_probe.mjs --url URL --format long-form|shorts --chrome PATH [--width 1920 --height 1080]
-//                           [--samples 24] [--timeout 30000]
+//                           [--samples 24] [--max-samples 600] [--timeout 30000]
 //   → prints {"timelines", "tweens", "samples", "findings": [{check, message, t}], "errors": [...]} as JSON.
 //   Exit 0 when the page was probed (findings or not), 2 when it could not be (message on stderr).
 //
@@ -72,8 +72,41 @@ async function pageProbe(opts) {
   const dur = Number.isFinite(attrDur) && attrDur > 0 ? attrDur : Math.max(0, ...drivers.map((tl) => tl.duration()));
   if (seen.size === 0) return { error: "the timelines contain no tweens — nothing to check" };
   if (!(dur > 0)) return { error: "the composition has zero duration — nothing to sample" };
-  const n = Math.max(2, opts.samples);
-  const times = Array.from({ length: n }, (_, i) => Math.min(dur, (dur * i) / (n - 1)));
+  // Sample plan (long reels): `samples` evenly spaced seeks, plus start+ε / middle / end−ε of the root and of
+  // every slot (an element with data-start + data-duration), plus the start and end of every tween — so a
+  // short scene in a 10-minute reel is never stepped over. Capped at maxSamples: even and slot points first,
+  // tween points evenly thinned to fit.
+  const n = Math.max(2, opts.samples), cap = Math.max(n, opts.maxSamples || 600);
+  const clamp = (t) => Math.min(dur, Math.max(0, t));
+  const even = Array.from({ length: n }, (_, i) => clamp((dur * i) / (n - 1)));
+  const slotPts = [];
+  const spans = [[0, dur]];
+  for (const el of document.querySelectorAll("[data-start][data-duration]")) {
+    if (el === rootEl) continue;
+    let s = parseFloat(el.getAttribute("data-start")), d = parseFloat(el.getAttribute("data-duration"));
+    if (!Number.isFinite(s) || !(d > 0)) continue;
+    for (let p = el.parentElement && el.parentElement.closest("[data-start]"); p && p !== rootEl; p = p.parentElement && p.parentElement.closest("[data-start]")) {
+      const ps = parseFloat(p.getAttribute("data-start"));
+      if (Number.isFinite(ps)) s += ps;
+    }
+    spans.push([s, d]);
+  }
+  for (const [s, d] of spans) { const e = Math.min(0.02, d / 4); slotPts.push(clamp(s + e), clamp(s + d / 2), clamp(s + d - e)); }
+  const driverSet = new Set(drivers), tweenPts = [];
+  for (const tw of seen) {
+    let t = tw.startTime(), p = tw.parent;
+    while (p && !driverSet.has(p) && p.parent && typeof p.startTime === "function") {
+      t = p.startTime() + t / (typeof p.timeScale === "function" ? (p.timeScale() || 1) : 1);
+      p = p.parent;
+    }
+    if (Number.isFinite(t)) tweenPts.push(clamp(t), clamp(t + tw.duration()));
+  }
+  const thin = (arr, k) => arr.length <= k ? arr : Array.from({ length: k }, (_, i) => arr[Math.round((i * (arr.length - 1)) / Math.max(1, k - 1))]);
+  const uniq = (arr) => [...new Map(arr.map((t) => [Math.round(t * 1000), t])).values()].sort((a, b) => a - b);
+  let times = uniq(even.concat(thin(uniq(slotPts), Math.max(0, cap - n))));
+  const have = new Set(times.map((t) => Math.round(t * 1000)));
+  const extra = uniq(tweenPts).filter((t) => !have.has(Math.round(t * 1000)));
+  times = uniq(times.concat(thin(extra, Math.max(0, cap - times.length))));
 
   const REASONS = ["focus", "glow", "wipe"];
   function reasonProblem(el, why) {
@@ -83,19 +116,28 @@ async function pageProbe(opts) {
     if (r === "wipe" && opts.format !== "shorts") return `${describe(el)}: data-blur-reason "wipe" is Shorts-only`;
     return null;
   }
+  // Elements under display:none render nothing, so the computed-style walk skips those subtrees (inactive
+  // scenes of a long reel); feGaussianBlur sites are checked everywhere (filter defs may live in hidden SVG).
+  function* rendered(el) {
+    for (const c of el.children) {
+      if (c.tagName === "feGaussianBlur") continue;
+      const cs = getComputedStyle(c);
+      if (cs.display === "none") continue;
+      yield [c, cs];
+      yield* rendered(c);
+    }
+  }
   for (const t of times) {
     for (const tl of drivers) tl.seek(tl === rootTl || !rootTl ? t : Math.min(t, tl.duration()), false);
-    for (const el of document.querySelectorAll("*")) {
-      if (el.tagName === "feGaussianBlur") {
-        const bad = reasonProblem(el, "feGaussianBlur");
-        if (bad) add(5, bad, t);
-        const sd = String(el.getAttribute("stdDeviation") || "0").trim().split(/[\s,]+/).map(parseFloat);
-        if (sd.length === 2 && sd[0] !== sd[1] && !(opts.format === "shorts" && el.getAttribute("data-blur-reason") === "wipe")) {
-          add(5, `${describe(el)}: directional Gaussian (stdDeviation "${sd.join(" ")}") is movement blur — use HFMotionBlur`, t);
-        }
-        continue;
+    for (const el of document.querySelectorAll("feGaussianBlur")) {
+      const bad = reasonProblem(el, "feGaussianBlur");
+      if (bad) add(5, bad, t);
+      const sd = String(el.getAttribute("stdDeviation") || "0").trim().split(/[\s,]+/).map(parseFloat);
+      if (sd.length === 2 && sd[0] !== sd[1] && !(opts.format === "shorts" && el.getAttribute("data-blur-reason") === "wipe")) {
+        add(5, `${describe(el)}: directional Gaussian (stdDeviation "${sd.join(" ")}") is movement blur — use HFMotionBlur`, t);
       }
-      const cs = getComputedStyle(el);
+    }
+    for (const [el, cs] of rendered(document.documentElement)) {
       for (const prop of ["filter", "backdropFilter"]) {
         if (String(cs[prop] || "").includes("blur(")) { const bad = reasonProblem(el, `CSS ${prop} blur()`); if (bad) add(5, bad, t); }
       }
@@ -113,11 +155,13 @@ async function pageProbe(opts) {
   return { timelines: ids.length, tweens: seen.size, samples: times.length, duration: dur, findings };
 }
 
+const SEEK_BUDGET_MS = 200;   // time allowance per sample on top of --timeout (a seek + a DOM walk)
+
 function args(argv) {
-  const a = { samples: 24, timeout: 30000, width: 1920, height: 1080 };
+  const a = { samples: 24, maxSamples: 600, timeout: 30000, width: 1920, height: 1080 };
   for (let i = 0; i < argv.length; i++) {
-    const k = argv[i].replace(/^--/, "");
-    a[k] = ["samples", "timeout", "width", "height"].includes(k) ? Number(argv[++i]) : argv[++i];
+    const k = argv[i].replace(/^--/, "").replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+    a[k] = ["samples", "maxSamples", "timeout", "width", "height"].includes(k) ? Number(argv[++i]) : argv[++i];
   }
   return a;
 }
@@ -135,7 +179,7 @@ async function waitFor(fn, ms, what) {
 async function main() {
   const a = args(process.argv.slice(2));
   if (!a.url || !["long-form", "shorts"].includes(a.format) || !a.chrome) {
-    process.stderr.write("usage: node tools/qa_probe.mjs --url URL --format long-form|shorts --chrome PATH [--width W --height H] [--samples N]\n");
+    process.stderr.write("usage: node tools/qa_probe.mjs --url URL --format long-form|shorts --chrome PATH [--width W --height H] [--samples N] [--max-samples N]\n");
     return 2;
   }
   if (typeof WebSocket === "undefined") { process.stderr.write("qa_probe needs node ≥ 22 (global WebSocket)\n"); return 2; }
@@ -149,7 +193,7 @@ async function main() {
   chrome.on("exit", () => { chromeExited = true; });
   const cleanup = () => { try { chrome.kill("SIGKILL"); } catch (e) { /* gone */ } try { rmSync(profile, { recursive: true, force: true }); } catch (e) { /* best effort */ } };
   // Own overall deadline: if Python (or anything) is slow to give up, this process still ends and takes Chrome with it.
-  const overall = setTimeout(() => { process.stderr.write("qa_probe: overall deadline exceeded\n"); cleanup(); process.exit(2); }, 2 * a.timeout + 30000);
+  const overall = setTimeout(() => { process.stderr.write("qa_probe: overall deadline exceeded\n"); cleanup(); process.exit(2); }, 2 * a.timeout + 30000 + SEEK_BUDGET_MS * a.maxSamples);
   let ws, loadTimer;
   try {
     const portFile = join(profile, "DevToolsActivePort");
@@ -183,8 +227,8 @@ async function main() {
     if (nav.result && nav.result.errorText) throw new Error("navigation failed: " + nav.result.errorText);
     await Promise.race([loaded, new Promise((_, fail) => { loadTimer = setTimeout(() => fail(new Error("page load timed out")), a.timeout); })]);
     clearTimeout(loadTimer);
-    const res = await send("Runtime.evaluate", { expression: `(${pageProbe.toString()})(${JSON.stringify({ format: a.format, samples: a.samples, timeout: a.timeout })})`,
-      awaitPromise: true, returnByValue: true }, a.timeout + 30000);
+    const res = await send("Runtime.evaluate", { expression: `(${pageProbe.toString()})(${JSON.stringify({ format: a.format, samples: a.samples, maxSamples: a.maxSamples, timeout: a.timeout })})`,
+      awaitPromise: true, returnByValue: true }, a.timeout + 30000 + SEEK_BUDGET_MS * a.maxSamples);
     if (res.result.exceptionDetails) throw new Error("probe threw: " + (res.result.exceptionDetails.exception?.description || res.result.exceptionDetails.text));
     const out = res.result.result.value;
     if (out.error) throw new Error(out.error);

@@ -13,6 +13,11 @@ Rules (standards/formats/long-form.md, shorts.md):
 Over-footage layouts leave the face on screen, so they do not count toward the hook share or the
 hook face gaps; they do reset the 30 s body clock.
 
+Punch-ins never count: with a storyboard grid, a change detected on the edit counts as a full-frame
+graphic only where it overlaps a full-frame grid row (± 0.5 s); any other detected change is reported
+as a warning (punch-in or unplanned graphic?). Without a grid every detected change counts and the
+edit results are labelled advisory.
+
 Edit measurement: frames sampled at 5 fps, 32×18 luma. The reference is the per-pixel median frame
 (the talking head dominates any edit), or the frame at --face-ref. A frame whose mean distance from
 the reference exceeds the threshold (Otsu over all distances, never below 12) is a graphic.
@@ -169,16 +174,33 @@ def report(project, edit=None, duration=None, face_ref=None, threshold=None) -> 
     fmt = brief.get("format")
     if fmt not in pj.FORMATS:
         raise pj.ProjectError(f"BRIEF format must be long-form or shorts, got {fmt!r}")
-    rows = pj.read_storyboard(project)
+    try:
+        rows = pj.read_storyboard(project)
+    except pj.ProjectError:
+        if not edit or (project / "storyboard.md").is_file():
+            raise
+        rows = []          # an edit can be measured without a storyboard (advisory)
     warnings, reference = [], None
     other = [(r["t_in"], r["t_out"]) for r in rows if r["placement"] == "over-footage"]
+    advisory = False
     if edit:
         grid = [(r["t_in"], r["t_out"]) for r in rows]
         dist, reference = face_distances_ex(edit, face_ref=face_ref, grid=grid)
         # over-footage rows keep the face on screen: never full-frame graphics
-        full = subtract(graphic_intervals(dist, threshold=threshold), other)
+        detected = subtract(graphic_intervals(dist, threshold=threshold), other)
         duration = duration or media.video_info(edit)["duration"]
         source = f"edit: {edit}"
+        if grid:
+            # punch-ins never count: a detected change is a graphic only where it overlaps a planned full-frame row
+            planned = [(r["t_in"] - GRID_MARGIN, r["t_out"] + GRID_MARGIN) for r in rows if r["placement"] == "full-frame"]
+            full = [(a, b) for a, b in detected if any(a < y and b > x for x, y in planned)]
+            warnings += [f"detected change outside any planned graphic — punch-in or unplanned graphic? at {a:.1f}–{b:.1f} s"
+                         for a, b in merge(subtract(detected, full))]
+        else:
+            full, advisory = detected, True
+            source = f"edit (advisory — no storyboard grid): {edit}"
+            warnings.append("no storyboard grid: every detected change counts, so face punch-ins may be miscounted as "
+                            "graphics — these results are advisory")
         if reference == "median":
             warnings.append("face reference = median of all frames — unreliable if graphics exceed 50 % of the "
                             "edit; pass --face-ref or a storyboard")
@@ -194,7 +216,8 @@ def report(project, edit=None, duration=None, face_ref=None, threshold=None) -> 
     results = evaluate(fmt, full, duration, pj.hook_end(brief), share, other if fmt == "long-form" else ())
     return {"format": fmt, "source": source, "duration": duration, "hook_end": pj.hook_end(brief),
             "full_frame": merge(full), "over_footage": merge(other), "screen_share": share,
-            "results": results, "warnings": warnings, "reference": reference, "ok": all(r["ok"] for r in results)}
+            "results": results, "warnings": warnings, "reference": reference, "advisory": advisory,
+            "ok": all(r["ok"] for r in results)}
 
 
 def format_report(r) -> str:

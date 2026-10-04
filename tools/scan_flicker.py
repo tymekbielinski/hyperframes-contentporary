@@ -13,8 +13,8 @@ Both the out and back frames are reported. A jump that does not return (a hard a
 staggered pop-ins) is a legitimate edit, not flicker. Ported from video 09's scan-flicker.py (same
 thresholds, plus the return rule); frame differences come from ffmpeg (tools/media.py), so no numpy.
 
-A standalone run reports intended hard cuts only if the picture returns within MAX_RETURN frames; the QA
-gate (qa.py check 10) also excludes the known cut times.
+A standalone run may also report cuts where the picture returns within MAX_RETURN frames (e.g. a cut away
+and back); the QA gate (qa.py check 10) excludes the known cut times.
 
 Usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]   (exit 1 if any file flickers, 2 on a bad file)
 """
@@ -99,7 +99,7 @@ def scan(path) -> dict:
 
 def main(argv) -> int:
     if len(argv) < 2:
-        print("usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]  (reports intended hard cuts too; qa.py excludes them)")
+        print("usage: python3 tools/scan_flicker.py VIDEO [VIDEO...]  (may also report cuts where the picture returns; qa.py excludes cut times)")
         return 2
     bad = errors = 0
     for f in argv[1:]:

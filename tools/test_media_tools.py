@@ -75,6 +75,28 @@ class MediaTests(unittest.TestCase):
             self.assertEqual(len(media.frame_diffs(f)), 59)
             self.assertEqual(media.extract_frame(f, 0.5, Path(t) / "frame é.png").is_file(), True)
 
+    def test_metadata_values_read_scientific_notation(self):
+        text = "lavfi.signalstats.YAVG=3.47222e-05\nlavfi.signalstats.YAVG=12.5\nlavfi.signalstats.YAVG=0\nlavfi.signalstats.YAVG=1E+2\n"
+        got = media._metadata_values(text, "lavfi.signalstats.YAVG")
+        self.assertEqual(len(got), 4)
+        self.assertAlmostEqual(got[0], 3.47222e-05, places=10)
+        self.assertEqual(got[1:], [12.5, 0.0, 100.0])
+
+    def test_near_still_clip_is_still_and_does_not_flicker(self):
+        """A 1-pixel, few-level change on one frame: ffmpeg prints its YAVG in scientific notation (8.68e-05)."""
+        import qa
+        with tempfile.TemporaryDirectory() as t:
+            clip = Path(t) / "near.mp4"
+            synth._ffmpeg(["-f", "lavfi", "-i", "color=c=0x202020:s=320x180:r=30:d=2", "-vf",
+                           "drawbox=x=100:y=100:w=1:h=1:color=0x242424:t=fill:enable='eq(n,45)'",
+                           "-c:v", "libx264", "-qp", "0", "-pix_fmt", "yuv420p", str(clip)])
+            diffs = media.frame_diffs(clip)
+            self.assertEqual(len(diffs), 59)
+            self.assertLess(max(diffs), 1e-3, max(diffs))
+            self.assertGreater(max(diffs), 0)                    # the change is there, just tiny
+            self.assertEqual(qa.settle_findings(diffs, [("still", 1.4, 2.0)], 30), [])
+            self.assertEqual(scan_flicker.scan(clip)["flicker"], [])
+
     def test_gray_frames(self):
         frames = media.gray_frames(self.cuts, 2)
         self.assertEqual((len(frames), len(frames[0])), (6, 32 * 18))

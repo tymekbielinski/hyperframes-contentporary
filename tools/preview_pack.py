@@ -5,6 +5,10 @@ a contact sheet of every graphic (one settled frame each), a draft of the hook p
 (long-form; a Short links its whole render), the density timeline, the exceptions list, and the
 automated gate's result when renders/qa-report.json exists. renders/ is never committed.
 
+The gate section is STALE (never PASS) when the project's inputs changed since that qa run (the report's
+inputs_hash) or when this pack's --render is not the render qa checked. A grid with over-footage rows but no
+--overlays gets a visible warning; the edit density from `qa.py --edit` is shown when the report has it.
+
 Usage: python3 tools/preview_pack.py videos/<slug> [--render renders/qa-draft.mp4] [--overlays renders/overlays]
 """
 import argparse
@@ -127,6 +131,16 @@ def _read_qa(path):
         return {"error": f"renders/qa-report.json is unreadable ({e}) — re-run python3 tools/qa.py"}
 
 
+def stale_reason(project, qa, render):
+    """Why the gate's report cannot be trusted for this pack (None when it is current): the project's inputs
+    changed since the run (renders/qa-report.json inputs_hash), or the pack shows a different render."""
+    if qa.get("inputs_hash") != pj.inputs_hash(project):
+        return "project changed since the last qa run"
+    if not qa.get("render") or Path(qa["render"]).resolve() != Path(render).resolve():
+        return f"this pack's render ({render}) is not the render the last qa run checked ({qa.get('render')})"
+    return None
+
+
 def build(project, render, overlays=None, out_dir=None) -> Path:
     project = Path(project)
     if not Path(render).is_file():
@@ -192,12 +206,39 @@ def build(project, render, overlays=None, out_dir=None) -> Path:
         critique = {"round": None, "rows": [], "warnings": [f"critique.md is unreadable ({type(e).__name__}) — fix its encoding"]}
     qa_path = project / "renders" / "qa-report.json"
     qa = _read_qa(qa_path)
+    if qa and "error" not in qa:
+        qa["_stale"] = stale_reason(project, qa, render)
+    over_rows = sum(1 for r in rows if r["placement"] == "over-footage")
+    notes = [f"{over_rows} over-footage row(s) in the grid but no --overlays: their layouts are not in this pack — "
+             "render them (npx hyperframes render -c compositions/overlays/<name>.html --format=mov -o renders/overlays/<name>.mov) "
+             "and pass --overlays renders/overlays"] if over_rows and not overlays else []
     (out / "index.html").write_text(render_html(project.name, fmt, items, drafts, density, critique, qa,
-                                                brief.get("exceptions") or []))
+                                                brief.get("exceptions") or [], notes))
     return out / "index.html"
 
 
-def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions) -> str:
+def density_block(e, report) -> list:
+    parts = [density_svg(report)]
+    if report.get("reference"):
+        parts.append(f"<p>face reference: {e(str(report['reference']))}</p>")
+    parts.append("".join(f"<p class='low'>WARN — {e(str(w))}</p>" for w in report.get("warnings", [])))
+    parts.append("<ul>" + "".join(f"<li class='{'pass' if r['ok'] else 'fail'}'>{'PASS' if r['ok'] else 'FAIL'} — {e(r['name'])}: {e(r['detail'])}</li>"
+                                  for r in report["results"]) + "</ul>")
+    return parts
+
+
+def edit_densities(qa) -> list:
+    """The gate's density reports measured on the edit (qa.py --edit), if any."""
+    if not qa or "error" in qa:
+        return []
+    for c in qa.get("checks") or []:
+        if isinstance(c, dict) and c.get("n") == 8 and isinstance(c.get("density"), list):
+            return [d for d in c["density"] if isinstance(d, dict) and str(d.get("source", "")).startswith("edit")
+                    and isinstance(d.get("results"), list) and d.get("duration")]
+    return []
+
+
+def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions, notes=()) -> str:
     e = html.escape
     parts = [f"<!doctype html><html lang='en'><head><meta charset='utf-8'><title>Preview pack — {e(slug)}</title>",
              "<style>body{font:15px/1.5 system-ui,sans-serif;background:#111;color:#eee;margin:24px;max-width:1100px}"
@@ -223,7 +264,13 @@ def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions) -> 
         parts.append(f"<h2>Automated gate — <span class='fail'>UNKNOWN</span></h2><p class='fail'>{e(qa['error'])}</p>")
     elif qa:
         ok = bool(qa.get("ok"))
-        parts.append(f"<h2>Automated gate — <span class='{'pass' if ok else 'fail'}'>{'PASS' if ok else 'FAIL'}</span></h2><table>")
+        if qa.get("_stale"):    # never PASS: the report describes another state of the project or another render
+            stale = qa["_stale"]
+            label = "project changed since the last qa run" if stale.startswith("project changed") else "render differs"
+            parts.append(f"<h2>Automated gate — <span class='fail'>STALE</span> ({e(label)})</h2>"
+                         f"<p class='fail'>{e(stale)} — re-run python3 tools/qa.py before sign-off. Last run's checks, for reference:</p><table>")
+        else:
+            parts.append(f"<h2>Automated gate — <span class='{'pass' if ok else 'fail'}'>{'PASS' if ok else 'FAIL'}</span></h2><table>")
         for c in qa["checks"]:
             if not isinstance(c, dict):
                 parts.append(f"<tr><td>?</td><td colspan='3' class='fail'>UNKNOWN — unreadable check entry: {e(str(c))}</td></tr>")
@@ -239,6 +286,7 @@ def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions) -> 
     # 3. drafts + contact sheet
     parts.append("<h2>Drafts</h2><ul>" + "".join(f"<li><a href='{f}'>{f}</a> — {e(d)}</li>" if f else f"<li class='low'>{e(d)}</li>" for f, d in drafts) + "</ul>")
     parts.append(f"<h2>Every graphic ({len(items)})</h2>")
+    parts.extend(f"<p class='low'>WARNING — {e(n)}</p>" for n in notes)
     if items:
         parts.append("<p><a href='contact-sheet.png'>contact-sheet.png</a></p>")
     for g in items:
@@ -250,12 +298,15 @@ def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions) -> 
     if "error" in density:
         parts.append(f"<p class='low'>{e(density['error'])}</p>")
     else:
-        parts.append(density_svg(density))
-        if density.get("reference"):
-            parts.append(f"<p>face reference: {e(str(density['reference']))}</p>")
-        parts.append("".join(f"<p class='low'>WARN — {e(str(w))}</p>" for w in density.get("warnings", [])))
-        parts.append("<ul>" + "".join(f"<li class='{'pass' if r['ok'] else 'fail'}'>{'PASS' if r['ok'] else 'FAIL'} — {e(r['name'])}: {e(r['detail'])}</li>"
-                                      for r in density["results"]) + "</ul>")
+        parts.append("<h3>Density on the plan (storyboard.md)</h3>")
+        parts.extend(density_block(e, density))
+    for d in edit_densities(qa):
+        try:
+            block = density_block(e, d)
+        except (KeyError, TypeError, ValueError, ZeroDivisionError) as err:
+            block = [f"<p class='low'>edit density in renders/qa-report.json is unreadable ({e(str(err))})</p>"]
+        parts.append(f"<h3>Density on the edit ({e(str(d['source']))}){' — advisory' if d.get('advisory') else ''}</h3>")
+        parts.extend(block)
     # 5. exceptions
     parts.append("<h2>Exceptions</h2>" + ("<ul>" + "".join(f"<li>{e(str(x))}</li>" for x in exceptions) + "</ul>" if exceptions else "<p>None declared.</p>"))
     parts.append("</body></html>\n")
