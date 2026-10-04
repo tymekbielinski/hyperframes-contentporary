@@ -53,4 +53,6 @@ modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on 
 ## Tests
 
 `python3 -m unittest discover -s tools -p 'test_*.py' -v` — includes the `lib/` node suite
-(alone: `node --test "lib/test/*.test.js"`; browser seek check: `lib/examples/smoke.html`).
+(alone: `node --test "lib/test/*.test.js" "tools/*.test.js"`; browser seek check: `lib/examples/smoke.html`).
+Media-tool tests generate their own clips with ffmpeg; the runtime-probe test needs the
+chrome-headless-shell HyperFrames downloads (`npx hyperframes browser ensure`).

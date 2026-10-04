@@ -1,4 +1,4 @@
-"""Runs the lib/ node test suite (node built-ins only) as part of the repo's unittest run."""
+"""Runs the lib/ and tools/ node test suites (node built-ins only) as part of the repo's unittest run."""
 import shutil
 import subprocess
 import unittest
@@ -14,6 +14,7 @@ class LibNodeSuite(unittest.TestCase):
         # Expand the glob here: node < 21 does not expand globs passed to --test.
         files = [str(p) for p in sorted((ROOT / "lib" / "test").glob("*.test.js"))]
         self.assertTrue(files, "no lib/test/*.test.js files found")
+        files += [str(p) for p in sorted((ROOT / "tools").glob("*.test.js"))]
         r = subprocess.run([NODE, "--test", *files], cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, (r.stdout + r.stderr)[-6000:])
 

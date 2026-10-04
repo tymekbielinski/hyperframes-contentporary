@@ -136,8 +136,10 @@ window.__timelines["scene"] = tl;
 
 - `node --test "lib/test/*.test.js"` (use the glob form; the directory form fails on node 22) — determinism and contract tests (also run by
   `python3 -m unittest discover -s tools -p 'test_*.py' -v`). `lib/test/hygiene.test.js` scans every
-  module for clocks, randomness, infinite repeats, hard-coded colours, overshoot or raw eases, and
-  untagged Gaussians (colour literals other than marked pure-black alpha masks are banned).
+  module with `tools/lawscan.js` (the scanner QA checks 4–6 also run over compositions) for clocks,
+  randomness, infinite repeats, hard-coded colours, overshoot or raw eases, and untagged Gaussians
+  (colour literals other than marked pure-black alpha masks are banned). `lib/test/drift.test.js`
+  fails when `HFProfile` timings or `HFMotionBlur` shutters drift from the profile markdown.
 - `lib/examples/smoke.html` — real GSAP + WebGL in a browser: builds a long-form and a Shorts scene
   from every module, seeks 42 frames forwards and then shuffled, and compares what paints
   (including blur-canvas pixels). It fails unless both camera blur canvases and the odometer canvas actually painted. Serve the repo root (`python3 -m http.server 8765`), open
