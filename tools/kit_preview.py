@@ -106,13 +106,13 @@ def build(components=None, palette="gold", font="geometric", videos_dir=None, sl
                                  videos_dir or Path(root) / "renders" / "kit-preview", root)
     mode = pj.root_attrs(project)["data-hf-mode"]
     scripts = re.findall(r'    <script src="lib/[^"]+"></script>', (project / "index.html").read_text())
-    slots, rows, looks, t, n = [], [], [], 0.0, 0
+    slots, rows, looks, t, n, overlays = [], [], [], 0.0, 0, []
     for comp in [c for c in ORDER if c in components]:
         for key, dur, call, extra, at in FIXTURES[comp]:
             if comp in OVER_FOOTAGE:
                 rel = f"compositions/overlays/{key}.html"
                 (project / rel).write_text(OVERLAY.format(id=key, dur=dur, call=call, mode=mode, gsap=new_video.GSAP, scripts="\n".join(scripts)))
-                rows.append(f'| {t:g} | {t + dur:g} | "{key}" | over-footage | {comp} | — | ease.enter | — |')
+                overlays.append((key, dur, comp))
                 looks += [(key, rel, a) for a in at]
                 continue
             n += 1
@@ -124,11 +124,18 @@ def build(components=None, palette="gold", font="geometric", videos_dir=None, sl
             rows.append(f'| {t:g} | {t + dur:g} | "{key}" | full-frame | {comp} | — | ease.camera | — |')
             looks += [(sid, "index.html", round(t + a, 3)) for a in at]
             t += dur
-    if slots:   # a reel with scenes replaces the scaffold placeholder; an overlay-only preview keeps it
-        index = project / "index.html"
-        html = re.sub(r'\n\s*<!-- placeholder[^\n]*-->\n\s*<div id="hf-placeholder"[^\n]*</div>', "\n      " + "\n      ".join(slots), index.read_text())
-        html = re.sub(r'\n\s*tl\.to\("#hf-placeholder"[^\n]*', "", html)
-        index.write_text(html.replace('data-duration="5"', f'data-duration="{t:g}"', 1))
+    # over-footage rows sit inside the reel, one after another from 0 (never overlapping, never past the reel end);
+    # the reel runs at least as long as they do, so an overlay-only preview gets a reel of that length
+    o = 0.0
+    for key, dur, comp in overlays:
+        rows.append(f'| {o:g} | {o + dur:g} | "{key}" | over-footage | {comp} | — | ease.enter | — |')
+        o += dur
+    t = max(t, o)
+    # the scaffold placeholder goes whenever the project has any scene or overlay (QA check 1)
+    index = project / "index.html"
+    html = re.sub(r'\n\s*<!-- placeholder[^\n]*-->\n\s*<div id="hf-placeholder"[^\n]*</div>', "\n      " + "\n      ".join(slots), index.read_text())
+    html = re.sub(r'\n\s*tl\.to\("#hf-placeholder"[^\n]*', "", html)
+    index.write_text(html.replace('data-duration="5"', f'data-duration="{t:g}"', 1))
     brief = (project / "BRIEF.md").read_text().replace('film: ""', 'film: "Every kit component, as the template stills show it"')
     (project / "BRIEF.md").write_text(brief.replace('direction: ""', 'direction: "Kit preview: one scene or overlay per component"'))
     (project / "storyboard.md").write_text((project / "storyboard.md").read_text().rstrip("\n") + "\n" + "\n".join(rows) + "\n")

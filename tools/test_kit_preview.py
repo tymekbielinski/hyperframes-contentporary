@@ -39,6 +39,18 @@ class KitPreviewTests(unittest.TestCase):
         self.assertIn(("lower-third", "compositions/overlays/lower-third.html", 3.0), looks)
         self.assertNotIn("hf-placeholder", (p / "index.html").read_text())
 
+    def test_overlay_rows_sit_inside_the_reel_without_overlapping(self):
+        for name, comps, want in (("a", None, 20.5), ("o", ["lower-third", "side-text"], 9.0)):
+            p, _ = kp.build(comps, videos_dir=self.videos / name)
+            reel = float(pj.root_attrs(p)["data-duration"])
+            self.assertEqual(reel, want)
+            over = sorted((r for r in pj.read_storyboard(p) if r["placement"] == "over-footage"), key=lambda r: r["t_in"])
+            self.assertEqual(len(over), 2)
+            for r in over:
+                self.assertGreaterEqual(r["t_in"], 0)
+                self.assertLessEqual(r["t_out"], reel, "an overlay row ends by the reel end")
+            self.assertLessEqual(over[0]["t_out"], over[1]["t_in"], "overlay rows do not overlap")
+
     def test_scene_and_overlay_wiring(self):
         p, _ = kp.build(videos_dir=self.videos)
         cta = (p / "compositions" / "05-cta.html").read_text()
@@ -59,7 +71,8 @@ class KitPreviewTests(unittest.TestCase):
         self.assertEqual(p.name, "kit-silver")
         self.assertEqual(pj.composition_slots(p), [])
         self.assertIn('data-hf-mode="light"', (p / "compositions" / "overlays" / "lower-third.html").read_text())
-        self.assertIn("hf-placeholder", (p / "index.html").read_text(), "an overlay-only preview keeps the scaffold placeholder")
+        self.assertNotIn("hf-placeholder", (p / "index.html").read_text(), "an overlay-only preview drops the scaffold placeholder (QA check 1)")
+        self.assertEqual(pj.root_attrs(p)["data-duration"], "4", "the reel is as long as the overlay it carries")
         self.assertFalse((p / "assets" / "captures" / "face.mp4").exists())
         with self.assertRaisesRegex(ValueError, r"unknown kit component\(s\) badge"):
             kp.build(["badge"], videos_dir=self.videos)
