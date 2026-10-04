@@ -4,6 +4,7 @@
     "brand.js",
     "camera.js",
     "kit/kit.js",
+    "kit/title.js",
     "marks.js",
     "motion-blur.js",
     "profile.js",
@@ -18,6 +19,7 @@
     "text.js",
     "brand.js",
     "kit/kit.js",
+    "kit/title.js",
     "shorts/wipe.js"
   ]
 }
