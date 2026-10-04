@@ -128,7 +128,7 @@ def main(argv) -> int:
     except ValueError as e:
         print(e)
         return 1
-    n = len(brandcheck.load_brand(ROOT / "brands" / a.brand)["tokens"]["palettes"])
+    n = len(list((project / "compositions").glob("proof-*.html")))
     stills = ",".join(f"{i * SCENE_DUR + SCENE_DUR - 0.2:g}" for i in range(n))
     print(f"created {project} — {n} palettes, {n * SCENE_DUR:g} s")
     print(f"  gate:   python3 tools/qa.py {project}")
