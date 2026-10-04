@@ -321,12 +321,15 @@ class ToolsDocsTests(unittest.TestCase):
             self.assertIn(tool, t)
         self.assertIn("hf-placeholder", t)
 
-    def test_roadmap_marks_plan_3_done_and_plan_4_written(self):
+    def test_roadmap_marks_plan_4_done_and_plan_5_ready(self):
         t = (ROOT / "docs/superpowers/plans/2026-10-03-animation-workflow-roadmap.md").read_text()
         row3 = [l for l in t.splitlines() if l.startswith("| 3 |")][0]
         row4 = [l for l in t.splitlines() if l.startswith("| 4 |")][0]
+        row5 = [l for l in t.splitlines() if l.startswith("| 5 |")][0]
         self.assertIn("**Done** (branch `tools-v1`)", row3)
-        self.assertIn("**Written:** `2026-10-04-plan-4-kit-components.md`", row4)
+        self.assertIn("**Done** (branch `kit-v1`)", row4)
+        self.assertIn("**Ready to write**", row5)
+        self.assertIn("## Notes for Plan 5 (from Plan 4)", t)
         self.assertTrue((ROOT / "docs/superpowers/plans/2026-10-04-plan-4-kit-components.md").is_file())
         self.assertIn("## Notes for Plan 4 (from Plan 3)", t)
         self.assertIn("hf-placeholder", t)
@@ -352,6 +355,39 @@ class ToolsDocsTests(unittest.TestCase):
         self.assertTrue(all("Done in Plan 3" in l for l in plan3), plan3)
         notes4 = road.split("## Notes for Plan 4 (from Plan 3)", 1)[1].split("\n## ", 1)[0]
         self.assertIn("root-relative", notes4)
+
+
+
+class KitDocsTests(unittest.TestCase):
+    def test_no_plan_4_placeholders_left(self):
+        for rel in ToolsDocsTests.DOCS + ["brands/_template/README.md", "brands/contentporary/brand.md"]:
+            self.assertNotIn("(Plan 4", (ROOT / rel).read_text(), rel)
+
+    def test_long_form_kit_table_names_every_call_and_variant(self):
+        import json
+        t = (ROOT / "standards" / "formats" / "long-form.md").read_text()
+        self.assertIn("## Kit — `lib/kit`", t)
+        kit = json.loads((ROOT / "brands" / "contentporary" / "tokens.json").read_text())["kit"]
+        calls = {"title": "HFKit.title", "subtitle": "HFKit.subtitle", "lower-third": "HFKit.lowerThird",
+                 "side-text": "HFKit.sideText", "cta-youtube": "HFKit.ctaYoutube", "roadmap": "HFKit.roadmap"}
+        for name, variant in kit.items():
+            row = [l for l in t.splitlines() if l.startswith(f"| `{calls[name]}` |")]
+            self.assertEqual(len(row), 1, name)
+            self.assertIn(f"| `{variant}` |", row[0])
+            self.assertIn(calls[name], (ROOT / "brands" / "contentporary" / "brand.md").read_text())
+            self.assertIn(calls[name], (ROOT / "lib" / "README.md").read_text())
+
+    def test_onboarding_and_claude_md_name_the_proof_sheet(self):
+        self.assertIn("python3 tools/proof_sheet.py <client-slug>", (ROOT / "brands" / "_template" / "README.md").read_text())
+        self.assertIn("proof_sheet.py", (ROOT / "CLAUDE.md").read_text())
+        self.assertTrue((ROOT / "tools" / "proof_sheet.py").is_file())
+
+    def test_lib_readme_documents_the_plan_2_review_hooks(self):
+        t = (ROOT / "lib" / "README.md").read_text()
+        for s in ["HFProfile.claimTransform", "splitWords", "opts.onSpans", "accentWord` installs its own stylesheet",
+                  "lib/kit/kit.js", "data-hf-mode", "proof_sheet.py", "HFText.loadFaces", "measureWidth"]:
+            self.assertIn(s, t, s)
+        self.assertEqual(t.count("await HFText.loadFaces(root)"), 1)
 
 
 if __name__ == "__main__":

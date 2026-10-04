@@ -9,7 +9,12 @@
 5. Fill `fonts`, choose a variant for each `kit` component, and list the `marks` the brand uses.
 6. Fill `brand.md` (constant visual language) and `narrative.md`.
 7. Validate: `python3 tools/brandcheck.py brands/<client-slug>`.
-8. Render the brand proof sheet (Plan 4 tooling): full-screen title, subtitle, lower third and
-   side screen text in every palette.
+8. Build and render the brand proof sheet — full-screen title, subtitle, lower third and side screen
+   text in every palette, one scene per palette:
+   `python3 tools/proof_sheet.py <client-slug>` (writes `videos/proof-<client-slug>/`), then
+   `python3 tools/qa.py videos/proof-<client-slug>` (every check passes except 3 while the brand is still
+   `draft`), then render the stills the tool prints
+   (`npx hyperframes snapshot videos/proof-<client-slug> --at … --no-end -o videos/proof-<client-slug>/renders/proof-stills`)
+   and the video (`npx hyperframes render videos/proof-<client-slug> -o videos/proof-<client-slug>/renders/proof.mp4`).
 9. Tymek reviews the proof sheet. On approval set `"status": "approved"`. Only approved brands pass
    the QA gate.
