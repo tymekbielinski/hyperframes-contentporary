@@ -1,7 +1,13 @@
 # QA Gate
 
 Three stages: an automated gate that blocks the render, an agent critique loop, then a human sign-off before delivery.
-Automated checks are implemented by `tools/qa` (Plan 3). Until it exists, run each check by hand.
+Run the automated gate with `python3 tools/qa.py videos/<slug>`: it prints PASS / FAIL (or SKIP /
+WAIVED) for each of the ten checks below and writes `renders/qa-report.json`. It renders a draft
+(`npx hyperframes render -q draft`) for checks 9–10 unless given `--render`, probes the live page
+through `npx hyperframes preview` for checks 5, 6 and 10, and takes `--edit <cut.mp4>` to measure
+density on the edited timeline as well as on the beat grid. Check 1 also fails while the scaffold's `#hf-placeholder`
+is still in `index.html` once any scene exists. Density warnings (`cadence_scan`) and runtime-probe
+warnings are printed in the report but do not fail a check on their own.
 
 ## 1. Automated gate (blocks render)
 
@@ -20,6 +26,9 @@ Automated checks are implemented by `tools/qa` (Plan 3). Until it exists, run ea
 
 **Exceptions:** declared in the BRIEF under `exceptions:`, each with a reason (e.g. a recreated UI
 that has no real screenshot). The gate passes declared exceptions and lists them in the preview pack.
+An entry `check <n>: <reason>` waives check n; `check <n> [<text>]: <reason>` waives only the findings
+of check n that contain `<text>`. Any other entry (e.g. `F09: recreated Google Calendar — …`) is
+listed, not applied.
 
 ## 2. Critique loop (agent, before the human sees anything)
 

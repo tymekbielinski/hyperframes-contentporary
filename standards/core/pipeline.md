@@ -64,7 +64,7 @@ this table before building.
    over-footage layouts as standalone transparent documents in `compositions/overlays/` (no `<template>`
    wrapper — each renders on its own with `-c`). Use `lib/kit` and the
    `camera` / `marks` / `text` primitives.
-5. **Automated gate** (`standards/core/qa.md` §1).
+5. **Automated gate:** `python3 tools/qa.py videos/<slug>` (`standards/core/qa.md` §1).
 6. **Critique loop** (`standards/core/qa.md` §2) — scores and fixes into `critique.md`.
 7. **Preview pack → sign-off** by the runner (`standards/core/qa.md` §3).
 8. **Render and slice.** `npx hyperframes render videos/<slug> -o videos/<slug>/renders/reel.mp4`; each

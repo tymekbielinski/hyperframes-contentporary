@@ -35,7 +35,7 @@ This repo is shared by the Contentporary team on GitHub
    Gaussian blur only with `data-blur-reason` = `focus`, `glow` or `wipe` (Shorts: wipe feather and element smear).
 5. Long-form never has running captions (key-line lower thirds only). Shorts captions follow the
    BRIEF's `captions` flag.
-6. Every video passes `standards/core/qa.md` (automated gate, agent critique loop, then sign-off by whoever ran the build).
+6. Every video passes `standards/core/qa.md` (automated gate `python3 tools/qa.py videos/<slug>`, agent critique loop, then sign-off by whoever ran the build).
 7. **Promotion rule:** a finding that changes how future videos are made goes into `standards/` or
    `brands/`, never only into a BRIEF or agent memory.
 8. New client → `brands/_template/README.md`. Validate any brand with
