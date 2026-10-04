@@ -321,12 +321,13 @@ class ToolsDocsTests(unittest.TestCase):
             self.assertIn(tool, t)
         self.assertIn("hf-placeholder", t)
 
-    def test_roadmap_marks_plan_3_done_and_plan_4_ready(self):
+    def test_roadmap_marks_plan_3_done_and_plan_4_written(self):
         t = (ROOT / "docs/superpowers/plans/2026-10-03-animation-workflow-roadmap.md").read_text()
         row3 = [l for l in t.splitlines() if l.startswith("| 3 |")][0]
         row4 = [l for l in t.splitlines() if l.startswith("| 4 |")][0]
         self.assertIn("**Done** (branch `tools-v1`)", row3)
-        self.assertIn("Ready to write", row4)
+        self.assertIn("**Written:** `2026-10-04-plan-4-kit-components.md`", row4)
+        self.assertTrue((ROOT / "docs/superpowers/plans/2026-10-04-plan-4-kit-components.md").is_file())
         self.assertIn("## Notes for Plan 4 (from Plan 3)", t)
         self.assertIn("hf-placeholder", t)
 
