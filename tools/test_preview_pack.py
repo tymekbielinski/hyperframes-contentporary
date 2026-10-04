@@ -118,6 +118,61 @@ class BuildTests(unittest.TestCase):
         (self.p / "renders" / "qa-report.json").write_text(json.dumps({"ok": True, "checks": [], "warnings": ["probe skipped"]}))
         self.assertIn("probe skipped", pp.build(self.p, self.reel).read_text())
 
+    def test_suffixed_round_heading_is_the_latest(self):
+        text = CRITIQUE + "\n## Round 3 (after fixes)\n\n| graphic | smooth | on-brand | readable | synced | purposeful | craft | notes |\n|---|---|---|---|---|---|---|---|\n| 03-x | 9 | 9 | 9 | 9 | 9 | 9 | ok |\n"
+        c = pp.parse_critique(text)
+        self.assertEqual((c["round"], [r["graphic"] for r in c["rows"]]), (3, ["03-x"]))
+        c = pp.parse_critique("## Round two\n| a | 9 | 9 | 9 | 9 | 9 | 9 | x |\n")
+        self.assertIsNone(c["round"])
+        self.assertIn("unparseable round heading", c["warnings"][0])
+
+    def test_seven_cells_and_malformed_rows_are_never_dropped(self):
+        head = "## Round 1\n\n| graphic | s |\n|---|---|\n"
+        c = pp.parse_critique(head + "| 01-a | 9 | 9 | 9 | 9 | 9 | 9 |\n| 02-b | 9 | 9 |\n| junk <b> |\n")
+        by = {r["graphic"]: r for r in c["rows"]}
+        self.assertEqual(by["01-a"]["low"], [])
+        self.assertEqual(by["01-a"]["notes"], "")
+        self.assertEqual(len(by["02-b"]["low"]), 6)
+        self.assertIn("malformed row", by["02-b"]["notes"])
+        self.assertIn("junk <b>", by["junk <b>"]["graphic"])
+        self.assertEqual(len(c["warnings"]), 2)
+
+    def test_out_of_range_scores_are_unknown(self):
+        c = pp.parse_critique("## Round 1\n| g | 0 | 11 | 99 | 9 | 9 | 9 | n |\n")
+        r = c["rows"][0]
+        self.assertEqual(r["low"], ["smooth", "on-brand", "readable"])
+        self.assertIsNone(r["scores"]["readable"])
+
+    def test_undecodable_files_are_named_not_tracebacks(self):
+        (self.p / "critique.md").write_bytes(b"\xff\xfe\x00bad")
+        (self.p / "renders").mkdir()
+        (self.p / "renders" / "qa-report.json").write_bytes(b"\xff\xfe")
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("critique.md is unreadable", page)
+        self.assertIn("UNKNOWN", page)
+
+    def test_body_skip_is_visible_and_odd_checks_are_tolerated(self):
+        (self.p / "storyboard.md").write_text(HEADER + '| 10.0 | 12.0 | "hook" | full-frame | B1 | — | — | — |\n')
+        (self.p / "renders").mkdir()
+        (self.p / "renders" / "qa-report.json").write_text(json.dumps(
+            {"ok": False, "checks": ["oops", {"n": "<b>", "name": "x", "status": "FAIL", "findings": None}]}))
+        page = pp.build(self.p, self.reel).read_text()
+        self.assertIn("body draft skipped", page)
+        self.assertIn("unreadable check entry", page)
+        self.assertNotIn("<b>", page)
+
+    def test_html_is_escaped(self):
+        evil = "<script>alert(1)</script>&"
+        (self.p / "BRIEF.md").write_text('```yaml\nformat: long-form\nhook_end: 80\nexceptions:\n  - "<script>x</script> & y"\n```\n')
+        (self.p / "critique.md").write_text(CRITIQUE.replace("snapped", evil).replace("eased now", evil))
+        evil_dir = Path(self.tmp.name) / "<i>&slug"
+        self.p.rename(evil_dir)
+        page = pp.build(evil_dir, self.reel).read_text()
+        self.assertNotIn("<script>", page)
+        self.assertNotIn("<i>", page)
+        self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt;&amp;", page)
+        self.assertIn("&lt;script&gt;x&lt;/script&gt; &amp; y", page)
+
     def test_cli_missing_render(self):
         out = io.StringIO()
         with redirect_stdout(out):

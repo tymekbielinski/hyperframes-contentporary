@@ -26,11 +26,18 @@ SHORTS_EXIT = 0.36
 
 
 def parse_critique(text: str) -> dict:
-    """The last '## Round N' table of critique.md → {"round": N | None, "rows": [...]}, low scorers first."""
-    rounds = list(re.finditer(r"^## Round (\d+)\s*$", text, re.M))
+    """The last '## Round N …' table of critique.md → {"round": N | None, "rows": [...]}, low scorers first.
+    A "warnings" list is added when a heading or row could not be parsed; no graphic is ever dropped silently."""
+    warnings, rounds = [], []
+    for m in re.finditer(r"^##\s*Round\b.*$", text, re.M):
+        n = re.match(r"^##\s*Round\s+(\d+)\b", m.group(0))
+        if n:
+            rounds.append((m, int(n.group(1))))
+        else:
+            warnings.append(f"unparseable round heading: {m.group(0).strip()!r}")
     if not rounds:
-        return {"round": None, "rows": []}
-    last = rounds[-1]
+        return {"round": None, "rows": [], **({"warnings": warnings} if warnings else {})}
+    last, number = rounds[-1]
     rows = []
     for line in text[last.end():].splitlines():
         if line.startswith("## "):
@@ -38,15 +45,24 @@ def parse_critique(text: str) -> dict:
         if not line.strip().startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 8 or cells[0] in ("graphic", "") or set(cells[0]) <= {"-", ":"}:
+        if cells[0].lower() == "graphic" or (cells[0] and set(cells[0]) <= {"-", ":"}):
+            continue
+        if len(cells) not in (7, 8) or not cells[0]:
+            warnings.append(f"malformed row: {line.strip()}")
+            rows.append({"graphic": cells[0] or "(unnamed row)", "scores": {d: None for d in DIMENSIONS},
+                         "notes": f"malformed row: {line.strip()}", "low": list(DIMENSIONS)})
             continue
         scores = {}
         for dim, cell in zip(DIMENSIONS, cells[1:7]):
-            scores[dim] = int(cell) if re.fullmatch(r"\d{1,2}", cell) else None
-        low = [d for d, s in scores.items() if s is None or s < PASS_SCORE]
-        rows.append({"graphic": cells[0], "scores": scores, "notes": cells[7], "low": low})
+            v = int(cell) if re.fullmatch(r"\d{1,2}", cell) else None
+            scores[dim] = v if v is not None and 1 <= v <= 10 else None
+        low = [d for d, sc in scores.items() if sc is None or sc < PASS_SCORE]
+        rows.append({"graphic": cells[0], "scores": scores, "notes": cells[7] if len(cells) == 8 else "", "low": low})
     rows.sort(key=lambda r: (not r["low"], ))
-    return {"round": int(last.group(1)), "rows": rows}
+    out = {"round": number, "rows": rows}
+    if warnings:
+        out["warnings"] = warnings
+    return out
 
 
 def graphics(project, fmt, rows) -> list:
@@ -107,7 +123,7 @@ def _read_qa(path):
         if not isinstance(qa, dict) or not isinstance(qa.get("checks"), list):
             raise ValueError("no checks list")
         return qa
-    except ValueError as e:
+    except (ValueError, OSError) as e:   # JSON errors and UnicodeDecodeError are ValueErrors
         return {"error": f"renders/qa-report.json is unreadable ({e}) — re-run python3 tools/qa.py"}
 
 
@@ -146,11 +162,21 @@ def build(project, render, overlays=None, out_dir=None) -> Path:
         scenes = [g for g in items if "start" in g]
         hook = [g for g in scenes if g["timeline"] is not None and g["timeline"] < hook_end] or scenes[:1]
         body = [g for g in scenes if g["timeline"] is not None and g["timeline"] >= hook_end][:1]
-        _cut(render, hook[0]["start"], hook[-1]["end"], out / "hook.mp4")
-        drafts.append(("hook.mp4", f"hook: {len(hook)} scene(s)"))
-        if body:
-            _cut(render, body[0]["start"], body[0]["end"], out / "body.mp4")
-            drafts.append(("body.mp4", f"body: {body[0]['label']}"))
+        try:
+            _cut(render, hook[0]["start"], hook[-1]["end"], out / "hook.mp4")
+            drafts.append(("hook.mp4", f"hook: {len(hook)} scene(s)"))
+        except media.MediaError as e:
+            drafts.append((None, f"hook draft skipped: {e}"))
+        if not body:
+            why = ("storyboard full-frame rows do not match the composition slots, so scenes have no timeline"
+                   if any(g.get("timeline") is None for g in scenes) else "no full-frame scene after hook_end")
+            drafts.append((None, f"body draft skipped: {why}"))
+        else:
+            try:
+                _cut(render, body[0]["start"], body[0]["end"], out / "body.mp4")
+                drafts.append(("body.mp4", f"body: {body[0]['label']}"))
+            except media.MediaError as e:
+                drafts.append((None, f"body draft skipped: {e}"))
     elif fmt == "shorts":
         shutil.copyfile(render, out / "short.mp4")
         drafts.append(("short.mp4", "the whole Short"))
@@ -160,7 +186,10 @@ def build(project, render, overlays=None, out_dir=None) -> Path:
     except (pj.ProjectError, ValueError) as e:
         density = {"error": str(e)}
     crit_path = project / "critique.md"
-    critique = parse_critique(crit_path.read_text()) if crit_path.is_file() else {"round": None, "rows": []}
+    try:
+        critique = parse_critique(crit_path.read_text()) if crit_path.is_file() else {"round": None, "rows": []}
+    except (UnicodeDecodeError, OSError) as e:
+        critique = {"round": None, "rows": [], "warnings": [f"critique.md is unreadable ({type(e).__name__}) — fix its encoding"]}
     qa_path = project / "renders" / "qa-report.json"
     qa = _read_qa(qa_path)
     (out / "index.html").write_text(render_html(project.name, fmt, items, drafts, density, critique, qa,
@@ -178,6 +207,7 @@ def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions) -> 
              f"<h1>Preview pack — {e(slug)} <small>({e(fmt)})</small></h1>"]
     # 1. critique scores, low first
     parts.append("<h2>Critique scores" + (f" — round {critique['round']}" if critique["round"] else "") + "</h2>")
+    parts.extend(f"<p class='low'>WARNING — {e(w)}</p>" for w in critique.get("warnings", []))
     if critique["rows"]:
         low = [r for r in critique["rows"] if r["low"]]
         parts.append(f"<p class='{'low' if low else 'pass'}'>{len(low)} graphic(s) below {PASS_SCORE} on some dimension.</p>")
@@ -195,15 +225,19 @@ def render_html(slug, fmt, items, drafts, density, critique, qa, exceptions) -> 
         ok = bool(qa.get("ok"))
         parts.append(f"<h2>Automated gate — <span class='{'pass' if ok else 'fail'}'>{'PASS' if ok else 'FAIL'}</span></h2><table>")
         for c in qa["checks"]:
-            parts.append(f"<tr><td>{c.get('n')}</td><td>{e(str(c.get('name')))}</td><td class='{'pass' if c.get('status') in ('PASS', 'WAIVED') else 'fail'}'>{e(str(c.get('status')))}</td>"
-                         f"<td>{'<br>'.join(e(str(f)) for f in c.get('findings', [])[:5])}</td></tr>")
+            if not isinstance(c, dict):
+                parts.append(f"<tr><td>?</td><td colspan='3' class='fail'>UNKNOWN — unreadable check entry: {e(str(c))}</td></tr>")
+                continue
+            finds = c.get("findings") if isinstance(c.get("findings"), list) else []
+            parts.append(f"<tr><td>{e(str(c.get('n')))}</td><td>{e(str(c.get('name')))}</td><td class='{'pass' if c.get('status') in ('PASS', 'WAIVED') else 'fail'}'>{e(str(c.get('status')))}</td>"
+                         f"<td>{'<br>'.join(e(str(f)) for f in finds[:5])}</td></tr>")
         parts.append("</table>")
         if qa.get("warnings"):
             parts.append("<p class='low'>Gate warnings:</p><ul>" + "".join(f"<li class='low'>{e(str(w))}</li>" for w in qa["warnings"]) + "</ul>")
     else:
         parts.append("<h2>Automated gate — <span class='fail'>NOT RUN</span></h2><p class='low'>No renders/qa-report.json — qa was not run or crashed; this is NOT a pass. Run python3 tools/qa.py first.</p>")
     # 3. drafts + contact sheet
-    parts.append("<h2>Drafts</h2><ul>" + "".join(f"<li><a href='{f}'>{f}</a> — {e(d)}</li>" for f, d in drafts) + "</ul>")
+    parts.append("<h2>Drafts</h2><ul>" + "".join(f"<li><a href='{f}'>{f}</a> — {e(d)}</li>" if f else f"<li class='low'>{e(d)}</li>" for f, d in drafts) + "</ul>")
     parts.append(f"<h2>Every graphic ({len(items)})</h2>")
     if items:
         parts.append("<p><a href='contact-sheet.png'>contact-sheet.png</a></p>")
