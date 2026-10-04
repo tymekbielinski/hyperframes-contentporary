@@ -29,6 +29,7 @@ import project as pj
 HOOK_MIN, HOOK_GAP, BODY_GAP = 0.60, 6.0, 30.0
 SHORTS_BAND = (0.35, 0.55)
 EDIT_FPS, MIN_DIST = 5, 12.0
+GRID_MARGIN, MIN_FACE_FRAMES = 0.5, 5
 EPS = 1e-6          # summed float intervals: a hook of exactly 60 % must pass
 
 
@@ -112,17 +113,39 @@ def otsu(values) -> float:
     return cut + 0.5
 
 
-def face_distances(video, fps=EDIT_FPS, face_ref=None) -> list:
+def subtract(intervals, cut) -> list:
+    """Parts of `intervals` not covered by `cut`."""
+    out = []
+    for a, b in merge(intervals):
+        out.extend(gaps(cut, a, b))
+    return out
+
+
+def face_distances_ex(video, fps=EDIT_FPS, face_ref=None, grid=()):
+    """(distances, reference kind): "face-ref" > "grid" (frames outside every grid row ± 0.5 s) > "median"."""
     frames = media.gray_frames(video, fps)
     if not frames:
         raise media.MediaError(f"{video}: no frames decoded")
-    if face_ref is None:
-        ref = [statistics.median(f[p] for f in frames) for p in range(len(frames[0]))]
-    else:
+    kind = "median"
+    if face_ref is not None:
         k = min(len(frames) - 1, max(0, int(round(face_ref * fps))))
-        ref = list(frames[k])
+        ref, kind = list(frames[k]), "face-ref"
+    else:
+        faces = []
+        if grid:
+            faces = [f for i, f in enumerate(frames)
+                     if all(not (a - GRID_MARGIN <= i / fps <= b + GRID_MARGIN) for a, b in grid)]
+        if len(faces) >= MIN_FACE_FRAMES:
+            frames_for_ref, kind = faces, "grid"
+        else:
+            frames_for_ref = frames
+        ref = [statistics.median(f[p] for f in frames_for_ref) for p in range(len(frames[0]))]
     n = len(ref)
-    return [sum(abs(f[p] - ref[p]) for p in range(n)) / n for f in frames]
+    return [sum(abs(f[p] - ref[p]) for p in range(n)) / n for f in frames], kind
+
+
+def face_distances(video, fps=EDIT_FPS, face_ref=None, grid=()) -> list:
+    return face_distances_ex(video, fps, face_ref, grid)[0]
 
 
 def graphic_intervals(distances, fps=EDIT_FPS, threshold=None) -> list:
@@ -147,11 +170,20 @@ def report(project, edit=None, duration=None, face_ref=None, threshold=None) -> 
     if fmt not in pj.FORMATS:
         raise pj.ProjectError(f"BRIEF format must be long-form or shorts, got {fmt!r}")
     rows = pj.read_storyboard(project)
+    warnings, reference = [], None
     other = [(r["t_in"], r["t_out"]) for r in rows if r["placement"] == "over-footage"]
     if edit:
-        full = graphic_intervals(face_distances(edit, face_ref=face_ref), threshold=threshold)
+        grid = [(r["t_in"], r["t_out"]) for r in rows]
+        dist, reference = face_distances_ex(edit, face_ref=face_ref, grid=grid)
+        # over-footage rows keep the face on screen: never full-frame graphics
+        full = subtract(graphic_intervals(dist, threshold=threshold), other)
         duration = duration or media.video_info(edit)["duration"]
         source = f"edit: {edit}"
+        if reference == "median":
+            warnings.append("face reference = median of all frames — unreliable if graphics exceed 50 % of the "
+                            "edit; pass --face-ref or a storyboard")
+        if not full:
+            warnings.append("detected graphic share is 0 % — likely an all-graphic or all-face edit")
     else:
         full = [(r["t_in"], r["t_out"]) for r in rows if r["placement"] == "full-frame"]
         duration = duration or pj.transcript_duration(project)
@@ -162,13 +194,14 @@ def report(project, edit=None, duration=None, face_ref=None, threshold=None) -> 
     results = evaluate(fmt, full, duration, pj.hook_end(brief), share, other if fmt == "long-form" else ())
     return {"format": fmt, "source": source, "duration": duration, "hook_end": pj.hook_end(brief),
             "full_frame": merge(full), "over_footage": merge(other), "screen_share": share,
-            "results": results, "ok": all(r["ok"] for r in results)}
+            "results": results, "warnings": warnings, "reference": reference, "ok": all(r["ok"] for r in results)}
 
 
 def format_report(r) -> str:
     lines = [f"density ({r['format']}, {r['source']}, {r['duration']:.1f} s)"]
     for x in r["results"]:
         lines.append(f"  {'PASS' if x['ok'] else 'FAIL'}  {x['name']:<26} {x['detail']}")
+    lines += [f"  WARN  {w}" for w in r.get("warnings", [])]
     return "\n".join(lines)
 
 

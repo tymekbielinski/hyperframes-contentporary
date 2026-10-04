@@ -144,5 +144,56 @@ class EditMeasurementTests(unittest.TestCase):
         self.assertTrue(r["source"].startswith("edit: "))
 
 
+@unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+class ReferenceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.heavy = synth.segments(Path(cls.tmp.name) / "heavy.mp4",
+                                   [("navy", 6), ("0x808080", 3)], noise=True)
+        cls.mid = synth.segments(Path(cls.tmp.name) / "mid.mp4",
+                                 [("0x808080", 3), ("navy", 4), ("0x808080", 3)], noise=True)
+        cls.face = synth.segments(Path(cls.tmp.name) / "face.mp4", [("0x808080", 8)], noise=True)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def proj(self, name, rows, fmt="shorts", extra="captions: false\n"):
+        d = Path(self.tmp.name) / name
+        d.mkdir()
+        return make_project(d, fmt, rows, extra_yaml=extra)
+
+    def test_grid_reference_survives_majority_graphics(self):
+        p = self.proj("a", [(0, 6, "full-frame")])
+        r = cs.report(p, edit=str(self.heavy))
+        self.assertEqual(r["reference"], "grid")
+        self.assertAlmostEqual(r["results"][0]["value"], 0.667, delta=0.05)
+        self.assertFalse(r["ok"])
+        self.assertEqual(r["warnings"], [])
+
+    def test_no_grid_falls_back_to_median_with_warning(self):
+        p = self.proj("b", [])
+        r = cs.report(p, edit=str(self.heavy), duration=9)
+        self.assertEqual(r["reference"], "median")
+        self.assertTrue(any("median of all frames" in w for w in r["warnings"]), r["warnings"])
+        self.assertIn("WARN", cs.format_report(r))
+
+    def test_explicit_face_ref_wins(self):
+        p = self.proj("c", [(0, 6, "full-frame")])
+        self.assertEqual(cs.report(p, edit=str(self.heavy), face_ref=7.0)["reference"], "face-ref")
+
+    def test_over_footage_rows_are_other_not_graphics(self):
+        p = self.proj("d", [(3, 7, "over-footage")], fmt="long-form", extra="")
+        r = cs.report(p, edit=str(self.mid))
+        self.assertEqual(r["full_frame"], [])
+        self.assertEqual(r["over_footage"], [(3.0, 7.0)])
+
+    def test_no_graphics_edit_warns(self):
+        p = self.proj("e", [(20, 22, "full-frame")])
+        r = cs.report(p, edit=str(self.face))
+        self.assertTrue(any("0 %" in w for w in r["warnings"]), r["warnings"])
+
+
 if __name__ == "__main__":
     unittest.main()
