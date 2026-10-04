@@ -66,7 +66,7 @@ this table before building.
    `camera` / `marks` / `text` primitives.
 5. **Automated gate:** `python3 tools/qa.py videos/<slug>` (`standards/core/qa.md` §1).
 6. **Critique loop** (`standards/core/qa.md` §2) — scores and fixes into `critique.md`.
-7. **Preview pack → sign-off** by the runner (`standards/core/qa.md` §3).
+7. **Preview pack → sign-off** by the runner: `python3 tools/preview_pack.py videos/<slug>` (`standards/core/qa.md` §3).
 8. **Render and slice.** `npx hyperframes render videos/<slug> -o videos/<slug>/renders/reel.mp4`; each
    over-footage layout `npx hyperframes render videos/<slug> -c compositions/overlays/<name>.html --format=mov
    -o videos/<slug>/renders/overlays/<name>.mov`; then `python3 tools/slice.py videos/<slug> --reel

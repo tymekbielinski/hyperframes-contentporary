@@ -55,7 +55,7 @@ usually takes several rounds, not one shot.
 
 ## 3. Human review
 
-1. **Preview pack** (generated): a contact sheet of every graphic, a draft render of the hook plus one body scene, the density timeline, the exceptions list, and the final critique scores (any graphic still below 8 first).
+1. **Preview pack** (`python3 tools/preview_pack.py videos/<slug>` → `renders/preview/index.html`): a contact sheet of every graphic, a draft render of the hook plus one body scene, the density timeline, the exceptions list, and the final critique scores (any graphic still below 8 first).
 2. **Sign-off by whoever ran the build**, using these five questions. Tymek sees the final. Each
    question must be answerable by someone other than Tymek:
    1. **Smooth?** Moves ease in and settle; nothing snaps, jitters or overshoots; scenes hold still
