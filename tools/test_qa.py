@@ -16,8 +16,9 @@ import qa
 import synth
 
 ROOT = Path(__file__).resolve().parents[1]
-FAKE_HF = """import os, shutil, sys
+FAKE_HF = """import os, shutil, sys, time
 args = sys.argv[1:]
+time.sleep(float(os.environ.get("FAKE_HF_SLEEP", "0")))
 if args[0] == "check":
     print("fake hyperframes check: " + os.environ.get("FAKE_HF_CHECK_MSG", "ok"))
     sys.exit(int(os.environ.get("FAKE_HF_CHECK", "0")))
@@ -32,7 +33,7 @@ GOOD_GRID = HEADER + (
     '| 52.0 | 80.0 | "proof" | full-frame | A1 | — | ease.enter | — |\n'
     '| 100.0 | 104.0 | "key line" | over-footage | lower-third | — | ease.enter | — |\n')
 SCENE = """<template>
-<div id="root" data-composition-id="01-hook"><div id="h1">Proof first</div>
+<div id="root" data-composition-id="01-hook" data-width="1920" data-height="1080"><div id="h1">Proof first</div>
 <svg><filter id="g"><feGaussianBlur data-blur-reason="glow" stdDeviation="6"/></filter></svg></div>
 <script>
   var tl = gsap.timeline({ paused: true });
@@ -73,6 +74,10 @@ class GateTests(unittest.TestCase):
         cls.good_reel = synth.concat(d / "good.mp4", [settled, settled])          # two scenes, both settle
         cls.unsettled_reel = synth.concat(d / "unsettled.mp4", [settled, moving])  # scene 2 moves into its cut
         cls.glitch_reel = synth.concat(d / "glitch.mp4", [settled, glitched])      # one-frame glitch at reel frame 80
+        cls.title_pop = d / "title_pop.mp4"                                         # a 1000×120 title pops in at 1 s and stays
+        synth._ffmpeg(["-f", "lavfi", "-i", "color=c=0x101418:s=1920x1080:r=30:d=4", "-vf",
+                       "drawbox=x=460:y=480:w=1000:h=120:color=0xF2F2F2:t=fill:enable='gte(n,30)'",
+                       "-pix_fmt", "yuv420p", str(cls.title_pop)])
         fake = d / "fake_hf.py"
         fake.write_text(FAKE_HF)
         cls.hf_cli = f"{shlex.quote(sys.executable)} {shlex.quote(str(fake))}"
@@ -83,7 +88,7 @@ class GateTests(unittest.TestCase):
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
-        self.env = {k: os.environ.get(k) for k in ("HF_CLI", "FAKE_HF_CHECK", "FAKE_HF_RENDER_SRC")}
+        self.env = {k: os.environ.get(k) for k in ("HF_CLI", "FAKE_HF_CHECK", "FAKE_HF_RENDER_SRC", "FAKE_HF_SLEEP")}
         os.environ["HF_CLI"] = self.hf_cli
         os.environ["FAKE_HF_CHECK"] = "0"
         self.p = new_video.scaffold("10-demo", "long-form", videos_dir=Path(self.tmp.name))
@@ -219,6 +224,84 @@ class GateTests(unittest.TestCase):
         index = (fresh / "index.html").read_text()
         (fresh / "index.html").write_text(index.replace('<div id="hf-placeholder"', SLOTS + '      <div id="hf-placeholder"'))  # a slot
         self.assertEqual(qa.placeholder_findings(fresh), msg)
+
+    def test_title_pop_in_mid_scene_passes_check_10(self):
+        r = self.gate(render=self.title_pop)
+        self.assertEqual(self.status(r)[10], "PASS", qa.format_report(r))
+
+    def test_static_scan_failure_fans_out_and_report_is_written(self):
+        fake_root = Path(self.tmp.name) / "fake-root"          # no tools/lawscan.js there: node prints no JSON
+        (fake_root / "tools").mkdir(parents=True)
+        with mock.patch.object(qa, "ROOT", fake_root):
+            r = self.gate()
+        for n in (4, 5, 6, 10):
+            c = r["checks"][n - 1]
+            self.assertEqual(c["status"], "FAIL", c)
+            self.assertTrue(any(f.startswith("static scan failed: RuntimeError: lawscan") for f in c["findings"]), c)
+        self.assertEqual(json.loads((self.p / "renders" / "qa-report.json").read_text())["ok"], False)
+
+    def test_missing_hf_cli_is_a_named_fail(self):
+        os.environ["HF_CLI"] = "/nonexistent/hyperframes-cli"
+        r = self.gate(render=None)
+        st = self.status(r)
+        self.assertEqual((st[1], st[9], st[10]), ("FAIL", "FAIL", "FAIL"))
+        self.assertTrue(r["checks"][0]["findings"][-1].startswith("npx hyperframes check: cannot run /nonexistent/hyperframes-cli"), r["checks"][0])
+        self.assertTrue(r["checks"][8]["findings"][0].startswith("draft render failed: cannot run /nonexistent/hyperframes-cli"), r["checks"][8])
+
+    def test_hyperframes_check_timeout_is_a_named_fail(self):
+        os.environ["FAKE_HF_SLEEP"] = "5"
+        with mock.patch.object(qa, "CHECK_TIMEOUT", 0.5):
+            c = self.gate()["checks"][0]
+        self.assertEqual(c["status"], "FAIL")
+        self.assertIn("timed out after", c["findings"][-1])
+
+    def test_non_utf8_composition_is_a_named_fail(self):
+        (self.p / "compositions" / "03-bad.html").write_bytes(b"<div>caf\xe9</div>\n")
+        r = self.gate()
+        self.assertFalse(r["ok"])
+        for n in (4, 7):
+            c = r["checks"][n - 1]
+            self.assertEqual(c["status"], "FAIL")
+            self.assertTrue(any("compositions/03-bad.html is not UTF-8 text" in f for f in c["findings"]), c)
+
+    def test_crashing_run_leaves_no_stale_pass(self):
+        out = self.p / "renders" / "qa-report.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps({"ok": True}))
+        with mock.patch.object(qa, "apply_waivers", side_effect=RuntimeError("boom")):
+            with self.assertRaises(RuntimeError):
+                self.gate()
+        self.assertFalse(out.exists())
+
+    def test_infrastructure_findings_are_not_waivable(self):
+        text = (self.p / "BRIEF.md").read_text()
+        (self.p / "BRIEF.md").write_text(text.replace("exceptions:                  #",
+            'exceptions:\n  - "check 5: blur reviewed by hand"\n  - "check 10 [runtime]: reviewed"\n  - "check 1: placeholder is fine"\n#'))
+        index = (self.p / "index.html").read_text()
+        (self.p / "index.html").write_text(index.replace('<div id="s01"', '<div id="hf-placeholder"></div>\n      <div id="s01"'))
+
+        def probe(project, fmt):
+            raise qa.runtime_probe.ProbeError("no timeline registered on window.__timelines")
+        r = self.gate(probe=probe)
+        st = self.status(r)
+        self.assertEqual((st[1], st[5], st[10]), ("FAIL", "FAIL", "FAIL"))
+        self.assertEqual(r["checks"][0]["findings"], [qa.PLACEHOLDER_MSG])
+        self.assertEqual(r["checks"][4]["findings"], ["runtime probe failed: no timeline registered on window.__timelines"])
+        checks = [qa.result(n) for n in range(1, 11)]
+        checks[8] = qa.result(9, [qa.internal(ValueError("x")), "02-proof: still moving…"])
+        checks[9] = qa.result(10, [qa.Infra("draft render failed: exit 1")])
+        qa.apply_waivers(checks, ["check 9: by design", "check 10: by design"])
+        self.assertEqual((checks[8]["status"], checks[8]["findings"]), ("FAIL", ["internal error: ValueError: x"]))
+        self.assertEqual((checks[9]["status"], checks[9]["findings"]), ("FAIL", ["draft render failed: exit 1"]))
+
+    def test_scoped_waiver_matches_whole_tokens_only(self):
+        checks = [qa.result(n) for n in range(1, 11)]
+        found = ["compositions/data.html:1: Gaussian site without…", "compositions/a.html:2: Gaussian site without…",
+                 "compositions/a.html.bak:3: Gaussian site without…"]
+        checks[4] = qa.result(5, list(found))
+        qa.apply_waivers(checks, ["check 5 [a.html]: legacy recreation"])
+        self.assertEqual(checks[4]["findings"], [found[0], found[2]])
+        self.assertEqual(checks[4]["waived"], ["1 finding(s): legacy recreation"])
 
     def test_check_7_caption_layer_in_long_form(self):
         (self.p / "compositions" / "03-caps.html").write_text('<div class="captions word-layer">hi</div>\n<!-- class="captions" in a comment is fine -->\n')

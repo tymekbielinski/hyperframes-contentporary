@@ -114,6 +114,9 @@ class FlickerTests(unittest.TestCase):
         d = Path(cls.tmp.name)
         cls.smooth = synth.moving(d / "smooth.mp4", 3)
         cls.glitch = synth.moving(d / "glitch.mp4", 3, glitch_frame=45)
+        cls.appear = d / "appear.mp4"                          # a box pops in at frame 45 and stays
+        synth._ffmpeg(["-f", "lavfi", "-i", "testsrc2=s=160x90:r=30:d=3", "-vf",
+                       "drawbox=x=20:y=20:w=60:h=40:color=white:t=fill:enable='gte(n,45)'", "-pix_fmt", "yuv420p", str(cls.appear)])
 
     @classmethod
     def tearDownClass(cls):
@@ -122,8 +125,13 @@ class FlickerTests(unittest.TestCase):
     def test_find_flicker_rule(self):
         smooth = [3.0, 3.2, 3.1, 3.4, 3.3, 3.2, 3.1, 3.0]
         self.assertEqual(scan_flicker.find_flicker(smooth), [])
-        spiky = smooth[:4] + [30.0] + smooth[4:]
-        self.assertEqual(scan_flicker.find_flicker(spiky), [(5, 30.0, 3.15)])
+        spiky = smooth[:4] + [30.0, 28.0] + smooth[4:]          # out and back: both steps reported
+        self.assertEqual(scan_flicker.find_flicker(spiky), [(5, 30.0, 3.2), (6, 28.0, 3.2)])
+        gapped = smooth[:4] + [30.0, 3.1, 28.0] + smooth[4:]    # back two frames later still counts
+        self.assertEqual([h[0] for h in scan_flicker.find_flicker(gapped)], [5, 7])
+        step = smooth[:4] + [30.0] + smooth[4:]                 # one isolated step: a hard appear, not flicker
+        self.assertEqual(scan_flicker.find_flicker(step), [])
+        self.assertEqual(scan_flicker.find_flicker([0.0] * 6 + [8.7] + [0.0] * 6), [])
         ramp = [1, 2, 4, 8, 12, 16, 12, 8, 4, 2, 1]    # a camera move: big but smooth
         self.assertEqual(scan_flicker.find_flicker([float(x) for x in ramp]), [])
 
@@ -137,6 +145,9 @@ class FlickerTests(unittest.TestCase):
             self.assertEqual(scan_flicker.main(["scan_flicker.py", str(self.glitch)]), 1)
             self.assertEqual(scan_flicker.main(["scan_flicker.py", str(self.smooth)]), 0)
         self.assertIn("FLICKER=2", out.getvalue())
+
+    def test_single_hard_appear_is_not_flicker(self):
+        self.assertEqual(scan_flicker.scan(self.appear)["flicker"], [])
 
     def test_bad_file_does_not_stop_the_scan(self):
         out, err = io.StringIO(), io.StringIO()

@@ -1,9 +1,11 @@
-"""Detect render flicker in a rendered video: an ISOLATED jump against its local neighbourhood.
+"""Detect render flicker in a rendered video: an OUT-AND-BACK jump against its local neighbourhood.
 
 Real motion (a camera move, a mark landing) has a smooth envelope: neighbouring frame steps are of
 similar size. Render flicker — parallel workers rendering blocks of frames from different seek states —
-shows a single frame pair whose step dwarfs its neighbours. Ported from video 09's scan-flicker.py
-(same thresholds); frame differences now come from ffmpeg (tools/media.py), so no numpy.
+makes the picture jump away and come back: a frame step that dwarfs its neighbours, answered by a
+comparable step within 2 frames. Both steps are reported. A single isolated step (a hard appear, a snap,
+an image swap) is a legitimate edit, not flicker. Ported from video 09's scan-flicker.py (same
+thresholds, plus the out-and-back rule); frame differences come from ffmpeg (tools/media.py), so no numpy.
 
 A standalone run reports intended hard cuts (scene changes) too: a cut is one huge frame step, exactly
 like a glitch. The QA gate (qa.py check 10) excludes the known cut times.
@@ -20,18 +22,24 @@ MIN_STEP = 2.5      # mean |Δluma| (0–255) a step must exceed to count at all
 RATIO = 4.0         # ... and exceed RATIO × the local median
 MARGIN = 2.0        # ... and the local median + MARGIN
 WINDOW = 4          # neighbours on each side
+RETURN = 2          # the answering step must come within this many frames (before or after)
 
 
 def find_flicker(diffs) -> list:
-    """[(frame, step, local_median)] for every isolated jump; frame is the 0-based index of the frame
-    that differs from its predecessor (diffs[i] compares frame i and i+1, so frame = i + 1)."""
+    """[(frame, step, local_median)] for every out-and-back jump; frame is the 0-based index of the frame
+    that differs from its predecessor (diffs[i] compares frame i and i+1, so frame = i + 1).
+    A step counts when it dwarfs its neighbourhood (> MIN_STEP and > max(RATIO × local median, local + MARGIN))
+    AND a comparable step (≥ MIN_STEP and > RATIO × the same local median) lies within RETURN frames of it."""
     hits = []
     for i, d in enumerate(diffs):
         ctx = diffs[max(0, i - WINDOW):i] + diffs[i + 1:i + 1 + WINDOW]
         if not ctx:
             continue
         local = statistics.median(ctx)
-        if d > MIN_STEP and d > max(RATIO * local, local + MARGIN):
+        if not (d > MIN_STEP and d > max(RATIO * local, local + MARGIN)):
+            continue
+        partners = [diffs[j] for j in range(i - RETURN, i + RETURN + 1) if j != i and 0 <= j < len(diffs)]
+        if any(x >= MIN_STEP and x > RATIO * local for x in partners):
             hits.append((i + 1, round(d, 1), round(local, 2)))
     return hits
 

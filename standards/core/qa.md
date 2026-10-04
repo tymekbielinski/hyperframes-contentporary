@@ -27,8 +27,11 @@ warnings are printed in the report but do not fail a check on their own.
 **Exceptions:** declared in the BRIEF under `exceptions:`, each with a reason (e.g. a recreated UI
 that has no real screenshot). The gate passes declared exceptions and lists them in the preview pack.
 An entry `check <n>: <reason>` waives check n; `check <n> [<text>]: <reason>` waives only the findings
-of check n that contain `<text>`. Any other entry (e.g. `F09: recreated Google Calendar — …`) is
-listed, not applied.
+of check n that contain `<text>` as a whole path or word (`[a.html]` matches `compositions/a.html`, not
+`data.html`). Any other entry (e.g. `F09: recreated Google Calendar — …`) is listed, not applied.
+Infrastructure findings are never waivable — a waiver of their check still leaves them, so the check
+fails: `runtime probe failed`, `draft render failed` / no frames / render unreadable, `static scan failed`,
+`internal error` (a check that crashed, a tool missing or timed out) and the `#hf-placeholder` guard.
 
 ## 2. Critique loop (agent, before the human sees anything)
 
