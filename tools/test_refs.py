@@ -239,3 +239,12 @@ class IndexTests(Fixture):
         ref_index.run(self.root)
         idx = json.loads((self.root / "references/index.json").read_text())
         self.assertEqual(idx["candidates"], {"new:logo-row": [{"video": "demo", "shot": "s001"}]})
+
+    def test_prune_skips_subdirectories_in_stills(self):
+        shots = [graphic_shot("s001", 0.0, 4.0, "A1", ["stills/s001-a.jpg"]), face_shot("s002", 4.0, 10.0)]
+        d = write_video(self.root, shots=shots)
+        (d / "stills" / "sub").mkdir()
+        (d / "stills" / "sub" / "nested.jpg").write_bytes(b"x")
+        self.assertEqual(ref_index.prune(self.root), 0)
+        self.assertTrue((d / "stills" / "sub" / "nested.jpg").is_file())
+        self.assertTrue((d / "stills" / "sub").is_dir())

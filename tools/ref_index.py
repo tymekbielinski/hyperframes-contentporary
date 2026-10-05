@@ -151,7 +151,7 @@ def prune(root=ROOT) -> int:
                 s["stills"] = []
             keep.update(s.get("stills") or [])
         for p in (d / "stills").glob("*"):
-            if f"stills/{p.name}" not in keep:
+            if p.is_file() and f"stills/{p.name}" not in keep:
                 p.unlink()
                 removed += 1
         path.write_text(json.dumps(data, indent=2) + "\n")
