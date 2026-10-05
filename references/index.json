@@ -1,6 +1,72 @@
 {
   "videos": [
     {
+      "slug": "hormozi-100-posts",
+      "title": "How Alex Hormozi creates 100 viral posts a day (blueprint for b2b founders)",
+      "ground": "dark",
+      "format": "long-form",
+      "duration": 753.255,
+      "shots": 32,
+      "reviewed": 32,
+      "graphics_pct": 9.9,
+      "stills_bytes": 2523583
+    },
+    {
+      "slug": "instantly-1m-arr-channel",
+      "title": "How Instantly Built a $1M ARR YouTube Channel",
+      "ground": "dark",
+      "format": "long-form",
+      "duration": 1089.202,
+      "shots": 21,
+      "reviewed": 21,
+      "graphics_pct": 3.9,
+      "stills_bytes": 1255001
+    },
+    {
+      "slug": "liam-ottley-540k",
+      "title": "How Liam Ottley outsmarted the smma gurus and built a $540,000 / mo business",
+      "ground": "light",
+      "format": "long-form",
+      "duration": 601.002,
+      "shots": 42,
+      "reviewed": 42,
+      "graphics_pct": 29.6,
+      "stills_bytes": 2640367
+    },
+    {
+      "slug": "problem-with-clay",
+      "title": "The Problem With Clay.com for Agency Owners",
+      "ground": "light",
+      "format": "long-form",
+      "duration": 641.01,
+      "shots": 53,
+      "reviewed": 53,
+      "graphics_pct": 36.4,
+      "stills_bytes": 2837247
+    },
+    {
+      "slug": "spent-10k-on-mentors",
+      "title": "I Spent $10,000 on Mentors So You Don't Have To (Free YouTube Selling Course)",
+      "ground": "dark",
+      "format": "long-form",
+      "duration": 745.802,
+      "shots": 49,
+      "reviewed": 49,
+      "graphics_pct": 32.0,
+      "stills_bytes": 3297958
+    },
+    {
+      "slug": "stupidly-simple-youtube-strategy",
+      "title": "The Stupidly Simple YouTube Strategy Making Businesses Rich",
+      "ground": "light",
+      "format": "long-form",
+      "duration": 533.153,
+      "shots": 111,
+      "reviewed": 111,
+      "graphics_pct": 38.9,
+      "stills_bytes": 3606286
+    },
+    {
       "slug": "ultra-predictable-funnel",
       "title": "How to build ULTRA predictable Youtube Sales Funnel for B2B High-Ticket Offer",
       "ground": "dark",
@@ -18,6 +84,63 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s004",
+          "t_in": 8.833,
+          "t_out": 14.133,
+          "stills": [
+            "stills/s004-a.jpg",
+            "stills/s004-b.jpg",
+            "stills/s004-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s011",
+          "t_in": 138.292,
+          "t_out": 142.2,
+          "stills": [
+            "stills/s011-a.jpg",
+            "stills/s011-b.jpg",
+            "stills/s011-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s041",
+          "t_in": 4.2,
+          "t_out": 7.533,
+          "stills": [
+            "stills/s041-a.jpg",
+            "stills/s041-b.jpg",
+            "stills/s041-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s026",
+          "t_in": 250.933,
+          "t_out": 259.067,
+          "stills": [
+            "stills/s026-a.jpg",
+            "stills/s026-b.jpg",
+            "stills/s026-c.jpg",
+            "stills/s026-d.jpg",
+            "stills/s026-e.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s031",
+          "t_in": 102.533,
+          "t_out": 107.367,
+          "stills": [
+            "stills/s031-a.jpg",
+            "stills/s031-b.jpg",
+            "stills/s031-c.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s002",
@@ -48,6 +171,39 @@
           ]
         },
         {
+          "video": "hormozi-100-posts",
+          "shot": "s034",
+          "t_in": 747.167,
+          "t_out": 751.8,
+          "stills": [
+            "stills/s034-a.jpg",
+            "stills/s034-b.jpg",
+            "stills/s034-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s010",
+          "t_in": 50.7,
+          "t_out": 56.533,
+          "stills": [
+            "stills/s010-a.jpg",
+            "stills/s010-b.jpg",
+            "stills/s010-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s028",
+          "t_in": 261.233,
+          "t_out": 265.433,
+          "stills": [
+            "stills/s028-a.jpg",
+            "stills/s028-b.jpg",
+            "stills/s028-c.jpg"
+          ]
+        },
+        {
           "video": "ultra-predictable-funnel",
           "shot": "s045",
           "t_in": 276.467,
@@ -71,16 +227,16 @@
         }
       ],
       "stats": {
-        "count": 4,
-        "videos": 1,
-        "duration_median": 8.22,
+        "count": 12,
+        "videos": 6,
+        "duration_median": 4.73,
         "duration_p25_p75": [
-          3.83,
-          12.33
+          3.98,
+          7.56
         ],
-        "type_px_median": 71.0,
+        "type_px_median": 57.5,
         "word_rate_s_median": 0.25,
-        "hold_s_median": 1.05
+        "hold_s_median": 1.45
       }
     },
     "A2": {
@@ -88,6 +244,296 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s038",
+          "t_in": 48.0,
+          "t_out": 52.633,
+          "stills": [
+            "stills/s038-a.jpg",
+            "stills/s038-b.jpg",
+            "stills/s038-c.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s004",
+          "t_in": 5.367,
+          "t_out": 8.867,
+          "stills": [
+            "stills/s004-a.jpg",
+            "stills/s004-b.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s006",
+          "t_in": 10.033,
+          "t_out": 13.3,
+          "stills": [
+            "stills/s006-a.jpg",
+            "stills/s006-b.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s040",
+          "t_in": 29.1,
+          "t_out": 31.917,
+          "stills": [
+            "stills/s040-a.jpg",
+            "stills/s040-b.jpg",
+            "stills/s040-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s037",
+          "t_in": 73.6,
+          "t_out": 79.625,
+          "stills": [
+            "stills/s037-a.jpg",
+            "stills/s037-b.jpg",
+            "stills/s037-c.jpg",
+            "stills/s037-d.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s008",
+          "t_in": 26.3,
+          "t_out": 31.5,
+          "stills": [
+            "stills/s008-a.jpg",
+            "stills/s008-b.jpg",
+            "stills/s008-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s017",
+          "t_in": 110.567,
+          "t_out": 119.167,
+          "stills": [
+            "stills/s017-a.jpg",
+            "stills/s017-b.jpg",
+            "stills/s017-c.jpg",
+            "stills/s017-d.jpg",
+            "stills/s017-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s010",
+          "t_in": 36.733,
+          "t_out": 43.7,
+          "stills": [
+            "stills/s010-a.jpg",
+            "stills/s010-b.jpg",
+            "stills/s010-c.jpg",
+            "stills/s010-d.jpg",
+            "stills/s010-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s014",
+          "t_in": 102.1,
+          "t_out": 111.833,
+          "stills": [
+            "stills/s014-a.jpg",
+            "stills/s014-b.jpg",
+            "stills/s014-c.jpg",
+            "stills/s014-d.jpg",
+            "stills/s014-e.jpg",
+            "stills/s014-f.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s043",
+          "t_in": 169.067,
+          "t_out": 174.267,
+          "stills": [
+            "stills/s043-a.jpg",
+            "stills/s043-b.jpg",
+            "stills/s043-c.jpg"
+          ]
+        },
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s015",
+          "t_in": 80.833,
+          "t_out": 86.9,
+          "stills": [
+            "stills/s015-a.jpg",
+            "stills/s015-b.jpg",
+            "stills/s015-c.jpg",
+            "stills/s015-d.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s002",
+          "t_in": 0.3,
+          "t_out": 3.967,
+          "stills": [
+            "stills/s002-a.jpg",
+            "stills/s002-b.jpg",
+            "stills/s002-c.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s012",
+          "t_in": 26.667,
+          "t_out": 32.7,
+          "stills": [
+            "stills/s012-a.jpg",
+            "stills/s012-b.jpg",
+            "stills/s012-c.jpg",
+            "stills/s012-d.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s042",
+          "t_in": 3.4,
+          "t_out": 5.4,
+          "stills": [
+            "stills/s042-a.jpg",
+            "stills/s042-b.jpg",
+            "stills/s042-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s036",
+          "t_in": 142.2,
+          "t_out": 145.667,
+          "stills": [
+            "stills/s036-a.jpg",
+            "stills/s036-b.jpg",
+            "stills/s036-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s035",
+          "t_in": 247.4,
+          "t_out": 252.042,
+          "stills": [
+            "stills/s035-a.jpg",
+            "stills/s035-b.jpg",
+            "stills/s035-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s021",
+          "t_in": 340.0,
+          "t_out": 345.2,
+          "stills": [
+            "stills/s021-a.jpg",
+            "stills/s021-b.jpg",
+            "stills/s021-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s015",
+          "t_in": 104.9,
+          "t_out": 107.9,
+          "stills": [
+            "stills/s015-a.jpg",
+            "stills/s015-b.jpg",
+            "stills/s015-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s019",
+          "t_in": 134.667,
+          "t_out": 139.0,
+          "stills": [
+            "stills/s019-a.jpg",
+            "stills/s019-b.jpg",
+            "stills/s019-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s047",
+          "t_in": 147.4,
+          "t_out": 150.0,
+          "stills": [
+            "stills/s047-a.jpg",
+            "stills/s047-b.jpg",
+            "stills/s047-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s048",
+          "t_in": 159.2,
+          "t_out": 165.7,
+          "stills": [
+            "stills/s048-a.jpg",
+            "stills/s048-b.jpg",
+            "stills/s048-c.jpg",
+            "stills/s048-d.jpg",
+            "stills/s048-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s021",
+          "t_in": 182.7,
+          "t_out": 186.4,
+          "stills": [
+            "stills/s021-a.jpg",
+            "stills/s021-b.jpg",
+            "stills/s021-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s016",
+          "t_in": 51.1,
+          "t_out": 52.7,
+          "stills": [
+            "stills/s016-a.jpg",
+            "stills/s016-b.jpg",
+            "stills/s016-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s109",
+          "t_in": 217.1,
+          "t_out": 225.133,
+          "stills": [
+            "stills/s109-a.jpg",
+            "stills/s109-b.jpg",
+            "stills/s109-c.jpg",
+            "stills/s109-d.jpg",
+            "stills/s109-e.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s101",
+          "t_in": 522.733,
+          "t_out": 525.367,
+          "stills": [
+            "stills/s101-a.jpg",
+            "stills/s101-b.jpg",
+            "stills/s101-c.jpg",
+            "stills/s101-d.jpg",
+            "stills/s101-e.jpg",
+            "stills/s101-f.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s061",
@@ -101,13 +547,16 @@
         }
       ],
       "stats": {
-        "count": 1,
-        "videos": 1,
-        "duration_median": 5.5,
-        "duration_p25_p75": null,
-        "type_px_median": 86,
+        "count": 26,
+        "videos": 7,
+        "duration_median": 4.64,
+        "duration_p25_p75": [
+          3.2,
+          6.04
+        ],
+        "type_px_median": 30.0,
         "word_rate_s_median": 0.2,
-        "hold_s_median": 0.8
+        "hold_s_median": 0.9
       }
     },
     "A3": {
@@ -115,6 +564,38 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s011",
+          "t_in": 24.333,
+          "t_out": 26.667,
+          "stills": [
+            "stills/s011-a.jpg",
+            "stills/s011-b.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s105",
+          "t_in": 44.8,
+          "t_out": 49.933,
+          "stills": [
+            "stills/s105-a.jpg",
+            "stills/s105-b.jpg",
+            "stills/s105-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s039",
+          "t_in": 150.8,
+          "t_out": 155.267,
+          "stills": [
+            "stills/s039-a.jpg",
+            "stills/s039-b.jpg",
+            "stills/s039-c.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s057",
@@ -128,16 +609,30 @@
             "stills/s057-e.jpg",
             "stills/s057-f.jpg"
           ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s084",
+          "t_in": 426.667,
+          "t_out": 430.667,
+          "stills": [
+            "stills/s084-a.jpg",
+            "stills/s084-b.jpg",
+            "stills/s084-c.jpg"
+          ]
         }
       ],
       "stats": {
-        "count": 1,
-        "videos": 1,
-        "duration_median": 10.2,
-        "duration_p25_p75": null,
-        "type_px_median": 87,
-        "word_rate_s_median": 0.2,
-        "hold_s_median": 1.4
+        "count": 5,
+        "videos": 3,
+        "duration_median": 4.47,
+        "duration_p25_p75": [
+          3.17,
+          7.67
+        ],
+        "type_px_median": 80,
+        "word_rate_s_median": 0.23,
+        "hold_s_median": 1.2
       }
     },
     "A4": {
@@ -145,6 +640,30 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s004",
+          "t_in": 7.933,
+          "t_out": 12.5,
+          "stills": [
+            "stills/s004-a.jpg",
+            "stills/s004-b.jpg",
+            "stills/s004-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s012",
+          "t_in": 33.433,
+          "t_out": 40.467,
+          "stills": [
+            "stills/s012-a.jpg",
+            "stills/s012-b.jpg",
+            "stills/s012-c.jpg",
+            "stills/s012-d.jpg",
+            "stills/s012-e.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s009",
@@ -168,46 +687,250 @@
             "stills/s012-b.jpg",
             "stills/s012-c.jpg"
           ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s008",
+          "t_in": 19.233,
+          "t_out": 25.267,
+          "stills": [
+            "stills/s008-a.jpg",
+            "stills/s008-b.jpg",
+            "stills/s008-c.jpg",
+            "stills/s008-d.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s035",
+          "t_in": 125.0,
+          "t_out": 138.0,
+          "stills": [
+            "stills/s035-a.jpg",
+            "stills/s035-b.jpg",
+            "stills/s035-c.jpg",
+            "stills/s035-d.jpg",
+            "stills/s035-e.jpg",
+            "stills/s035-f.jpg",
+            "stills/s035-g.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s037",
+          "t_in": 143.6,
+          "t_out": 149.633,
+          "stills": [
+            "stills/s037-a.jpg",
+            "stills/s037-b.jpg",
+            "stills/s037-c.jpg",
+            "stills/s037-d.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s066",
+          "t_in": 310.467,
+          "t_out": 323.3,
+          "stills": [
+            "stills/s066-a.jpg",
+            "stills/s066-b.jpg",
+            "stills/s066-c.jpg",
+            "stills/s066-d.jpg",
+            "stills/s066-e.jpg",
+            "stills/s066-f.jpg",
+            "stills/s066-g.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s068",
+          "t_in": 326.4,
+          "t_out": 336.6,
+          "stills": [
+            "stills/s068-a.jpg",
+            "stills/s068-b.jpg",
+            "stills/s068-c.jpg",
+            "stills/s068-d.jpg",
+            "stills/s068-e.jpg",
+            "stills/s068-f.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s070",
+          "t_in": 345.967,
+          "t_out": 355.133,
+          "stills": [
+            "stills/s070-a.jpg",
+            "stills/s070-b.jpg",
+            "stills/s070-c.jpg",
+            "stills/s070-d.jpg",
+            "stills/s070-e.jpg"
+          ]
         }
       ],
       "stats": {
-        "count": 2,
-        "videos": 1,
-        "duration_median": 5.97,
-        "duration_p25_p75": null,
-        "type_px_median": 260.0,
-        "word_rate_s_median": 0.28,
-        "hold_s_median": 0.7
+        "count": 10,
+        "videos": 2,
+        "duration_median": 7.77,
+        "duration_p25_p75": [
+          5.67,
+          10.86
+        ],
+        "type_px_median": 42.0,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 0.5
       }
     },
     "A5": {
       "name": "Case-study card stack",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s006",
+          "t_in": 19.7,
+          "t_out": 37.433,
+          "stills": [
+            "stills/s006-a.jpg",
+            "stills/s006-b.jpg",
+            "stills/s006-c.jpg",
+            "stills/s006-d.jpg",
+            "stills/s006-e.jpg",
+            "stills/s006-f.jpg",
+            "stills/s006-g.jpg",
+            "stills/s006-h.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s008",
+          "t_in": 18.833,
+          "t_out": 21.533,
+          "stills": [
+            "stills/s008-a.jpg",
+            "stills/s008-b.jpg",
+            "stills/s008-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s012",
+          "t_in": 58.0,
+          "t_out": 62.233,
+          "stills": [
+            "stills/s012-a.jpg",
+            "stills/s012-b.jpg",
+            "stills/s012-c.jpg",
+            "stills/s012-d.jpg",
+            "stills/s012-e.jpg",
+            "stills/s012-f.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s002",
+          "t_in": 1.333,
+          "t_out": 4.4,
+          "stills": [
+            "stills/s002-a.jpg",
+            "stills/s002-b.jpg",
+            "stills/s002-c.jpg"
+          ]
+        },
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s031",
+          "t_in": 740.067,
+          "t_out": 745.0,
+          "stills": [
+            "stills/s031-a.jpg",
+            "stills/s031-b.jpg",
+            "stills/s031-c.jpg",
+            "stills/s031-d.jpg",
+            "stills/s031-e.jpg",
+            "stills/s031-f.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "count": 5,
+        "videos": 4,
+        "duration_median": 4.23,
+        "duration_p25_p75": [
+          2.88,
+          11.33
+        ],
+        "type_px_median": 40,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 1.5
       }
     },
     "A6": {
       "name": "Channel flash montage",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s008",
+          "t_in": 39.2,
+          "t_out": 41.967,
+          "stills": [
+            "stills/s008-a.jpg",
+            "stills/s008-b.jpg",
+            "stills/s008-c.jpg",
+            "stills/s008-d.jpg",
+            "stills/s008-e.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s002",
+          "t_in": 1.167,
+          "t_out": 4.2,
+          "stills": [
+            "stills/s002-a.jpg",
+            "stills/s002-b.jpg",
+            "stills/s002-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s049",
+          "t_in": 201.133,
+          "t_out": 206.9,
+          "stills": [
+            "stills/s049-a.jpg",
+            "stills/s049-b.jpg",
+            "stills/s049-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s107",
+          "t_in": 209.0,
+          "t_out": 212.4,
+          "stills": [
+            "stills/s107-a.jpg",
+            "stills/s107-b.jpg",
+            "stills/s107-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
+        "count": 4,
+        "videos": 3,
+        "duration_median": 3.22,
+        "duration_p25_p75": [
+          2.83,
+          5.18
+        ],
+        "type_px_median": 22.5,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 0.7
       }
     },
     "B1": {
@@ -215,6 +938,114 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s012",
+          "t_in": 45.067,
+          "t_out": 48.0,
+          "stills": [
+            "stills/s012-a.jpg",
+            "stills/s012-b.jpg",
+            "stills/s012-c.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s017",
+          "t_in": 45.033,
+          "t_out": 51.4,
+          "stills": [
+            "stills/s017-a.jpg",
+            "stills/s017-b.jpg",
+            "stills/s017-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s007",
+          "t_in": 34.042,
+          "t_out": 37.875,
+          "stills": [
+            "stills/s007-a.jpg",
+            "stills/s007-b.jpg",
+            "stills/s007-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s023",
+          "t_in": 369.417,
+          "t_out": 398.083,
+          "stills": [
+            "stills/s023-a.jpg",
+            "stills/s023-b.jpg",
+            "stills/s023-c.jpg",
+            "stills/s023-d.jpg",
+            "stills/s023-e.jpg",
+            "stills/s023-f.jpg",
+            "stills/s023-g.jpg",
+            "stills/s023-h.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s049",
+          "t_in": 223.4,
+          "t_out": 226.0,
+          "stills": [
+            "stills/s049-a.jpg",
+            "stills/s049-b.jpg",
+            "stills/s049-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s039",
+          "t_in": 570.8,
+          "t_out": 585.633,
+          "stills": [
+            "stills/s039-a.jpg",
+            "stills/s039-b.jpg",
+            "stills/s039-c.jpg",
+            "stills/s039-d.jpg",
+            "stills/s039-e.jpg",
+            "stills/s039-f.jpg",
+            "stills/s039-g.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s016",
+          "t_in": 123.033,
+          "t_out": 128.867,
+          "stills": [
+            "stills/s016-a.jpg",
+            "stills/s016-b.jpg",
+            "stills/s016-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s024",
+          "t_in": 188.033,
+          "t_out": 191.167,
+          "stills": [
+            "stills/s024-a.jpg",
+            "stills/s024-b.jpg",
+            "stills/s024-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s045",
+          "t_in": 175.867,
+          "t_out": 179.167,
+          "stills": [
+            "stills/s045-a.jpg",
+            "stills/s045-b.jpg",
+            "stills/s045-c.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s079",
@@ -238,6 +1069,66 @@
           ]
         },
         {
+          "video": "liam-ottley-540k",
+          "shot": "s043",
+          "t_in": 5.4,
+          "t_out": 7.625,
+          "stills": [
+            "stills/s043-a.jpg",
+            "stills/s043-b.jpg",
+            "stills/s043-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s038",
+          "t_in": 22.8,
+          "t_out": 26.1,
+          "stills": [
+            "stills/s038-a.jpg",
+            "stills/s038-b.jpg",
+            "stills/s038-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s004",
+          "t_in": 12.8,
+          "t_out": 16.3,
+          "stills": [
+            "stills/s004-a.jpg",
+            "stills/s004-b.jpg",
+            "stills/s004-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s012",
+          "t_in": 62.533,
+          "t_out": 70.367,
+          "stills": [
+            "stills/s012-a.jpg",
+            "stills/s012-b.jpg",
+            "stills/s012-c.jpg",
+            "stills/s012-d.jpg",
+            "stills/s012-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s030",
+          "t_in": 304.767,
+          "t_out": 314.433,
+          "stills": [
+            "stills/s030-a.jpg",
+            "stills/s030-b.jpg",
+            "stills/s030-c.jpg",
+            "stills/s030-d.jpg",
+            "stills/s030-e.jpg",
+            "stills/s030-f.jpg"
+          ]
+        },
+        {
           "video": "ultra-predictable-funnel",
           "shot": "s014",
           "t_in": 55.3,
@@ -250,13 +1141,16 @@
         }
       ],
       "stats": {
-        "count": 3,
-        "videos": 1,
-        "duration_median": 2.03,
-        "duration_p25_p75": null,
-        "type_px_median": 90,
-        "word_rate_s_median": 0.25,
-        "hold_s_median": 1.0
+        "count": 17,
+        "videos": 7,
+        "duration_median": 3.3,
+        "duration_p25_p75": [
+          2.68,
+          7.1
+        ],
+        "type_px_median": 70,
+        "word_rate_s_median": 0.16,
+        "hold_s_median": 1.2
       }
     },
     "B2": {
@@ -264,6 +1158,33 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s015",
+          "t_in": 35.067,
+          "t_out": 41.667,
+          "stills": [
+            "stills/s015-a.jpg",
+            "stills/s015-b.jpg",
+            "stills/s015-c.jpg",
+            "stills/s015-d.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s037",
+          "t_in": 423.733,
+          "t_out": 438.2,
+          "stills": [
+            "stills/s037-a.jpg",
+            "stills/s037-b.jpg",
+            "stills/s037-c.jpg",
+            "stills/s037-d.jpg",
+            "stills/s037-e.jpg",
+            "stills/s037-f.jpg",
+            "stills/s037-g.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s018",
@@ -279,13 +1200,13 @@
         }
       ],
       "stats": {
-        "count": 1,
-        "videos": 1,
+        "count": 3,
+        "videos": 3,
         "duration_median": 6.87,
         "duration_p25_p75": null,
         "type_px_median": 55,
-        "word_rate_s_median": 0.2,
-        "hold_s_median": 1.6
+        "word_rate_s_median": 0.16,
+        "hold_s_median": 2.3
       }
     },
     "B3": {
@@ -293,6 +1214,51 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s002",
+          "t_in": 1.333,
+          "t_out": 7.433,
+          "stills": [
+            "stills/s002-a.jpg",
+            "stills/s002-b.jpg",
+            "stills/s002-c.jpg",
+            "stills/s002-d.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s041",
+          "t_in": 0.3,
+          "t_out": 3.4,
+          "stills": [
+            "stills/s041-a.jpg",
+            "stills/s041-b.jpg",
+            "stills/s041-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s002",
+          "t_in": 1.067,
+          "t_out": 4.633,
+          "stills": [
+            "stills/s002-a.jpg",
+            "stills/s002-b.jpg",
+            "stills/s002-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s014",
+          "t_in": 42.0,
+          "t_out": 44.8,
+          "stills": [
+            "stills/s014-a.jpg",
+            "stills/s014-b.jpg",
+            "stills/s014-c.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s004",
@@ -306,28 +1272,43 @@
         }
       ],
       "stats": {
-        "count": 1,
-        "videos": 1,
-        "duration_median": 5.8,
-        "duration_p25_p75": null,
-        "type_px_median": 220,
-        "word_rate_s_median": null,
-        "hold_s_median": 0.3
+        "count": 5,
+        "videos": 5,
+        "duration_median": 3.57,
+        "duration_p25_p75": [
+          2.95,
+          5.95
+        ],
+        "type_px_median": 195,
+        "word_rate_s_median": 0.1,
+        "hold_s_median": 0.8
       }
     },
     "B4": {
       "name": "Punch word",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s020",
+          "t_in": 64.5,
+          "t_out": 66.267,
+          "stills": [
+            "stills/s020-a.jpg",
+            "stills/s020-b.jpg",
+            "stills/s020-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 1.77,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 190,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 0.9
       }
     },
     "C1": {
@@ -335,6 +1316,44 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s039",
+          "t_in": 55.2,
+          "t_out": 63.2,
+          "stills": [
+            "stills/s039-a.jpg",
+            "stills/s039-b.jpg",
+            "stills/s039-c.jpg",
+            "stills/s039-d.jpg",
+            "stills/s039-e.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s021",
+          "t_in": 152.867,
+          "t_out": 159.2,
+          "stills": [
+            "stills/s021-a.jpg",
+            "stills/s021-b.jpg",
+            "stills/s021-c.jpg",
+            "stills/s021-d.jpg",
+            "stills/s021-e.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s009",
+          "t_in": 25.267,
+          "t_out": 31.467,
+          "stills": [
+            "stills/s009-a.jpg",
+            "stills/s009-b.jpg",
+            "stills/s009-c.jpg",
+            "stills/s009-d.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s082",
@@ -360,16 +1379,30 @@
             "stills/s039-d.jpg",
             "stills/s039-e.jpg"
           ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s051",
+          "t_in": 251.3,
+          "t_out": 254.967,
+          "stills": [
+            "stills/s051-a.jpg",
+            "stills/s051-b.jpg",
+            "stills/s051-c.jpg"
+          ]
         }
       ],
       "stats": {
-        "count": 2,
-        "videos": 1,
-        "duration_median": 7.67,
-        "duration_p25_p75": null,
-        "type_px_median": 56.0,
-        "word_rate_s_median": 0.3,
-        "hold_s_median": 1.15
+        "count": 6,
+        "videos": 4,
+        "duration_median": 6.72,
+        "duration_p25_p75": [
+          5.57,
+          8.06
+        ],
+        "type_px_median": 54.0,
+        "word_rate_s_median": 0.25,
+        "hold_s_median": 1.35
       }
     },
     "C2": {
@@ -377,6 +1410,73 @@
       "group": "custom",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s015",
+          "t_in": 219.042,
+          "t_out": 227.542,
+          "stills": [
+            "stills/s015-a.jpg",
+            "stills/s015-b.jpg",
+            "stills/s015-c.jpg",
+            "stills/s015-d.jpg",
+            "stills/s015-e.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s034",
+          "t_in": 345.2,
+          "t_out": 364.875,
+          "stills": [
+            "stills/s034-a.jpg",
+            "stills/s034-b.jpg",
+            "stills/s034-c.jpg",
+            "stills/s034-d.jpg",
+            "stills/s034-e.jpg",
+            "stills/s034-f.jpg",
+            "stills/s034-g.jpg",
+            "stills/s034-h.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s027",
+          "t_in": 247.5,
+          "t_out": 251.3,
+          "stills": [
+            "stills/s027-a.jpg",
+            "stills/s027-b.jpg",
+            "stills/s027-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s035",
+          "t_in": 400.233,
+          "t_out": 407.567,
+          "stills": [
+            "stills/s035-a.jpg",
+            "stills/s035-b.jpg",
+            "stills/s035-c.jpg",
+            "stills/s035-d.jpg",
+            "stills/s035-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s008",
+          "t_in": 22.367,
+          "t_out": 33.9,
+          "stills": [
+            "stills/s008-a.jpg",
+            "stills/s008-b.jpg",
+            "stills/s008-c.jpg",
+            "stills/s008-d.jpg",
+            "stills/s008-e.jpg",
+            "stills/s008-f.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s059",
@@ -394,6 +1494,55 @@
           ]
         },
         {
+          "video": "liam-ottley-540k",
+          "shot": "s009",
+          "t_in": 63.375,
+          "t_out": 73.6,
+          "stills": [
+            "stills/s009-a.jpg",
+            "stills/s009-b.jpg",
+            "stills/s009-c.jpg",
+            "stills/s009-d.jpg",
+            "stills/s009-e.jpg",
+            "stills/s009-f.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s013",
+          "t_in": 212.042,
+          "t_out": 215.042,
+          "stills": [
+            "stills/s013-a.jpg",
+            "stills/s013-b.jpg",
+            "stills/s013-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s017",
+          "t_in": 229.542,
+          "t_out": 237.708,
+          "stills": [
+            "stills/s017-a.jpg",
+            "stills/s017-b.jpg",
+            "stills/s017-c.jpg",
+            "stills/s017-d.jpg",
+            "stills/s017-e.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s019",
+          "t_in": 241.875,
+          "t_out": 247.4,
+          "stills": [
+            "stills/s019-a.jpg",
+            "stills/s019-b.jpg",
+            "stills/s019-c.jpg"
+          ]
+        },
+        {
           "video": "ultra-predictable-funnel",
           "shot": "s063",
           "t_in": 412.9,
@@ -406,178 +1555,655 @@
         }
       ],
       "stats": {
-        "count": 2,
-        "videos": 1,
-        "duration_median": 11.75,
-        "duration_p25_p75": null,
-        "type_px_median": 47.5,
-        "word_rate_s_median": 0.28,
-        "hold_s_median": 1.15
+        "count": 11,
+        "videos": 4,
+        "duration_median": 8.17,
+        "duration_p25_p75": [
+          5.47,
+          11.53
+        ],
+        "type_px_median": 57,
+        "word_rate_s_median": 0.3,
+        "hold_s_median": 1.0
       }
     },
     "C3": {
       "name": "Funnel / bands",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s034",
+          "t_in": 551.7,
+          "t_out": 588.333,
+          "stills": [
+            "stills/s034-a.jpg",
+            "stills/s034-b.jpg",
+            "stills/s034-c.jpg",
+            "stills/s034-d.jpg",
+            "stills/s034-e.jpg",
+            "stills/s034-f.jpg",
+            "stills/s034-g.jpg",
+            "stills/s034-h.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s032",
+          "t_in": 540.7,
+          "t_out": 548.733,
+          "stills": [
+            "stills/s032-a.jpg",
+            "stills/s032-b.jpg",
+            "stills/s032-c.jpg",
+            "stills/s032-d.jpg",
+            "stills/s032-e.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 2,
+        "videos": 1,
+        "duration_median": 22.33,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 36.5,
+        "word_rate_s_median": 0.23,
+        "hold_s_median": 2.75
       }
     },
     "C4": {
       "name": "Orbit / flywheel",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s028",
+          "t_in": 442.208,
+          "t_out": 462.042,
+          "stills": [
+            "stills/s028-a.jpg",
+            "stills/s028-b.jpg",
+            "stills/s028-c.jpg",
+            "stills/s028-d.jpg",
+            "stills/s028-e.jpg",
+            "stills/s028-f.jpg",
+            "stills/s028-g.jpg",
+            "stills/s028-h.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s029",
+          "t_in": 89.867,
+          "t_out": 100.7,
+          "stills": [
+            "stills/s029-a.jpg",
+            "stills/s029-b.jpg",
+            "stills/s029-c.jpg",
+            "stills/s029-d.jpg",
+            "stills/s029-e.jpg",
+            "stills/s029-f.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s026",
+          "t_in": 430.958,
+          "t_out": 434.833,
+          "stills": [
+            "stills/s026-a.jpg",
+            "stills/s026-b.jpg",
+            "stills/s026-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s030",
+          "t_in": 464.792,
+          "t_out": 476.042,
+          "stills": [
+            "stills/s030-a.jpg",
+            "stills/s030-b.jpg",
+            "stills/s030-c.jpg",
+            "stills/s030-d.jpg",
+            "stills/s030-e.jpg",
+            "stills/s030-f.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "count": 4,
+        "videos": 2,
+        "duration_median": 11.04,
+        "duration_p25_p75": [
+          5.61,
+          17.69
+        ],
+        "type_px_median": 52.0,
+        "word_rate_s_median": 0.28,
+        "hold_s_median": 1.25
       }
     },
     "C5": {
       "name": "Card roster",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s120",
+          "t_in": 13.3,
+          "t_out": 17.567,
+          "stills": [
+            "stills/s120-a.jpg",
+            "stills/s120-b.jpg",
+            "stills/s120-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s029",
+          "t_in": 295.833,
+          "t_out": 321.5,
+          "stills": [
+            "stills/s029-a.jpg",
+            "stills/s029-b.jpg",
+            "stills/s029-c.jpg",
+            "stills/s029-d.jpg",
+            "stills/s029-e.jpg",
+            "stills/s029-f.jpg",
+            "stills/s029-g.jpg",
+            "stills/s029-h.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s033",
+          "t_in": 355.833,
+          "t_out": 394.3,
+          "stills": [
+            "stills/s033-a.jpg",
+            "stills/s033-b.jpg",
+            "stills/s033-c.jpg",
+            "stills/s033-d.jpg",
+            "stills/s033-e.jpg",
+            "stills/s033-f.jpg",
+            "stills/s033-g.jpg",
+            "stills/s033-h.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s036",
+          "t_in": 590.2,
+          "t_out": 620.9,
+          "stills": [
+            "stills/s036-a.jpg",
+            "stills/s036-b.jpg",
+            "stills/s036-c.jpg",
+            "stills/s036-d.jpg",
+            "stills/s036-e.jpg",
+            "stills/s036-f.jpg",
+            "stills/s036-g.jpg",
+            "stills/s036-h.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s040",
+          "t_in": 630.267,
+          "t_out": 675.667,
+          "stills": [
+            "stills/s040-a.jpg",
+            "stills/s040-b.jpg",
+            "stills/s040-c.jpg",
+            "stills/s040-d.jpg",
+            "stills/s040-e.jpg",
+            "stills/s040-f.jpg",
+            "stills/s040-g.jpg",
+            "stills/s040-h.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s031",
+          "t_in": 333.7,
+          "t_out": 349.8,
+          "stills": [
+            "stills/s031-a.jpg",
+            "stills/s031-b.jpg",
+            "stills/s031-c.jpg",
+            "stills/s031-d.jpg",
+            "stills/s031-e.jpg",
+            "stills/s031-f.jpg",
+            "stills/s031-g.jpg",
+            "stills/s031-h.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s038",
+          "t_in": 624.1,
+          "t_out": 627.067,
+          "stills": [
+            "stills/s038-a.jpg",
+            "stills/s038-b.jpg",
+            "stills/s038-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "count": 7,
+        "videos": 3,
+        "duration_median": 25.67,
+        "duration_p25_p75": [
+          4.27,
+          38.47
+        ],
+        "type_px_median": 50,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 1.35
       }
     },
     "C6": {
       "name": "Range line / annotated chart",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s019",
+          "t_in": 142.4,
+          "t_out": 148.633,
+          "stills": [
+            "stills/s019-a.jpg",
+            "stills/s019-b.jpg",
+            "stills/s019-c.jpg",
+            "stills/s019-d.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s006",
+          "t_in": 13.367,
+          "t_out": 16.867,
+          "stills": [
+            "stills/s006-a.jpg",
+            "stills/s006-b.jpg",
+            "stills/s006-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s104",
+          "t_in": 4.4,
+          "t_out": 6.333,
+          "stills": [
+            "stills/s104-a.jpg",
+            "stills/s104-b.jpg",
+            "stills/s104-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 3,
+        "videos": 2,
+        "duration_median": 3.5,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 35,
+        "word_rate_s_median": 0.19,
+        "hold_s_median": 1.5
       }
     },
     "C7": {
       "name": "Avatar + escalating ticker",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "problem-with-clay",
+          "shot": "s046",
+          "t_in": 139.0,
+          "t_out": 147.4,
+          "stills": [
+            "stills/s046-a.jpg",
+            "stills/s046-b.jpg",
+            "stills/s046-c.jpg",
+            "stills/s046-d.jpg",
+            "stills/s046-e.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 8.4,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 70,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 1.8
       }
     },
     "C8": {
       "name": "Focus card, dim siblings",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "problem-with-clay",
+          "shot": "s023",
+          "t_in": 216.833,
+          "t_out": 223.4,
+          "stills": [
+            "stills/s023-a.jpg",
+            "stills/s023-b.jpg",
+            "stills/s023-c.jpg",
+            "stills/s023-d.jpg",
+            "stills/s023-e.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s025",
+          "t_in": 242.5,
+          "t_out": 246.033,
+          "stills": [
+            "stills/s025-a.jpg",
+            "stills/s025-b.jpg",
+            "stills/s025-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 2,
+        "videos": 1,
+        "duration_median": 5.05,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 44.0,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 1.0
+      }
+    },
+    "C9": {
+      "name": "Comparison split",
+      "group": "custom",
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s039",
+          "t_in": 26.1,
+          "t_out": 29.1,
+          "stills": [
+            "stills/s039-a.jpg",
+            "stills/s039-b.jpg",
+            "stills/s039-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s004",
+          "t_in": 9.567,
+          "t_out": 13.033,
+          "stills": [
+            "stills/s004-a.jpg",
+            "stills/s004-b.jpg",
+            "stills/s004-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s006",
+          "t_in": 18.967,
+          "t_out": 24.533,
+          "stills": [
+            "stills/s006-a.jpg",
+            "stills/s006-b.jpg",
+            "stills/s006-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s033",
+          "t_in": 109.167,
+          "t_out": 118.4,
+          "stills": [
+            "stills/s033-a.jpg",
+            "stills/s033-b.jpg",
+            "stills/s033-c.jpg",
+            "stills/s033-d.jpg",
+            "stills/s033-e.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s098",
+          "t_in": 492.967,
+          "t_out": 508.2,
+          "stills": [
+            "stills/s098-a.jpg",
+            "stills/s098-b.jpg",
+            "stills/s098-c.jpg",
+            "stills/s098-d.jpg",
+            "stills/s098-e.jpg",
+            "stills/s098-f.jpg",
+            "stills/s098-g.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s043",
+          "t_in": 258.433,
+          "t_out": 269.233,
+          "stills": [
+            "stills/s043-a.jpg",
+            "stills/s043-b.jpg",
+            "stills/s043-c.jpg",
+            "stills/s043-d.jpg",
+            "stills/s043-e.jpg",
+            "stills/s043-f.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s003",
+          "t_in": 9.417,
+          "t_out": 12.083,
+          "stills": [
+            "stills/s003-a.jpg",
+            "stills/s003-b.jpg",
+            "stills/s003-c.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s005",
+          "t_in": 15.417,
+          "t_out": 22.8,
+          "stills": [
+            "stills/s005-a.jpg",
+            "stills/s005-b.jpg",
+            "stills/s005-c.jpg",
+            "stills/s005-d.jpg",
+            "stills/s005-e.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s008",
+          "t_in": 29.633,
+          "t_out": 39.4,
+          "stills": [
+            "stills/s008-a.jpg",
+            "stills/s008-b.jpg",
+            "stills/s008-c.jpg",
+            "stills/s008-d.jpg",
+            "stills/s008-e.jpg",
+            "stills/s008-f.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s041",
+          "t_in": 250.4,
+          "t_out": 254.767,
+          "stills": [
+            "stills/s041-a.jpg",
+            "stills/s041-b.jpg",
+            "stills/s041-c.jpg"
+          ]
+        }
+      ],
+      "stats": {
+        "count": 10,
+        "videos": 4,
+        "duration_median": 6.47,
+        "duration_p25_p75": [
+          3.35,
+          10.03
+        ],
+        "type_px_median": 60.0,
+        "word_rate_s_median": 0.25,
+        "hold_s_median": 1.0
       }
     },
     "D1": {
       "name": "Tiles flanking the face",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s005",
+          "t_in": 16.3,
+          "t_out": 18.767,
+          "stills": [
+            "stills/s005-a.jpg",
+            "stills/s005-b.jpg",
+            "stills/s005-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 2.47,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 45,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 0.8
       }
     },
     "D2": {
       "name": "Side screenshot + script + highlight",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s036",
+          "t_in": 14.5,
+          "t_out": 19.0,
+          "stills": [
+            "stills/s036-a.jpg",
+            "stills/s036-b.jpg",
+            "stills/s036-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 4.5,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 120,
+        "word_rate_s_median": 0.15,
+        "hold_s_median": 1.5
       }
     },
     "D3": {
       "name": "Caption bar",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s044",
+          "t_in": 81.8,
+          "t_out": 90.0,
+          "stills": [
+            "stills/s044-a.jpg",
+            "stills/s044-b.jpg",
+            "stills/s044-c.jpg",
+            "stills/s044-d.jpg",
+            "stills/s044-e.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 8.2,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 32,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 1.0
       }
     },
     "D4": {
       "name": "Tool chip stack",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s048",
+          "t_in": 725.5,
+          "t_out": 727.5,
+          "stills": [
+            "stills/s048-a.jpg",
+            "stills/s048-b.jpg",
+            "stills/s048-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 2.0,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 30,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 0.6
       }
     },
     "D5": {
       "name": "Name lower third",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "problem-with-clay",
+          "shot": "s043",
+          "t_in": 48.3,
+          "t_out": 50.7,
+          "stills": [
+            "stills/s043-a.jpg",
+            "stills/s043-b.jpg",
+            "stills/s043-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 2.4,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 60,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 1.4
       }
     },
     "E1": {
@@ -585,6 +2211,22 @@
       "group": "section",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s019",
+          "t_in": 57.367,
+          "t_out": 1061.0,
+          "stills": [
+            "stills/s019-a.jpg",
+            "stills/s019-b.jpg",
+            "stills/s019-c.jpg",
+            "stills/s019-d.jpg",
+            "stills/s019-e.jpg",
+            "stills/s019-f.jpg",
+            "stills/s019-g.jpg",
+            "stills/s019-h.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s050",
@@ -602,11 +2244,11 @@
         }
       ],
       "stats": {
-        "count": 1,
-        "videos": 1,
-        "duration_median": 14.5,
+        "count": 2,
+        "videos": 2,
+        "duration_median": 509.07,
         "duration_p25_p75": null,
-        "type_px_median": 0,
+        "type_px_median": 17.5,
         "word_rate_s_median": null,
         "hold_s_median": null
       }
@@ -614,14 +2256,82 @@
     "E2": {
       "name": "Slide deck + round face-cam",
       "group": "section",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s019",
+          "t_in": 125.0,
+          "t_out": 149.833,
+          "stills": [
+            "stills/s019-a.jpg",
+            "stills/s019-c.jpg",
+            "stills/s019-d.jpg",
+            "stills/s019-f.jpg",
+            "stills/s019-b.jpg",
+            "stills/s019-e.jpg",
+            "stills/s019-g.jpg",
+            "stills/s019-h.jpg"
+          ]
+        },
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s025",
+          "t_in": 368.367,
+          "t_out": 712.75,
+          "stills": [
+            "stills/s025-a.jpg",
+            "stills/s025-d.jpg",
+            "stills/s025-b.jpg",
+            "stills/s025-g.jpg",
+            "stills/s025-c.jpg",
+            "stills/s025-e.jpg",
+            "stills/s025-f.jpg",
+            "stills/s025-h.jpg"
+          ]
+        },
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s017",
+          "t_in": 92.1,
+          "t_out": 109.367,
+          "stills": [
+            "stills/s017-a.jpg",
+            "stills/s017-b.jpg",
+            "stills/s017-c.jpg",
+            "stills/s017-d.jpg",
+            "stills/s017-e.jpg",
+            "stills/s017-f.jpg",
+            "stills/s017-g.jpg",
+            "stills/s017-h.jpg"
+          ]
+        },
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s022",
+          "t_in": 167.967,
+          "t_out": 289.233,
+          "stills": [
+            "stills/s022-a.jpg",
+            "stills/s022-c.jpg",
+            "stills/s022-e.jpg",
+            "stills/s022-g.jpg",
+            "stills/s022-b.jpg",
+            "stills/s022-d.jpg",
+            "stills/s022-f.jpg",
+            "stills/s022-h.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
+        "count": 4,
+        "videos": 1,
+        "duration_median": 73.05,
+        "duration_p25_p75": [
+          19.16,
+          288.6
+        ],
+        "type_px_median": 65.0,
         "word_rate_s_median": null,
         "hold_s_median": null
       }
@@ -631,6 +2341,90 @@
       "group": "kit",
       "card": "ready",
       "exemplars": [
+        {
+          "video": "hormozi-100-posts",
+          "shot": "s040",
+          "t_in": 359.0,
+          "t_out": 366.0,
+          "stills": [
+            "stills/s040-a.jpg",
+            "stills/s040-b.jpg",
+            "stills/s040-c.jpg",
+            "stills/s040-d.jpg",
+            "stills/s040-e.jpg"
+          ]
+        },
+        {
+          "video": "instantly-1m-arr-channel",
+          "shot": "s121",
+          "t_in": 52.4,
+          "t_out": 56.6,
+          "stills": [
+            "stills/s121-a.jpg",
+            "stills/s121-b.jpg",
+            "stills/s121-c.jpg",
+            "stills/s121-d.jpg"
+          ]
+        },
+        {
+          "video": "liam-ottley-540k",
+          "shot": "s032",
+          "t_in": 579.9,
+          "t_out": 585.4,
+          "stills": [
+            "stills/s032-a.jpg",
+            "stills/s032-b.jpg",
+            "stills/s032-c.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s044",
+          "t_in": 64.1,
+          "t_out": 71.4,
+          "stills": [
+            "stills/s044-a.jpg",
+            "stills/s044-b.jpg",
+            "stills/s044-c.jpg",
+            "stills/s044-d.jpg",
+            "stills/s044-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s042",
+          "t_in": 49.9,
+          "t_out": 55.4,
+          "stills": [
+            "stills/s042-a.jpg",
+            "stills/s042-b.jpg",
+            "stills/s042-c.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s049",
+          "t_in": 727.5,
+          "t_out": 734.5,
+          "stills": [
+            "stills/s049-a.jpg",
+            "stills/s049-b.jpg",
+            "stills/s049-c.jpg",
+            "stills/s049-d.jpg",
+            "stills/s049-e.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s113",
+          "t_in": 508.2,
+          "t_out": 510.3,
+          "stills": [
+            "stills/s113-a.jpg",
+            "stills/s113-b.jpg",
+            "stills/s113-c.jpg"
+          ]
+        },
         {
           "video": "ultra-predictable-funnel",
           "shot": "s086",
@@ -643,6 +2437,30 @@
             "stills/s086-d.jpg",
             "stills/s086-e.jpg",
             "stills/s086-f.jpg"
+          ]
+        },
+        {
+          "video": "problem-with-clay",
+          "shot": "s052",
+          "t_in": 597.7,
+          "t_out": 604.8,
+          "stills": [
+            "stills/s052-a.jpg",
+            "stills/s052-b.jpg",
+            "stills/s052-c.jpg",
+            "stills/s052-d.jpg",
+            "stills/s052-e.jpg"
+          ]
+        },
+        {
+          "video": "spent-10k-on-mentors",
+          "shot": "s046",
+          "t_in": 370.7,
+          "t_out": 376.2,
+          "stills": [
+            "stills/s046-a.jpg",
+            "stills/s046-b.jpg",
+            "stills/s046-c.jpg"
           ]
         },
         {
@@ -680,16 +2498,16 @@
         }
       ],
       "stats": {
-        "count": 4,
-        "videos": 1,
+        "count": 13,
+        "videos": 7,
         "duration_median": 5.5,
         "duration_p25_p75": [
-          5.39,
-          8.97
+          5.43,
+          7.05
         ],
-        "type_px_median": 0.0,
+        "type_px_median": 28,
         "word_rate_s_median": 0.4,
-        "hold_s_median": 1.7
+        "hold_s_median": 1.5
       }
     },
     "lower-third": {
@@ -713,6 +2531,29 @@
       "card": "ready",
       "exemplars": [
         {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s018",
+          "t_in": 54.867,
+          "t_out": 60.3,
+          "stills": [
+            "stills/s018-a.jpg",
+            "stills/s018-b.jpg",
+            "stills/s018-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s112",
+          "t_in": 370.2,
+          "t_out": 375.233,
+          "stills": [
+            "stills/s112-a.jpg",
+            "stills/s112-b.jpg",
+            "stills/s112-c.jpg",
+            "stills/s112-d.jpg"
+          ]
+        },
+        {
           "video": "ultra-predictable-funnel",
           "shot": "s016",
           "t_in": 59.533,
@@ -734,6 +2575,28 @@
             "stills/s024-a.jpg",
             "stills/s024-b.jpg",
             "stills/s024-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s064",
+          "t_in": 302.9,
+          "t_out": 307.333,
+          "stills": [
+            "stills/s064-a.jpg",
+            "stills/s064-b.jpg",
+            "stills/s064-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s082",
+          "t_in": 422.533,
+          "t_out": 426.0,
+          "stills": [
+            "stills/s082-a.jpg",
+            "stills/s082-b.jpg",
+            "stills/s082-c.jpg"
           ]
         },
         {
@@ -760,16 +2623,16 @@
         }
       ],
       "stats": {
-        "count": 4,
-        "videos": 1,
+        "count": 8,
+        "videos": 2,
         "duration_median": 5.0,
         "duration_p25_p75": [
-          3.98,
-          6.1
+          3.83,
+          5.33
         ],
-        "type_px_median": 120.0,
+        "type_px_median": 77.5,
         "word_rate_s_median": 0.4,
-        "hold_s_median": 1.25
+        "hold_s_median": 1.5
       }
     },
     "side-text": {
@@ -808,6 +2671,61 @@
       "card": "ready",
       "exemplars": [
         {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s024",
+          "t_in": 72.3,
+          "t_out": 75.433,
+          "stills": [
+            "stills/s024-a.jpg",
+            "stills/s024-b.jpg",
+            "stills/s024-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s057",
+          "t_in": 272.967,
+          "t_out": 276.1,
+          "stills": [
+            "stills/s057-a.jpg",
+            "stills/s057-b.jpg",
+            "stills/s057-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s041",
+          "t_in": 162.467,
+          "t_out": 165.733,
+          "stills": [
+            "stills/s041-a.jpg",
+            "stills/s041-b.jpg",
+            "stills/s041-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s059",
+          "t_in": 278.333,
+          "t_out": 280.5,
+          "stills": [
+            "stills/s059-a.jpg",
+            "stills/s059-b.jpg",
+            "stills/s059-c.jpg"
+          ]
+        },
+        {
+          "video": "stupidly-simple-youtube-strategy",
+          "shot": "s061",
+          "t_in": 282.267,
+          "t_out": 285.833,
+          "stills": [
+            "stills/s061-a.jpg",
+            "stills/s061-b.jpg",
+            "stills/s061-c.jpg"
+          ]
+        },
+        {
           "video": "ultra-predictable-funnel",
           "shot": "s065",
           "t_in": 424.4,
@@ -820,29 +2738,32 @@
         }
       ],
       "stats": {
-        "count": 1,
-        "videos": 1,
-        "duration_median": 1.93,
-        "duration_p25_p75": null,
-        "type_px_median": 115,
-        "word_rate_s_median": null,
-        "hold_s_median": 0.7
+        "count": 6,
+        "videos": 2,
+        "duration_median": 3.13,
+        "duration_p25_p75": [
+          2.11,
+          3.34
+        ],
+        "type_px_median": 95.0,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 1.8
       }
     }
   },
   "candidates": {
-    "new:comparison-split": [
+    "new:typed-prompt": [
       {
-        "video": "ultra-predictable-funnel",
-        "shot": "s008"
+        "video": "problem-with-clay",
+        "shot": "s042"
       },
       {
-        "video": "ultra-predictable-funnel",
-        "shot": "s041"
+        "video": "problem-with-clay",
+        "shot": "s050"
       },
       {
-        "video": "ultra-predictable-funnel",
-        "shot": "s043"
+        "video": "problem-with-clay",
+        "shot": "s054"
       }
     ]
   }

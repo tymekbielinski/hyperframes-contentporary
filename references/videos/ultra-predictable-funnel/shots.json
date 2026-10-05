@@ -132,7 +132,7 @@
       "t_out": 39.4,
       "status": "reviewed",
       "kind": "graphic",
-      "pattern": "new:comparison-split",
+      "pattern": "C9",
       "placement": "full-frame",
       "stills": [
         "stills/s008-a.jpg",
@@ -965,7 +965,7 @@
       "t_out": 254.767,
       "status": "reviewed",
       "kind": "graphic",
-      "pattern": "new:comparison-split",
+      "pattern": "C9",
       "placement": "full-frame",
       "stills": [
         "stills/s041-a.jpg",
@@ -1015,7 +1015,7 @@
       "t_out": 269.233,
       "status": "reviewed",
       "kind": "graphic",
-      "pattern": "new:comparison-split",
+      "pattern": "C9",
       "placement": "full-frame",
       "stills": [
         "stills/s043-a.jpg",

@@ -1,0 +1,1155 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 0.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "0.3 s of face before the watch page rises over it (s041).",
+      "quality": ""
+    },
+    {
+      "id": "s041",
+      "t_in": 0.3,
+      "t_out": 3.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s041-a.jpg",
+        "stills/s041-b.jpg",
+        "stills/s041-c.jpg"
+      ],
+      "layout": {
+        "type_px": 165,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the light YouTube watch page rises from below over the face (\u22480.3 s); Liam's own video plays in the player, then '$500,000/m' types in character by character (\u22480.1 s/char, 1.7\u20132.8 s) in glowing lime over the clip",
+        "camera": "slow push \u22483 %/s; ends by tilting down the page into the next shot",
+        "word_rate_s": 0.1,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#8FE36A",
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Hook opener ('making $500,000 a month'). The number types per character rather than counting \u2014 contradicts the 'word by word, never per character' rule and B3's count-up; the glow is allowed because it sits on the dark clip, not the light ground.",
+      "quality": "The number is laid inside a real watch page, so the stat reads as the subject's own claim: a \u2248165 px lime figure with a soft green glow over the playing clip, on a silver page with real title, channel row and buttons. The page itself sits on the light radial ground with a thin white frame, three planes (ground, page, number) in 3 s.",
+      "exemplar": true
+    },
+    {
+      "id": "s042",
+      "t_in": 3.4,
+      "t_out": 5.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s042-a.jpg",
+        "stills/s042-b.jpg",
+        "stills/s042-c.jpg"
+      ],
+      "layout": {
+        "type_px": 25,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "continues from s041: the camera tilts down off the player onto Liam's real channel page",
+        "camera": "one leg \u22480.7 s (ease.camera) from the watch page to the channel header, then a slow push \u22484 %/s",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Bridge beat between B3 opener and the B1 logo row.",
+      "quality": "Flat real channel page (banner, avatar, video grid) at \u2248110 % with one readable stop on the header; the camera move is the transition, no cut between proof pages.",
+      "exemplar": false
+    },
+    {
+      "id": "s043",
+      "t_in": 5.4,
+      "t_out": 7.625,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s043-a.jpg",
+        "stills/s043-b.jpg",
+        "stills/s043-c.jpg"
+      ],
+      "layout": {
+        "type_px": 39,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "the channel grid dims to \u224835 % grey and blurs (\u22480.4 s); three dark rounded logo tiles pop in \u22480.25 s apart with their names typing beneath",
+        "camera": "none \u2014 locked with slight creep",
+        "word_rate_s": null,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#E57AB8",
+        "#3B6FE0"
+      ],
+      "marks": [],
+      "notes": "'Morningside AI / AI Automation Agency Hub / AAA Accelerator'. On the light-ground video the backdrop dims to a dark grey, so white type is used here.",
+      "quality": "Logo-row variant of the backdrop headline: real company logos in dark app-icon tiles (\u2248130 px, soft shadow) over the speaker's own dimmed channel, so the brands visibly sit on top of their proof. Labels white 39 px, one or two lines, centred under each tile.",
+      "exemplar": false
+    },
+    {
+      "id": "s002",
+      "t_in": 7.625,
+      "t_out": 9.417,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s003",
+      "t_in": 9.417,
+      "t_out": 12.083,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s003-a.jpg",
+        "stills/s003-b.jpg",
+        "stills/s003-c.jpg"
+      ],
+      "layout": {
+        "type_px": 80,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "'2019' (dark grey, \u224870 px) on the silver ground; a thin red arc draws leftwards from it (\u22480.6 s) and the script word 'Others' writes on at its end; a YouTube search-result list rises from below",
+        "camera": "slow drift down-left following the arc to the list",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#F25857"
+      ],
+      "marks": [
+        "arrow",
+        "script-word"
+      ],
+      "notes": "Left branch ('Others' = SMMA gurus) of the 2019 hub; the canvas resumes in s005/s039.",
+      "quality": "Opens the shared comparison canvas with only three things: a dark grey year, a thin hand-drawn red arc and a script label (\u224880 px tall) \u2014 the real search results it points to arrive blurred, so the arc and the word are read first.",
+      "exemplar": false
+    },
+    {
+      "id": "s004",
+      "t_in": 12.083,
+      "t_out": 15.417,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s005",
+      "t_in": 15.417,
+      "t_out": 22.8,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s005-a.jpg",
+        "stills/s005-b.jpg",
+        "stills/s005-c.jpg",
+        "stills/s005-d.jpg",
+        "stills/s005-e.jpg"
+      ],
+      "layout": {
+        "type_px": 80,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the 'Others' search list tilts back in 3D (\u224830\u00b0) and scrolls up past camera through SMMA thumbnails; a white gap; then the right branch: '2019' \u2192 red arc \u2192 script 'Liam Ottley' writes on \u2192 his own tilted list scrolls",
+        "camera": "two legs: tilted list scroll \u22483 s, then a travel right past the hub to the other branch (\u22480.6 s, ease.camera) and a second scroll \u22483.5 s",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F25857"
+      ],
+      "marks": [
+        "arrow",
+        "script-word"
+      ],
+      "notes": "A2-style tilted camera passes used as the two legs of a comparison-split canvas; split from the following B1 beat at 22.8 s.",
+      "quality": "The two branches are told with the same device (red arc + script name + real tilted results list), so the contrast is purely the content \u2014 SMMA guru thumbnails vs AI-automation thumbnails. The 3D tilt plus depth-of-field (near rows sharp, far rows soft) gives a long list depth without a card frame.",
+      "exemplar": false
+    },
+    {
+      "id": "s038",
+      "t_in": 22.8,
+      "t_out": 26.1,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s038-a.jpg",
+        "stills/s038-b.jpg",
+        "stills/s038-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "Liam's list dims to \u224830 % dark grey and blurs; real zapier and make wordmarks land; red \u2715 chips with 'Not sexy' and 'Not trendy' type in \u22480.5 s apart",
+        "camera": "none \u2014 locked",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#FF4F00",
+        "#C13BDB",
+        "#F25857"
+      ],
+      "marks": [
+        "cross"
+      ],
+      "notes": "'Building automations in Zapier and Make wasn't sexy, wasn't trendy'.",
+      "quality": "The verdict sits on the proof: the real tool wordmarks (\u224860 px) over the dimmed list they came from, each with a small red \u2715 status chip typed in on the spoken word. Only two objects, generous spacing.",
+      "exemplar": false
+    },
+    {
+      "id": "s039",
+      "t_in": 26.1,
+      "t_out": 29.1,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s039-a.jpg",
+        "stills/s039-b.jpg",
+        "stills/s039-c.jpg"
+      ],
+      "layout": {
+        "type_px": 140,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "pull back from Liam's list reveals the whole canvas: 'When AI Exploded In' builds word by word above '2019', red arcs to 'Others' left and 'Liam Ottley' right",
+        "camera": "one pull-back \u22481 s (ease.camera), then hold; a red block wipes behind the year and the digits roll 2019 \u2192 2023 (\u22480.5 s)",
+        "word_rate_s": 0.25,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#F25857",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow",
+        "script-word"
+      ],
+      "notes": "Exemplar of the comparison-split candidate on a light ground: two script labels, two red arcs, real lists blurred at the bottom edge.",
+      "quality": "The payoff of the comparison canvas: the camera pulls back so both branches and their real lists frame a central 140 px year in a red block (#F25857, white numerals), with a 63 px dark grey headline above. The year rolls 2019 \u2192 2023 inside the block, so the correction is one beat, not a new scene.",
+      "exemplar": true
+    },
+    {
+      "id": "s040",
+      "t_in": 29.1,
+      "t_out": 31.917,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s040-a.jpg",
+        "stills/s040-b.jpg",
+        "stills/s040-c.jpg"
+      ],
+      "layout": {
+        "type_px": 66,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "Liam's real channel page slides up from below over the comparison canvas (\u22480.5 s)",
+        "camera": "push from \u224880 % to \u2248150 % on the header (\u22482 s, ease.camera.slow); a red highlight block sweeps L \u2192 R behind '748K subscribers'",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#F25857"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Hands back to the face on '\u2026a channel with 750k subscribers'.",
+      "quality": "A real page pushed until the channel name reads \u224866 px, with exactly one mark \u2014 the red block behind the subscriber count \u2014 landing as the push settles. The page keeps a faint vignette edge on the silver ground.",
+      "exemplar": true
+    },
+    {
+      "id": "s006",
+      "t_in": 31.917,
+      "t_out": 34.042,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s007",
+      "t_in": 34.042,
+      "t_out": 37.875,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s007-a.jpg",
+        "stills/s007-b.jpg",
+        "stills/s007-c.jpg"
+      ],
+      "layout": {
+        "type_px": 78,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the AAA logo tile scales up out of the channel page while the page dims to \u224835 % dark grey and blurs (\u22480.5 s); 'AAA AI Automation Agency' builds beneath",
+        "camera": "none \u2014 locked, slight creep",
+        "word_rate_s": null,
+        "hold_s": 3.0
+      },
+      "colours": [
+        "#E57AB8",
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Spoken: 'he started AAA, the AI Automation Agency'.",
+      "quality": "One real logo tile (\u2248150 px, dark rounded square) above a single 78 px white line with a soft halo, over the dimmed channel it belongs to \u2014 a backdrop headline whose headline is the brand. Long clean 3 s hold.",
+      "exemplar": true
+    },
+    {
+      "id": "s008",
+      "t_in": 37.875,
+      "t_out": 63.375,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s009",
+      "t_in": 63.375,
+      "t_out": 73.6,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s009-a.jpg",
+        "stills/s009-b.jpg",
+        "stills/s009-c.jpg",
+        "stills/s009-d.jpg",
+        "stills/s009-e.jpg",
+        "stills/s009-f.jpg"
+      ],
+      "layout": {
+        "type_px": 130,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "YouTube, Instagram and X icons pop L \u2192 R (\u22480.15 s apart); dashed grey elbows draw down and merge into one line",
+        "camera": "camera tilts down along the dashed line to a browser card with the real VSL page (\u22480.7 s), 'VSL Page' builds per character with a red underline; back up (\u22480.6 s), the platform labels type on; pull back to frame both; 'Runs Retargeting Ads Only!' types per character, then a red block wipes L \u2192 R behind it (\u22481 s)",
+        "word_rate_s": 0.08,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F25857",
+        "#FF0000",
+        "#E1306C"
+      ],
+      "marks": [
+        "highlight-block",
+        "underline"
+      ],
+      "notes": "Text builds are per character ('VSL Page', 'Runs Retargeting Ads Only!'), against the word-entrance rule. Split from the Skool page beat at 73.6 s.",
+      "quality": "A three-to-one funnel told vertically: real platform logos on top, thin dashed connectors that merge into a single line, and a real dark landing page in a browser card at the bottom, so the camera's up/down legs are the argument. The 130 px glowing 'VSL Page' title sits on the dark page (glow only on the dark surface), while the light canvas text stays flat dark grey.",
+      "exemplar": false
+    },
+    {
+      "id": "s037",
+      "t_in": 73.6,
+      "t_out": 79.625,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s037-a.jpg",
+        "stills/s037-b.jpg",
+        "stills/s037-c.jpg",
+        "stills/s037-d.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the real Skool community page rises from below (\u22480.3 s)",
+        "camera": "one long push (\u22483 s) that also rotates the page into a 3D tilt (\u224820\u00b0 around Y) toward the members panel; a red hand-drawn circle draws around '302.7k members' at the stop",
+        "word_rate_s": null,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#F25857",
+        "#E8C55A"
+      ],
+      "marks": [
+        "circle"
+      ],
+      "notes": "Same page and move reused in s036 (\u224865 s later).",
+      "quality": "A real page made cinematic by a single move: push plus a gentle 3D tilt (a tilt, never a flip) with depth-of-field softening the far edge, ending on one hand-drawn red circle around the number that matters. The page keeps a soft neutral shadow on the silver ground.",
+      "exemplar": true
+    },
+    {
+      "id": "s010",
+      "t_in": 79.625,
+      "t_out": 138.292,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s011",
+      "t_in": 138.292,
+      "t_out": 142.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s011-a.jpg",
+        "stills/s011-b.jpg",
+        "stills/s011-c.jpg"
+      ],
+      "layout": {
+        "type_px": 24,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the real 'About' links popup appears sharp over Liam's channel page, which is blurred and dimmed to \u224860 %",
+        "camera": "none \u2014 locked; a blue hand-drawn underline scribbles under one link (\u22480.4 s) after \u22481.5 s",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Focus card is smaller than A1's 40\u201360 % W rule; split from the Skool page at 142.2 s.",
+      "quality": "Real UI focus on the light ground: a crisp white modal (\u224830 % W) over its own page, which is blurred and greyed rather than darkened, so the frame stays light. One mark only, drawn on the link being talked about.",
+      "exemplar": true
+    },
+    {
+      "id": "s036",
+      "t_in": 142.2,
+      "t_out": 145.667,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s036-a.jpg",
+        "stills/s036-b.jpg",
+        "stills/s036-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the Skool page slides up over the popup (\u22480.3 s)",
+        "camera": "push + 3D tilt toward the members panel (\u22482 s), red circle around '302.7k' at the stop",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#F25857",
+        "#E8C55A"
+      ],
+      "marks": [
+        "circle"
+      ],
+      "notes": "Repeat of s037.",
+      "quality": "Repeat of s037's camera move on the same real page, shorter; the reuse makes the community size a recurring proof beat.",
+      "exemplar": false
+    },
+    {
+      "id": "s012",
+      "t_in": 145.667,
+      "t_out": 212.042,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s013",
+      "t_in": 212.042,
+      "t_out": 215.042,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s013-a.jpg",
+        "stills/s013-b.jpg",
+        "stills/s013-c.jpg"
+      ],
+      "layout": {
+        "type_px": 58,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "Liam's channel chip (avatar + name, \u224858 px) on the silver ground; a red highlight block wipes L \u2192 R behind '752K subscribers' (\u22480.5 s)",
+        "camera": "none; thin grey elbows draw down from the chip, the red centre avatar pops, then blue and green ones left and right; labels type beneath",
+        "word_rate_s": null,
+        "hold_s": 0.3
+      },
+      "colours": [
+        "#F25857",
+        "#6F9BD8",
+        "#ACC653"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Audience-segment tree (Beginners / Struggling Entrepreneurs / Business Owners); resumes in s015, s017, s019.",
+      "quality": "The tree grows out of a real UI element (the channel's name and subscriber count, marked with a red block), with flat coloured avatar circles (\u2248150 px) and bold dark grey labels \u2014 three colours that become the three column codes for the rest of the canvas.",
+      "exemplar": false
+    },
+    {
+      "id": "s014",
+      "t_in": 215.042,
+      "t_out": 219.042,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s015",
+      "t_in": 219.042,
+      "t_out": 227.542,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s015-a.jpg",
+        "stills/s015-b.jpg",
+        "stills/s015-c.jpg",
+        "stills/s015-d.jpg",
+        "stills/s015-e.jpg"
+      ],
+      "layout": {
+        "type_px": 57,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes on the full tree from s013",
+        "camera": "pull back slightly, then push \u22482.5\u00d7 down into the Beginners column (\u22481.5 s, ease.camera); three numbered pain points build word by word, one per spoken phrase, red on the key words",
+        "word_rate_s": 0.3,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#F25857",
+        "#6F9BD8"
+      ],
+      "marks": [],
+      "notes": "Red here is meaning colour (the problem), never a fill.",
+      "quality": "Column tour of a tree: after the push the column header reads 57 px and the points \u224840 px, centred, with only the pain words red ('but don't know how?', 'capitalizing', '9 to 5', 'more freedom'); the next column stays visible at the right edge, so the viewer knows the camera will move on.",
+      "exemplar": true
+    },
+    {
+      "id": "s016",
+      "t_in": 227.542,
+      "t_out": 229.542,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s017",
+      "t_in": 229.542,
+      "t_out": 237.708,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s017-a.jpg",
+        "stills/s017-b.jpg",
+        "stills/s017-c.jpg",
+        "stills/s017-d.jpg",
+        "stills/s017-e.jpg"
+      ],
+      "layout": {
+        "type_px": 57,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes on the Beginners column",
+        "camera": "pans right to Struggling Entrepreneurs (\u22480.8 s, ease.camera); its three points build word by word, red on 'models & fail', 'technical skills', 'don't know where to start'",
+        "word_rate_s": 0.3,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#F25857",
+        "#E26B6B"
+      ],
+      "marks": [],
+      "notes": "",
+      "quality": "Same grammar as s015, one camera leg to the neighbouring column; the previous column stays half in frame on the left, keeping the canvas continuous.",
+      "exemplar": false
+    },
+    {
+      "id": "s018",
+      "t_in": 237.708,
+      "t_out": 241.875,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s019",
+      "t_in": 241.875,
+      "t_out": 247.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s019-a.jpg",
+        "stills/s019-b.jpg",
+        "stills/s019-c.jpg"
+      ],
+      "layout": {
+        "type_px": 57,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes on Struggling Entrepreneurs",
+        "camera": "pans right to Business Owners (\u22480.8 s); two points build word by word, red on 'more freedom', 'work less'",
+        "word_rate_s": 0.3,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#F25857",
+        "#ACC653"
+      ],
+      "marks": [],
+      "notes": "Split from the VSL page beat at 247.4 s.",
+      "quality": "Third column of the same tour; the move, type size and red-key-word rule are identical, so the three segments read as one system.",
+      "exemplar": false
+    },
+    {
+      "id": "s035",
+      "t_in": 247.4,
+      "t_out": 252.042,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s035-a.jpg",
+        "stills/s035-b.jpg",
+        "stills/s035-c.jpg"
+      ],
+      "layout": {
+        "type_px": 20,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "from Business Owners the camera follows a thin green connector right to a real browser window with Liam's dark VSL page (playing video)",
+        "camera": "one leg \u22481 s (ease.camera) then a slow push \u22483 %/s; the page's own video keeps playing",
+        "word_rate_s": null,
+        "hold_s": 3.0
+      },
+      "colours": [
+        "#ACC653"
+      ],
+      "marks": [],
+      "notes": "Leaf of the s013\u2013s019 tree canvas, tagged A2 because the page is the subject for 4.6 s.",
+      "quality": "The tree's leaf is real UI: a macOS browser chrome around the actual sales page with its video playing, so the segment points to the offer itself.",
+      "exemplar": false
+    },
+    {
+      "id": "s020",
+      "t_in": 252.042,
+      "t_out": 340.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s021",
+      "t_in": 340.0,
+      "t_out": 345.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s021-a.jpg",
+        "stills/s021-b.jpg",
+        "stills/s021-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "Liam's channel page, flat",
+        "camera": "the page tilts back in 3D (\u224840\u00b0) and the video grid scrolls up fast under the camera (\u22484 s) until one tile is centred; depth of field softens the far rows",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Hands off to s034, where one tile is pulled out of this grid.",
+      "quality": "A wall of real thumbnails turned into a floor the camera flies over \u2014 the 3D tilt plus defocus makes 30+ tiles read as abundance without any text.",
+      "exemplar": false
+    },
+    {
+      "id": "s034",
+      "t_in": 345.2,
+      "t_out": 364.875,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s034-a.jpg",
+        "stills/s034-b.jpg",
+        "stills/s034-c.jpg",
+        "stills/s034-d.jpg",
+        "stills/s034-e.jpg",
+        "stills/s034-f.jpg",
+        "stills/s034-g.jpg",
+        "stills/s034-h.jpg"
+      ],
+      "layout": {
+        "type_px": 38,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "one thumbnail tile ('$500,000/YEAR AI Agency') is pulled forward sharp while the grid behind blurs and washes to \u224835 % white; a red block lands on '27K views'",
+        "camera": "thin red curves draw from the views chip to 'Templates Of\u2026' (left) and 'Proven Contracts\u2026' (right), the camera panning to each (\u22481 s legs); a vertical red line drops to 'Customers Fear\u2026', then pull back to frame all three; callouts sit in a slight perspective with depth of field",
+        "word_rate_s": 0.3,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F25857"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow"
+      ],
+      "notes": "Starts with an A1 beat (tile pulled out of its own grid, \u22481.3 s) inside the C2. Close to B2 (three callouts), but the anchor is real UI and the connectors are tree branches, as in the pilot's s063.",
+      "quality": "A mind-map grown out of a real tile: the root is the red-blocked view count, three thin red connectors lead to 38 px labels whose first word is bold red italic ('Templates', 'Proven', 'Customers Fear') and the rest dark grey italic. Four planes \u2014 washed grid, sharp tile, red lines, perspective text with defocus \u2014 keep a 20 s shot alive with only three beats.",
+      "exemplar": true
+    },
+    {
+      "id": "s022",
+      "t_in": 364.875,
+      "t_out": 369.417,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s023",
+      "t_in": 369.417,
+      "t_out": 398.083,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s023-a.jpg",
+        "stills/s023-b.jpg",
+        "stills/s023-c.jpg",
+        "stills/s023-d.jpg",
+        "stills/s023-e.jpg",
+        "stills/s023-f.jpg",
+        "stills/s023-g.jpg",
+        "stills/s023-h.jpg"
+      ],
+      "layout": {
+        "type_px": 33,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "a light YouTube watch page (car clip) \u2014 the camera dives into the player (\u22480.5 s); the clip cuts to a podcast shot that dims to \u224825 % and blurs; frosted glass pills (icon tile + label) slide in one per spoken point, each with its own soft tint (blue, red, green, violet)",
+        "camera": "slow drift and a gentle pull back as the list grows from 1 to 4 pills (\u2248371.5, 375.5, 381, 385 s); beside each pill a thin white arc and an italic quote type in",
+        "word_rate_s": 0.12,
+        "hold_s": 4.0
+      },
+      "colours": [
+        "#D9E8F6",
+        "#FEE5E6",
+        "#DDF5D6",
+        "#EADCF7"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "Merged s023+s024 (detector cut on the dive into the player). Points: Call Out His Avatar / Attack a Common Belief / Share His Backstory / Bring New Perspectives. Bullets every \u22484\u20136 s (slower than B1's \u22481.3 s, following speech).",
+      "quality": "List variant of the backdrop headline built from frosted white glass pills (\u2248500 px wide, 33 px labels, dark icon tiles, inner glow and a coloured tint per pill) over the dimmed source clip \u2014 the only dark-ground beat in the video, and the glow belongs to the glass, not the type. Each pill gets an italic example quote on an alternating side with a hand-drawn arc, so the list reads like annotated proof.",
+      "exemplar": true
+    },
+    {
+      "id": "s025",
+      "t_in": 398.083,
+      "t_out": 430.958,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s026",
+      "t_in": 430.958,
+      "t_out": 434.833,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s026-a.jpg",
+        "stills/s026-b.jpg",
+        "stills/s026-c.jpg"
+      ],
+      "layout": {
+        "type_px": 54,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "'Financial' then 'Flywheel' build word by word (\u22480.4 s) in dark grey; a thin pale-green ring draws around it and six green icon nodes pop \u22480.15 s apart",
+        "camera": "small pull back to frame the full ring",
+        "word_rate_s": 0.4,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#A8E06D"
+      ],
+      "marks": [],
+      "notes": "Intro of the persistent flywheel canvas (resumes in s028, s030).",
+      "quality": "Minimal flywheel: title centred at 54 px, a thin pale-green ring and six lime circle nodes (\u224890 px) with real platform/tool glyphs (YouTube, Instagram, Skool) \u2014 only one accent colour on the light ground.",
+      "exemplar": false
+    },
+    {
+      "id": "s027",
+      "t_in": 434.833,
+      "t_out": 442.208,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s028",
+      "t_in": 442.208,
+      "t_out": 462.042,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s028-a.jpg",
+        "stills/s028-b.jpg",
+        "stills/s028-c.jpg",
+        "stills/s028-d.jpg",
+        "stills/s028-e.jpg",
+        "stills/s028-f.jpg",
+        "stills/s028-g.jpg",
+        "stills/s028-h.jpg"
+      ],
+      "layout": {
+        "type_px": 90,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "resumes on the full ring",
+        "camera": "camera pushes to \u22482\u00d7 and travels clockwise node to node (Client Success \u2192 Sales Assets \u2192 Top of Funnel \u2192 Middle of Funnel \u2192 Bottom of Funnel), each leg \u22481.2 s (ease.camera) with \u22482 s readable stops; as the camera travels, a darker dashed segment draws along the ring to the next node and its label types on arrival",
+        "word_rate_s": 0.25,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#A8E06D",
+        "#7FB24A"
+      ],
+      "marks": [],
+      "notes": "Cut-in canvas: a face cut (s029) interrupts, then it resumes exactly where it was (s030).",
+      "quality": "Orbit tour done by the camera: at \u22482\u00d7 the title (90 px) drifts out of frame as context while each node and its 58 px grey label sit at a readable stop; the dashed darker-green segment drawing ahead of the camera is what makes it feel like a loop rather than a list.",
+      "exemplar": true
+    },
+    {
+      "id": "s029",
+      "t_in": 462.042,
+      "t_out": 464.792,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s030",
+      "t_in": 464.792,
+      "t_out": 476.042,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s030-a.jpg",
+        "stills/s030-b.jpg",
+        "stills/s030-c.jpg",
+        "stills/s030-d.jpg",
+        "stills/s030-e.jpg",
+        "stills/s030-f.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "resumes at Bottom of Funnel at \u22482\u00d7",
+        "camera": "travels to Gets New Clients (\u22481.2 s), then pulls back to the whole labelled ring (\u22482 s, ease.camera); hold",
+        "word_rate_s": 0.25,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#A8E06D",
+        "#7FB24A"
+      ],
+      "marks": [],
+      "notes": "Shared-canvas resume after the s029 face cut.",
+      "quality": "The loop closes on a full pull-back: six labelled nodes around a 50 px title with every segment now dashed, held \u22481.5 s \u2014 the overview the tour earned.",
+      "exemplar": false
+    },
+    {
+      "id": "s031",
+      "t_in": 476.042,
+      "t_out": 579.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s032",
+      "t_in": 579.9,
+      "t_out": 585.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s032-a.jpg",
+        "stills/s032-b.jpg",
+        "stills/s032-c.jpg"
+      ],
+      "layout": {
+        "type_px": 28,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the face scales to \u22480.80 into the player of a dark-theme YouTube watch page (\u22480.5 s)",
+        "camera": "hold \u22480.4 s \u2192 dive \u22482\u00d7 onto the description link (\u22480.6 s) \u2192 hold \u22482 s \u2192 reverse (\u22480.6 s) \u2192 hold \u2192 scale back to the face (\u22480.5 s); \u22485.5 s total, ease.camera",
+        "word_rate_s": null,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Single CTA in the video (~9:40). Channel shown is Tymek Bielinski's.",
+      "quality": "Matches the kit CTA beat for beat: real watch page with the live face in the player, a 2\u00d7 dive to the actual booking link in the description, a long readable hold, and the exact reverse. The page is YouTube's dark theme even though the video is light-ground.",
+      "exemplar": true
+    },
+    {
+      "id": "s033",
+      "t_in": 585.4,
+      "t_out": 601.002,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}

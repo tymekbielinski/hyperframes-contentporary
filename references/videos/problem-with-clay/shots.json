@@ -1,0 +1,1482 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 1.167,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s002",
+      "t_in": 1.167,
+      "t_out": 4.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s002-a.jpg",
+        "stills/s002-b.jpg",
+        "stills/s002-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut from face onto one centred YouTube video tile on a soft light-grey vignette ground",
+        "camera": "locked; hard cuts inside the montage swap the tile every \u22480.5\u20130.7 s (4 tiles in 3 s); on the last tile a red hand-drawn line starts drawing downward and leads into s041",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F6B9C0",
+        "#F27479"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow"
+      ],
+      "notes": "Opener 'everyone is teaching Clay'. Video-tile variant of A6 (tiles instead of channel pages). Ends on a red hand-drawn line that becomes the camera path down to the pricing page (s041).",
+      "quality": "Breadth of proof without noise: each competitor tutorial is a real YouTube tile (thumbnail softly blurred so it reads as texture, title sharp) with a pink highlight block behind just the Clay keyword phrase, so the eye reads one phrase per 0.6 s. On the light ground the tiles keep their own drop shadow and sit on a faint vignette, not a flat white.",
+      "exemplar": true
+    },
+    {
+      "id": "s041",
+      "t_in": 4.2,
+      "t_out": 7.533,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s041-a.jpg",
+        "stills/s041-b.jpg",
+        "stills/s041-c.jpg"
+      ],
+      "layout": {
+        "type_px": 48,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "red hand-drawn line draws down from the last tile; camera tilts down along it onto the real Clay pricing page (\u22480.8 s)",
+        "camera": "tilt down \u22480.8 s, then a slow push; at \u22485.3 s the page dims to \u224860 % grey and blurs while a 'Confirm cancellation' modal pops in centred (scale up, \u22480.3 s); synthetic cursor moves onto 'Cancel Plan'",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#3E5BDB",
+        "#1E7A45",
+        "#B3189B",
+        "#F27479"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "'\u2026and then cancel'. Modal \u224845 % W. The red line from s002 is the transition device (camera follows the stroke).",
+      "quality": "Real UI stacked in depth on a light ground: the full-colour pricing page is pushed back by greying and blurring it (not by darkening to black), so the white glass modal with its red \u2715 badge and red 'Cancel Plan' button is the only crisp, saturated thing in frame. The cursor arriving on the button is the beat \u2014 no headline needed.",
+      "exemplar": true
+    },
+    {
+      "id": "s003",
+      "t_in": 7.533,
+      "t_out": 9.567,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s004",
+      "t_in": 9.567,
+      "t_out": 13.033,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s004-a.jpg",
+        "stills/s004-b.jpg",
+        "stills/s004-c.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "'Same Outbound System' red-tinted icon card at top, dashed elbow connectors draw down to the Clay logo (3D clay object) left and a pixelated 'Alternative' logo right",
+        "camera": "push-in and tilt down (\u22480.8 s) past the root to two price cards under the logos split by a thin vertical divider with a '$ Price' chip; headline builds under them",
+        "word_rate_s": 0.25,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#F27479",
+        "#F6B9C0",
+        "#9BD27A"
+      ],
+      "marks": [
+        "highlight-block",
+        "underline"
+      ],
+      "notes": "Reuses the pilot candidate name new:comparison-split (side-by-side comparison under a hub). Tree header is C2-like but the point is the side-by-side split. The alternative's logo is deliberately pixelated.",
+      "quality": "A verdict on one canvas: two real price cards (blurred detail rows, only the price sharp) face each other across a thin divider labelled 'Price', and the prices carry the colour \u2014 pink block on '$446/mo', green block on 'From $100'. The 65 px charcoal headline 'Clay Is 4x More Expensive' lands under them with a soft red underline sweeping full width; on the light grid ground everything has a 1 px light border and a very soft shadow, so it reads as paper cards, not flat shapes.",
+      "exemplar": true
+    },
+    {
+      "id": "s005",
+      "t_in": 13.033,
+      "t_out": 18.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s006",
+      "t_in": 18.967,
+      "t_out": 24.533,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s006-a.jpg",
+        "stills/s006-b.jpg",
+        "stills/s006-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "sparse",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "Clay 3D logo + 'Clay' label + 'Active users -2.3%' amber chip sit over the real Clay homepage, which is blurred and faded to \u224835 % on the light ground",
+        "camera": "slow push (\u22483 %/s) while the chip counts -2.3 % \u2192 -7.2 %; cursor hovers the chip; then a horizontal pan right (\u22480.7 s) to the 'Alternative' side: pixelated logo + red '?' + '+8.1 %' green chip over its own blurred homepage",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#F2C46B",
+        "#9BD27A",
+        "#F27479"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "'Clay's users are falling, the alternative's are growing'. Pan comparison, like the pilot's comparison-split hub pans.",
+      "quality": "Each side is a logo object over a ghost of its own website (blurred + faded, still recognisable as a landing page), so the comparison carries context for free. The metric chip is the only colour per side \u2014 amber for falling, green for rising \u2014 and the pan itself is the argument (left = losing, right = winning).",
+      "exemplar": true
+    },
+    {
+      "id": "s007",
+      "t_in": 24.533,
+      "t_out": 26.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s008",
+      "t_in": 26.3,
+      "t_out": 31.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s008-a.jpg",
+        "stills/s008-b.jpg",
+        "stills/s008-c.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the real Anthropic checkout page, tilted in 3D (\u224815\u201320\u00b0 perspective) and scrolling upward",
+        "camera": "2 legs: scroll/tilt up the order summary (\u22482 s) \u2192 stop on 'Adjust usage' with the 20x plan card selected (blue) and a synthetic cursor on it; slight push; ends pulling back flat",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#C9D8F5",
+        "#5B7FE0"
+      ],
+      "marks": [],
+      "notes": "'I'm on the $200 Claude Max plan'. Hands off to s042 by sliding a dark app window up over it.",
+      "quality": "The camera pass uses a real page with a gentle 3D tilt (never a flip) and shallow focus \u2014 the far edge of the page falls off into blur, which gives depth on a white page where shadows alone wouldn't. The stop lands with the selected blue plan card under a cursor, so the proof ('I pay $200/mo for this') is a real UI state, not a label.",
+      "exemplar": true
+    },
+    {
+      "id": "s042",
+      "t_in": 31.5,
+      "t_out": 35.133,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "new:typed-prompt",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s042-a.jpg",
+        "stills/s042-b.jpg",
+        "stills/s042-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "a dark Claude Code browser window rises from the bottom over the checkout page (\u22480.5 s), the page dims behind it",
+        "camera": "push-in to the window (\u22481 s, ease out) until the prompt box fills \u224850 % W; the line 'Using Only Claude Code & Claude Code Agents' types character by character into the input",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#D97757",
+        "#2B2B2B"
+      ],
+      "marks": [],
+      "notes": "Candidate pattern: a headline typed into a real app input (also s050, s054).",
+      "quality": "The key line is typed into the real input of the real tool, so the claim and its proof are one object. A dark window on the light ground gives the strongest depth cue in the video: the window carries its own soft drop shadow and the light page behind it greys out.",
+      "exemplar": true
+    },
+    {
+      "id": "s009",
+      "t_in": 35.133,
+      "t_out": 48.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s043",
+      "t_in": 48.3,
+      "t_out": 50.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "D5",
+      "placement": "over-footage",
+      "stills": [
+        "stills/s043-a.jpg",
+        "stills/s043-b.jpg",
+        "stills/s043-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "script first name 'Tymek' writes on (\u22480.4 s), bold sans 'Bieli\u0144ski' fades in beside it, then a thin curved white arrow draws from above-left to the name",
+        "camera": "none (footage untouched)",
+        "word_rate_s": null,
+        "hold_s": 1.4
+      },
+      "colours": [
+        "#FFFFFF"
+      ],
+      "marks": [
+        "script-word",
+        "arrow"
+      ],
+      "notes": "Intro 'my name is Tymek\u2026'. \u22482.4 s.",
+      "quality": "Pure white on the dark sweater, lower right, so it needs no plate. Script + bold pairing with a hand-drawn arrow pointing at the speaker reads personal and premium; it lands with the self-introduction and leaves before the cut.",
+      "exemplar": true
+    },
+    {
+      "id": "s010",
+      "t_in": 50.7,
+      "t_out": 56.533,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s010-a.jpg",
+        "stills/s010-b.jpg",
+        "stills/s010-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "three real YouTube video tiles pop in staggered (\u22480.15 s apart) on the light vignette ground, a faint ghosted Clay logo behind",
+        "camera": "slow push; a red hand-drawn swirl line draws from the centre tile down to the headline; camera drifts down to frame the headline under the tiles",
+        "word_rate_s": 0.3,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#F6B9C0",
+        "#2FA7A0",
+        "#F27479"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow"
+      ],
+      "notes": "Three-tile variant of A1 (no blurred backdrop copy).",
+      "quality": "Real thumbnails stay fully sharp (they're the credibility) with pink blocks wiping onto each view count; the headline 'I've Worked With Several / Clay Enterprise Partners!' builds under them, second line in a teal accent taken from the Clay logo, tied to the tiles by a loose red swirl.",
+      "exemplar": false
+    },
+    {
+      "id": "s011",
+      "t_in": 56.533,
+      "t_out": 58.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s012",
+      "t_in": 58.0,
+      "t_out": 62.233,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s012-a.jpg",
+        "stills/s012-b.jpg",
+        "stills/s012-c.jpg",
+        "stills/s012-d.jpg",
+        "stills/s012-e.jpg",
+        "stills/s012-f.jpg"
+      ],
+      "layout": {
+        "type_px": 36,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "opens on an extreme close-up of the bottom metric row of a dark case-study card, then pulls back/tilts up to frame the whole card (\u22480.9 s)",
+        "camera": "pull-back, then hold; at \u224860.2 s a hard cut swaps to the next carousel card at the same framing (\u22482 s each)",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F08A4B",
+        "#E3342F"
+      ],
+      "marks": [
+        "highlight-block",
+        "underline"
+      ],
+      "notes": "Merged s012+s013 (detector cut on the card swap). Dark ground here \u2014 a deliberate inversion inside a light-ground video. Swap is a hard cut, not the A5 step-away tilt.",
+      "quality": "The case studies are the real website carousel cards (prev/next arrows, avatar, metric chips) rather than drawn cards, and each headline has an orange highlight block behind the result figure ('$16K / m', '$80,000'). The pull-back from a close-up of the metrics row makes the number the first thing seen, then gives it context.",
+      "exemplar": true
+    },
+    {
+      "id": "s014",
+      "t_in": 62.233,
+      "t_out": 64.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s044",
+      "t_in": 64.1,
+      "t_out": 71.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s044-a.jpg",
+        "stills/s044-b.jpg",
+        "stills/s044-c.jpg",
+        "stills/s044-d.jpg",
+        "stills/s044-e.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "the face footage slides up out of frame (\u22480.4 s), revealing a dark 'Book time with me now' booking page with a calendar",
+        "camera": "hold on the calendar (cursor clicks a date) \u22481.5 s \u2192 motion-blurred tilt down (\u22480.6 s) to the watch-page description link \u2192 hold \u22481.5 s \u2192 tilt back up \u2192 the face footage comes down into the player rect and the player scales back to full frame (\u22480.8 s)",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Extended CTA (\u22487.3 s). Same move repeats in s052.",
+      "quality": "A variant of the watch-page CTA where the player content is the booking page itself: the viewer sees exactly what clicking the link gives them, then the real description link, then the speaker drops back into the player. Every move carries strong directional motion blur, so the 7 s trip feels like one gesture.",
+      "exemplar": true
+    },
+    {
+      "id": "s045",
+      "t_in": 71.4,
+      "t_out": 104.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s015",
+      "t_in": 104.9,
+      "t_out": 107.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s015-a.jpg",
+        "stills/s015-b.jpg",
+        "stills/s015-c.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a real LinkedIn profile page (light), flat",
+        "camera": "push-in \u22481.5 s onto the profile photo and name; a red highlight block wipes left \u2192 right behind 'Taylor Haren' at the stop",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#F27479",
+        "#0A66C2"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Introduces the LinkedIn author.",
+      "quality": "One push to a single mark: the real profile (with Clay partner badge in the banner) and a red block on the name, nothing added. Edge of frame softly defocused so the name zone is the sharpest area.",
+      "exemplar": false
+    },
+    {
+      "id": "s016",
+      "t_in": 107.9,
+      "t_out": 110.567,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s017",
+      "t_in": 110.567,
+      "t_out": 119.167,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s017-a.jpg",
+        "stills/s017-b.jpg",
+        "stills/s017-c.jpg",
+        "stills/s017-d.jpg",
+        "stills/s017-e.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the real LinkedIn post page, wide and flat",
+        "camera": "push-in in two legs (\u22481.5 s each) onto the first paragraph; a grey highlight block wipes behind the opening sentence; then everything except that sentence blurs and fades, and '17.3 million times per week' recolours red",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F27479",
+        "#D9D9D9"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Ends as an A1-like focus beat; 'they replaced Clay with a $200 Claude Code subscription'.",
+      "quality": "A long document reduced to one sentence without leaving it: the rest of the post blurs and fades in place (focus blur), the kept line gets a neutral grey block and only the number phrase turns red. On a white page the grey block (not yellow) keeps it calm and premium.",
+      "exemplar": true
+    },
+    {
+      "id": "s018",
+      "t_in": 119.167,
+      "t_out": 134.667,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s019",
+      "t_in": 134.667,
+      "t_out": 139.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s019-a.jpg",
+        "stills/s019-b.jpg",
+        "stills/s019-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "cursor on the real Clay homepage nav, camera pushes down onto the pricing tier cards",
+        "camera": "continuous tilt/pan across the pricing cards (\u22483 s) to the Growth column; red hand-drawn ellipses circle '480K actions/yr' and '72K data credits/yr'",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#3E5BDB",
+        "#1E7A45",
+        "#B3189B",
+        "#F27479"
+      ],
+      "marks": [
+        "circle"
+      ],
+      "notes": "Hands off by drawing a red vertical line down out of the page (s046).",
+      "quality": "Real pricing page shot with shallow depth of field (outer columns soft) and the marks are thin hand-drawn red ellipses on the limits \u2014 the exact numbers the argument needs.",
+      "exemplar": false
+    },
+    {
+      "id": "s046",
+      "t_in": 139.0,
+      "t_out": 147.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C7",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s046-a.jpg",
+        "stills/s046-b.jpg",
+        "stills/s046-c.jpg",
+        "stills/s046-d.jpg",
+        "stills/s046-e.jpg"
+      ],
+      "layout": {
+        "type_px": 70,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "a red vertical line drops from the pricing page; the camera tilts down along it (\u22480.7 s) onto a round avatar (red ring) sitting on the line",
+        "camera": "a glass cost chip (Clay logo + 'Cost $300/mo') slides out right of the avatar; after \u22482.5 s hold the number odometers up $300 \u2192 $1,500 with deceleration (\u22482 s) and the label gains '\u2191'; tilt back up along the line at the end",
+        "word_rate_s": null,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#F27479",
+        "#F6B9C0"
+      ],
+      "marks": [],
+      "notes": "'he was paying $300 and it went up to $1,500 a month'.",
+      "quality": "The escalating ticker on a light ground: avatar ring, line and the 'Cost \u2191' label share one soft red, the chip is a white glass pill with a pink-tinted border and soft shadow, and the number decelerates into $1,500 so the jump is felt. The red line is literally the path between the pricing page and the person paying it.",
+      "exemplar": true
+    },
+    {
+      "id": "s047",
+      "t_in": 147.4,
+      "t_out": 150.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s047-a.jpg",
+        "stills/s047-b.jpg",
+        "stills/s047-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "tilt back up the red line from the avatar onto the pricing page",
+        "camera": "pull-back (\u22480.8 s) to the full pricing page with the red ellipses still on Growth; slow drift; cursor hovers 'Start 14-day trial'",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F27479",
+        "#B3189B"
+      ],
+      "marks": [
+        "circle"
+      ],
+      "notes": "Continuation of s019 after the C7 beat.",
+      "quality": "Returns to the same real page and the same marks after the C7 beat, so the cost story closes where it started.",
+      "exemplar": false
+    },
+    {
+      "id": "s020",
+      "t_in": 150.0,
+      "t_out": 152.867,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s021",
+      "t_in": 152.867,
+      "t_out": 159.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s021-a.jpg",
+        "stills/s021-b.jpg",
+        "stills/s021-c.jpg",
+        "stills/s021-d.jpg",
+        "stills/s021-e.jpg"
+      ],
+      "layout": {
+        "type_px": 52,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "pan right off the Clay pricing page; Clay logo tile left and Claude logo tile right appear in light glass tiles",
+        "camera": "settle, then a red dashed line draws between the tiles through a red swap glyph (\u22480.6 s); caption builds word by word under it; red underline sweeps under 'Clay to Claude Code'; slow push",
+        "word_rate_s": 0.25,
+        "hold_s": 2.5
+      },
+      "colours": [
+        "#F27479",
+        "#D97757"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'they replaced most actions from Clay to Claude Code'.",
+      "quality": "Textbook flow strip on light: two logo tiles in soft glass with tinted borders (blue-ish for Clay, warm for Claude), a red dashed connector with a centred swap icon, and a 52 px charcoal 2-line caption with one red underline under the key phrase. The cursor parked under the caption keeps it feeling like a live screen.",
+      "exemplar": true
+    },
+    {
+      "id": "s048",
+      "t_in": 159.2,
+      "t_out": 165.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s048-a.jpg",
+        "stills/s048-b.jpg",
+        "stills/s048-c.jpg",
+        "stills/s048-d.jpg",
+        "stills/s048-e.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "pan right past the Claude logo tile onto the real Claude pricing page (Free / Pro / Max)",
+        "camera": "push to Pro/Max with cursor on Max 'From $100' (\u22482 s), then a long pull-back to the whole page (\u22482 s) with the Claude asterisk parked at the left edge",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#D97757"
+      ],
+      "marks": [],
+      "notes": "",
+      "quality": "Continues the same canvas from the flow strip \u2014 the Claude logo from s021 stays at the left edge as a bookmark while the real pricing page fills the frame.",
+      "exemplar": false
+    },
+    {
+      "id": "s022",
+      "t_in": 165.7,
+      "t_out": 216.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s023",
+      "t_in": 216.833,
+      "t_out": 223.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C8",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s023-a.jpg",
+        "stills/s023-b.jpg",
+        "stills/s023-c.jpg",
+        "stills/s023-d.jpg",
+        "stills/s023-e.jpg"
+      ],
+      "layout": {
+        "type_px": 48,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the real Clay pricing page, flat, full width",
+        "camera": "push into the Free column (\u22481 s); the other columns fade to \u224825 % + blur; a red \u2715 badge and red 'Too Limited To Scale Real Campaigns!' line land under 'Free'; then pan right (\u22480.6 s) to Launch '$167/mo' which sharpens while Free fades",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#3E5BDB",
+        "#1E7A45",
+        "#F27479"
+      ],
+      "marks": [
+        "cross"
+      ],
+      "notes": "Cursor follows each focused price.",
+      "quality": "Picking one option on the real page instead of redrawn cards: the focus column stays fully saturated while its neighbours fade and blur in place, and the verdict is a small red \u2715 badge plus a red script-like caption, so the page keeps its own design.",
+      "exemplar": true
+    },
+    {
+      "id": "s049",
+      "t_in": 223.4,
+      "t_out": 226.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s049-a.jpg",
+        "stills/s049-b.jpg",
+        "stills/s049-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the C8 pricing page (s023) dims to \u224830 % and blurs while the headline builds",
+        "camera": "locked with a slight push; words build fast (rise + blur \u2192 sharp), then a red underline sweeps L \u2192 R under the full line; at the end a dark app window slides up over the text",
+        "word_rate_s": 0.15,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#F27479",
+        "#FFFFFF"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'\u2026or find a better way'. Hands off to s050 (window rises over the headline).",
+      "quality": "The light page is dimmed toward charcoal (not black), so the 95 px white headline with a soft glow still sits on a recognisable pricing page; one red underline the full line width is the only colour.",
+      "exemplar": true
+    },
+    {
+      "id": "s050",
+      "t_in": 226.0,
+      "t_out": 228.867,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "new:typed-prompt",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s050-a.jpg",
+        "stills/s050-b.jpg",
+        "stills/s050-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "Claude Code window rises from the bottom over the dimmed headline/pricing page",
+        "camera": "push-in to the prompt box; 'Using Only Claude Code' types into the input",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#D97757",
+        "#2B2B2B"
+      ],
+      "marks": [],
+      "notes": "Repeat of s042.",
+      "quality": "Same device as s042: the dark window over the greyed light page and the claim typed into the real input.",
+      "exemplar": false
+    },
+    {
+      "id": "s024",
+      "t_in": 228.867,
+      "t_out": 242.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s025",
+      "t_in": 242.5,
+      "t_out": 246.033,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C8",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s025-a.jpg",
+        "stills/s025-b.jpg",
+        "stills/s025-c.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the real Claude pricing page (Free / Pro / Max), flat",
+        "camera": "push-in onto Pro (\u22481.5 s); Free and Max fade to \u224825 % + blur; cursor lands on 'Try Claude'",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#2B2B2B"
+      ],
+      "marks": [],
+      "notes": "'the $17 plan is enough to start'.",
+      "quality": "The quietest focus beat in the video: no badge, no text \u2014 just the chosen card left sharp and full contrast while its siblings fade into the white page, and a cursor on the button.",
+      "exemplar": true
+    },
+    {
+      "id": "s026",
+      "t_in": 246.033,
+      "t_out": 247.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s027",
+      "t_in": 247.5,
+      "t_out": 251.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s027-a.jpg",
+        "stills/s027-b.jpg",
+        "stills/s027-c.jpg"
+      ],
+      "layout": {
+        "type_px": 36,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the 3D Clay logo floats alone on the light ground",
+        "camera": "red hand-drawn curved arrows draw from the logo down-left and down-right; real Launch and Growth tier cards rise into place under each arrow (\u22480.4 s each, \u22481.3 s apart); slow push",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#F27479",
+        "#1E7A45",
+        "#B3189B"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "'you'd need Launch or Growth\u2026'.",
+      "quality": "A mind-map grown out of a real logo with real UI as leaves: the tier cards are cut-outs of the actual pricing page (colour headers, prices) and the connectors are thin hand-drawn red curves, not rigid lines.",
+      "exemplar": true
+    },
+    {
+      "id": "s051",
+      "t_in": 251.3,
+      "t_out": 254.967,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s051-a.jpg",
+        "stills/s051-b.jpg",
+        "stills/s051-c.jpg"
+      ],
+      "layout": {
+        "type_px": 56,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "'Replace It With' types in on a red highlight block top-right, with the Claude asterisk drawing in beside it",
+        "camera": "pan right (\u22480.8 s) away from the Clay tree to the real Claude Pro card, which rises and sharpens while its siblings stay faded; a red hand-drawn arrow points down to it",
+        "word_rate_s": null,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#F27479",
+        "#D97757"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow"
+      ],
+      "notes": "Continues s027 on the same canvas.",
+      "quality": "Substitution told by camera: the Clay tree exits left as the 'Replace It With' label leads right, and the destination is a real pricing card picked out by fading its siblings.",
+      "exemplar": false
+    },
+    {
+      "id": "s028",
+      "t_in": 254.967,
+      "t_out": 295.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s029",
+      "t_in": 295.833,
+      "t_out": 321.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s029-a.jpg",
+        "stills/s029-b.jpg",
+        "stills/s029-c.jpg",
+        "stills/s029-d.jpg",
+        "stills/s029-e.jpg",
+        "stills/s029-f.jpg",
+        "stills/s029-g.jpg",
+        "stills/s029-h.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "Claude Code window with 'Tymek Automated Outbound System' title (script 'Automated' in red) on the light ground; four coloured pixel-robot agent cards rise in a row in front of it (\u22480.25 s stagger)",
+        "camera": "push into Agent #1 (green 'PROSPECTOR') \u22481 s; its bullets type one per spoken phrase (\u22482.5\u20134 s apart) under the card; at the end the card swaps to Agent #2 (blue) with a cross-fade",
+        "word_rate_s": 0.2,
+        "hold_s": null
+      },
+      "colours": [
+        "#7ED67A",
+        "#5B9BF0",
+        "#F08A75",
+        "#E85C6A"
+      ],
+      "marks": [
+        "check"
+      ],
+      "notes": "Long roster across face cut-ins: s029 (#1), s031 (#2), s033 (#3, #4 and the pull-back to all four with 'AI Skill File' chips).",
+      "quality": "Each agent is a soft glossy tile (gradient fill, white rim, coloured outer glow) in front of the real terminal, which stays as a blurred dark backdrop \u2014 so the roster always lives inside the tool. Bullets use a small robot glyph in the card's own colour, one per phrase.",
+      "exemplar": true
+    },
+    {
+      "id": "s030",
+      "t_in": 321.5,
+      "t_out": 333.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s031",
+      "t_in": 333.7,
+      "t_out": 349.8,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s031-a.jpg",
+        "stills/s031-b.jpg",
+        "stills/s031-c.jpg",
+        "stills/s031-d.jpg",
+        "stills/s031-e.jpg",
+        "stills/s031-f.jpg",
+        "stills/s031-g.jpg",
+        "stills/s031-h.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "resumes on Agent #2 'LEAD SCORER' (blue) in front of the blurred terminal",
+        "camera": "slow drift; four bullets type one per phrase (\u22483 s apart); then the card cross-fades to Agent #3",
+        "word_rate_s": 0.2,
+        "hold_s": null
+      },
+      "colours": [
+        "#5B9BF0",
+        "#F08A75"
+      ],
+      "marks": [
+        "check"
+      ],
+      "notes": "Agent #2.",
+      "quality": "Same roster grammar resumed after a face cut \u2014 the canvas persists, so the viewer never re-orients.",
+      "exemplar": false
+    },
+    {
+      "id": "s032",
+      "t_in": 349.8,
+      "t_out": 355.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s033",
+      "t_in": 355.833,
+      "t_out": 394.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s033-a.jpg",
+        "stills/s033-b.jpg",
+        "stills/s033-c.jpg",
+        "stills/s033-d.jpg",
+        "stills/s033-e.jpg",
+        "stills/s033-f.jpg",
+        "stills/s033-g.jpg",
+        "stills/s033-h.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "resumes on Agent #3 'LEAD LIST CLEANER' (salmon)",
+        "camera": "bullets type per phrase; cross-fade to Agent #4 'CAMPAIGN MANAGER' (red), bullets; then a pull-back (\u22481 s) to all four cards in front of the terminal, and 'AI Skill File' chips pop under each card",
+        "word_rate_s": 0.2,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F08A75",
+        "#E85C6A",
+        "#7ED67A",
+        "#5B9BF0"
+      ],
+      "marks": [
+        "check"
+      ],
+      "notes": "Agents #3 and #4 and the roster overview.",
+      "quality": "The pull-back to the full row with a tinted 'AI Skill File' chip under each card closes the roster as a system, and every colour in the video's long middle is carried by these four agent hues.",
+      "exemplar": true
+    },
+    {
+      "id": "s034",
+      "t_in": 394.3,
+      "t_out": 400.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s035",
+      "t_in": 400.233,
+      "t_out": 407.567,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s035-a.jpg",
+        "stills/s035-b.jpg",
+        "stills/s035-c.jpg",
+        "stills/s035-d.jpg",
+        "stills/s035-e.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "from the four 'AI Skill File' chips, connectors in each agent's colour (green, blue, salmon, red) draw down",
+        "camera": "camera tilts down following the lines (\u22481.2 s) until they converge on a blue folder icon 'Skill File Folder'; a red hand-drawn arrow curves to the caption, which builds word by word ('You can add references' + grey parenthetical line)",
+        "word_rate_s": 0.25,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#7ED67A",
+        "#5B9BF0",
+        "#F08A75",
+        "#E85C6A"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "",
+      "quality": "A converging tree: colour-coded connectors keep the identity of each agent all the way into the shared folder, and the camera follows the lines, so the structure is read as motion. Main line 40 px charcoal, parenthetical in lighter grey.",
+      "exemplar": true
+    },
+    {
+      "id": "s036",
+      "t_in": 407.567,
+      "t_out": 423.733,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s037",
+      "t_in": 423.733,
+      "t_out": 438.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s037-a.jpg",
+        "stills/s037-b.jpg",
+        "stills/s037-c.jpg",
+        "stills/s037-d.jpg",
+        "stills/s037-e.jpg",
+        "stills/s037-f.jpg",
+        "stills/s037-g.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "brand mark reveal on dark: the Claude-style burst and 'Tymek' + red script 'Automated' + 'Outbound System' write on, then pull back to reveal it is the title inside the Claude Code window on the light ground",
+        "camera": "push in again (\u22481 s); callout pills with thin red-orange borders pop in around the window one per phrase ('Generates own lead lists', 'Finds and verifies email addresses', 'No paid data providers needed', 'Runs through same fixed pipeline'), the camera panning between them (\u22480.8 s legs)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#E86A4A",
+        "#2B2B2B"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Not a strict B2 (no curved arrows/icons); callout-pills-around-real-UI variant. Ends in s054 (typed prompt).",
+      "quality": "The callouts are glass pills with a warm red rim glow placed on and around a real dark app window, so the method's named parts hang off the tool itself; the brand title uses the same script-plus-italic pairing as the name lower third.",
+      "exemplar": true
+    },
+    {
+      "id": "s054",
+      "t_in": 438.2,
+      "t_out": 440.767,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "new:typed-prompt",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s054-a.jpg",
+        "stills/s054-b.jpg",
+        "stills/s054-c.jpg"
+      ],
+      "layout": {
+        "type_px": 80,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "continues from s037: camera pushes onto the title and prompt box of the window",
+        "camera": "push (\u22481 s) until 'Outbound System' fills the top; 'It Is Almost Running On Autopilot' types into the prompt input; hold",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#E86A4A",
+        "#2B2B2B"
+      ],
+      "marks": [],
+      "notes": "Split from s037 at 438.2 s.",
+      "quality": "The payoff line is typed into the real input under the big title, at the same scale the viewer reads it \u2014 the tool 'says' the claim.",
+      "exemplar": true
+    },
+    {
+      "id": "s038",
+      "t_in": 440.767,
+      "t_out": 570.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s039",
+      "t_in": 570.8,
+      "t_out": 585.633,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s039-a.jpg",
+        "stills/s039-b.jpg",
+        "stills/s039-c.jpg",
+        "stills/s039-d.jpg",
+        "stills/s039-e.jpg",
+        "stills/s039-f.jpg",
+        "stills/s039-g.jpg"
+      ],
+      "layout": {
+        "type_px": 70,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "a photo of Tymek and an editor, heavily blurred and dimmed to \u224840 %, fills the frame; the first glass chip ('Gives ideas and scripts', pen icon) builds word by word",
+        "camera": "slow drift; chips stack one per phrase ('Edits the videos', 'Posts/publishes the videos', \u22481.3\u20134 s apart) each with a dark icon square; then the stack shrinks up and 'For Just $5000/month' builds below with the price on a lime block",
+        "word_rate_s": 0.25,
+        "hold_s": 5.0
+      },
+      "colours": [
+        "#B5E04A",
+        "#FFFFFF"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Offer pitch. The $5000 is pixelated in this export (redacted figure); the block stays lime.",
+      "quality": "List variant of the backdrop headline: the backdrop is the real team, defocused into colour, the bullets are white glass pills with a soft rainbow sheen and dark icon tiles, and only the price gets colour (lime block). The 70 px white price line sits low with a glow.",
+      "exemplar": true
+    },
+    {
+      "id": "s040",
+      "t_in": 585.633,
+      "t_out": 597.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s052",
+      "t_in": 597.7,
+      "t_out": 604.8,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s052-a.jpg",
+        "stills/s052-b.jpg",
+        "stills/s052-c.jpg",
+        "stills/s052-d.jpg",
+        "stills/s052-e.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "identical to s044: face slides up to reveal the dark booking page",
+        "camera": "same legs as s044 (calendar \u2192 description link \u2192 back \u2192 face into player \u2192 scale to full)",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Second CTA (\u22487.1 s).",
+      "quality": "Identical CTA move to s044 \u2014 repetition teaches the viewer where the link is.",
+      "exemplar": false
+    },
+    {
+      "id": "s053",
+      "t_in": 604.8,
+      "t_out": 641.01,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}

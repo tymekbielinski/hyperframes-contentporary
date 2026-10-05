@@ -1,0 +1,565 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 0.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s002",
+      "t_in": 0.3,
+      "t_out": 3.967,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s002-a.jpg",
+        "stills/s002-b.jpg",
+        "stills/s002-c.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut from the face onto Instantly's real reviews page (G2 badge row) at \u2248100 %, a pale-blue highlight block already behind 'Join over 40,000+ growth leaders\u2026'",
+        "camera": "slow push-in (\u22481.05\u00d7) on the reviews page 0.3\u20132.6 s \u2192 page zooms out and slides away (\u22480.3 s) to reveal the dark YouTube channel page behind it \u2192 slow push on the channel grid to 3.97 s",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#2E8FC0",
+        "#8FD3F0",
+        "#E0457B"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Cold open: 'Instantly added $1M ARR with YouTube'. Page \u2192 page chain inside one shot; the channel grid it lands on is the same grid that later tilts into the 3D wall (s006).",
+      "quality": "Opens on two real pages back to back (social proof, then the channel it came from) joined by a zoom-out instead of a cut, so the first 4 s read as one continuous camera move. The light-blue highlight block is the same tint as the page, so it marks the claim without looking pasted on.",
+      "exemplar": false
+    },
+    {
+      "id": "s003",
+      "t_in": 3.967,
+      "t_out": 5.367,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s004",
+      "t_in": 5.367,
+      "t_out": 8.867,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s004-a.jpg",
+        "stills/s004-b.jpg"
+      ],
+      "layout": {
+        "type_px": 36,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut onto a real Google AI Overview (dark mode) at \u2248100 %, the quote already in a saturated blue highlight block",
+        "camera": "one continuous push-in \u2248100 % \u2192 160 % over \u22483 s (ease-in-out) toward the first paragraph; at the stop a yellow-green highlight sweeps behind 'add over $1 million in Annual Recurring Revenue (ARR)'; edges vignette to near black as it pushes",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#3A4FD0",
+        "#C8D86A"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "'Google even says posting YouTube content helped Instantly add $1M ARR.' Single-leg variant of A2 (flat page, one push, mark at the stop).",
+      "quality": "Third-party proof (Google's own AI answer) shown as the real dark-mode UI, and the camera does the reading: one slow push toward the claim, with the second highlight landing only when the push settles. Two highlight colours separate 'what they posted' (blue) from 'what it earned' (yellow-green).",
+      "exemplar": true
+    },
+    {
+      "id": "s005",
+      "t_in": 8.867,
+      "t_out": 10.033,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s006",
+      "t_in": 10.033,
+      "t_out": 13.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s006-a.jpg",
+        "stills/s006-b.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "the channel's video grid tips back into a 3D floor (\u224850\u00b0 X tilt) and becomes an endless wall of real thumbnails",
+        "camera": "continuous forward fly-over across the tilted wall 10.0\u201313.3 s at constant speed, no stops; the wall then dims (\u22480.3 s) into the backdrop of s120",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#D9332F",
+        "#F2C94C",
+        "#2F9BFF"
+      ],
+      "marks": [],
+      "notes": "Tilted variant of A2 (\u2264 60\u00b0, a tilt, never a flip) with no marks; reads close to A6's breadth-of-proof purpose. Hands off to the C5 roster (s120) by dimming.",
+      "quality": "Volume as proof: a real channel's thumbnails tilted into a 3D floor with perspective depth-of-field (far rows soft, near rows sharp) so the camera travel itself says 'hundreds of videos'. The wall does not cut away, it dims in place and becomes the backdrop of the next headline.",
+      "exemplar": true
+    },
+    {
+      "id": "s120",
+      "t_in": 13.3,
+      "t_out": 17.567,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s120-a.jpg",
+        "stills/s120-b.jpg",
+        "stills/s120-c.jpg"
+      ],
+      "layout": {
+        "type_px": 67,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "the thumbnail wall from s006 dims to \u224820 % and blurs; 'Instantly Used' types word by word, then the script '3 Types of Content' writes on beside it with a glowing blue underline; three tinted glass tiles pop centre-first, then left and right \u22480.2 s later, with a slight overshoot",
+        "camera": "slow push-in \u22481.0 \u2192 1.25\u00d7 across the 4 s hold, no pans",
+        "word_rate_s": 0.15,
+        "hold_s": 2.8
+      },
+      "colours": [
+        "#2F9BFF",
+        "#3E7D2A",
+        "#8C7A1E",
+        "#8A1F3D"
+      ],
+      "marks": [
+        "underline",
+        "script-word"
+      ],
+      "notes": "'Instantly used 3 types of content' \u2014 roster introduced here, the cards are never pushed into (the Miro section explains them). Closest catalogue row is C5 (no per-card push in this video).",
+      "quality": "Three tall glass tiles (\u2248375 px, 20 % W each) tinted green / amber / maroon with a vertical gradient into black, a glossy cream play-stack icon and an italic 'Content #n' label, sitting on the dimmed, blurred thumbnail wall \u2014 four depth layers. Sans + script headline over a glowing blue underline makes a 3-item list feel like a chapter card.",
+      "exemplar": true
+    },
+    {
+      "id": "s007",
+      "t_in": 17.567,
+      "t_out": 18.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s008",
+      "t_in": 18.833,
+      "t_out": 21.533,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s008-a.jpg",
+        "stills/s008-b.jpg",
+        "stills/s008-c.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a centred case-study card on black: orange 'Case Studies' kicker + thin 'Here's how we helped our clients' headline above, real client thumbnail inside the card, two cards peeking behind on the right",
+        "camera": "none; the front card swaps every \u22480.9 s (18.8 \u2192 19.8 \u2192 20.7 s) with the quote line and footer metrics changing with it",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#F07A2A",
+        "#D9302A"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Merged s008+s009 (detector cut on the card swaps). Three clients: '$80,000 on YouTube', 'Funnel 30 calls/m', '20 qualified calls/mo'. Contentporary's own proof, not Instantly's.",
+      "quality": "Each result is a full product-style card (\u224857 % W): one-line quote with the figure on an orange marker block, the real video thumbnail, and a footer with avatar, name, role and two icon metric chips \u2014 and the two cards peeking behind promise more. Thin, light headline weight keeps it premium rather than salesy.",
+      "exemplar": true
+    },
+    {
+      "id": "s010",
+      "t_in": 21.533,
+      "t_out": 24.333,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s011",
+      "t_in": 24.333,
+      "t_out": 26.667,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s011-a.jpg",
+        "stills/s011-b.jpg"
+      ],
+      "layout": {
+        "type_px": 80,
+        "fill": "sparse",
+        "layers": 1
+      },
+      "motion": {
+        "entrance": "hard cut to the real Instantly channel header at \u2248250 % with a red underline already under the subscriber count",
+        "camera": "slow leftward drift; the subscriber count runs 54.8K \u2192 81.2K in \u22481.5 s with continuous deceleration (steps 2.9K \u2192 0.2K), then holds",
+        "word_rate_s": null,
+        "hold_s": 0.9
+      },
+      "colours": [
+        "#1E88E5",
+        "#E04848"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'They grew to 81K subscribers.' Push-in of the A3 row is replaced by a slow drift.",
+      "quality": "The number counts inside the real YouTube UI (same font, same '\u2022 1.5K videos' after it) rather than on a designed card, so it reads as the channel growing live. Strong ease-out: half the gain lands in the first 0.5 s, the last 1K creeps in.",
+      "exemplar": true
+    },
+    {
+      "id": "s012",
+      "t_in": 26.667,
+      "t_out": 32.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s012-a.jpg",
+        "stills/s012-b.jpg",
+        "stills/s012-c.jpg",
+        "stills/s012-d.jpg"
+      ],
+      "layout": {
+        "type_px": 35,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut to the channel's About modal at \u2248300 %, stats list sharp; red underline draws under '15,993,057 views'",
+        "camera": "leg 1: hold on the stats close-up 26.7\u201329.5 s; snap pull-back to \u2248100 % showing the whole modal over the dimmed channel page (the subscriber underline from s011 still visible behind it); hold to 32.7 s",
+        "word_rate_s": null,
+        "hold_s": 3.1
+      },
+      "colours": [
+        "#E04848"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Merged s012+s013 (detector cut on the pull-back). '16M views'.",
+      "quality": "Camera legs on real UI: the close-up makes one number unmissable, then the pull-back shows it is a genuine YouTube modal on the real channel \u2014 the dimmed page behind keeps the context. Red underline is thin (\u22484 px) and only as long as the figure.",
+      "exemplar": false
+    },
+    {
+      "id": "s014",
+      "t_in": 32.7,
+      "t_out": 35.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s015",
+      "t_in": 35.067,
+      "t_out": 41.667,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s015-a.jpg",
+        "stills/s015-b.jpg",
+        "stills/s015-c.jpg",
+        "stills/s015-d.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut to the channel video grid sharp (0.9 s), which dims to \u224825 % and blurs (\u22480.3 s); 'I analyzed their last 100 videos' builds word by word (italic bold 'last 100 videos'), then a red underline sweeps left \u2192 right",
+        "camera": "none; callouts land in a triangle: blue 'Title' (curved arrow then T icon + script label, \u224837.2 s), green 'Thumbnail' (\u224837.8 s), yellow 'Views' (\u224838.4 s) \u2014 \u22480.6 s apart; hold \u22483 s",
+        "word_rate_s": 0.12,
+        "hold_s": 3.0
+      },
+      "colours": [
+        "#E05555",
+        "#2FA8FF",
+        "#4CD964",
+        "#F5C518"
+      ],
+      "marks": [
+        "underline",
+        "arrow",
+        "script-word"
+      ],
+      "notes": "Script label typo 'Titile' on screen. Uses the grid as backdrop exactly like B1.",
+      "quality": "Textbook B2: headline mid-frame on the blurred real grid it is about, three colour-coded callouts each a hand-drawn curved arrow pointing at the headline, an app-style glyph and a script label with soft glow. Every element is colour-paired (arrow = icon colour), so the triangle reads as a system, not decoration.",
+      "exemplar": true
+    },
+    {
+      "id": "s016",
+      "t_in": 41.667,
+      "t_out": 45.033,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s017",
+      "t_in": 45.033,
+      "t_out": 51.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s017-a.jpg",
+        "stills/s017-b.jpg",
+        "stills/s017-c.jpg"
+      ],
+      "layout": {
+        "type_px": 72,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "Instantly channel page already dimmed \u224815 % and blurred; 'Want to Grow / Your Company on YouTube?' builds word by word over \u22480.9 s, then a red underline sweeps under line 2",
+        "camera": "none; a blue triangle drops, the script line 'But Lack the Resources to Do It?' writes on (\u22480.6 s, 'Lack the Resources' in red), then three glass chips with real app icons pop centre \u2192 left \u2192 right \u22480.25 s apart (Organization/Notion, Scripting/Docs, Research)",
+        "word_rate_s": 0.15,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#E85555",
+        "#2F9BFF"
+      ],
+      "marks": [
+        "underline",
+        "script-word"
+      ],
+      "notes": "Offer pitch before the CTA. List variant of B1 with chips instead of bullets.",
+      "quality": "Question \u2192 turn \u2192 list in one frame: bold sans question with a red problem underline, a small blue chevron as the beat, a script counter-line with the pain phrase in red, then real app-icon chips as the list. Soft white glow on all type separates it from the near-black blurred page.",
+      "exemplar": true
+    },
+    {
+      "id": "s018",
+      "t_in": 51.4,
+      "t_out": 52.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s121",
+      "t_in": 52.4,
+      "t_out": 56.6,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s121-a.jpg",
+        "stills/s121-b.jpg",
+        "stills/s121-c.jpg",
+        "stills/s121-d.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "the face footage scales down into the player of a real YouTube watch page (\u22480.25 s, to \u22480.8 then creeping to \u22480.75), edges vignetted to black",
+        "camera": "hold \u22480.8 s \u2192 dive \u22482\u00d7 onto the description (\u22480.4 s, ease-out) where the contentporary.io link sits in a blue highlight \u2192 hold \u22481.4 s \u2192 reverse (\u22480.5 s) \u2192 hold in the player \u22480.5 s \u2192 face (56.6 s); 4.2 s total",
+        "word_rate_s": null,
+        "hold_s": 1.4
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Split out of s018 (face \u2192 CTA \u2192 face with no hard cut). Faster than the kit (4.2 s vs 4.9 s): shorter scale (0.25 s vs 0.5 s) and shorter link hold (\u22481.4 s vs 1.7 s).",
+      "quality": "The CTA is the viewer's own screen: the talking head keeps playing inside a genuine watch page with the creator's real subscriber count, so the dive to the link feels like a pointer, not an ad. Heavy vignette keeps the eye on the player and the link.",
+      "exemplar": true
+    },
+    {
+      "id": "s122",
+      "t_in": 56.6,
+      "t_out": 57.367,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s019",
+      "t_in": 57.367,
+      "t_out": 1061.0,
+      "status": "reviewed",
+      "kind": "section",
+      "pattern": "E1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s019-a.jpg",
+        "stills/s019-b.jpg",
+        "stills/s019-c.jpg",
+        "stills/s019-d.jpg",
+        "stills/s019-e.jpg",
+        "stills/s019-f.jpg",
+        "stills/s019-g.jpg",
+        "stills/s019-h.jpg"
+      ],
+      "layout": {
+        "type_px": 35,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut from the face (57.37 s) onto a recorded Miro board (light grid ground) with a rounded face PiP bottom-right",
+        "camera": "recorded pans/zooms of the board plus editor punch-ins into the recording (Miro chrome cropped at \u2248150\u2013250 %); live pen strokes drawn while talking; one-frame dissolve back to the face at 1061.0 s",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F28C38",
+        "#A7D58E",
+        "#A9C8EC",
+        "#F4B6D2"
+      ],
+      "marks": [
+        "circle",
+        "underline",
+        "scribble"
+      ],
+      "notes": "\u22481004 s, 92 % of the video, merged from ~100 detector shots (cuts were pans/zooms). Sections: '100 videos' grid \u2192 views by kind chart \u2192 three kinds & the math to $1M (funnel stickies) \u2192 awareness/education/proof thumbnails \u2192 subscriptions per proof video \u2192 watch time is trust \u2192 questions \u2192 what gets sold off a result (cost chart). A brief Notes/document screen-share at \u2248145 s is part of the recording. No designed graphics on top.",
+      "quality": "Recorded, not built: a real Miro board with numbered sections, coloured stickies and real charts (orange bar = the point, black/grey = the rest), real thumbnails as evidence, and live pen marks drawn as he speaks. The face PiP (\u224825 % W, rounded, bottom-right) keeps the presenter present for 16 minutes; near the end it grows to \u224836 % W with the board inset.",
+      "exemplar": true
+    },
+    {
+      "id": "s123",
+      "t_in": 1061.0,
+      "t_out": 1089.202,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}

@@ -1,0 +1,1248 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 1.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s002",
+      "t_in": 1.067,
+      "t_out": 4.633,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s002-a.jpg",
+        "stills/s002-b.jpg",
+        "stills/s002-c.jpg"
+      ],
+      "layout": {
+        "type_px": 195,
+        "fill": "sparse",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut onto the counter already rolling ($9,6xx); photoreal 3D dollar bills tumble through the frame in front of and behind the number",
+        "camera": "slow push-in across the whole shot (\u22483 %/s), no legs",
+        "word_rate_s": null,
+        "hold_s": 1.3
+      },
+      "colours": [
+        "#FABCBC",
+        "#E5484D"
+      ],
+      "marks": [
+        "script-word",
+        "arrow"
+      ],
+      "notes": "Hook opener: 'I spent $10,000 on mentorships & coaching programs'. Counter $9,6xx \u2192 $10,000 in \u22481.3 s with a hard deceleration onto the spoken figure; ghost word 'SPEND' in dim grey caps behind the number; a thin red hand-drawn curve sweeps behind the left of the number; script subtitle 'On Mentorships & Coaching Programs' writes on 2.6\u20133.3 s. Bills clear the frame before the hold.",
+      "quality": "The number (\u2248195 px caps, \u224818 % H) is a soft-pink glowing figure sitting on a ghost word, with real 3D bills flying through two depth planes, so a plain stat reads like a cinematic title. The count decelerates and lands exactly on '$10,000' as it is said, then the script subline writes on one beat later and everything holds clean for \u22481.3 s.",
+      "exemplar": true
+    },
+    {
+      "id": "s003",
+      "t_in": 4.633,
+      "t_out": 12.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s004",
+      "t_in": 12.8,
+      "t_out": 16.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s004-a.jpg",
+        "stills/s004-b.jpg",
+        "stills/s004-c.jpg"
+      ],
+      "layout": {
+        "type_px": 72,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto two real YouTube channel pages shown sharp in turn (Ayman Arab 0.8 s, Joseph Curtois 0.7 s), then the second page dims + blurs as the first word lands",
+        "camera": "slow drift on the page, then locked during the build",
+        "word_rate_s": 0.17,
+        "hold_s": 1.1
+      },
+      "colours": [
+        "#E78182"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'(both) found through the same exact way'. Line 1 'Found Through' plain, line 2 'the Same Exact Way!' bold italic with a red underline. The sharp opener is a 2-page A6-style flash inside the B1 grammar (sharp \u22481.5 s, then dim).",
+      "quality": "The backdrop is the actual proof (the two mentors' channels) shown sharp just long enough to be recognised, then knocked back so the claim sits on top of its evidence. Two-line build with a plain/bold-italic contrast and a red underline only under the emphasis phrase."
+    },
+    {
+      "id": "s005",
+      "t_in": 16.3,
+      "t_out": 18.767,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "D1",
+      "placement": "over-footage",
+      "stills": [
+        "stills/s005-a.jpg",
+        "stills/s005-b.jpg",
+        "stills/s005-c.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "TikTok glass tile rises from bottom-left (\u22480.5 s, power3.out) beside the face; the Instagram tile rises on the right \u22481 s later; a red \u2715 badge pops under each label",
+        "camera": "none (face footage untouched)",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#25F4EE",
+        "#FE2C55",
+        "#C13584",
+        "#E5484D"
+      ],
+      "marks": [
+        "cross"
+      ],
+      "notes": "'I didn't find them on TikTok or Instagram'. Tiles at \u22489\u201338 % W (TikTok, teal-tinted glass) and \u224880\u201396 % W (Instagram, purple-tinted glass), real platform logos \u2248 30 % of tile width, label 45 px caps, red \u2715 chips. Stays \u22482 s then cuts.",
+      "quality": "Each tile is tinted glass in the platform's own colour with the real logo and a crisp label, so the face stays the subject while the two rejected platforms flank it; the second tile lands a beat after the first, timed to the second name, and both carry the same small red \u2715 verdict.",
+      "exemplar": true
+    },
+    {
+      "id": "s006",
+      "t_in": 18.767,
+      "t_out": 19.933,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "1.2 s flash of the real YouTube channel page of Ayman Arab (banner + avatar) with a slight push; proof b-roll, no designed text or marks.",
+      "quality": ""
+    },
+    {
+      "id": "s007",
+      "t_in": 19.933,
+      "t_out": 22.367,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s008",
+      "t_in": 22.367,
+      "t_out": 33.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s008-a.jpg",
+        "stills/s008-b.jpg",
+        "stills/s008-c.jpg",
+        "stills/s008-d.jpg",
+        "stills/s008-e.jpg",
+        "stills/s008-f.jpg"
+      ],
+      "layout": {
+        "type_px": 68,
+        "fill": "sparse",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut onto 'In This Video' title centred on a dark vignette ground; a thin red connector draws down out of it",
+        "camera": "4 legs on one canvas: tilt down the red line to node 1 (\u22480.6 s) \u2192 pan right along the branch to node 2 (\u22480.6 s) \u2192 pan down-left to node 3 (\u22480.7 s) \u2192 hard cut to the pulled-back overview of the whole tree; ease.camera-like (fast start, long settle), readable 2\u20133 s stops",
+        "word_rate_s": 0.12,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#52BDEB",
+        "#F2A23A",
+        "#B3D16B",
+        "#E5484D"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Agenda tree: 'The Real Reason / People Buy from YouTube', 'The Exact Steps / Before Someone Buys', 'How to Position Yourself as / the Only Option Buyers Choose'. Each node = dark glass icon chip (\u2248230 px at the settled framing) + coloured script kicker + white sans line built word by word. Used as an agenda, not revisited later, so not the kit roadmap.",
+      "quality": "An agenda told as a tree the camera walks: thin red connectors are the path the camera follows from title to each node, each node pairs a glass icon chip with a script kicker in its own colour (cyan, orange, lime) over a white sans line, and the walk ends on a pulled-back overview held 2 s so the whole map reads at once.",
+      "exemplar": true
+    },
+    {
+      "id": "s009",
+      "t_in": 33.9,
+      "t_out": 36.733,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s010",
+      "t_in": 36.733,
+      "t_out": 43.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s010-a.jpg",
+        "stills/s010-b.jpg",
+        "stills/s010-c.jpg",
+        "stills/s010-d.jpg",
+        "stills/s010-e.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the real landing page (dark, headline + 'Just Copy Me' VSL card) framed full-width on a dark ground",
+        "camera": "hold 1.9 s \u2192 scroll down to 'Here's how we helped our clients' (\u22480.7 s) \u2192 testimonial carousel swaps (Funnel 30 calls/m \u2192 $80,000 On YouTube, \u22480.5 s dip) \u2192 scroll on (\u22480.5 s) \u2192 page tilts back into 3D perspective (\u22481 s) revealing the '200+ long form videos' thumbnail grid; hold \u22481 s",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#E5484D",
+        "#F2A23A"
+      ],
+      "marks": [],
+      "notes": "Says he installs YouTube acquisition funnels for high-ticket service providers (own website as proof). The 3D tilt ends on a lying-down grid of real thumbnails, a tilt not a flip.",
+      "quality": "A real page, not a mock: the camera scrolls it in short legs with readable stops (headline, client results, thumbnail wall) and ends by laying the page back in 3D so the grid of 200+ thumbnails reads as volume. The carousel swap inside the page keeps the proof alive between legs.",
+      "exemplar": true
+    },
+    {
+      "id": "s011",
+      "t_in": 43.7,
+      "t_out": 49.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s042",
+      "t_in": 49.9,
+      "t_out": 55.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s042-a.jpg",
+        "stills/s042-b.jpg",
+        "stills/s042-c.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the face footage scales down to \u22480.80 into the player of a real dark watch page (\u22480.25 s)",
+        "camera": "player hold \u22480.7 s \u2192 dive \u22482\u00d7 onto the description link (\u22480.7 s) \u2192 hold \u22481.6 s \u2192 reverse (\u22480.8 s) \u2192 player hold \u22481.2 s \u2192 scale back to the face (\u22480.3 s); \u22485.5 s total, ease.camera-like with soft settles, footage keeps playing in the player",
+        "word_rate_s": null,
+        "hold_s": 1.6
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "First CTA, ~50 s in: 'link in the description to book a call'. The description link is the real blue link text; no extra marks.",
+      "quality": "The face never leaves: it shrinks into the player of a real watch page and keeps talking while the camera dives onto the actual description link, holds long enough to read it, and returns, so the CTA feels like part of the same shot rather than an ad break.",
+      "exemplar": true
+    },
+    {
+      "id": "s043",
+      "t_in": 55.4,
+      "t_out": 62.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s012",
+      "t_in": 62.533,
+      "t_out": 70.367,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s012-a.jpg",
+        "stills/s012-b.jpg",
+        "stills/s012-c.jpg",
+        "stills/s012-d.jpg",
+        "stills/s012-e.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto Joseph Curtois's real channel page sharp (\u22480.3 s); it dims to \u224815 % and blurs as 'How' lands",
+        "camera": "locked, very slow drift",
+        "word_rate_s": 0.18,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#E77576"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Section opener: 'How I found coaches, when I found them, & why I needed their help at that time'. 15 words over \u22482.7 s; line 2 in bold italic; red underline sweeps L\u2192R under 'Why I Needed Their Help' \u22481 s after the line completes (\u22480.7 s sweep). Long line (\u224845 px caps) \u2013 smaller than the other B1s.",
+      "quality": "The real channel of the mentor being introduced is the backdrop, recognisable for a beat then pushed to \u224815 % so a long 15-word question stays readable; plain line 1 vs bold-italic line 2 and a late red underline separate the 'why' from the 'how'."
+    },
+    {
+      "id": "s013",
+      "t_in": 70.367,
+      "t_out": 81.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Face; the D3 caption bars follow in s044 (with a punch-in).",
+      "quality": ""
+    },
+    {
+      "id": "s044",
+      "t_in": 81.8,
+      "t_out": 90.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "D3",
+      "placement": "over-footage",
+      "stills": [
+        "stills/s044-a.jpg",
+        "stills/s044-b.jpg",
+        "stills/s044-c.jpg",
+        "stills/s044-d.jpg",
+        "stills/s044-e.jpg"
+      ],
+      "layout": {
+        "type_px": 32,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "face punches in at the cut; a dark-green tinted bar slides in from the left edge (\u22480.3 s) with 'Had the skills to deliver the service'; at \u224884.5 s it fades and a red-tinted bar slides in from the right with the two-line negative",
+        "camera": "face punch-in \u22481.15\u00d7 and reframed (face left for the red bar)",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#3C6D21",
+        "#7E3A38"
+      ],
+      "marks": [],
+      "notes": "Positive/negative pair: green 'Had the skills to deliver the service' (upper-left, 2.6 s) then red 'Didn't have a system to get more clients, charge more, & price services correctly!' (upper-right, \u22485 s). Bars fade at their outer edge into the footage; text white \u224832 px caps.",
+      "quality": "Meaning-coded bars that fade into the footage at their outer edge, so they read as a tint on the shot rather than a box on top; the face is punched in and reframed to clear each bar, and the green \u2192 red swap lands on the 'but' in the sentence.",
+      "exemplar": true
+    },
+    {
+      "id": "s045",
+      "t_in": 90.0,
+      "t_out": 102.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s014",
+      "t_in": 102.1,
+      "t_out": 111.833,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s014-a.jpg",
+        "stills/s014-b.jpg",
+        "stills/s014-c.jpg",
+        "stills/s014-d.jpg",
+        "stills/s014-e.jpg",
+        "stills/s014-f.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "Joseph Curtois's real channel page rises from below (\u22480.5 s, power3.out) to fill the frame",
+        "camera": "one continuous slow leg: the page tilts back into 3D (\u224840\u201350\u00b0) while the camera drifts down the video grid for \u22488 s; no stops, no marks",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F2D54A",
+        "#E5484D"
+      ],
+      "marks": [],
+      "notes": "'He makes videos about video editing and getting clients' \u2013 showing the breadth of his channel. Thumbnails stay sharp; the far edge of the tilted page falls off into the vignette.",
+      "quality": "The tilt turns a flat channel page into a receding wall of real thumbnails, so one continuous drift conveys volume of work; the far edge dissolves into the dark vignette, which hides the page boundary and keeps the frame clean.",
+      "exemplar": true
+    },
+    {
+      "id": "s015",
+      "t_in": 111.833,
+      "t_out": 123.033,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s016",
+      "t_in": 123.033,
+      "t_out": 128.867,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s016-a.jpg",
+        "stills/s016-b.jpg",
+        "stills/s016-c.jpg"
+      ],
+      "layout": {
+        "type_px": 70,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a real archival clip (his first coaching call, two faces) playing sharp \u22482.1 s; it dims to \u224820 % and blurs over \u22480.4 s as 'I' lands",
+        "camera": "locked",
+        "word_rate_s": 0.16,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#B6EE75"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'I decided to give it a try & bought the program!'. Two centred lines, \u224870 px caps, white; lime-green underline (\u224815 px) sweeps L\u2192R under 'Bought the Program!' \u22480.7 s after the line completes (\u22480.6 s sweep). Green = positive outcome.",
+      "quality": "Textbook B1 on live footage: the real call plays sharp long enough to register, then falls back to a dim blurred texture as the first word lands; 9 words build in \u22481.4 s on the speech, and the thick lime underline is the only colour in frame, saved for the positive decision.",
+      "exemplar": true
+    },
+    {
+      "id": "s017",
+      "t_in": 128.867,
+      "t_out": 131.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s018",
+      "t_in": 131.3,
+      "t_out": 142.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s019",
+      "t_in": 142.4,
+      "t_out": 148.633,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s019-a.jpg",
+        "stills/s019-b.jpg",
+        "stills/s019-c.jpg",
+        "stills/s019-d.jpg"
+      ],
+      "layout": {
+        "type_px": 43,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a thin grey line with a white dot at each end on a dark vignette; the label 'Someone will take me actually from:' builds word by word above it",
+        "camera": "push in left onto the start dot (\u22480.5 s) \u2192 '$2,000/month' fades in under it \u2192 pan right while the line recolours red \u2192 green L\u2192R (\u22480.7 s) \u2192 '$10,000/month' lands at the end dot \u2192 pull back to frame the whole line (\u22480.5 s); ease.camera-like",
+        "word_rate_s": 0.13,
+        "hold_s": 1.6
+      },
+      "colours": [
+        "#E5484D",
+        "#42E674"
+      ],
+      "marks": [],
+      "notes": "'Someone will take me from $2,000/month to $10,000/month'. The colour sweep travels with the camera so the move itself is the change.",
+      "quality": "Minimal and exact: one thin line, two dots, two numbers. The camera rides along the line while it recolours red \u2192 green, so the gradient literally travels from the problem figure to the goal figure, then pulls back to show the whole range and holds.",
+      "exemplar": true
+    },
+    {
+      "id": "s020",
+      "t_in": 148.633,
+      "t_out": 182.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s021",
+      "t_in": 182.7,
+      "t_out": 186.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s021-a.jpg",
+        "stills/s021-b.jpg",
+        "stills/s021-c.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut (one overexposed white frame) onto a real watch page with Ayman's video playing in the player",
+        "camera": "slow push on the player (\u22481.9 s) \u2192 the player content swaps to his channel grid and the frame tilts back in 3D, drifting (\u22481.8 s)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#9ED9D9"
+      ],
+      "marks": [],
+      "notes": "Merged s021+s022 (the detector cut where the player content swapped). Introduces mentor #2 (Ayman Arab). The one-frame white flash entrance is a light-leak-like beat long-form forbids; do not copy.",
+      "quality": "Proof shown where it lives: the mentor's real video playing in a real watch page, then the player swaps to his channel grid and tilts back in 3D, so in under 4 s the viewer sees one video and the volume behind it."
+    },
+    {
+      "id": "s023",
+      "t_in": 186.4,
+      "t_out": 188.033,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s024",
+      "t_in": 188.033,
+      "t_out": 191.167,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s024-a.jpg",
+        "stills/s024-b.jpg",
+        "stills/s024-c.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto Ayman's thumbnail grid sharp (\u22480.3 s); it dims to \u224815 % and blurs as 'He's' lands",
+        "camera": "locked",
+        "word_rate_s": 0.12,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F27A7B"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'He's one of the few who teaches YouTube agencies'. Two centred lines \u224865 px caps; red underline sweeps under 'YouTube agencies' right after the last word (\u22480.3 s sweep).",
+      "quality": "Two short centred lines over a wall of the mentor's real thumbnails pushed back to texture; 8 words build in \u22481 s on fast speech, the red underline lands on the niche phrase the instant the line completes, then a clean 1.5 s hold.",
+      "exemplar": true
+    },
+    {
+      "id": "s025",
+      "t_in": 191.167,
+      "t_out": 250.933,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s026",
+      "t_in": 250.933,
+      "t_out": 259.067,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s026-a.jpg",
+        "stills/s026-b.jpg",
+        "stills/s026-c.jpg",
+        "stills/s026-d.jpg",
+        "stills/s026-e.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "dense",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a real YouTube results list of Ayman's videos (thumbnails + titles)",
+        "camera": "slow scroll down the list (\u22483 s) \u2192 every row except one dims to \u224825 % and blurs while the chosen video ('$132k/Mo At 20 Years Old') stays sharp \u2192 slow drift on the focused row",
+        "word_rate_s": null,
+        "hold_s": 4.0
+      },
+      "colours": [
+        "#F2D54A",
+        "#E5484D"
+      ],
+      "marks": [],
+      "notes": "'I watched this video of his...'. Shared canvas: the face cuts in (s027) and s028 resumes on the same focused frame with the headline.",
+      "quality": "Focus by subtraction on a real list: the camera scrolls the actual search results, then every sibling sinks to a dim blur and only the one video he means stays lit, so the viewer finds it without any arrow or box.",
+      "exemplar": true
+    },
+    {
+      "id": "s027",
+      "t_in": 259.067,
+      "t_out": 261.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s028",
+      "t_in": 261.233,
+      "t_out": 265.433,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s028-a.jpg",
+        "stills/s028-b.jpg",
+        "stills/s028-c.jpg"
+      ],
+      "layout": {
+        "type_px": 55,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes the s026 canvas exactly (focused row lit, siblings dim); the headline builds word by word beneath the row",
+        "camera": "slow upward drift (\u22482 %/s)",
+        "word_rate_s": 0.12,
+        "hold_s": 2.7
+      },
+      "colours": [
+        "#E17073"
+      ],
+      "marks": [],
+      "notes": "'Being familiar with him gave me the confidence to book a call!' \u2013 bold italic white, 'Book a Call!' in red. Second beat of the A1 chain after a face cut-in.",
+      "quality": "The headline sits directly under the one lit video, so the claim is visibly attached to its proof; only the action phrase 'Book a Call!' takes the red, and the canvas picks up exactly where it was before the face cut-in."
+    },
+    {
+      "id": "s029",
+      "t_in": 265.433,
+      "t_out": 304.767,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s030",
+      "t_in": 304.767,
+      "t_out": 314.433,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s030-a.jpg",
+        "stills/s030-b.jpg",
+        "stills/s030-c.jpg",
+        "stills/s030-d.jpg",
+        "stills/s030-e.jpg",
+        "stills/s030-f.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the headline 'Things I Learned from Ayman's Coaching:' already set over his thumbnail grid dimmed to \u224815 %, red underline under 'Learned from Ayman's Coaching'",
+        "camera": "slow drift on the backdrop",
+        "word_rate_s": 0.15,
+        "hold_s": 1.4
+      },
+      "colours": [
+        "#E67C7F"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "List variant: bullets 'YouTube strategy', 'How to work with multiple clients', 'How to scale my team', 'Business systems I didn't learn while working with Joseph' (italic) build one every \u22481.3 s (matches the B1 list rule), \u224823 px caps \u2013 small.",
+      "quality": "A list that builds on the speech: the headline is set from the first frame with its red underline, then one bullet lands every \u22481.3 s over the mentor's own thumbnails dimmed to texture, the last bullet in italic as the turn."
+    },
+    {
+      "id": "s031",
+      "t_in": 314.433,
+      "t_out": 370.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s046",
+      "t_in": 370.7,
+      "t_out": 376.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s046-a.jpg",
+        "stills/s046-b.jpg",
+        "stills/s046-c.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "face scales to \u22480.80 into the real watch-page player (\u22480.3 s)",
+        "camera": "player hold \u22480.4 s \u2192 dive onto the description link (\u22480.6 s) \u2192 hold \u22481.9 s \u2192 reverse (\u22480.6 s) \u2192 player hold \u22481.3 s \u2192 face (\u22480.2 s); \u22485.5 s",
+        "word_rate_s": null,
+        "hold_s": 1.9
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Second CTA, mid-video (\u22486:11). Same watch page and same moves as s042 \u2014 every CTA identical, as the rule says.",
+      "quality": "Identical to the first CTA (same page, same moves, same timings), which is what makes the CTA a recognisable device rather than a one-off."
+    },
+    {
+      "id": "s047",
+      "t_in": 376.2,
+      "t_out": 540.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Longest face-only stretch: 376\u2013541 s (\u2248164 s) with no graphic.",
+      "quality": ""
+    },
+    {
+      "id": "s032",
+      "t_in": 540.7,
+      "t_out": 548.733,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s032-a.jpg",
+        "stills/s032-b.jpg",
+        "stills/s032-c.jpg",
+        "stills/s032-d.jpg",
+        "stills/s032-e.jpg"
+      ],
+      "layout": {
+        "type_px": 48,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a slightly perspective-tilted 3-band funnel (blue Top / red Middle / green Bottom with small sub-labels); the middle band slides in between the other two (\u22480.4 s)",
+        "camera": "slow push-in (\u22482 %/s) throughout",
+        "word_rate_s": 0.25,
+        "hold_s": 4.0
+      },
+      "colours": [
+        "#66A2EC",
+        "#E87070",
+        "#5FB862"
+      ],
+      "marks": [],
+      "notes": "'The traditional marketing funnel'. Title 'Traditional Marketing Funnel' builds word by word beneath (\u22481.1 s for 3 words). Shared canvas with s034 after a 3 s face cut-in.",
+      "quality": "A clean three-colour funnel with a slight perspective tilt so it reads as an object, not a flat chart; the missing middle band sliding into place is the only motion besides a slow push and the title build."
+    },
+    {
+      "id": "s033",
+      "t_in": 548.733,
+      "t_out": 551.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s034",
+      "t_in": 551.7,
+      "t_out": 588.333,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s034-a.jpg",
+        "stills/s034-b.jpg",
+        "stills/s034-c.jpg",
+        "stills/s034-d.jpg",
+        "stills/s034-e.jpg",
+        "stills/s034-f.jpg",
+        "stills/s034-g.jpg",
+        "stills/s034-h.jpg"
+      ],
+      "layout": {
+        "type_px": 25,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes the funnel canvas; a coloured arrow draws out to the right of the Top band",
+        "camera": "three cycles, one per band: push right + in onto the band's bullet block (\u22481.5\u20132 s, ease.camera), bullets type, hold; pull back to the overview (\u22481.5 s); next band's arrow; final pull back to the whole funnel + 3 bullet blocks",
+        "word_rate_s": 0.2,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#66A2EC",
+        "#E87070",
+        "#5FB862"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "Each band gets 'Audience / Goal / Example' bullets (bold lead word + italic grey example), arrow in the band's colour. 36 s on one canvas, the longest scene in the video. Bullet type is small (\u224825 px at the pushed framing).",
+      "quality": "One persistent funnel the camera steps through band by band: each band's arrow is drawn in its own colour, the camera pushes onto its bullet block while the bullets type to the speech, then pulls back so the viewer re-anchors on the whole funnel before the next band. Three-colour coding carries the structure without any extra labels.",
+      "exemplar": true
+    },
+    {
+      "id": "s035",
+      "t_in": 588.333,
+      "t_out": 590.2,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s036",
+      "t_in": 590.2,
+      "t_out": 620.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s036-a.jpg",
+        "stills/s036-b.jpg",
+        "stills/s036-c.jpg",
+        "stills/s036-d.jpg",
+        "stills/s036-e.jpg",
+        "stills/s036-f.jpg",
+        "stills/s036-g.jpg",
+        "stills/s036-h.jpg"
+      ],
+      "layout": {
+        "type_px": 52,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "from the funnel canvas: the funnel slides up and out while '4 Types of YouTube Content' builds and four glass cards with real thumbnails rise into a row beneath",
+        "camera": "push into card #1 (\u22482 s, ease.camera) \u2192 bullets 'Purpose / Example' type \u2192 hold \u2192 pan right to card #2 (\u22481 s) \u2192 bullets type \u2192 slow drift",
+        "word_rate_s": 0.2,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#52BDEB",
+        "#D07FE2",
+        "#5FB862",
+        "#F2A23A"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Card roster: #1 Action Based Content, #2 Educational Content, #3 Case Study Breakdowns, #4 Client Interviews. Each card = real thumbnail in a thin glass frame + coloured script '#n' + bold title + 2 small bullets. Hands over from the C3 funnel on the same canvas (\u22481 s).",
+      "quality": "Real thumbnails in thin glass frames make each type concrete, the coloured script '#n' labels give each card its own identity, and the camera pushes into one card at a time so only one bullet block is ever readable \u2014 the row of four stays as context at the edge of frame.",
+      "exemplar": true
+    },
+    {
+      "id": "s037",
+      "t_in": 620.9,
+      "t_out": 624.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Face cut-in inside the C5 roster canvas.",
+      "quality": ""
+    },
+    {
+      "id": "s038",
+      "t_in": 624.1,
+      "t_out": 627.067,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s038-a.jpg",
+        "stills/s038-b.jpg",
+        "stills/s038-c.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "resumes the roster pulled back to frame cards #1\u2013#2 (#3 peeking at the right edge)",
+        "camera": "locked, slight drift",
+        "word_rate_s": 0.15,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#52BDEB",
+        "#D07FE2"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Verdict line '#Best for Top and Middle of Funnel' builds bold italic beneath the two cards between face cut-ins (s037/s039).",
+      "quality": "The canvas is held exactly where it was before the face cut-in and the verdict line simply builds beneath the two cards it applies to, so the cut-in reads as an aside, not a scene change."
+    },
+    {
+      "id": "s039",
+      "t_in": 627.067,
+      "t_out": 630.267,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Face cut-in inside the C5 roster canvas.",
+      "quality": ""
+    },
+    {
+      "id": "s040",
+      "t_in": 630.267,
+      "t_out": 675.667,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s040-a.jpg",
+        "stills/s040-b.jpg",
+        "stills/s040-c.jpg",
+        "stills/s040-d.jpg",
+        "stills/s040-e.jpg",
+        "stills/s040-f.jpg",
+        "stills/s040-g.jpg",
+        "stills/s040-h.jpg"
+      ],
+      "layout": {
+        "type_px": 52,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "resumes the roster at card #2",
+        "camera": "pan right to card #3 (\u22481 s) \u2192 bullets type \u2192 long drift hold (\u224820 s) \u2192 pan right to card #4 (\u22481 s) \u2192 bullets type \u2192 drift hold",
+        "word_rate_s": 0.2,
+        "hold_s": null
+      },
+      "colours": [
+        "#5FB862",
+        "#F2A23A"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Cards #3 Case Study Breakdowns ('$16,200 in 7 days' thumbnail) and #4 Client Interviews. 45 s on one canvas with very long drifts \u2013 the static stretches run longer than the pattern's 2.5\u20133 s per bullet.",
+      "quality": "The same roster continued: each pan is short and lands squarely on the next card, and the long stretches between pans are slow drifts rather than freezes, so a 45 s explanation never fully stops moving.",
+      "exemplar": true
+    },
+    {
+      "id": "s041",
+      "t_in": 675.667,
+      "t_out": 725.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s048",
+      "t_in": 725.5,
+      "t_out": 727.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "D4",
+      "placement": "over-footage",
+      "stills": [
+        "stills/s048-a.jpg",
+        "stills/s048-b.jpg",
+        "stills/s048-c.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "three stacked glass pills with app icons ('Research', 'Scripting', 'Packaging') rise one after another in the upper-left beside the face, \u22480.3 s apart",
+        "camera": "none (footage); hands off to the CTA as the booking page rises from the bottom",
+        "word_rate_s": null,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#9ED9D9"
+      ],
+      "marks": [],
+      "notes": "'We handle research, scripting, packaging...' Deliverables chips right before the closing CTA (the D4 \u2192 CTA hand-off the rule mentions).",
+      "quality": "Small, quiet glass pills with real app icons stack beside the face one per spoken word, then the closing CTA rises straight over them, so the deliverables lead directly into the booking ask.",
+      "exemplar": true
+    },
+    {
+      "id": "s049",
+      "t_in": 727.5,
+      "t_out": 734.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s049-a.jpg",
+        "stills/s049-b.jpg",
+        "stills/s049-c.jpg",
+        "stills/s049-d.jpg",
+        "stills/s049-e.jpg"
+      ],
+      "layout": {
+        "type_px": 48,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the real booking page with the title 'Book time with me now' rises from the bottom over the face (\u22480.4 s) and fills the frame",
+        "camera": "booking page hold \u22481 s \u2192 it shrinks into the watch-page player (\u22480.6 s) \u2192 dive to the description link (\u22480.6 s) \u2192 hold \u22481.5 s \u2192 reverse \u2192 player hold \u2192 booking page reveals the face inside the player \u2192 scale to full face; \u22487 s",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Closing CTA variant: the booking page replaces the face in the player (the 'website \u2192 booking page' extension the rule allows), title 'Book time with me now' \u224848 px. A cursor clicks a date on the booking page before the dive.",
+      "quality": "The extended CTA chains the booking page into the same watch-page dive as every other CTA, so the viewer sees the destination and then exactly where the link is; a synthetic cursor selecting a date makes the booking feel one click away.",
+      "exemplar": true
+    },
+    {
+      "id": "s050",
+      "t_in": 734.5,
+      "t_out": 745.802,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}
