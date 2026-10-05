@@ -109,8 +109,8 @@ def timeline_sheets(video, d: Path, duration: float) -> list:
                    "-frames:v", "1", "-q:v", "5", str(out)])
         if out.is_file():
             sheets.append(out)
-        end = min(start + TL_SPAN, duration)
-        index.append(f"{out.name}: {start:g}–{end:g} s, {TL_FPS} fps, {TL_COLS} per row (row = {TL_COLS / TL_FPS:g} s)")
+            end = min(start + TL_SPAN, duration)
+            index.append(f"{out.name}: {start:g}–{end:g} s, {TL_FPS} fps, {TL_COLS} per row (row = {TL_COLS / TL_FPS:g} s)")
         n, start = n + 1, start + TL_SPAN
     (work / "timeline.txt").write_text("\n".join(index) + "\n")
     return sheets

@@ -9,9 +9,9 @@ Rule: `standards/formats/long-form.md` (kit table). This card holds the evidence
 
 ## Quality bar
 
-- Cap height ≥ 95 px (≈ 9–10 % H). One line on the dark ground, up to 2 centred lines on the light ground; the longest line spans ≤ 85 % W.
-- Words build one by one (≈ 0.2 s/word) with a short blur → sharp. Never per character.
-- Dark ground: white, on the same canvas as the scene it concludes. Reach it with a camera move (a whip ≈ 0.5 s with directional motion blur, 180° shutter), not a cut to a blank card. One thick red underline (≈ 10–12 px) sweeps under the line or its emphasis phrase after the camera settles.
+- Cap height ≥ 95 px (≈ 9–10 % H). One line on the dark ground, up to 2 centred lines on the light ground; the longest line spans ≤ 85 % W. (outside the rule — open for Tymek; build to the rule/kit)
+- Words build one by one (≈ 0.2 s/word) with a short blur → sharp. Never per character. (outside the rule — open for Tymek; build to the rule/kit)
+- Dark ground: white, on the same canvas as the scene it concludes. Reach it with a camera move (a whip ≈ 0.5 s with directional motion blur, 180° shutter), not a cut to a blank card. One thick red underline (≈ 10–12 px) sweeps under the line or its emphasis phrase after the camera settles. (outside the rule — open for Tymek; build to the rule/kit)
 - Light ground (Stupidly s024/s057): dark warm text (brown, not black) with no glow, on a plain gradient ground with a soft vignette, and a locked camera. Once the line is complete, a marker (`accent.block`, here peach) wipes L → R behind the emphasis words in ≈ 0.35 s, sitting low like a real highlighter.
 - Nothing else is in frame except faint canvas edges. Hold 0.6–1.8 s.
 - One template is reused verbatim for a series, such as a 3-question checklist with face cut-ins between the questions (Stupidly s057/s059/s061).

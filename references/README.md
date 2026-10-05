@@ -13,7 +13,7 @@ references/
     source.json            what the video is (file name only — the media stays on the shared drive)
     shots.json             contiguous shots covering 0…duration, each draft → reviewed
     stills/*.jpg           960 px stills of graphic and section shots (committed)
-    work/                  contact sheets and scratch (gitignored)
+    work/                  contact sheets, timeline sheets and scratch (gitignored)
 ```
 
 ## Add a reference video (stackable — repeat for every new video)
@@ -25,7 +25,7 @@ references/
    ```
    It writes a draft `shots.json`: one shot per hard cut, stills per shot and contact sheets in `work/`.
 2. **Analyse** every shot (below). Draft shots block `ref_index.py --check`.
-3. **Prune and index:** `python3 tools/ref_index.py --prune`. This deletes stills of face shots, regenerates
+3. **Prune and index:** `python3 tools/ref_index.py --prune`. This deletes stills of reviewed face and other shots and any orphan stills (no shot lists them), regenerates
    `index.json` and every card's evidence block, and creates a card for any new catalogue ID.
 4. **Quality bars:** update the bar of every pattern the video touched (below).
 5. **Check and commit:** `python3 tools/ref_index.py --check` must print `OK`. Commit `references/`
@@ -39,7 +39,8 @@ canvas, punch-ins. Then work through `work/contact-NN.jpg` (with `work/contact.t
 and each shot's stills.
 
 **Fix the shot list first** with `python3 tools/ref_shots.py <slug> split|merge|stills …` (it keeps shots
-contiguous and re-extracts stills) before filling in fields. A long graphic shot that chains patterns: split it
+contiguous and re-extracts stills) before filling in fields. It reads the source video from `~/Downloads/<source_file>` (the
+name in `source.json`); the team's media lives on the shared drive (CLAUDE.md), so pass `--video <path>` when the file is elsewhere. A long graphic shot that chains patterns: split it
 at the beat where the pattern changes when that beat is ≥ 1.5 s; otherwise tag the dominant pattern and name the
 other in `notes`. When motion matters (camera legs, word builds, holds), cut a 10 fps strip from the source video
 into `work/`:
@@ -83,6 +84,7 @@ from what the exemplars share. For example:
 
 Where a bullet contradicts the rule row in `standards/formats/long-form.md`, change the rule in the same
 commit (promotion rule) and say so in the commit message.
+Where a bar and the rule row or kit differ, build to the rule/kit; the bar marks the difference as `(outside the rule — open for Tymek; build to the rule/kit)` until it is promoted.
 
 ## Use it when building a video
 

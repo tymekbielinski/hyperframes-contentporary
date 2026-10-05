@@ -13,7 +13,7 @@ Rule: `standards/formats/long-form.md` (kit table). This card holds the evidence
 - Identical every time within a video (Mentors s042 = s046, Clay s044 = s052): scale to ≈ 0.80 → hold → dive ≈ 2× onto the description link → hold → reverse → face, all `ease.camera`.
 - Measured legs across 4 videos: scale 0.25–0.5 s, dive 0.4–0.7 s, link hold 1.4–2 s, reverse 0.5–0.8 s. The standard CTA totals 4.2–5.5 s; the kit builds 4.9 s.
 - The link reads ≥ 30 px at the hold, optionally on a blue highlight block (Instantly s121).
-- The extended variant runs once per video, usually as the last CTA. The real booking page plays in the player or rises over the face, a synthetic cursor clicks a date, then comes the same dive to the link and back to the face, ≈ 7 s (Hormozi s040, Mentors s049, Clay s044). The pilot's longer walk (link → website → booking → glow title ≥ 120 px over the dimmed booking page) runs ≈ 10 s.
+- The extended variant runs once per video, usually as the last CTA. The real booking page plays in the player or rises over the face, a synthetic cursor clicks a date, then comes the same dive to the link and back to the face, ≈ 7 s (Hormozi s040, Mentors s049, Clay s044). The pilot's longer walk (link → website → booking → glow title ≥ 120 px over the dimmed booking page) runs ≈ 10 s. (outside the rule — open for Tymek; build to the rule/kit)
 - One video dives into the pinned comment instead of the watch page (Stupidly s113). The kit does not build that; use the watch-page dive.
 - Don't: put directional motion blur on the dive or the tilt (Clay s044, Stupidly s113). The kit's DOM camera dives without blur.
 

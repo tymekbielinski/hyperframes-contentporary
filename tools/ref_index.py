@@ -11,7 +11,7 @@ Usage:
               stale card. Cards whose quality bar is not written yet are warnings.
 Pattern IDs come from standards/formats/long-form.md (tools/refs.py).
 
-Run with no flags to regenerate; any unknown flag prints this help.
+Run with no flags to regenerate; --help prints this help; any unknown flag prints it and exits 2.
 """
 import json
 import statistics
@@ -139,15 +139,19 @@ def _with_block(text: str, block: str, path: Path) -> str:
 
 def prune(root=ROOT) -> int:
     removed = 0
+    reg = refs.registry(root)
     for d in refs.video_dirs(root):
+        if refs.validate_video(d, reg):    # malformed or invalid: never touch it, --check reports why
+            continue
         path = d / "shots.json"
         data = json.loads(path.read_text())
         keep = set()
         for s in data["shots"]:
             if s.get("status") == "reviewed" and s.get("kind") in ("face", "other") and s.get("stills"):
                 for p in s["stills"]:
-                    (d / p).unlink(missing_ok=True)
-                    removed += 1
+                    if refs.STILL_PATH.fullmatch(p):
+                        (d / p).unlink(missing_ok=True)
+                        removed += 1
                 s["stills"] = []
             keep.update(s.get("stills") or [])
         for p in (d / "stills").glob("*"):
@@ -184,6 +188,9 @@ def run(root=ROOT, check=False):
         if card_status(cards[path]) == "draft" and refs.exemplars(lib, pid):
             warnings.append(f"{pid}: quality bar not written yet ({len(refs.exemplars(lib, pid))} exemplars available)")
     if check:
+        for card in sorted((Path(root) / "references" / "patterns").glob("*.md")):
+            if card.stem not in lib["registry"]:
+                findings.append(f"orphan pattern card {card.stem} — its catalogue row is gone; delete or restore the row")
         if not index_path.is_file() or index_path.read_text() != want_index:
             findings.append("references/index.json is stale — run python3 tools/ref_index.py")
         stale = [p.stem for p, t in cards.items() if not p.is_file() or p.read_text() != t]
@@ -200,6 +207,9 @@ def run(root=ROOT, check=False):
 
 def main(argv, root=ROOT) -> int:
     args = argv[1:]
+    if "--help" in args or "-h" in args:
+        print(__doc__)
+        return 0
     unknown = [a for a in args if a not in ("--check", "--prune")]
     if unknown:
         print(__doc__)

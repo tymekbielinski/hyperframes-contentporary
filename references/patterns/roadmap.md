@@ -9,11 +9,11 @@ Rule: `standards/formats/long-form.md` (kit table). This card holds the evidence
 
 ## Quality bar
 
-- Every visit opens on the previous visit's end state. The new card docks (≈ 0.8 s, card entrance) and the camera travels to frame it: ≈ 1.6–1.8 s at ≈ 1.8× in the pilot, ≈ 0.8–1.2 s in Stupidly. Earlier cards stay docked and visible.
-- Dark ground: the system name is set as large grey caps (≈ 110–130 px at the settled framing) **behind** the path and slightly defocused, so the path and cards own the foreground. The path glows (a pink-red line with bloom) and runs past both frame edges. Its nodes are numbered dark spheres with a white numeral that pop as the line reaches them.
+- Every visit opens on the previous visit's end state. The new card docks (≈ 0.8 s, card entrance) and the camera travels to frame it: ≈ 1.6–1.8 s at ≈ 1.8× in the pilot, ≈ 0.8–1.2 s in Stupidly. Earlier cards stay docked and visible. (outside the rule — open for Tymek; build to the rule/kit)
+- Dark ground: the system name is set as large grey caps (≈ 110–130 px at the settled framing) **behind** the path and slightly defocused, so the path and cards own the foreground. The path glows (a pink-red line with bloom) and runs past both frame edges. Its nodes are numbered dark spheres with a white numeral that pop as the line reaches them. (outside the rule — open for Tymek; build to the rule/kit)
 - Dark-ground cards are dark maroon glass tiles (≈ 250×290 at 1080 before the push) with a 1–2 px light border, a large white line icon above, a 2-line label below, and the node sphere sitting on the card.
-- Light ground (Stupidly s018/s112): no glow or bloom anywhere. The system can be a real screenshot (the creator's channel page as a card), with chapter tabs in distinct colours tucked behind its top edge, popping ≈ 0.3 s apart. A huge pale ghost word sits behind.
-- Light-ground visits: each visit grows its tab into a tall card with a coloured border and header tab, a 2-line ≈ 45 px title and a pale icon or chart.
+- Light ground (Stupidly s018/s112): no glow or bloom anywhere. The system can be a real screenshot (the creator's channel page as a card), with chapter tabs in distinct colours tucked behind its top edge, popping ≈ 0.3 s apart. A huge pale ghost word sits behind. (outside the rule — open for Tymek; build to the rule/kit)
+- Light-ground visits: each visit grows its tab into a tall card with a coloured border and header tab, a 2-line ≈ 45 px title and a pale icon or chart. (outside the rule — open for Tymek; build to the rule/kit)
 - The intro may end by travelling along the path to the goal (a real booking calendar) and handing off to a B1 headline.
 - A foreground element may pass through the depth (here sourced 3D bills). Hold ≥ 1 s per visit.
 

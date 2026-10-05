@@ -183,6 +183,14 @@ class IngestTests(Fixture):
         txt = (d / "work" / "timeline.txt").read_text()
         self.assertTrue("0–5" in txt or "0.0–5.0" in txt, txt)
 
+    def test_timeline_index_lists_only_existing_sheets(self):
+        from unittest import mock
+        d = self.root / "refvid"
+        d.mkdir()
+        with mock.patch.object(ref_ingest.media, "run", return_value=""):    # ffmpeg writes nothing
+            self.assertEqual(ref_ingest.timeline_sheets(self.video, d, 5.0), [])
+        self.assertEqual((d / "work" / "timeline.txt").read_text().strip(), "")
+
     def test_existing_slug_is_refused(self):
         with redirect_stdout(io.StringIO()):
             ref_ingest.ingest(self.video, META, self.root)
@@ -371,6 +379,50 @@ class IndexTests(Fixture):
         self.assertEqual(ref_index.prune(self.root), 0)
         self.assertTrue((d / "stills" / "sub" / "nested.jpg").is_file())
         self.assertTrue((d / "stills" / "sub").is_dir())
+
+    def test_stills_must_be_flat_jpg_paths_and_prune_never_leaves_stills(self):
+        shots = [graphic_shot("s001", 0.0, 4.0, "A1", ["stills/s001-a.jpg"]), face_shot("s002", 4.0, 10.0)]
+        d = write_video(self.root, shots=shots)
+        data = json.loads((d / "shots.json").read_text())
+        data["shots"][1]["stills"] = ["stills/../shots.json"]
+        (d / "shots.json").write_text(json.dumps(data))
+        before = (d / "shots.json").read_text()
+        findings = refs.validate_video(d, self.reg)
+        self.assertTrue(any("still stills/../shots.json must be stills/<name>.jpg" in f for f in findings), findings)
+        self.assertEqual(ref_index.prune(self.root), 0)    # invalid video: skipped entirely
+        self.assertEqual((d / "shots.json").read_text(), before)
+        # and even a valid video never unlinks a listed non-stills path
+        data["shots"][1]["stills"] = []
+        (d / "shots.json").write_text(json.dumps(data))
+        self.assertEqual(ref_index.prune(self.root), 0)
+        self.assertTrue((d / "shots.json").is_file())
+
+    def test_prune_skips_malformed_shots_json_and_still_prunes_valid_videos(self):
+        shots = [graphic_shot("s001", 0.0, 4.0, "A1", ["stills/s001-a.jpg"]), face_shot("s002", 4.0, 10.0)]
+        good = write_video(self.root, "good", shots=shots, stills=("stills/s001-a.jpg", "stills/s002-a.jpg"))
+        data = json.loads((good / "shots.json").read_text())
+        data["shots"][1]["stills"] = ["stills/s002-a.jpg"]
+        (good / "shots.json").write_text(json.dumps(data))
+        bad = write_video(self.root, "bad")
+        (bad / "shots.json").write_text("{}")
+        self.assertEqual(ref_index.prune(self.root), 1)
+        self.assertEqual(sorted(p.name for p in (good / "stills").iterdir()), ["s001-a.jpg"])
+        self.assertEqual((bad / "shots.json").read_text(), "{}")
+
+    def test_check_reports_orphan_cards(self):
+        write_video(self.root)
+        ref_index.run(self.root)
+        (self.root / "references/patterns/Z9.md").write_text("---\nid: Z9\n---\n")
+        findings, _ = ref_index.run(self.root, check=True)
+        self.assertIn("orphan pattern card Z9 — its catalogue row is gone; delete or restore the row", findings)
+
+    def test_help_prints_usage_and_exits_zero(self):
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            self.assertEqual(ref_index.main(["ref_index.py", "--help"], self.root), 0)
+        self.assertIn("Usage:", buf.getvalue())
+        with redirect_stdout(io.StringIO()):
+            self.assertEqual(ref_index.main(["ref_index.py", "--bogus"], self.root), 2)
 
 
 GRID = "| t_in | t_out | words | placement | type | beats | ease | marks |\n|---|---|---|---|---|---|---|---|\n"

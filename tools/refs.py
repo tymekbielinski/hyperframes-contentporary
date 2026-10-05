@@ -31,6 +31,7 @@ WORD_TOKEN = re.compile(r"(?<![\w-])([a-z]+(?:-[a-z]+)*)(?![\w-])")
 HEX = re.compile(r"#[0-9A-Fa-f]{6}")
 SLUG = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 SHOT_ID = re.compile(r"s\d{3,}")
+STILL_PATH = re.compile(r"stills/[^/]+\.jpg")
 DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 SOURCE_KEYS = ("slug", "title", "url", "format", "ground", "made_by", "brand", "duration", "fps",
                "width", "height", "source_file", "ingested")
@@ -205,7 +206,9 @@ def validate_video(d, reg: dict) -> list:
             findings.append(f"{where}: stills must be a list")
             stills = []
         for p in stills:
-            if not (isinstance(p, str) and p.startswith("stills/") and (d / p).is_file()):
+            if not (isinstance(p, str) and STILL_PATH.fullmatch(p)):
+                findings.append(f"{where}: still {p} must be stills/<name>.jpg")
+            elif not (d / p).is_file():
                 findings.append(f"{where}: still {p} not found")
         if s.get("status") == "reviewed":
             findings += [f"{label}/shots.json {f}" for f in _check_reviewed(s, reg, sid)]
