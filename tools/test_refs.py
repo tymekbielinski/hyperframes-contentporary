@@ -6,6 +6,8 @@ import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 
+import media
+import ref_board
 import ref_index
 import ref_ingest
 import refs
@@ -248,3 +250,35 @@ class IndexTests(Fixture):
         self.assertEqual(ref_index.prune(self.root), 0)
         self.assertTrue((d / "stills" / "sub" / "nested.jpg").is_file())
         self.assertTrue((d / "stills" / "sub").is_dir())
+
+
+GRID = "| t_in | t_out | words | placement | type | beats | ease | marks |\n|---|---|---|---|---|---|---|---|\n"
+
+
+@unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+class BoardTests(Fixture):
+    def setUp(self):
+        super().setUp()
+        d = write_video(self.root)
+        media.extract_frame(synth.segments(self.root / "r.mp4", [("red", 1)], size=(320, 180)), 0.5, d / "stills/s001-a.jpg")
+
+    def test_compose_is_two_rows_of_three(self):
+        lib = refs.load_library(self.root)
+        refs_ = ref_board.ref_stills(lib, ["A1"])
+        self.assertEqual(len(refs_), 1)
+        out = ref_board.compose([refs_[0]], refs_, self.root / "b.jpg")
+        wh = media.run([media.tool("ffprobe"), "-v", "error", "-show_entries", "stream=width,height",
+                        "-of", "csv=p=0", str(out)]).strip()
+        self.assertEqual(wh, "1920,720")
+
+    def test_project_boards_pair_rows_with_slots(self):
+        p = self.root / "proj"
+        (p / "renders").mkdir(parents=True)
+        (p / "storyboard.md").write_text("# S\n\n" + GRID + '| 0 | 2 | "w" | full-frame | A1 (card) | — | ease.enter | — |\n')
+        (p / "index.html").write_text('<div data-composition-id="root"><div data-composition-src="compositions/a.html" '
+                                      'data-composition-id="a" data-start="0" data-duration="2"></div></div>')
+        render = synth.segments(p / "renders" / "reel.mp4", [("navy", 2)], size=(320, 180))
+        boards = ref_board.project_boards(p, render, root=self.root)
+        self.assertEqual([(b["row"], b["refs"]) for b in boards], [(1, ["demo s001"])])
+        self.assertTrue((p / "renders/critique/row-01.jpg").is_file())
+        self.assertIn("row-01.jpg", (p / "renders/critique/boards.md").read_text())
