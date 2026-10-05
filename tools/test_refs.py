@@ -1,10 +1,14 @@
+import io
 import json
 import shutil
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
+import ref_ingest
 import refs
+import synth
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -129,3 +133,54 @@ class LibraryTests(Fixture):
         got = [(v["source"]["slug"], s["id"]) for v, s in refs.exemplars(lib, "A1")]
         self.assertEqual(got, [("beta", "s002"), ("alpha", "s001"), ("beta", "s001")])
         self.assertEqual(lib["findings"], [])
+
+
+META = {"slug": "clip", "title": "Clip", "url": "", "format": "long-form", "ground": "dark",
+        "made_by": "test", "brand": "Test"}
+
+
+class SpanTests(unittest.TestCase):
+    def test_spans_tile_the_video_and_drop_flash_cuts(self):
+        self.assertEqual(ref_ingest.shot_spans([1.0, 1.1, 2.0], 3.0), [(0.0, 1.0), (1.0, 2.0), (2.0, 3.0)])
+
+    def test_no_cuts_is_one_shot(self):
+        self.assertEqual(ref_ingest.shot_spans([], 42.0), [(0.0, 42.0)])
+
+    def test_still_times_short_normal_long(self):
+        self.assertEqual(ref_ingest.still_times(0.0, 0.6), [0.3])
+        self.assertEqual(ref_ingest.still_times(10.0, 14.0), [10.25, 12.0, 13.7])
+        long = ref_ingest.still_times(0.0, 120.0)
+        self.assertEqual(len(long), 8)
+        self.assertEqual((long[0], long[-1]), (0.25, 119.7))
+
+
+@unittest.skipUnless(synth.HAVE_FFMPEG, "ffmpeg/ffprobe not installed")
+class IngestTests(Fixture):
+    def setUp(self):
+        super().setUp()
+        self.video = synth.segments(self.root / "clip.mp4", [("red", 1.5), ("blue", 2.0), ("white", 1.5)], size=(320, 180))
+
+    def test_ingest_writes_a_valid_draft(self):
+        with redirect_stdout(io.StringIO()):
+            d = ref_ingest.ingest(self.video, META, self.root)
+        data = json.loads((d / "shots.json").read_text())
+        self.assertEqual([(s["t_in"], s["t_out"]) for s in data["shots"]], [(0.0, 1.5), (1.5, 3.5), (3.5, 5.0)])
+        self.assertTrue(all(s["status"] == "draft" and s["stills"] for s in data["shots"]))
+        self.assertEqual(json.loads((d / "source.json").read_text())["source_file"], "clip.mp4")
+        self.assertTrue(list((d / "work").glob("contact-*.jpg")))
+        self.assertEqual(refs.validate_video(d, self.reg), [])
+
+    def test_existing_slug_is_refused(self):
+        with redirect_stdout(io.StringIO()):
+            ref_ingest.ingest(self.video, META, self.root)
+        (self.root / "references/videos/clip/shots.json").write_text('{"version": 1, "shots": ["analysed"]}')
+        with self.assertRaisesRegex(ref_ingest.IngestError, "already ingested"):
+            ref_ingest.ingest(self.video, META, self.root)
+        self.assertIn("analysed", (self.root / "references/videos/clip/shots.json").read_text())
+
+    def test_cli_usage_without_arguments(self):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            code = ref_ingest.main(["ref_ingest.py"], self.root)
+        self.assertEqual(code, 2)
+        self.assertIn("usage: python3 tools/ref_ingest.py", out.getvalue())
