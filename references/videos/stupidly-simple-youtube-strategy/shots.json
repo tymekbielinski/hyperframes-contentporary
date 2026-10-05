@@ -1,0 +1,2518 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 1.333,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s002",
+      "t_in": 1.333,
+      "t_out": 4.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s002-a.jpg",
+        "stills/s002-b.jpg",
+        "stills/s002-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "two real dark YouTube channel pages (William Brown front, Charlie Morgan peeking behind, fanned a few degrees) rise from below the frame onto the white vignette ground with a soft neutral shadow; headline builds word by word with blur\u2192sharp, then a red block wipes in behind it L\u2192R (\u22480.3 s)",
+        "camera": "slow push-in (\u22483 %/s) while the stack settles; exits on a fast whip left with directional motion blur that reveals the chart canvas (s104)",
+        "word_rate_s": 0.2,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#D04848",
+        "#202020"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Hook beat: 'multi-millionaire YouTubers' strategies'. Card stack \u2248 65 % W. Not a classic A5 step-through (no card steps away); the stack is the backdrop for a one-line block headline.",
+      "quality": "Real proof stacked in depth on a light ground: two sharp channel pages fanned like physical cards with a soft grey shadow, so the white ground reads as a tabletop rather than empty space. The headline sits across the lower third of the stack and only becomes a statement when the red block sweeps behind it \u2014 white type on red, one line, \u2248 85 % W.",
+      "exemplar": true
+    },
+    {
+      "id": "s104",
+      "t_in": 4.4,
+      "t_out": 6.333,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s104-a.jpg",
+        "stills/s104-b.jpg",
+        "stills/s104-c.jpg"
+      ],
+      "layout": {
+        "type_px": 35,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "whip-in from the card stack; a thin light-blue line chart draws L\u2192R while red dots pop on three peaks and their grey labels build word by word (\"Big Subscriber Base\", \"Million Views\", \"Fancy Editing\")",
+        "camera": "camera tracks the line tip to the right (\u22481.5 s, ease.camera) and stops with all three peaks in frame",
+        "word_rate_s": 0.25,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#98D4E4",
+        "#D04848"
+      ],
+      "marks": [],
+      "notes": "Spoken: what people think makes a channel succeed. Canvas resumes in s006 after a face cut-in.",
+      "quality": "A deliberately quiet chart: hairline light-blue stroke with a pale gradient fill under it, small red dots and small grey labels, so the light ground stays dominant and the payoff (the strike-through in s006) has room to land.",
+      "exemplar": false
+    },
+    {
+      "id": "s003",
+      "t_in": 6.333,
+      "t_out": 7.933,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Face with bold italic white running captions ('growing YouTube channels FAST', 'FAST' in red) \u2014 long-form rule says no captions.",
+      "quality": ""
+    },
+    {
+      "id": "s004",
+      "t_in": 7.933,
+      "t_out": 12.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s004-a.jpg",
+        "stills/s004-b.jpg",
+        "stills/s004-c.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "Third-party proof clip (a creator in a white T-shirt: 'I actually went on to scale my company to $16,400,000 over just about 5 years'). Enters through a warm light-leak flash \u2014 long-form forbids light leaks, do not copy that beat.",
+      "quality": "The proof clip sits in a rounded card (\u2248 57 % W, radius \u2248 12 px, no border) high in frame on a white\u2192light-grey vertical gradient with a soft vignette, and the speaker's words build beneath it phrase by phrase \u2014 each word fades from light grey to near-black with a short blur\u2192sharp, so the line reads like the clip is typing its own testimony. Bold sans \u2248 50 px, one line, never more than \u2248 6 words on screen.",
+      "exemplar": true
+    },
+    {
+      "id": "s005",
+      "t_in": 12.5,
+      "t_out": 13.367,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s006",
+      "t_in": 13.367,
+      "t_out": 16.867,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s006-a.jpg",
+        "stills/s006-b.jpg",
+        "stills/s006-c.jpg"
+      ],
+      "layout": {
+        "type_px": 35,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "canvas resumes exactly where s104 left it; red strike lines draw through each label L\u2192R, one per spoken item \u22480.4 s apart, labels turn dark red",
+        "camera": "slight drift down-left (\u2248 0.1 fw/s) then a pull back so the whole line fits",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#98D4E4",
+        "#D04848"
+      ],
+      "marks": [
+        "strike"
+      ],
+      "notes": "Spoken: 'none of that matters'. Continuation of s104 after a 1 s face cut-in.",
+      "quality": "The shared canvas pays off: the same three labels the viewer just read are struck through in red one per phrase, so the negation is visual, not spoken. The strikes are thin, the same red as the dots, and they land on the words, never across the line chart itself.",
+      "exemplar": true
+    },
+    {
+      "id": "s007",
+      "t_in": 16.867,
+      "t_out": 19.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s008",
+      "t_in": 19.233,
+      "t_out": 25.267,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s008-a.jpg",
+        "stills/s008-b.jpg",
+        "stills/s008-c.jpg",
+        "stills/s008-d.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "Same speaker: 'But regardless of view counts, they always get me floods of customers and sales'. Exits on a light-leak flash.",
+      "quality": "Same A4 card grammar as s004: one phrase at a time under the card, each word arriving grey and darkening as it is spoken, the previous phrase cleared before the next \u2014 the caption never stacks, so the card stays the hero.",
+      "exemplar": false
+    },
+    {
+      "id": "s009",
+      "t_in": 25.267,
+      "t_out": 31.467,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s009-a.jpg",
+        "stills/s009-b.jpg",
+        "stills/s009-c.jpg",
+        "stills/s009-d.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "a real channel's video grid (light YouTube, Latest/Popular/Oldest chips) slides in; the camera steps through four over-produced thumbnails \u22480.4 s each while 'Fancy Editing' builds below",
+        "camera": "horizontal pan L\u2192R (\u22481.2 s, ease.camera) along a red hand-drawn arrow from the last fancy thumbnail ($819,000) to a plain one-take video tile ('I've booked 14,881 sales calls'), caption extends to 'Fancy Editing to Raw One-Takes Video!'; settles on the raw tile",
+        "word_rate_s": 0.25,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#D04848",
+        "#30C030",
+        "#202020"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "Spoken: they switched from fancy editing to raw one-takes. The grid is a real channel page shown in its light theme so it sits on the light ground without a card.",
+      "quality": "The substitution is told by camera direction: the frame leaves the loud green-money thumbnail and travels along a thin red hand-drawn arrow to a quiet raw video, and the caption grows in step ('Fancy Editing' \u2192 '\u2026to Raw One-Takes Video!'). Real thumbnails, real titles and view counts; one \u2248 60 px dark caption line under the UI, no box.",
+      "exemplar": true
+    },
+    {
+      "id": "s010",
+      "t_in": 31.467,
+      "t_out": 32.867,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s011",
+      "t_in": 32.867,
+      "t_out": 33.433,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Warm light-leak flash transition into the A4 card.",
+      "quality": ""
+    },
+    {
+      "id": "s012",
+      "t_in": 33.433,
+      "t_out": 40.467,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s012-a.jpg",
+        "stills/s012-b.jpg",
+        "stills/s012-c.jpg",
+        "stills/s012-d.jpg",
+        "stills/s012-e.jpg"
+      ],
+      "layout": {
+        "type_px": 42,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020",
+        "#5BA0C8"
+      ],
+      "marks": [],
+      "notes": "'One take. No script. No editing. Over 500,000 views and multiple six figures in sales!' Enters on a light-leak flash (s011).",
+      "quality": "The card grows to \u2248 75 % W with a real YouTube tile inset in its corner, so the claim ('one take\u2026 over 500,000 views') and its proof are on screen at once. Captions switch to a smaller italic (\u2248 42 px) and build word by word grey\u2192black under the card; slow push-in keeps the 7 s shot alive.",
+      "exemplar": true
+    },
+    {
+      "id": "s013",
+      "t_in": 40.467,
+      "t_out": 42.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s014",
+      "t_in": 42.0,
+      "t_out": 44.8,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s014-a.jpg",
+        "stills/s014-b.jpg",
+        "stills/s014-c.jpg"
+      ],
+      "layout": {
+        "type_px": 150,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "'$1,000,000/m' counts on glyph by glyph L\u2192R (each digit rising and sharpening) in a lime\u2192green gradient with a soft glow, over the source clip of the creator speaking on stage",
+        "camera": "slow push on the clip; the speaker stands in front of the zeros (number composited behind him); exits by shrinking the stage clip into the banner of his channel page (s105)",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#A0D872",
+        "#6A8A50"
+      ],
+      "marks": [],
+      "notes": "Spoken: Charlie makes a million a month. B3 over the source clip variant.",
+      "quality": "The big figure is placed into the footage, not over it: the speaker's head and body occlude the middle zeros, so the number lives on the stage wall behind him. Green gradient type \u2248 14 % H with a soft halo, single line, then the whole clip becomes the banner of the next screenshot \u2014 a match-cut from proof footage to proof UI.",
+      "exemplar": true
+    },
+    {
+      "id": "s105",
+      "t_in": 44.8,
+      "t_out": 49.933,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s105-a.jpg",
+        "stills/s105-b.jpg",
+        "stills/s105-c.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "continuation of s014: the stage clip scales down and desaturates into the banner of the creator's real channel header; the subscriber count ticks 40K \u2192 52K \u2192 88K \u2192 116K \u2192 120K; a red block lands on '120K subscribers', then 'In Just 3 Months' builds word by word with a red hand-drawn underline drawing L\u2192R",
+        "camera": "pull back (\u22480.8 s, ease.camera) from the clip to the header, then a slow push toward the count while it ticks; holds on the underlined line",
+        "word_rate_s": 0.25,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#D04848",
+        "#202020"
+      ],
+      "marks": [
+        "highlight-block",
+        "underline"
+      ],
+      "notes": "Spoken: 'in just 3 months'. Ticks are discrete steps, not a smooth odometer.",
+      "quality": "Real UI doing the counting: the subscriber number on the actual channel header rolls up (\u2248 2 s, decelerating) instead of a drawn counter, then gets the red block. Only one line of added type (\u2248 65 px, dark grey) and one hand-drawn red underline \u2014 the screenshot carries the proof, the marks carry the meaning.",
+      "exemplar": true
+    },
+    {
+      "id": "s015",
+      "t_in": 49.933,
+      "t_out": 51.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s016",
+      "t_in": 51.1,
+      "t_out": 52.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s016-a.jpg",
+        "stills/s016-b.jpg",
+        "stills/s016-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut onto the creator's dark-theme channel header at \u2248 250 %, the giant banner word 'subscribe' bleeding off the top",
+        "camera": "slow diagonal drift (\u2248 0.15 fw/s) toward the subscriber count while a grey highlight block wipes across '286K subscribers'",
+        "word_rate_s": null,
+        "hold_s": 0.4
+      },
+      "colours": [
+        "#202020",
+        "#F0F0F0"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Spoken: the creator's channel size.",
+      "quality": "A 1.6 s proof insert done with restraint: real dark UI at large scale, a slight camera creep and one highlight block on the number that matters. Short enough to read as a flash of evidence between face beats.",
+      "exemplar": false
+    },
+    {
+      "id": "s017",
+      "t_in": 52.7,
+      "t_out": 54.867,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s018",
+      "t_in": 54.867,
+      "t_out": 60.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s018-a.jpg",
+        "stills/s018-b.jpg",
+        "stills/s018-c.jpg"
+      ],
+      "layout": {
+        "type_px": 35,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "the creator's dark channel page rises from the bottom as a card onto a light-grey vignette ground; three coloured tabs pop out from behind its top edge one after another (\u22480.3 s apart): SECRET #1 red, #2 magenta, #3 blue; a huge ghost word 'GENIUS' fades in behind in pale grey",
+        "camera": "slow drift left and push (\u2248 3 %/s) through the tab entrances; locked hold at the end",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F06464",
+        "#D860E8",
+        "#5070D0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "Intro visit of the chapter device ('three secrets'). Variant of the kit roadmap: tabs on a screenshot instead of a glowing path with nodes.",
+      "quality": "A roadmap built from the proof itself: the 'system' is literally the creator's channel page, and the three chapters are coloured file tabs tucked behind it, so every later visit (s064, s112, s082) can pull one tab up into a card. Depth from four planes: ghost word, ground vignette, dark page card with soft shadow, saturated tabs.",
+      "exemplar": true
+    },
+    {
+      "id": "s019",
+      "t_in": 60.3,
+      "t_out": 64.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s020",
+      "t_in": 64.5,
+      "t_out": 66.267,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s020-a.jpg",
+        "stills/s020-b.jpg",
+        "stills/s020-c.jpg"
+      ],
+      "layout": {
+        "type_px": 190,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "'NO' fades up from a defocused grey to bright white in \u22480.3 s, centred on a dark warm-brown vignette with a soft orange glow behind it; two orange scribble underlines draw L\u2192R under it (\u22480.3 s)",
+        "camera": "none (locked), very slight creep",
+        "word_rate_s": null,
+        "hold_s": 0.9
+      },
+      "colours": [
+        "#402010",
+        "#D09030",
+        "#F0F0F0"
+      ],
+      "marks": [
+        "scribble",
+        "underline"
+      ],
+      "notes": "Spoken: 'No.' (does it need fancy editing?). Dark ground inside a light-ground video \u2014 the punch word is the one place glow is used.",
+      "quality": "The only dark frame in a light video, so the hard turn is felt as a lighting change: one bold italic white word with a subtle bevel, a warm glow behind it and a doubled hand-drawn orange scribble under it. \u2248 18 % H, nothing else in frame.",
+      "exemplar": true
+    },
+    {
+      "id": "s021",
+      "t_in": 66.267,
+      "t_out": 67.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s022",
+      "t_in": 67.233,
+      "t_out": 71.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s023",
+      "t_in": 71.3,
+      "t_out": 72.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s024",
+      "t_in": 72.3,
+      "t_out": 75.433,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "title",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s024-a.jpg",
+        "stills/s024-b.jpg",
+        "stills/s024-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut to a plain white\u2192light-grey vertical gradient; two centred lines of bold rounded sans in dark brown build word by word (each word grey \u2192 dark with a short blur\u2192sharp, \u22480.2 s apart); a peach marker block then wipes L\u2192R behind the emphasis words of line 2 (\u22480.35 s)",
+        "camera": "none (locked)",
+        "word_rate_s": 0.2,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#32180A",
+        "#F2C484"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Spoken question opening the 'why' section.",
+      "quality": "Light-ground title done right: no glow, dark warm-brown text (not black) at \u2248 95 px cap height, two centred lines, and one soft peach marker that sits slightly below the x-height like a real highlighter stroke \u2014 it lands only after the line is complete. Same template every time, so the three checklist questions read as a set.",
+      "exemplar": true
+    },
+    {
+      "id": "s025",
+      "t_in": 75.433,
+      "t_out": 83.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Face with running captions ('is for a lot of entrepreneurs\u2026', 'never reach' in red).",
+      "quality": ""
+    },
+    {
+      "id": "s026",
+      "t_in": 83.067,
+      "t_out": 84.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s027",
+      "t_in": 84.9,
+      "t_out": 88.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s028",
+      "t_in": 88.967,
+      "t_out": 89.867,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s029",
+      "t_in": 89.867,
+      "t_out": 100.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s029-a.jpg",
+        "stills/s029-b.jpg",
+        "stills/s029-c.jpg",
+        "stills/s029-d.jpg",
+        "stills/s029-e.jpg",
+        "stills/s029-f.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "a pale grey ring draws around the frame centre; two round avatar nodes (Charlie Morgan left, William Brown right, name labels outside the ring) pop on; the top arc then draws in red from both nodes with a dark chip at 12 o'clock counting 126,575 \u2192 127,000 views and an italic script note 'They don't try to appeal to everyone' with a small red hook arrow; later the bottom arc draws green with its chip counting down 7,690 \u2192 5,000 views and 'they actively disqualify most viewers' with a green arrow",
+        "camera": "camera tilts up to the red arc (\u22481 s), holds, then tilts down past the nodes to the green arc (\u22481.2 s, ease.camera); slight pull back at the end so the full ring shows",
+        "word_rate_s": 0.3,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#D04848",
+        "#78D078",
+        "#202020"
+      ],
+      "marks": [
+        "arrow",
+        "script-word"
+      ],
+      "notes": "Spoken: they don't try to appeal to everyone, they actively disqualify most viewers. Mechanically C4 (nodes on a ring, segments draw, camera visits each) but used as a two-path comparison like new:comparison-split. Canvas continues in s031/s033.",
+      "quality": "A comparison folded into a ring: the same two creators are joined by two arcs, red on top for the expected high-view path and green below for what they actually do, and the camera moves between the two halves so the contrast is a direction. Counters live in small dark pill chips on the arcs and roll while the arc draws; annotations are small italic grey notes with tiny hand-drawn hook arrows in the arc's colour.",
+      "exemplar": true
+    },
+    {
+      "id": "s030",
+      "t_in": 100.7,
+      "t_out": 102.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s031",
+      "t_in": 102.533,
+      "t_out": 107.367,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s031-a.jpg",
+        "stills/s031-b.jpg",
+        "stills/s031-c.jpg"
+      ],
+      "layout": {
+        "type_px": 48,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "opens on the ring (\u22480.6 s), then a fast whip left with directional motion blur reveals a real video tile (whiteboard lecture thumbnail + title/meta) on the same light canvas; 'For most people that just boring!' builds word by word above it, then a red block wipes L\u2192R behind the whole line and the text turns white",
+        "camera": "whip left (\u22480.5 s, motion blur), slight push-in onto the tile while the line builds; locked hold",
+        "word_rate_s": 0.2,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#D04848",
+        "#202020"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Spoken: 'for most people that's just boring'. Light-ground A1 without the blurred-backdrop layer. Same canvas as s029 \u2192 s033.",
+      "quality": "Real UI as the subject with the verdict written over it: the tile is sharp and alone on the light canvas, the line builds in plain dark type and only becomes a judgement when the red block wipes behind it. No blurred backdrop \u2014 on the light ground the vignette and empty white do the focusing.",
+      "exemplar": true
+    },
+    {
+      "id": "s032",
+      "t_in": 107.367,
+      "t_out": 109.167,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s033",
+      "t_in": 109.167,
+      "t_out": 118.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s033-a.jpg",
+        "stills/s033-b.jpg",
+        "stills/s033-c.jpg",
+        "stills/s033-d.jpg",
+        "stills/s033-e.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "canvas resumes on the tile from s031; camera tilts down under it; a red hand-drawn curved arrow draws from the tile down-left to 'Aspiring entrepreneurs / people interested in business' (word by word), then red strike-throughs cross both lines; a green curved arrow draws down-right to 'Entrepreneurs already making $500k-$2M-$10M annually!' building word by word",
+        "camera": "tilt down (\u22481 s), drift left to the red branch, then pan right past the tile to the green branch (\u22481.3 s, ease.camera); hold on the green side",
+        "word_rate_s": 0.25,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#D04848",
+        "#70C070",
+        "#202020"
+      ],
+      "marks": [
+        "arrow",
+        "strike"
+      ],
+      "notes": "Spoken: the video isn't for aspiring entrepreneurs, it's for people already making $500k\u2013$10M. Same grammar as the pilot's new:comparison-split (hub/real UI with a \u2715 branch and a \u2713 branch, camera pans between them).",
+      "quality": "The verdict is a camera direction: the wrong audience hangs off the real video tile on the left with a red arrow and gets struck through, the right audience on the right with a green arrow and builds number by number ($500k \u2192 $2M \u2192 $10M). Hand-drawn arrows are thin, curved and coloured by meaning; type stays small grey/dark so the marks carry the emotion.",
+      "exemplar": true
+    },
+    {
+      "id": "s034",
+      "t_in": 118.4,
+      "t_out": 125.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s035",
+      "t_in": 125.0,
+      "t_out": 138.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s035-a.jpg",
+        "stills/s035-b.jpg",
+        "stills/s035-c.jpg",
+        "stills/s035-d.jpg",
+        "stills/s035-e.jpg",
+        "stills/s035-f.jpg",
+        "stills/s035-g.jpg"
+      ],
+      "layout": {
+        "type_px": 42,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "'It ain't about the views, it's about problem awareness, which creates buyer intent\u2026 Please, please write this down\u2026 problem awareness and buyer intent'.",
+      "quality": "Long A4 (13 s) held together by rhythm alone: the card never moves, the italic caption swaps phrase by phrase in time with the speech, and every new phrase starts light grey and darkens word by word.",
+      "exemplar": false
+    },
+    {
+      "id": "s036",
+      "t_in": 138.0,
+      "t_out": 143.6,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s037",
+      "t_in": 143.6,
+      "t_out": 149.633,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s037-a.jpg",
+        "stills/s037-b.jpg",
+        "stills/s037-c.jpg",
+        "stills/s037-d.jpg"
+      ],
+      "layout": {
+        "type_px": 42,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "'They've made about the same amount\u2026 multiple multiple six figures, hundreds of thousands of dollars'.",
+      "quality": "Two real video tiles pinned inside the clip's top corners (white bordered, \u2248 20 % of card W each) carry the proof while the speaker talks, then disappear the moment the sentence moves on \u2014 proof appears only for as long as it is being referenced.",
+      "exemplar": false
+    },
+    {
+      "id": "s038",
+      "t_in": 149.633,
+      "t_out": 150.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s039",
+      "t_in": 150.8,
+      "t_out": 155.267,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s039-a.jpg",
+        "stills/s039-b.jpg",
+        "stills/s039-c.jpg"
+      ],
+      "layout": {
+        "type_px": 190,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut onto a real watch page at \u2248 250 %: a pink highlight block lands on the like count (974); whip down to the description where a red block sits on '17K views'",
+        "camera": "two whips with heavy directional motion blur (\u22480.4 s each) then a pull back to frame the description small at top; '\u2260 $136,429' lands huge beneath and counts up continuously to $149,962 (\u22481.8 s, decelerating) with a red hand-drawn curl arrow tying the views to the number",
+        "word_rate_s": null,
+        "hold_s": 0.3
+      },
+      "colours": [
+        "#A0D872",
+        "#D04848",
+        "#E8A0A8"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow"
+      ],
+      "notes": "Spoken: this video only got 17K views but made $150k. Counter still rolling at the cut (short hold).",
+      "quality": "Low views set against big money in one frame: the real '17K views' (red block) sits small at the top and a huge lime-green gradient figure (\u2248 18 % H) with a red '\u2260' rolls up beneath it, linked by one hand-drawn red curl. The whips use real directional motion blur and the camera settles before the number lands.",
+      "exemplar": true
+    },
+    {
+      "id": "s040",
+      "t_in": 155.267,
+      "t_out": 162.467,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s041",
+      "t_in": 162.467,
+      "t_out": 165.733,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "title",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s041-a.jpg",
+        "stills/s041-b.jpg",
+        "stills/s041-c.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "white\u2192light-grey gradient; 'If noone clicks' builds word by word in small black type, clears, then 'noone watches' builds and a peach marker wipes behind it L\u2192R",
+        "camera": "none (locked)",
+        "word_rate_s": 0.25,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#202020",
+        "#F2C484"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Spoken: 'if no one clicks, no one watches'. Two lines shown one after the other, not stacked.",
+      "quality": "Small-type variant of the light title: one short line at \u2248 40 px in the middle of an empty frame, so the emptiness is the point ('noone watches'); the peach marker is the only colour.",
+      "exemplar": false
+    },
+    {
+      "id": "s042",
+      "t_in": 165.733,
+      "t_out": 169.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s043",
+      "t_in": 169.067,
+      "t_out": 174.267,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s043-a.jpg",
+        "stills/s043-b.jpg",
+        "stills/s043-c.jpg"
+      ],
+      "layout": {
+        "type_px": 20,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "the creator's light-theme channel page (header + video grid) appears tilted in 3D (\u2248 20\u201330\u00b0 about the X axis), shadowed edge falling off",
+        "camera": "one long diagonal camera glide down and right across the tilted grid (\u22485 s, slow, ease.camera.slow), rows of thumbnails sliding under the lens; no stops",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#202020",
+        "#30C030",
+        "#D04848"
+      ],
+      "marks": [],
+      "notes": "Spoken: his videos are plain, low-production. Hands off to B1 (s045), which reuses this wall dimmed.",
+      "quality": "A wall of evidence made cinematic by perspective alone: the real channel grid is tilted like a table surface and the camera glides across it, so dozens of plain thumbnails read as volume without any added text.",
+      "exemplar": true
+    },
+    {
+      "id": "s044",
+      "t_in": 174.267,
+      "t_out": 175.867,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s045",
+      "t_in": 175.867,
+      "t_out": 179.167,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s045-a.jpg",
+        "stills/s045-b.jpg",
+        "stills/s045-c.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the same thumbnail wall from s043, now dimmed to \u2248 25 % and softly blurred; 'Low Production \u2260 Low Effort' builds word by word in white (blur\u2192sharp) on one centred line; a red underline then sweeps L\u2192R under 'Low Effort'",
+        "camera": "none (locked), slight creep",
+        "word_rate_s": 0.25,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#F0F0F0",
+        "#D04848"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Spoken: 'low production doesn't mean low effort'. The one B1 in the video; goes dark (dimmed backdrop) inside a light video, like the pilot's dark B1s.",
+      "quality": "The claim sits literally on top of its evidence: the backdrop is the exact wall the viewer just toured, dimmed dark enough for white type on a light-ground video. One line \u2248 65 px, the '\u2260' as a glyph, and one thin red underline only under the answer phrase.",
+      "exemplar": true
+    },
+    {
+      "id": "s046",
+      "t_in": 179.167,
+      "t_out": 187.433,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s047",
+      "t_in": 187.433,
+      "t_out": 195.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s048",
+      "t_in": 195.067,
+      "t_out": 201.133,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s049",
+      "t_in": 201.133,
+      "t_out": 206.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s049-a.jpg",
+        "stills/s049-b.jpg",
+        "stills/s049-c.jpg"
+      ],
+      "layout": {
+        "type_px": 15,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "single real video tiles (thumbnail + title + meta) centred alone on a near-black ground, swapped by hard cuts every \u22481.2\u20132.5 s ('How to build a system\u2026', '$1M' thumbnail, 'I became a millionaire at 21\u2026')",
+        "camera": "gentle push on each tile (\u2248 2 %/s); hard cuts between tiles",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#202020",
+        "#F0F0F0",
+        "#D04848"
+      ],
+      "marks": [],
+      "notes": "Spoken: his old videos were the same content. Variant of A6 with sharp single tiles instead of blurred pages.",
+      "quality": "Proof by repetition: one dark-theme tile at a time, small (\u2248 22 % W) and centred on near-black, so each title can be read and the breadth comes from the sequence. Tiles stay sharp \u2014 the A6 rhythm with readable content.",
+      "exemplar": true
+    },
+    {
+      "id": "s106",
+      "t_in": 206.9,
+      "t_out": 209.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s107",
+      "t_in": 209.0,
+      "t_out": 212.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s107-a.jpg",
+        "stills/s107-b.jpg",
+        "stills/s107-c.jpg"
+      ],
+      "layout": {
+        "type_px": 15,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "the 'DON'T DIE POOR' tile on the same near-black ground after a face cut-in; at the end it scales down and slides toward the top-left over the face as the edit returns",
+        "camera": "slow push, then the tile flies off over the face (\u22480.4 s)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#202020",
+        "#F0F0F0",
+        "#E0C030"
+      ],
+      "marks": [],
+      "notes": "A6 continuation.",
+      "quality": "Continuation of the s049 montage after a face cut-in; same ground and tile size, so the montage resumes as one scene.",
+      "exemplar": false
+    },
+    {
+      "id": "s108",
+      "t_in": 212.4,
+      "t_out": 217.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s109",
+      "t_in": 217.1,
+      "t_out": 225.133,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s109-a.jpg",
+        "stills/s109-b.jpg",
+        "stills/s109-c.jpg",
+        "stills/s109-d.jpg",
+        "stills/s109-e.jpg"
+      ],
+      "layout": {
+        "type_px": 20,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "a dark analytics side panel ('Thumbnail Changes' with three thumbnail variants, then 'Title Changes' with dated title rows) appears over the face edge and fills the frame",
+        "camera": "continuous vertical scroll/camera glide down the panel (\u22487 s) with brief readable stops on the thumbnail row and on the title list",
+        "word_rate_s": null,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#202020",
+        "#3070F0",
+        "#30C030"
+      ],
+      "marks": [],
+      "notes": "Spoken: they constantly change titles and thumbnails. A screen-recording-like A2 pass with no marks.",
+      "quality": "Real tool UI as a proof of iteration: the camera simply scrolls down the actual change log so the number of title and thumbnail swaps speaks for itself; no added text at all.",
+      "exemplar": false
+    },
+    {
+      "id": "s050",
+      "t_in": 225.133,
+      "t_out": 228.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s051",
+      "t_in": 228.8,
+      "t_out": 232.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s052",
+      "t_in": 232.0,
+      "t_out": 242.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s053",
+      "t_in": 242.533,
+      "t_out": 248.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s110",
+      "t_in": 248.8,
+      "t_out": 253.4,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Plain screenshot of Tymek's own '$1,000,000 Predictable Youtube Funnel' search-result row on white, no marks, scales in from and back to the face; too thin to count as a pattern.",
+      "quality": ""
+    },
+    {
+      "id": "s111",
+      "t_in": 253.4,
+      "t_out": 260.633,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s054",
+      "t_in": 260.633,
+      "t_out": 263.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s055",
+      "t_in": 263.833,
+      "t_out": 270.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s056",
+      "t_in": 270.833,
+      "t_out": 272.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s057",
+      "t_in": 272.967,
+      "t_out": 276.1,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "title",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s057-a.jpg",
+        "stills/s057-b.jpg",
+        "stills/s057-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut to a plain white\u2192light-grey vertical gradient; two centred lines of bold rounded sans in dark brown build word by word (each word grey \u2192 dark with a short blur\u2192sharp, \u22480.2 s apart); a peach marker block then wipes L\u2192R behind the emphasis words of line 2 (\u22480.35 s)",
+        "camera": "none (locked)",
+        "word_rate_s": 0.2,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#32180A",
+        "#F2C484"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "First of three checklist questions (s057, s059, s061) separated by short face cut-ins; identical layout each time.",
+      "quality": "Light-ground title done right: no glow, dark warm-brown text (not black) at \u2248 95 px cap height, two centred lines, and one soft peach marker that sits slightly below the x-height like a real highlighter stroke \u2014 it lands only after the line is complete. Same template every time, so the three checklist questions read as a set.",
+      "exemplar": true
+    },
+    {
+      "id": "s058",
+      "t_in": 276.1,
+      "t_out": 278.333,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s059",
+      "t_in": 278.333,
+      "t_out": 280.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "title",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s059-a.jpg",
+        "stills/s059-b.jpg",
+        "stills/s059-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut to a plain white\u2192light-grey vertical gradient; two centred lines of bold rounded sans in dark brown build word by word (each word grey \u2192 dark with a short blur\u2192sharp, \u22480.2 s apart); a peach marker block then wipes L\u2192R behind the emphasis words of line 2 (\u22480.35 s)",
+        "camera": "none (locked)",
+        "word_rate_s": 0.2,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#32180A",
+        "#F2C484"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Checklist question 2.",
+      "quality": "Light-ground title done right: no glow, dark warm-brown text (not black) at \u2248 95 px cap height, two centred lines, and one soft peach marker that sits slightly below the x-height like a real highlighter stroke \u2014 it lands only after the line is complete. Same template every time, so the three checklist questions read as a set.",
+      "exemplar": false
+    },
+    {
+      "id": "s060",
+      "t_in": 280.5,
+      "t_out": 282.267,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s061",
+      "t_in": 282.267,
+      "t_out": 285.833,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "title",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s061-a.jpg",
+        "stills/s061-b.jpg",
+        "stills/s061-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut to a plain white\u2192light-grey vertical gradient; two centred lines of bold rounded sans in dark brown build word by word (each word grey \u2192 dark with a short blur\u2192sharp, \u22480.2 s apart); a peach marker block then wipes L\u2192R behind the emphasis words of line 2 (\u22480.35 s)",
+        "camera": "none (locked)",
+        "word_rate_s": 0.2,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#32180A",
+        "#F2C484"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Checklist question 3.",
+      "quality": "Light-ground title done right: no glow, dark warm-brown text (not black) at \u2248 95 px cap height, two centred lines, and one soft peach marker that sits slightly below the x-height like a real highlighter stroke \u2014 it lands only after the line is complete. Same template every time, so the three checklist questions read as a set.",
+      "exemplar": false
+    },
+    {
+      "id": "s062",
+      "t_in": 285.833,
+      "t_out": 296.633,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s063",
+      "t_in": 296.633,
+      "t_out": 302.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s064",
+      "t_in": 302.9,
+      "t_out": 307.333,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s064-a.jpg",
+        "stills/s064-b.jpg",
+        "stills/s064-c.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "opens on s018's end state; the SECRET #1 tab rises out of the page and grows into a tall red-bordered card ('\"Wow Not How\" Framework' with a small light-blue line chart)",
+        "camera": "camera pushes up and left onto the new card (\u22481.2 s, ease.camera) so the card reads \u2248 25 % W; tabs #2/#3 slide to the right edge",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F06464",
+        "#D860E8",
+        "#5070D0",
+        "#98D4E4"
+      ],
+      "marks": [],
+      "notes": "Chapter 1: 'Wow Not How' framework.",
+      "quality": "Chapter visit with continuity: the canvas is exactly where the intro left it, the tab becomes the card (same red, same label) and the camera travels to it \u2014 the viewer sees progress through the system, not a new title card.",
+      "exemplar": false
+    },
+    {
+      "id": "s065",
+      "t_in": 307.333,
+      "t_out": 310.467,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s066",
+      "t_in": 310.467,
+      "t_out": 323.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s066-a.jpg",
+        "stills/s066-b.jpg",
+        "stills/s066-c.jpg",
+        "stills/s066-d.jpg",
+        "stills/s066-e.jpg",
+        "stills/s066-f.jpg",
+        "stills/s066-g.jpg"
+      ],
+      "layout": {
+        "type_px": 42,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "'This is a big mistake that crushes your sales. Never teach people\u2026 a lightbulb moment or a breakthrough\u2026 to provide value'.",
+      "quality": "Standard A4 beat on the light ground: card \u2248 72 % W, soft grey vignette, italic caption phrase by phrase beneath with grey\u2192black word build.",
+      "exemplar": false
+    },
+    {
+      "id": "s067",
+      "t_in": 323.3,
+      "t_out": 326.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s068",
+      "t_in": 326.4,
+      "t_out": 336.6,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s068-a.jpg",
+        "stills/s068-b.jpg",
+        "stills/s068-c.jpg",
+        "stills/s068-d.jpg",
+        "stills/s068-e.jpg",
+        "stills/s068-f.jpg"
+      ],
+      "layout": {
+        "type_px": 42,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "'If for example your solution is a car\u2026 a basic driving lesson\u2026 but don't give them the car itself'.",
+      "quality": "Standard A4 beat; the caption is the only moving element, so the speaker's gestures read clearly.",
+      "exemplar": false
+    },
+    {
+      "id": "s069",
+      "t_in": 336.6,
+      "t_out": 345.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s070",
+      "t_in": 345.967,
+      "t_out": 355.133,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s070-a.jpg",
+        "stills/s070-b.jpg",
+        "stills/s070-c.jpg",
+        "stills/s070-d.jpg",
+        "stills/s070-e.jpg"
+      ],
+      "layout": {
+        "type_px": 42,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded clip card already in place on the white\u2192light-grey gradient ground (or via a warm flash on s004/s012); caption builds beneath, word by word light grey \u2192 near-black with blur\u2192sharp",
+        "camera": "none, or a slow push-in (\u2248 2 %/s) on long holds",
+        "word_rate_s": 0.2,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#F0F0F0",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "'This is completely ethical, by the way, because it's impossible to give people everything they need in just one video'.",
+      "quality": "Standard A4 beat; same card and caption system as s066/s068.",
+      "exemplar": false
+    },
+    {
+      "id": "s071",
+      "t_in": 355.133,
+      "t_out": 370.2,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s112",
+      "t_in": 370.2,
+      "t_out": 375.233,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s112-a.jpg",
+        "stills/s112-b.jpg",
+        "stills/s112-c.jpg",
+        "stills/s112-d.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "opens on visit 1's end state (card #1 standing); the SECRET #2 tab rises and grows into a magenta card ('Product Quality Over Marketing Complexity', pale megaphone icon) beside card #1",
+        "camera": "short camera leg right (\u22480.8 s) to frame both cards; locked hold",
+        "word_rate_s": null,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#F06464",
+        "#D860E8",
+        "#5070D0"
+      ],
+      "marks": [],
+      "notes": "Chapter 2. Merged the 0.6 s head that the detector put in s071 (cut moved to 370.2).",
+      "quality": "Each chapter adds one card to a growing row: card #1 stays standing, #2 rises next to it in its own colour with a soft pale icon, #3 waits as a tab \u2014 the roadmap shows both progress and what is left. Cards are light with a coloured border and header tab, so they read on the light ground without shadows.",
+      "exemplar": true
+    },
+    {
+      "id": "s073",
+      "t_in": 375.233,
+      "t_out": 377.033,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s074",
+      "t_in": 377.033,
+      "t_out": 385.6,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: interview footage of Tymek on a couch with italic captions",
+      "quality": ""
+    },
+    {
+      "id": "s075",
+      "t_in": 385.6,
+      "t_out": 386.367,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Light-leak flash transition.",
+      "quality": ""
+    },
+    {
+      "id": "s076",
+      "t_in": 386.367,
+      "t_out": 398.2,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s077",
+      "t_in": 398.2,
+      "t_out": 407.633,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: podcast two-shot with captions",
+      "quality": ""
+    },
+    {
+      "id": "s078",
+      "t_in": 407.633,
+      "t_out": 413.2,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: interview close-up with captions",
+      "quality": ""
+    },
+    {
+      "id": "s079",
+      "t_in": 413.2,
+      "t_out": 413.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Light-leak flash transition.",
+      "quality": ""
+    },
+    {
+      "id": "s080",
+      "t_in": 413.5,
+      "t_out": 413.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s081",
+      "t_in": 413.967,
+      "t_out": 422.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s082",
+      "t_in": 422.533,
+      "t_out": 426.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s082-a.jpg",
+        "stills/s082-b.jpg",
+        "stills/s082-c.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "opens with cards #1 and #2 standing; the SECRET #3 tab rises into a blue card ('You Can't Skip The Learning Phase', pale gear icon)",
+        "camera": "camera travels right (\u22481.2 s, ease.camera) so card #1 leaves frame and #2/#3 are centred; hold",
+        "word_rate_s": null,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#D860E8",
+        "#5070D0",
+        "#F06464"
+      ],
+      "marks": [],
+      "notes": "Chapter 3.",
+      "quality": "Third visit completes the row; the camera keeps moving right along the same canvas, so the sequence of three visits reads as one continuous pan through the system.",
+      "exemplar": false
+    },
+    {
+      "id": "s083",
+      "t_in": 426.0,
+      "t_out": 426.667,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: podcast two-shot",
+      "quality": ""
+    },
+    {
+      "id": "s084",
+      "t_in": 426.667,
+      "t_out": 430.667,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s084-a.jpg",
+        "stills/s084-b.jpg",
+        "stills/s084-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "whip-in with motion blur onto a real YouTube Studio analytics overview ('Your channel got 6,030,292 views in the last 365 days')",
+        "camera": "push-in to \u2248 250 % onto the headline and metric cards (\u22480.8 s, ease.camera); the Subscribers metric rolls +40K \u2192 +110K while the camera settles",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#406090",
+        "#30A040",
+        "#202020"
+      ],
+      "marks": [],
+      "notes": "Spoken (over b-roll captions): '40,000 subs to like 110,000 subs in like 2\u20133 months'. The italic caption under the UI belongs to the b-roll, not the graphic.",
+      "quality": "A real analytics screen pushed in until the subscriber card is a headline; the number rolls on the actual UI as the camera settles, and nothing is added except the speaker's own caption under it.",
+      "exemplar": false
+    },
+    {
+      "id": "s085",
+      "t_in": 430.667,
+      "t_out": 437.133,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: interview with captions",
+      "quality": ""
+    },
+    {
+      "id": "s086",
+      "t_in": 437.133,
+      "t_out": 439.8,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: his old dark channel grid with captions",
+      "quality": ""
+    },
+    {
+      "id": "s087",
+      "t_in": 439.8,
+      "t_out": 442.633,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: old dark-studio video with captions",
+      "quality": ""
+    },
+    {
+      "id": "s088",
+      "t_in": 442.633,
+      "t_out": 442.933,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Light-leak flash transition.",
+      "quality": ""
+    },
+    {
+      "id": "s089",
+      "t_in": 442.933,
+      "t_out": 443.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s090",
+      "t_in": 443.4,
+      "t_out": 454.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s091",
+      "t_in": 454.4,
+      "t_out": 456.433,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: old video with flying dollar bills",
+      "quality": ""
+    },
+    {
+      "id": "s092",
+      "t_in": 456.433,
+      "t_out": 463.5,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: interview with captions",
+      "quality": ""
+    },
+    {
+      "id": "s093",
+      "t_in": 463.5,
+      "t_out": 474.467,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s094",
+      "t_in": 474.467,
+      "t_out": 478.233,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: podcast two-shot with captions",
+      "quality": ""
+    },
+    {
+      "id": "s095",
+      "t_in": 478.233,
+      "t_out": 492.3,
+      "status": "reviewed",
+      "kind": "other",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "b-roll: interview with captions",
+      "quality": ""
+    },
+    {
+      "id": "s096",
+      "t_in": 492.3,
+      "t_out": 492.6,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Light-leak flash transition.",
+      "quality": ""
+    },
+    {
+      "id": "s097",
+      "t_in": 492.6,
+      "t_out": 492.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s098",
+      "t_in": 492.967,
+      "t_out": 508.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s098-a.jpg",
+        "stills/s098-b.jpg",
+        "stills/s098-c.jpg",
+        "stills/s098-d.jpg",
+        "stills/s098-e.jpg",
+        "stills/s098-f.jpg",
+        "stills/s098-g.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "light grid canvas with a vignette; 'You Have Two Path Forward!' types on along a thin blue line; a red 'Path 1' pill and a blue 'Path 2' pill land at its ends; a synthetic cursor clicks Path 1",
+        "camera": "camera follows the click left (\u22481 s): a red curved arrow draws down to 'Take everything from this video & implement it yourself' (bold italic navy) with two small bullets; hold; whip back right past the hub (\u22481 s, motion blur) to Path 2, cursor clicks, blue arrow to 'If you want help building a YouTube strategy specifically designed to attract clients for your business'; leads into the CTA dive (s113)",
+        "word_rate_s": 0.2,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#C03838",
+        "#2F6FD6",
+        "#205080"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "Closing two-paths CTA set-up (DIY vs work with me). Same grammar as the pilot's new:comparison-split, here as a neutral choice rather than wrong vs right.",
+      "quality": "A choice laid out as a horizontal canvas: one hub line, two coloured pill buttons, a synthetic cursor that clicks each one and the camera that follows the click \u2014 the viewer is walked down each path in turn. Coloured hand-drawn arrows match their pills; text is navy bold italic on a faint grid, never more than two lines per branch.",
+      "exemplar": true
+    },
+    {
+      "id": "s113",
+      "t_in": 508.2,
+      "t_out": 510.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s113-a.jpg",
+        "stills/s113-b.jpg",
+        "stills/s113-c.jpg"
+      ],
+      "layout": {
+        "type_px": 25,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "continuing from s098's Path 2, the camera tilts and dives down past the canvas edge into a dark YouTube pinned comment ('If you want to work with me, book some time below: https://contentporary.io/booking\u2026')",
+        "camera": "dive \u22480.6 s with 3D tilt and motion blur \u2192 hold on the comment \u22481.2 s \u2192 the face footage slides down from the top over the page and the camera rises back to the face (\u22480.5 s)",
+        "word_rate_s": null,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#202020",
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Pinned-comment variant of the CTA dive (no watch-page player scale). Only CTA in the video.",
+      "quality": "The CTA lands on the real place the viewer will click: the pinned comment with the booking link, at large scale in dark YouTube UI, reached by one continuous dive from the path canvas and left by sliding back into the face.",
+      "exemplar": true
+    },
+    {
+      "id": "s099",
+      "t_in": 510.3,
+      "t_out": 519.2,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s100",
+      "t_in": 519.2,
+      "t_out": 522.733,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s101",
+      "t_in": 522.733,
+      "t_out": 525.367,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s101-a.jpg",
+        "stills/s101-b.jpg",
+        "stills/s101-c.jpg",
+        "stills/s101-d.jpg",
+        "stills/s101-e.jpg",
+        "stills/s101-f.jpg"
+      ],
+      "layout": {
+        "type_px": 30,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut onto the dark Contentporary website hero ('I help business owners on YouTube generate 10-30 qualified calls/month through the Priming Prediction System') at \u2248 150 %",
+        "camera": "camera scrolls down the page in two legs (hero \u2192 client results 'Funnel 30 calls/m' \u2192 '200+ long-form videos' grid) joined by a fast whip with heavy directional motion blur; brief stops on each section",
+        "word_rate_s": null,
+        "hold_s": 0.3
+      },
+      "colours": [
+        "#101010",
+        "#E03030",
+        "#F0F0F0"
+      ],
+      "marks": [],
+      "notes": "Merged s101+s102 (detector split on the whip). End-of-video plug for the website.",
+      "quality": "A website tour in 2.6 s: two readable stops on real sections joined by a motion-blurred whip, dark page on a dark ground so it reads as one surface.",
+      "exemplar": false
+    },
+    {
+      "id": "s103",
+      "t_in": 525.367,
+      "t_out": 533.153,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}

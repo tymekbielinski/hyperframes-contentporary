@@ -97,7 +97,7 @@ def build(brand, videos_dir=None, slug=None, font=None, root=ROOT) -> Path:
         (project / "compositions" / f"{sid}.html").write_text(scene)
         slots.append(f'<div id="s-{sid}" data-composition-id="{sid}" data-composition-src="compositions/{sid}.html" '
                      f'data-start="{t:g}" data-duration="{SCENE_DUR:g}" data-track-index="1" data-width="1920" data-height="1080"></div>')
-        rows.append(f'| {t:g} | {t + SCENE_DUR:g} | "{name} palette" | full-frame | proof-sheet | '
+        rows.append(f'| {t:g} | {t + SCENE_DUR:g} | "{name} palette" | full-frame | title · subtitle · lower-third · side-text (proof-sheet) | '
                     f'title · subtitle · lower-third · side-text | ease.glow / ease.card / ease.enter / ease.sweep | — |')
         t += SCENE_DUR
     index = project / "index.html"

@@ -41,6 +41,9 @@ This repo is shared by the Contentporary team on GitHub
 8. New client → `brands/_template/README.md`. Validate any brand with
    `python3 tools/brandcheck.py brands/<name>`.
 9. `videos/*` made before 2026-10-03 are frozen references; don't migrate or restyle them.
+10. **Look before building.** Every long-form storyboard row cites a pattern ID (QA check 11); open its card in
+    `references/patterns/` and study the stills first, and run `tools/ref_board.py` in the critique loop.
+    New reference videos are added with `tools/ref_ingest.py` (`references/README.md`).
 
 ## Shared library — `lib/`
 
@@ -58,8 +61,10 @@ modules listed in `lib/manifest.json` and writes `lib.lock`; `--check` fails on 
 cuts) · `qa.py` (the automated gate) · `preview_pack.py` (sign-off pack; shows NOT RUN / UNKNOWN when
 the gate has not run) · `slice.py` (long-form delivery) · `scan_flicker.py` · `brandcheck.py` ·
 `proof_sheet.py` (brand proof sheet: the kit in every palette, for onboarding approval) ·
-`kit_preview.py` (preview project with each kit component in a palette, for stills). Each
-prints its usage with no arguments; the commands in context are in `standards/core/pipeline.md`.
+`kit_preview.py` (preview project with each kit component in a palette, for stills) ·
+`ref_ingest.py` / `ref_index.py` / `ref_board.py` / `ref_shots.py` (animation reference library —
+`references/README.md`; `ref_shots.py` splits, merges or re-stills a reference shot log). Each
+prints its usage with no arguments, except `ref_index.py`, which regenerates with no arguments (`--help` prints usage); the commands in context are in `standards/core/pipeline.md`.
 `qa.py` probes through `npx hyperframes preview`, which stamps inert `data-hf-id` attributes into
 `index.html` and the composition files (and writes `.hyperframes/`): commit the stamps or discard them, never
 commit `.hyperframes/` (`standards/core/qa.md`). A preview pack whose project changed after the last qa run

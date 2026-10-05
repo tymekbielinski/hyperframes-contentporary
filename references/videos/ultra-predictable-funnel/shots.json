@@ -1,0 +1,1924 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 1.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s002",
+      "t_in": 1.1,
+      "t_out": 13.233,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s002-a.jpg",
+        "stills/s002-b.jpg",
+        "stills/s002-c.jpg",
+        "stills/s002-d.jpg",
+        "stills/s002-e.jpg",
+        "stills/s002-f.jpg"
+      ],
+      "layout": {
+        "type_px": 70,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut in on a sharp light Calendly card (fully booked, blue dates) already sitting over a dimmed, blurred YouTube channel page; card later flies toward camera and out, a second card (sparse red dates) slides in from the right",
+        "camera": "chain of 5 beats on one canvas: hold on card 1 \u2192 fly-through to the sharp channel page (\u22480.6 s) \u2192 channel swap \u2192 card 2 enters \u2192 pull back to a two-calendar split on a red vertical divider (\u22480.5 s) \u2192 tilt down along the red line (\u22480.6 s, ease.camera) onto a video card",
+        "word_rate_s": 0.25,
+        "hold_s": 0.7
+      },
+      "colours": [
+        "#D95653",
+        "#D8585B",
+        "#5B8DEF"
+      ],
+      "marks": [
+        "highlight-block",
+        "underline",
+        "arrow"
+      ],
+      "notes": "Hook opener: 'their calendar is full, yours is empty'. Mid-shot (8.2\u20139.4 s) the second calendar dims + blurs under a word-by-word 'Low Quality Leads Per Month' with a red underline (a B1 beat inside the A1 chain). Ends on '1.2M views' red block + 'Nothing to Do About Going Viral' with 'Viral' in red, curved red hand-drawn arrow from the views chip to the headline.",
+      "quality": "Proof is real UI stacked in depth: a crisp light booking card floats over a blurred, dimmed copy of the channel it belongs to, so the eye lands on the card and the context is still readable. Five beats in 12 s never feel busy because each beat is one camera leg with a readable stop, and the red divider line literally becomes the path the camera travels down to the punchline.",
+      "exemplar": true
+    },
+    {
+      "id": "s003",
+      "t_in": 13.233,
+      "t_out": 18.167,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s004",
+      "t_in": 18.167,
+      "t_out": 23.967,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s004-a.jpg",
+        "stills/s004-b.jpg",
+        "stills/s004-c.jpg"
+      ],
+      "layout": {
+        "type_px": 220,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut onto a huge grey-white counter ($98,263) with photoreal 3D dollar bills tumbling past camera in front of and behind the number",
+        "camera": "slow push; from \u22482 s YouTube channel pages rise from the bottom as framed cards in front of the number, swapping every \u22480.9\u20131.1 s",
+        "word_rate_s": null,
+        "hold_s": 0.3
+      },
+      "colours": [
+        "#E5E5E5",
+        "#D8585B",
+        "#4F7F4F"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "Merged s004\u2013s006 (the detector cut on the channel-card swaps). Says roughly 'channels that made $100k+\u2026' while the counter runs. Counter settles around $107,0xx and jitters a few dollars on the hold.",
+      "quality": "The number is set enormous (\u224820 % of frame height) and treated as a backdrop object, so the channel screenshots can slide in front of it and inherit its authority \u2014 two depth planes plus bills flying through both. The count decelerates continuously across 5 s (98k \u2192 107k) so it is still moving while each proof card lands, and every card is tied back to the number by a hand-drawn red curved arrow.",
+      "exemplar": true
+    },
+    {
+      "id": "s007",
+      "t_in": 23.967,
+      "t_out": 29.633,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s008",
+      "t_in": 29.633,
+      "t_out": 39.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s008-a.jpg",
+        "stills/s008-b.jpg",
+        "stills/s008-c.jpg",
+        "stills/s008-d.jpg",
+        "stills/s008-e.jpg",
+        "stills/s008-f.jpg"
+      ],
+      "layout": {
+        "type_px": 52,
+        "fill": "sparse",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "YouTube logo on the grid ground; the letters B-2-B type in over the play icon (\u22480.3 s per glyph) inside a thin circular ring",
+        "camera": "two horizontal pans from the hub: left to the \u2715 branch (\u22480.8 s), hold, then right past the hub to the \u2713 branch (\u22480.9 s), ease.camera, readable stops",
+        "word_rate_s": 0.3,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#D95653",
+        "#BACE7A",
+        "#588D5F",
+        "#FF0000"
+      ],
+      "marks": [
+        "cross",
+        "check",
+        "highlight-block",
+        "script-word",
+        "arrow"
+      ],
+      "notes": "B2B hub with two branches \u2014 wrong (viral 1.2M-view video) vs right (419-view video collecting $16,000). Not a C1 strip (no A\u2192B flow) and not C8 (no dimmed siblings); candidate pattern shared with the Raw vs Retention split (s041/s043).",
+      "quality": "A verdict told with camera direction: the wrong path lives left of the B2B hub (\u2715 badge, red script 'Viral'), the right path right of it (\u2713 badge, lime script 'Cash'), so the move itself is the argument. Each side is a real YouTube video card with a red highlight block on the view count and a short hand-drawn bracket linking the count to the line below."
+    },
+    {
+      "id": "s009",
+      "t_in": 39.4,
+      "t_out": 47.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s009-a.jpg",
+        "stills/s009-b.jpg",
+        "stills/s009-c.jpg",
+        "stills/s009-d.jpg",
+        "stills/s009-e.jpg"
+      ],
+      "layout": {
+        "type_px": 280,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "rounded proof card (thin light border, \u224830 px radius) rises from below over the previous canvas (\u22480.6 s, power3.out) and pushes from \u224860 % to \u224883 % W",
+        "camera": "card push-in; a warm flash transition (\u22480.2 s) switches the card from the client clip to a split-screen call recording",
+        "word_rate_s": 0.3,
+        "hold_s": 0.9
+      },
+      "colours": [
+        "#90D752",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Merged s009+s010 and the last 0.2 s of s008 (the card rises over the B2B canvas at 39.4 s). Script accent on 'the last' in the first caption. The warm orange/white flash at \u224841.5 s is a light-leak-style transition \u2014 long-form now forbids light leaks, so do not copy that beat.",
+      "quality": "The client's own words build word by word inside the card, with only the result words ('calls', 'signing') in green, so the testimony reads like proof rather than captions. The card keeps a soft border and glass edge over the dark grid, and the payoff '$16k' lands huge (\u224826 % H) across the clip with a blur\u2192sharp settle and a held beat before the cut.",
+      "exemplar": true
+    },
+    {
+      "id": "s011",
+      "t_in": 47.9,
+      "t_out": 49.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s012",
+      "t_in": 49.067,
+      "t_out": 52.5,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A4",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s012-a.jpg",
+        "stills/s012-b.jpg",
+        "stills/s012-c.jpg"
+      ],
+      "layout": {
+        "type_px": 240,
+        "fill": "dense",
+        "layers": 5
+      },
+      "motion": {
+        "entrance": "proof card (\u224857 % W) over a dimmed backdrop of other result cards ($500k, +$100M clay) and ghosted giant green numbers; bills drift through the frame",
+        "camera": "slow push; the card ends by flashing to white as the next beat starts",
+        "word_rate_s": 0.25,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#90D752",
+        "#E2A93B",
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Second client ('I probably generated anywhere from\u2026 $80,000'). Same A4 grammar as s009 with a denser backdrop. The white flash-out is the same light-leak transition noted in s009.",
+      "quality": "The big figure ('$80,000', \u224822 % H) is a glowing lime number laid across the client's face card, with ghosted copies of other giant figures and other client proof cards blurred in the backdrop, so one result sits inside a wall of results. Five depth layers: grid, dimmed result cards, ghost numbers, the sharp card, flying bills.",
+      "exemplar": true
+    },
+    {
+      "id": "s013",
+      "t_in": 52.5,
+      "t_out": 55.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s014",
+      "t_in": 55.3,
+      "t_out": 57.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s014-a.jpg",
+        "stills/s014-b.jpg",
+        "stills/s014-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "previous proof canvas is already dimmed to \u224815 % and blurred; 'Repetitive' (red, glow) lands 0.2 s after the cut, 'System!' (white, glow) +0.3 s",
+        "camera": "none \u2014 locked, slight creep",
+        "word_rate_s": 0.3,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#D8585B",
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Spoken: 'a repetitive system'. Short (1.7 s) \u2014 the backdrop dim happened off-screen, so it reads as a glow-title over a defocused canvas.",
+      "quality": "Two words, \u224895 px caps, each with a soft glow halo over a backdrop that is still recognisably the proof just shown \u2014 the claim visibly sits on top of its evidence. Red on the problem-coded word, white on the rest, nothing else in frame."
+    },
+    {
+      "id": "s015",
+      "t_in": 57.0,
+      "t_out": 59.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s016",
+      "t_in": 59.533,
+      "t_out": 66.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s016-a.jpg",
+        "stills/s016-b.jpg",
+        "stills/s016-c.jpg",
+        "stills/s016-d.jpg",
+        "stills/s016-e.jpg"
+      ],
+      "layout": {
+        "type_px": 110,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "system name 'PRINTING PREDICTION SYSTEM' (grey caps, 2 lines) builds word by word while the glowing pink path draws left \u2192 right and nodes 1-2-3 pop as the line reaches them",
+        "camera": "camera travels right along the path past node 3 (\u22481.6 s, ease.camera) to a Calendly booking card sitting at the path's end",
+        "word_rate_s": 0.4,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#EA9EA4",
+        "#B3B3B3",
+        "#5B8DEF"
+      ],
+      "marks": [],
+      "notes": "Roadmap intro (visit 0). The calendar at the end of the path is the 'goal' card; the headline over it is split off as s079.",
+      "quality": "The roadmap is an object in space, not a slide: the title is set as defocused metallic caps behind the path, the path has a soft bloom and runs off both frame edges, and 3D dollar bills fall through the shot. The camera then travels along the path to its destination (a real booking calendar), so the system visibly leads to the result.",
+      "exemplar": true
+    },
+    {
+      "id": "s079",
+      "t_in": 66.0,
+      "t_out": 68.033,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s079-a.jpg",
+        "stills/s079-b.jpg",
+        "stills/s079-c.jpg"
+      ],
+      "layout": {
+        "type_px": 75,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "the booking card is held sharp \u22482 s (end of s016), then dims to \u224815 % and blurs over \u22480.3 s while the headline builds",
+        "camera": "none \u2014 locked",
+        "word_rate_s": 0.11,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#D8585B",
+        "#F2F2F2"
+      ],
+      "marks": [],
+      "notes": "Split from s016 at 66.0 s (same canvas, a new beat). 'Without wasting time on videos that will flop'.",
+      "quality": "Textbook backdrop headline: the real calendar stays recognisable as a dim, defocused rectangle behind two lines of \u224875 px white type with a glow halo; only the pain words ('Wasting Time', 'Flop') are red. Words rise and sharpen fast (\u22480.11 s apart, spoken quickly) then the frame holds a clean full second.",
+      "exemplar": true
+    },
+    {
+      "id": "s017",
+      "t_in": 68.033,
+      "t_out": 72.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s018",
+      "t_in": 72.533,
+      "t_out": 79.4,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s018-a.jpg",
+        "stills/s018-b.jpg",
+        "stills/s018-c.jpg",
+        "stills/s018-d.jpg",
+        "stills/s018-e.jpg"
+      ],
+      "layout": {
+        "type_px": 55,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut onto a wall of real YouTube thumbnails, sharp then racking out of focus as the camera pushes toward one centre thumbnail",
+        "camera": "push-in \u22481.5 s (ease.camera) from the thumbnail wall to the centre card, then a slow creep for the rest",
+        "word_rate_s": 0.2,
+        "hold_s": 1.6
+      },
+      "colours": [
+        "#973333",
+        "#EC5154",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Callouts here are status chips (red-tinted glass, clock icon), not curved arrows + script labels as in the catalogue row \u2014 a B2 variant. Spoken: overthinking ideas, scripting, editing, perfecting aimlessly \u2192 the video is no longer relevant.",
+      "quality": "Depth by focus: the thumbnail wall becomes a blurred, dimmed field and one card stays sharp; four glass chips with red tint and a clock icon pop around it nearly together, then the headline builds under the card and a red underline sweeps only 'No Longer Relevant!'. The chips overlap the card edge, which sells the layering.",
+      "exemplar": true
+    },
+    {
+      "id": "s019",
+      "t_in": 79.4,
+      "t_out": 93.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Body starts; a long face stretch carried by punch-ins (cuts at 93.2, 97.1, 103.7 s).",
+      "quality": ""
+    },
+    {
+      "id": "s020",
+      "t_in": 93.233,
+      "t_out": 97.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s021",
+      "t_in": 97.1,
+      "t_out": 103.733,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s022",
+      "t_in": 103.733,
+      "t_out": 113.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s023",
+      "t_in": 113.967,
+      "t_out": 116.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "Split from the original s023 at the CTA start.",
+      "quality": ""
+    },
+    {
+      "id": "s080",
+      "t_in": 116.3,
+      "t_out": 121.8,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s080-a.jpg",
+        "stills/s080-b.jpg",
+        "stills/s080-c.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "the face footage scales down into the player of a real YouTube watch page (\u22480.4 s)",
+        "camera": "scale to \u22480.80 \u2192 dive \u22482\u00d7 down to the description link (\u22480.6 s) \u2192 hold \u22481.7 s \u2192 reverse to the player \u2192 face; all ease.camera, background blur on the dive",
+        "word_rate_s": null,
+        "hold_s": 1.7
+      },
+      "colours": [
+        "#3EA6FF",
+        "#FF0000"
+      ],
+      "marks": [],
+      "notes": "CTA 1 (end of the hook section). Split from s023.",
+      "quality": "The CTA never leaves the speaker: his own talking footage keeps playing inside the real watch-page player, and the camera dives straight onto the actual description link, which is legible at full size. Same move every time, so viewers learn it."
+    },
+    {
+      "id": "s081",
+      "t_in": 121.8,
+      "t_out": 126.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "After CTA 1.",
+      "quality": ""
+    },
+    {
+      "id": "s024",
+      "t_in": 126.833,
+      "t_out": 131.833,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s024-a.jpg",
+        "stills/s024-b.jpg",
+        "stills/s024-c.jpg"
+      ],
+      "layout": {
+        "type_px": 130,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "opens on the intro's end state; card 1 (maroon glass, lightbulb icon, 'Predictive Idea Selection') rises from below-left and docks on node 1 (\u22480.8 s)",
+        "camera": "travel right + push to frame the card (\u22481.8 s, ease.camera), then creep",
+        "word_rate_s": null,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#381010",
+        "#EA9EA4",
+        "#B3B3B3"
+      ],
+      "marks": [],
+      "notes": "Roadmap visit 1.",
+      "quality": "Return visit feels continuous: same path, same defocused caps title, the camera simply resumes and the new card docks exactly on its node. The card is a dark maroon glass tile with a 1\u20132 px light border, a big white line icon and two-line label, read at \u224825 % W after the push.",
+      "exemplar": true
+    },
+    {
+      "id": "s025",
+      "t_in": 131.833,
+      "t_out": 141.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s026",
+      "t_in": 141.233,
+      "t_out": 144.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s026-a.jpg",
+        "stills/s026-b.jpg",
+        "stills/s026-c.jpg"
+      ],
+      "layout": {
+        "type_px": 90,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut onto a wall of real YouTube thumbnails already dimmed and blurred; the question builds word by word",
+        "camera": "slow drift up/push (\u22483 %/s) for the whole shot",
+        "word_rate_s": 0.25,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#EC5154",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'What should I make the next video about?' Split from s082 at 144.0 s.",
+      "quality": "The backdrop is the real problem (an endless wall of other creators' thumbnails) blurred to texture, and the question sits on it in two centred lines with a red underline sweeping under 'Next Video' only. Type \u224890 px with glow; the drift keeps a 2.8 s shot alive.",
+      "exemplar": true
+    },
+    {
+      "id": "s082",
+      "t_in": 144.0,
+      "t_out": 152.233,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s082-a.jpg",
+        "stills/s082-b.jpg",
+        "stills/s082-c.jpg",
+        "stills/s082-d.jpg",
+        "stills/s082-e.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "sparse",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "nodes arrive one per phrase: 'You Pick a Topic' card, then 'Create', then 'Publish' (dark glass tiles with thin red borders), connectors drawing between them, over a giant dim YouTube logo",
+        "camera": "slight pan as nodes arrive, then a \u22481 s pan down/right to the result: a real video card with 'No views' in a red block",
+        "word_rate_s": 0.3,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#D95653",
+        "#D8585B",
+        "#FF0000"
+      ],
+      "marks": [
+        "highlight-block",
+        "script-word",
+        "arrow"
+      ],
+      "notes": "Topic \u2192 create \u2192 publish \u2192 no views.",
+      "quality": "Three small UI-like nodes (styled like YouTube Studio fields and buttons) read as the real workflow; the giant blurred YouTube play logo behind gives the canvas depth without competing. The payoff lands on a real video card: red highlight block on 'No views', a hand-drawn bracket, 'It does not work' and a red signature-script 'it flops!'.",
+      "exemplar": true
+    },
+    {
+      "id": "s027",
+      "t_in": 152.233,
+      "t_out": 166.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s028",
+      "t_in": 166.0,
+      "t_out": 169.867,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s029",
+      "t_in": 169.867,
+      "t_out": 176.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s030",
+      "t_in": 176.5,
+      "t_out": 189.933,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s031",
+      "t_in": 189.933,
+      "t_out": 193.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s032",
+      "t_in": 193.4,
+      "t_out": 200.033,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s033",
+      "t_in": 200.033,
+      "t_out": 216.167,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s034",
+      "t_in": 216.167,
+      "t_out": 226.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s035",
+      "t_in": 226.4,
+      "t_out": 231.767,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s036",
+      "t_in": 231.767,
+      "t_out": 234.233,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s037",
+      "t_in": 234.233,
+      "t_out": 237.867,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s037-a.jpg",
+        "stills/s037-b.jpg",
+        "stills/s037-c.jpg"
+      ],
+      "layout": {
+        "type_px": 120,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "opens on visit 1's end state; card 2 (equaliser/edit icon, 'Retention Based Editing') docks on node 2",
+        "camera": "travel right \u22481.6 s (ease.camera) to card 2, settle",
+        "word_rate_s": null,
+        "hold_s": 1.0
+      },
+      "colours": [
+        "#381010",
+        "#EA9EA4"
+      ],
+      "marks": [],
+      "notes": "Roadmap visit 2 (3.6 s).",
+      "quality": "Continuity again carries it: card 1 stays docked as the camera leaves it, so the viewer sees progress along the path; the docking card brightens and sharpens as it lands."
+    },
+    {
+      "id": "s038",
+      "t_in": 237.867,
+      "t_out": 239.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s039",
+      "t_in": 239.0,
+      "t_out": 246.1,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s039-a.jpg",
+        "stills/s039-b.jpg",
+        "stills/s039-c.jpg",
+        "stills/s039-d.jpg",
+        "stills/s039-e.jpg"
+      ],
+      "layout": {
+        "type_px": 62,
+        "fill": "sparse",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "YouTube logo (3D-ish, glossy red) alone on the grid ground; 'Subscribers +724' chip appears top-left with a curved connector drawing to the logo, then a connector draws out to 'Watch time (hours) 4.2K'",
+        "camera": "small pans following each connector (\u22480.8 s legs), settling on the full diagram",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#FF0000",
+        "#D8585B",
+        "#588D5F"
+      ],
+      "marks": [
+        "cross",
+        "check"
+      ],
+      "notes": "Subscribers are not the metric \u2014 watch time is.",
+      "quality": "Real YouTube Studio metric chips (dark glass, the exact label text and up/down icons) wired to the logo with thin hand-drawn-looking connectors; a small red \u2715 sits on the subscriber link and a green \u2713 on the watch-time link, so a two-node diagram makes a verdict without a single word of headline.",
+      "exemplar": true
+    },
+    {
+      "id": "s040",
+      "t_in": 246.1,
+      "t_out": 250.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s041",
+      "t_in": 250.4,
+      "t_out": 254.767,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s041-a.jpg",
+        "stills/s041-b.jpg",
+        "stills/s041-c.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "'Raw' types in above a framed card of raw talking-head footage, then 'Video'; 'It Looks Boring' lands under it with a red underline",
+        "camera": "slight push",
+        "word_rate_s": 0.3,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#EC5154",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "First half of the Raw vs Retention canvas; the face cuts in (s042) and the canvas resumes as s043.",
+      "quality": "The raw footage is shown as an object \u2014 a rounded framed card on the grid with a heading above and a verdict below \u2014 which prepares the split that follows."
+    },
+    {
+      "id": "s042",
+      "t_in": 254.767,
+      "t_out": 258.433,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s043",
+      "t_in": 258.433,
+      "t_out": 269.233,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C9",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s043-a.jpg",
+        "stills/s043-b.jpg",
+        "stills/s043-c.jpg",
+        "stills/s043-d.jpg",
+        "stills/s043-e.jpg",
+        "stills/s043-f.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes on the 'Raw Video' card, camera pulls back and a second column slides in from the right behind a thin vertical divider: 'Retention' (red) / 'Based Editing' over a card playing edited footage",
+        "camera": "pull back to the two-column layout (\u22481 s), then hold; the right card cycles through edited-video moments and a retention chart",
+        "word_rate_s": 0.2,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#D8585B",
+        "#EC5154",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "underline",
+        "strike"
+      ],
+      "notes": "Raw video vs retention-based editing. Three-line subline under the right card builds word by word with its last line underlined.",
+      "quality": "Symmetric two-column comparison with matching card sizes (\u224842 % W each), matching headings and matching underlined verdicts, so the only thing that differs is the content \u2014 boring raw footage vs a living card. The right card ends on a light retention chart where the vanity labels ('Big Subscriber Base', 'Million Views', 'Fancy Editing') are struck through in red.",
+      "exemplar": true
+    },
+    {
+      "id": "s044",
+      "t_in": 269.233,
+      "t_out": 276.467,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s045",
+      "t_in": 276.467,
+      "t_out": 280.767,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s045-a.jpg",
+        "stills/s045-b.jpg",
+        "stills/s045-c.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto a wall of the creator's own video tiles (blurred, dimmed \u224835 %); one tile is sharp and enlarged, its thumbnail playing",
+        "camera": "slow push toward the sharp tile",
+        "word_rate_s": 0.3,
+        "hold_s": 0.6
+      },
+      "colours": [
+        "#D95653",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow"
+      ],
+      "notes": "First part of the '141 views = qualified buyers' canvas; the face cuts in and it resumes as s047.",
+      "quality": "Same A1 grammar as s047: a real video tile pulled forward out of its own grid; the red block wipes onto '141 views' as the first beat, then a hand-drawn bracket and 'Qualified' build below."
+    },
+    {
+      "id": "s046",
+      "t_in": 280.767,
+      "t_out": 286.467,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s047",
+      "t_in": 286.467,
+      "t_out": 298.867,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s047-a.jpg",
+        "stills/s047-b.jpg",
+        "stills/s047-c.jpg",
+        "stills/s047-d.jpg",
+        "stills/s047-e.jpg",
+        "stills/s047-f.jpg",
+        "stills/s047-g.jpg"
+      ],
+      "layout": {
+        "type_px": 75,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "resumes on the sharp video tile (\u224840 % W) over the blurred, dimmed grid of the channel's other videos; the tile's own video plays inside it",
+        "camera": "slow creep/push; the content inside the card changes (diagram \u2192 the creator talking \u2192 a whiteboard) while the card itself stays put",
+        "word_rate_s": 0.25,
+        "hold_s": 1.4
+      },
+      "colours": [
+        "#D95653",
+        "#D8585B",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "highlight-block",
+        "arrow",
+        "strike"
+      ],
+      "notes": "Merged s047+s048 (the detector cut when the tile switched to the creator's footage). Inside the tile a red highlight wipes behind 'For most people' and a red strike crosses 'Aspiring entrepreneurs' \u2014 marks inside the proof itself.",
+      "quality": "The sharpest example of screenshot focus: one real tile pulled forward, everything else in the same grid blurred to \u224835 %, a red block behind '141 views', a 75 px headline 'Qualified Buyers' tied to the count by a thin hand-drawn bracket, then an italic + bold two-line subline with one red word ('Confirming'). The tile keeps playing, so the proof is alive while the text lands.",
+      "exemplar": true
+    },
+    {
+      "id": "s049",
+      "t_in": 298.867,
+      "t_out": 302.467,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s050",
+      "t_in": 302.467,
+      "t_out": 316.967,
+      "status": "reviewed",
+      "kind": "section",
+      "pattern": "E1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s050-a.jpg",
+        "stills/s050-b.jpg",
+        "stills/s050-c.jpg",
+        "stills/s050-d.jpg",
+        "stills/s050-e.jpg",
+        "stills/s050-f.jpg",
+        "stills/s050-g.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "dense",
+        "layers": 1
+      },
+      "motion": {
+        "entrance": "hard cut to a screen recording of a Miro board (light ground) full of YouTube Studio retention screenshots",
+        "camera": "recorded pans and zooms across the board; a handwritten 'retention based editing' title is drawn; arrows on the board",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F5EDE6",
+        "#7B61FF"
+      ],
+      "marks": [
+        "arrow",
+        "script-word"
+      ],
+      "notes": "Merged s050\u2013s052. Section format without the face PiP (the catalogue E1 row has one) \u2014 tagged E1 as the nearest section ID. 14.5 s; the research table counted it as graphics, the library counts it as a section.",
+      "quality": "Raw recorded board, light ground: the retention graphs are the real Studio panels with the cursor scrubbing them, which is the proof. No designed graphics on top."
+    },
+    {
+      "id": "s053",
+      "t_in": 316.967,
+      "t_out": 328.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s054",
+      "t_in": 328.4,
+      "t_out": 340.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s055",
+      "t_in": 340.3,
+      "t_out": 345.3,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "roadmap",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s055-a.jpg",
+        "stills/s055-b.jpg",
+        "stills/s055-c.jpg"
+      ],
+      "layout": {
+        "type_px": 120,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "opens on visit 2's end state; card 3 ('$' icon, 'Treat Your Micro Channel as a Business') docks on node 3",
+        "camera": "travel right \u22481.6 s (ease.camera) leaving cards 1\u20132 behind, settle on cards 2\u20133",
+        "word_rate_s": null,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#381010",
+        "#EA9EA4"
+      ],
+      "marks": [],
+      "notes": "Roadmap visit 3.",
+      "quality": "Same continuity as the other visits; by the third visit the path carries two docked cards behind the camera, so progress is visible in one frame."
+    },
+    {
+      "id": "s056",
+      "t_in": 345.3,
+      "t_out": 347.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s057",
+      "t_in": 347.9,
+      "t_out": 358.1,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s057-a.jpg",
+        "stills/s057-b.jpg",
+        "stills/s057-c.jpg",
+        "stills/s057-d.jpg",
+        "stills/s057-e.jpg",
+        "stills/s057-f.jpg"
+      ],
+      "layout": {
+        "type_px": 87,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the description area of a real YouTube watch page (video bottom edge visible above), already zoomed \u22482.5\u00d7",
+        "camera": "continuous slow push (\u22484 %/s, sine) for 10 s, then a fast whip down at the end into s083",
+        "word_rate_s": 0.2,
+        "hold_s": 1.4
+      },
+      "colours": [
+        "#D8585B",
+        "#EC5154",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "strike"
+      ],
+      "notes": "Jonas case: 100k views. Split from s083 at 358.1 s (whip boundary).",
+      "quality": "Two real counters on real UI roll odometer-style in sequence \u2014 views 93,549 \u2192 100,000 (\u22482 s), then subscribers 65 \u2192 87,659 in red (\u22482 s) \u2014 while the camera creeps in. Then the twist: a red strike sweeps through '100,000 views' and 'You Don't Need To Go Viral' (\u224887 px, 'Don't Need' red) builds inside the description box, so the headline lives in the UI.",
+      "exemplar": true
+    },
+    {
+      "id": "s083",
+      "t_in": 358.1,
+      "t_out": 361.767,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s083-a.jpg",
+        "stills/s083-b.jpg",
+        "stills/s083-c.jpg"
+      ],
+      "layout": {
+        "type_px": 72,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "arrives on a directional whip (motion blur) from s057 onto a dark Cal.com booking page",
+        "camera": "whip in \u22480.4 s, then settle and creep",
+        "word_rate_s": null,
+        "hold_s": 2.0
+      },
+      "colours": [
+        "#D95653",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Payoff of the 'you don't need to go viral' argument.",
+      "quality": "A real dark booking page with several days filled, and the one line that matters ('10-30 Qualified Calls /month', \u224872 px) under it with a red block wiping left \u2192 right behind the key phrase \u2014 the block sweep is the beat, \u22480.5 s after the whip settles."
+    },
+    {
+      "id": "s058",
+      "t_in": 361.767,
+      "t_out": 385.667,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s059",
+      "t_in": 385.667,
+      "t_out": 403.7,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s059-a.jpg",
+        "stills/s059-b.jpg",
+        "stills/s059-c.jpg",
+        "stills/s059-d.jpg",
+        "stills/s059-e.jpg",
+        "stills/s059-f.jpg",
+        "stills/s059-g.jpg",
+        "stills/s059-h.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut onto the same watch-page description; views odometer 866 \u2192 1,000 (\u22481.2 s) and a red block lands behind '1,000 views'",
+        "camera": "glide down the tree as each row is spoken (3 short legs \u22481.5 s), then pull back to frame the three icon tiles",
+        "word_rate_s": 0.25,
+        "hold_s": 1.8
+      },
+      "colours": [
+        "#D95653",
+        "#FFFFFF",
+        "#0A66C2"
+      ],
+      "marks": [
+        "highlight-block",
+        "cross"
+      ],
+      "notes": "Persistent formula canvas; the face cuts in at 403.7 s and the canvas whips out at 405.7 s (start of s061).",
+      "quality": "A formula told top to bottom: thin red connectors draw from the views chip to 'Booked 10 calls' \u2192 'Close 3 clients x $5,000/month' \u2192 '$15,000 \u00f7 1,000 views = $15 for every view' (red block), then branch to three real-logo tiles (Gmail, LinkedIn, Meta) in dark glass cards that arrive one per phrase \u22482 s apart; three red \u2715 badges land together at the end. The camera only moves when a new row appears.",
+      "exemplar": true
+    },
+    {
+      "id": "s060",
+      "t_in": 403.7,
+      "t_out": 405.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s061",
+      "t_in": 405.7,
+      "t_out": 411.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s061-a.jpg",
+        "stills/s061-b.jpg",
+        "stills/s061-c.jpg"
+      ],
+      "layout": {
+        "type_px": 86,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "opens with 0.5 s of the C2 tree whipping out (directional blur), landing inside a playing video: a light whiteboard recording with a red underline under 'is right' and the creator's rounded face-cam bottom-right",
+        "camera": "pull back \u22481.5 s from inside the player to the watch page, settling on the description box",
+        "word_rate_s": 0.2,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#D8585B",
+        "#D95653",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "underline",
+        "highlight-block"
+      ],
+      "notes": "Pattern assignment is a judgement call (camera pass over a page); could also read as A1.",
+      "quality": "The camera starts inside the actual video and pulls back to reveal it is a YouTube page ('$1,000,000 Predictable Youtube Funnel', 1,000 views in a red block), and the headline 'Self-Qualifies Themselves' (\u224886 px, 'Self-Qualifies' red) is typeset inside the description box as if it were page text."
+    },
+    {
+      "id": "s062",
+      "t_in": 411.2,
+      "t_out": 412.9,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s063",
+      "t_in": 412.9,
+      "t_out": 418.367,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s063-a.jpg",
+        "stills/s063-b.jpg",
+        "stills/s063-c.jpg"
+      ],
+      "layout": {
+        "type_px": 50,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "resumes on the watch page; four labels branch out of the '1,000 views' chip on thin red curved connectors, two left and two right, one per phrase",
+        "camera": "slow pull back/creep",
+        "word_rate_s": 0.3,
+        "hold_s": 0.5
+      },
+      "colours": [
+        "#D95653",
+        "#D8585B",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Radial/mind-map variant of the tree; resumes after a face cut-in and continues as s065.",
+      "quality": "A mind-map grown out of a real UI element: the red '1,000 views' chip is the root, and 'Small Targeted', 'Highly Qualified Audience', 'Predictable Call Volume', 'Premium Pricing' hang off it on thin red curves that overlap the page edge."
+    },
+    {
+      "id": "s064",
+      "t_in": 418.367,
+      "t_out": 424.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s065",
+      "t_in": 424.4,
+      "t_out": 426.333,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "title",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s065-a.jpg",
+        "stills/s065-b.jpg",
+        "stills/s065-c.jpg"
+      ],
+      "layout": {
+        "type_px": 115,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "tree held 0.4 s, then a whip pan right/up with strong directional motion blur (\u22480.5 s, \u2248180\u00b0 shutter) to a line already sitting on the canvas",
+        "camera": "whip \u22480.5 s, settle \u22480.3 s, hold",
+        "word_rate_s": null,
+        "hold_s": 0.7
+      },
+      "colours": [
+        "#EC5154",
+        "#F2F2F2"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'You're the best option!' The whip measured in Appendix A (424.6\u2013425.9 s). No glow \u2014 a kit title variant without the halo.",
+      "quality": "The title lives on the same canvas as the tree (its labels are still visible at the frame edge), so the whip is spatial, not a transition. One centred line \u2248115 px with a thick red underline spanning \u224884 % W."
+    },
+    {
+      "id": "s066",
+      "t_in": 426.333,
+      "t_out": 441.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s067",
+      "t_in": 441.3,
+      "t_out": 445.3,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s068",
+      "t_in": 445.3,
+      "t_out": 452.133,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s069",
+      "t_in": 452.133,
+      "t_out": 465.533,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s070",
+      "t_in": 465.533,
+      "t_out": 491.933,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s071",
+      "t_in": 491.933,
+      "t_out": 500.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s072",
+      "t_in": 500.067,
+      "t_out": 507.567,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s073",
+      "t_in": 507.567,
+      "t_out": 513.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s074",
+      "t_in": 513.833,
+      "t_out": 521.333,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s075",
+      "t_in": 521.333,
+      "t_out": 524.55,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s084",
+      "t_in": 524.55,
+      "t_out": 529.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s084-a.jpg",
+        "stills/s084-b.jpg",
+        "stills/s084-c.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "face footage scales into the watch-page player",
+        "camera": "identical to s080: scale \u2192 dive to the description link \u2192 hold \u2192 back to the face",
+        "word_rate_s": null,
+        "hold_s": 1.7
+      },
+      "colours": [
+        "#3EA6FF",
+        "#FF0000"
+      ],
+      "marks": [],
+      "notes": "CTA 2. Split from s075.",
+      "quality": "Identical CTA treatment to s080 \u2014 repetition is the point."
+    },
+    {
+      "id": "s085",
+      "t_in": 529.9,
+      "t_out": 553.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "After CTA 2 \u2014 the 23 s of face before the extended CTA.",
+      "quality": ""
+    },
+    {
+      "id": "s076",
+      "t_in": 553.067,
+      "t_out": 555.4,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s086",
+      "t_in": 555.4,
+      "t_out": 565.533,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s086-a.jpg",
+        "stills/s086-b.jpg",
+        "stills/s086-c.jpg",
+        "stills/s086-d.jpg",
+        "stills/s086-e.jpg",
+        "stills/s086-f.jpg"
+      ],
+      "layout": {
+        "type_px": 130,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "face footage scales into the watch-page player, dives to the description link as in every CTA",
+        "camera": "extended chain: description link \u2192 cut/scroll through the real website (hero, results, FAQ) \u2192 'Ready to Stop Wasting Time\u2026' \u2192 the cursor clicks 'Book strategy call now' \u2192 booking page rises \u2192 it dims and blurs under a glow title",
+        "word_rate_s": 0.4,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#D8585B",
+        "#F2F2F2",
+        "#3EA6FF"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Extended CTA (split from s076). Website section texts are real.",
+      "quality": "The extended CTA walks the real funnel the viewer will take \u2014 link, website, button click with a cursor, booking calendar \u2014 and only then lands a glow title ('Custom Road Map', \u2248130 px, 'Road Map' red with halo) over the booking page dimmed and blurred behind it, with a thin swoosh line through the title.",
+      "exemplar": true
+    },
+    {
+      "id": "s077",
+      "t_in": 565.533,
+      "t_out": 581.8,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s078",
+      "t_in": 581.8,
+      "t_out": 590.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s087",
+      "t_in": 590.1,
+      "t_out": 595.6,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s087-a.jpg",
+        "stills/s087-b.jpg",
+        "stills/s087-c.jpg"
+      ],
+      "layout": {
+        "type_px": 0,
+        "fill": "balanced",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "face footage scales into the watch-page player",
+        "camera": "identical to s080",
+        "word_rate_s": null,
+        "hold_s": 1.7
+      },
+      "colours": [
+        "#3EA6FF",
+        "#FF0000"
+      ],
+      "marks": [],
+      "notes": "CTA 4 (outro). Split from s078.",
+      "quality": "Identical CTA treatment; closes the video with the same move it opened the CTAs with."
+    },
+    {
+      "id": "s088",
+      "t_in": 595.6,
+      "t_out": 597.101,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}

@@ -89,7 +89,7 @@ class ProofSheetTests(unittest.TestCase):
         finally:
             for k, v in saved.items():
                 os.environ.pop(k, None) if v is None else os.environ.__setitem__(k, v)
-        self.assertEqual({c["n"]: c["status"] for c in r["checks"]}, {n: "PASS" for n in range(1, 11)}, qa.format_report(r))
+        self.assertEqual({c["n"]: c["status"] for c in r["checks"]}, {n: "PASS" for n in range(1, 12)}, qa.format_report(r))
 
 
 if __name__ == "__main__":

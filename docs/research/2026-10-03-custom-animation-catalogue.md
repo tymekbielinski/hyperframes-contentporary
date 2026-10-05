@@ -1,5 +1,8 @@
 # Custom Animation Catalogue — research findings (draft, not yet a standard)
 
+> **Superseded 2026-10-05** by the reference library (`references/`): the same videos with committed stills,
+> per-shot measurements and pattern cards. This draft is kept for history; edit the library, not this file.
+
 **Date:** 2026-10-03 · **Source:** frame-by-frame analysis of 6 long-form videos animated by
 Tymek's editor in After Effects, plus the measured reference video (HrYMfy6MZtA, see spec Appendix A).
 Per-video logs and representative frames live in the session scratchpad (not in Git).

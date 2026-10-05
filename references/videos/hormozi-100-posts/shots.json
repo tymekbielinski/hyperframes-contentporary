@@ -1,0 +1,839 @@
+{
+  "version": 1,
+  "shots": [
+    {
+      "id": "s001",
+      "t_in": 0.0,
+      "t_out": 1.333,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s002",
+      "t_in": 1.333,
+      "t_out": 7.433,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B3",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s002-a.jpg",
+        "stills/s002-b.jpg",
+        "stills/s002-c.jpg",
+        "stills/s002-d.jpg"
+      ],
+      "layout": {
+        "type_px": 300,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut in on Hormozi's real YouTube channel page; at \u22481.8 s a cut-out of him rises from the bottom (\u22480.5 s) while the page dims to \u224830 % and blurs behind him",
+        "camera": "slow continuous push-in (\u22481.0 \u2192 1.05) across the whole shot, no legs",
+        "word_rate_s": null,
+        "hold_s": 0.8
+      },
+      "colours": [
+        "#F4D13A"
+      ],
+      "marks": [
+        "script-word"
+      ],
+      "notes": "Hook: '35,000 pieces of content \u2026 100 pieces of content a day'. The first \u22480.5 s is the channel page alone (the B3 builds over it). The figure types on digit by digit rather than counting like an odometer. Script subtitle '100 pieces of content a day' + FB/IG/X/YT icons.",
+      "quality": "Three depth layers do the work: a blurred, dimmed real channel page as ground, the giant yellow figure (\u2248300 px cap, \u224868 % W) behind the cut-out's head, and the cut-out in front, so the number reads as huge without hiding the person. The digits build left \u2192 right (3 \u2192 35 \u2192 35,000) over \u22481.4 s with a warm glow, and only after the number settles does the white script subtitle write on with a hand-drawn yellow swoosh, then four platform icons pop in 0.1 s apart.",
+      "exemplar": true
+    },
+    {
+      "id": "s003",
+      "t_in": 7.433,
+      "t_out": 8.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s004",
+      "t_in": 8.833,
+      "t_out": 14.133,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s004-a.jpg",
+        "stills/s004-b.jpg",
+        "stills/s004-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut in on the settled card (no build)",
+        "camera": "slow push-in \u22481.0 \u2192 1.08 over 5 s",
+        "word_rate_s": null,
+        "hold_s": 5.3
+      },
+      "colours": [
+        "#E8743B"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "'I install YouTube Acquisition Funnels\u2026' \u2014 the creator's own site as a credibility beat in the hook. No highlight beat (the orange underline is part of the site); same asset reused as the outro CTA (s034). Could also read as a kit-free 'site card'.",
+      "quality": "A real landing-page hero (headline, VSL thumbnail, 'Chat with me' button) as a sharp card \u224855 % W on near-black, with a horizontal light-streak smear of the page's own edges flanking it \u2014 a cheap way to give a flat screenshot speed and depth. The continuous slow push keeps a 5 s static page alive.",
+      "exemplar": true
+    },
+    {
+      "id": "s005",
+      "t_in": 14.133,
+      "t_out": 14.5,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s036",
+      "t_in": 14.5,
+      "t_out": 19.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "D2",
+      "placement": "over-footage",
+      "stills": [
+        "stills/s036-a.jpg",
+        "stills/s036-b.jpg",
+        "stills/s036-c.jpg"
+      ],
+      "layout": {
+        "type_px": 120,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "real Calendly screenshot fades in on the empty left side with an alpha gradient toward the face (\u22480.3 s) while the face is reframed to the right",
+        "camera": "face reframe only (slide right \u22480.3 s), screenshot static",
+        "word_rate_s": 0.15,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#C4F04E",
+        "#2F7BF5"
+      ],
+      "marks": [
+        "script-word",
+        "highlight-block"
+      ],
+      "notes": "Split from s005 (14.5\u201319.0 s). Everything fades out together at \u224818.6 s as the face reframes back.",
+      "quality": "Script accent word 'Predicting' writes on in glowing lime (\u2248120 px cap) over a real booking page that fades into the night window, then 'which videos will / book you qualified sales calls!' builds word by word and a lime highlight block wipes left \u2192 right behind the second line (\u22480.4 s) once it has settled. The screenshot is bright and the footage is dark, so the alpha fade is what makes it feel composited rather than pasted.",
+      "exemplar": true
+    },
+    {
+      "id": "s037",
+      "t_in": 19.0,
+      "t_out": 19.7,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s006",
+      "t_in": 19.7,
+      "t_out": 37.433,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s006-a.jpg",
+        "stills/s006-b.jpg",
+        "stills/s006-c.jpg",
+        "stills/s006-d.jpg",
+        "stills/s006-e.jpg",
+        "stills/s006-f.jpg",
+        "stills/s006-g.jpg",
+        "stills/s006-h.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut in on the stack; each swap the front card slides off left while the next card comes forward from the stack (\u22480.5 s)",
+        "camera": "none (slight drift)",
+        "word_rate_s": null,
+        "hold_s": 3.3
+      },
+      "colours": [
+        "#F28C38",
+        "#E1251B"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "'Here's how we helped our clients': Yiannis 30 calls / $16K (19.7\u201323.0), $80,000 on YouTube (23.0\u201329.0), Tim 20 qualified calls/mo (29.0\u201337.4). Slower than the catalogue's \u22481 s per card (\u22483\u20138 s per card here, the voice-over tells each story). Swap is a slide-out, not a 3D tilt. Recap at 740 s (s031).",
+      "quality": "Recreated case-study cards (\u224853 % W) with 2 cards peeking behind on the right, each card a real client thumbnail framed by a one-line quote whose money figure sits on an orange highlight block, plus a footer with avatar, name, role and two icon metric chips \u2014 dense, but every piece is real data. An orange 'Case Studies' kicker over a light 40 px header ties it to the brand accent.",
+      "exemplar": true
+    },
+    {
+      "id": "s007",
+      "t_in": 37.433,
+      "t_out": 39.2,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s008",
+      "t_in": 39.2,
+      "t_out": 41.967,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A6",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s008-a.jpg",
+        "stills/s008-b.jpg",
+        "stills/s008-c.jpg",
+        "stills/s008-d.jpg",
+        "stills/s008-e.jpg"
+      ],
+      "layout": {
+        "type_px": 55,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut in; each next channel page slides up from below pushing the previous one out (\u22480.2 s)",
+        "camera": "held \u2248200 % zoom on the name row of each page",
+        "word_rate_s": null,
+        "hold_s": 0.7
+      },
+      "colours": [
+        "#E5484D"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Merged s008\u2013s010 (detector cut on each page). Channels Johnny, Jonas Massie, Tim Yakubson \u22480.9 s each \u2014 small creators who 'made it'. Variant of A6: pages are sharp in the centre, not fully blurred.",
+      "quality": "Each real channel page is shown at \u2248200 % with a tilt-shift depth of field: a sharp band through the name/subscriber row and heavy blur above and below, so 0.7\u20130.9 s is enough to read one fact. A red hand-drawn underline lands under the subscriber count on each page.",
+      "exemplar": true
+    },
+    {
+      "id": "s011",
+      "t_in": 41.967,
+      "t_out": 45.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s012",
+      "t_in": 45.067,
+      "t_out": 48.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "B1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s012-a.jpg",
+        "stills/s012-b.jpg",
+        "stills/s012-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut in on the cut-out over the already dimmed (\u224825 %) and blurred video grid; the script headline writes on letter by letter (\u22481.6 s)",
+        "camera": "slow drift right",
+        "word_rate_s": null,
+        "hold_s": 1.3
+      },
+      "colours": [
+        "#E5484D"
+      ],
+      "marks": [
+        "script-word",
+        "arrow"
+      ],
+      "notes": "'Hormozi has the opposite problem.' Variant of B1: the headline is a script write-on rather than a word-by-word sans build, and a cut-out sits in front of the backdrop. Split from s038 at 48.0 s, where the camera pulls into his channel.",
+      "quality": "A full-height cut-out of the subject on the left third, a backdrop of his own real video grid blurred to \u224825 % brightness, and a single-line script headline in white with the payoff 'Opposite Problem' in glowing red \u2014 a red hand-drawn curved arrow ties his head to the line. The emphasis colour is the problem colour, as the B1 row asks.",
+      "exemplar": true
+    },
+    {
+      "id": "s038",
+      "t_in": 48.0,
+      "t_out": 52.633,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s038-a.jpg",
+        "stills/s038-b.jpg",
+        "stills/s038-c.jpg"
+      ],
+      "layout": {
+        "type_px": 70,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "continues from s012: the cut-out grows and dissolves as the backdrop racks into focus as his real channel page (\u22480.8 s)",
+        "camera": "leg 1: channel header \u2192 pan down to the video grid at \u2248200 % (\u22481.2 s); leg 2: grid tilts back \u224840\u00b0 in 3D and travels down the endless thumbnails (\u22482.5 s, ease-in-out)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F2E838",
+        "#E1251B"
+      ],
+      "marks": [],
+      "notes": "Split from s012 at 48.0 s. No marks and no stop at the end; it hard cuts to the face mid-travel.",
+      "quality": "The 3D tilt turns a static channel page into a sense of endless volume: thumbnails recede in perspective while the camera keeps travelling, so the 'he posts a lot' point is shown, not said. The rack-focus hand-off from the B1 backdrop to the same page sharp keeps it one continuous canvas.",
+      "exemplar": true
+    },
+    {
+      "id": "s013",
+      "t_in": 52.633,
+      "t_out": 55.2,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s039",
+      "t_in": 55.2,
+      "t_out": 63.2,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "C1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s039-a.jpg",
+        "stills/s039-b.jpg",
+        "stills/s039-c.jpg",
+        "stills/s039-d.jpg",
+        "stills/s039-e.jpg"
+      ],
+      "layout": {
+        "type_px": 45,
+        "fill": "sparse",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "node 1 (a real podcast clip in a rounded card with a red\u2192orange gradient glow rim) pops in; its label builds word by word",
+        "camera": "starts framed on node 1, then pans/zooms out step by step as each yellow arrow draws (\u22480.3 s) and the next node pops: 18-person team icon, then the final-product thumbnail sliding in from the right; ends wide on all three",
+        "word_rate_s": 0.2,
+        "hold_s": 1.5
+      },
+      "colours": [
+        "#F5B83D",
+        "#3BA3E8",
+        "#E0504A"
+      ],
+      "marks": [
+        "arrow"
+      ],
+      "notes": "'Raw material gets captured \u2192 18-person team (full-time staff processing raw footage) \u2192 final product.' Split from s013 at 55.2 s.",
+      "quality": "Three nodes, three visual languages kept consistent by glow: a real clip with a warm rim, a flat blue icon with a soft bloom and a blue italic aside, a real thumbnail as the output \u2014 all on a faint grid ground that keeps depth without noise. The camera only ever reveals the next node as the arrow reaches it, so the process reads left \u2192 right at speaking pace.",
+      "exemplar": true
+    },
+    {
+      "id": "s014",
+      "t_in": 63.2,
+      "t_out": 80.833,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s015",
+      "t_in": 80.833,
+      "t_out": 86.9,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s015-a.jpg",
+        "stills/s015-b.jpg",
+        "stills/s015-c.jpg",
+        "stills/s015-d.jpg"
+      ],
+      "layout": {
+        "type_px": 60,
+        "fill": "dense",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut in on a light article page (Substack-style) with blurred vignette edges",
+        "camera": "leg 1: scroll down past the transactions table (\u22482.5 s); leg 2: push-in onto the embedded YouTube card to \u2248120 % (\u22481 s), stop",
+        "word_rate_s": null,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#E1251B"
+      ],
+      "marks": [],
+      "notes": "'I invested $45,000 in Alex Hormozi's VAM workshop' \u2014 the source behind the video.",
+      "quality": "The page is real and readable at each stop, and the camera ends on the one artefact that matters (the '-$45,000' video embed), with soft blurred edges framing it like a lens. A light page in a dark video works because it is a short, deliberate flash of proof.",
+      "exemplar": false
+    },
+    {
+      "id": "s016",
+      "t_in": 86.9,
+      "t_out": 92.1,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s017",
+      "t_in": 92.1,
+      "t_out": 109.367,
+      "status": "reviewed",
+      "kind": "section",
+      "pattern": "E2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s017-a.jpg",
+        "stills/s017-b.jpg",
+        "stills/s017-c.jpg",
+        "stills/s017-d.jpg",
+        "stills/s017-e.jpg",
+        "stills/s017-f.jpg",
+        "stills/s017-g.jpg",
+        "stills/s017-h.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut from the face into the recorded deck",
+        "camera": "none (recorded screen; hard cuts between slides, cursor visible)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#3DDC84"
+      ],
+      "marks": [],
+      "notes": "First E2 stretch: quote slide ('Alex and I alone made 316 YouTube videos and over 7,000 ads\u2026') with a YouTube video screenshot; cursor visible.",
+      "quality": "A plain dark HTML-style deck: one big claim per slide (\u224865 px cap, yellow/green/red meaning-coded), a muted grey sentence beneath, and a round face-cam \u224817 % W (\u2248320 px) in the bottom-right corner over the slide's empty space \u2014 the face stays present without boxing the content.",
+      "exemplar": false
+    },
+    {
+      "id": "s018",
+      "t_in": 109.367,
+      "t_out": 125.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s019",
+      "t_in": 125.0,
+      "t_out": 149.833,
+      "status": "reviewed",
+      "kind": "section",
+      "pattern": "E2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s019-a.jpg",
+        "stills/s019-c.jpg",
+        "stills/s019-d.jpg",
+        "stills/s019-f.jpg",
+        "stills/s019-b.jpg",
+        "stills/s019-e.jpg",
+        "stills/s019-g.jpg",
+        "stills/s019-h.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut from the face into the recorded deck",
+        "camera": "none (recorded screen; hard cuts between slides, cursor visible)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F5C518",
+        "#3DDC84"
+      ],
+      "marks": [],
+      "notes": "Merged s019+s020. Quote slide, then the stat slide '316 long-form videos \u00b7 7,000 ads \u2192 22 ads for every single long-form video' (yellow, in a dashed box, '7,000 \u00f7 316' beneath).",
+      "quality": "A plain dark HTML-style deck: one big claim per slide (\u224865 px cap, yellow/green/red meaning-coded), a muted grey sentence beneath, and a round face-cam \u224817 % W (\u2248320 px) in the bottom-right corner over the slide's empty space \u2014 the face stays present without boxing the content.",
+      "exemplar": true
+    },
+    {
+      "id": "s021",
+      "t_in": 149.833,
+      "t_out": 167.967,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s022",
+      "t_in": 167.967,
+      "t_out": 289.233,
+      "status": "reviewed",
+      "kind": "section",
+      "pattern": "E2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s022-a.jpg",
+        "stills/s022-c.jpg",
+        "stills/s022-e.jpg",
+        "stills/s022-g.jpg",
+        "stills/s022-b.jpg",
+        "stills/s022-d.jpg",
+        "stills/s022-f.jpg",
+        "stills/s022-h.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut from the face into the recorded deck",
+        "camera": "none (recorded screen; hard cuts between slides, cursor visible)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#3DDC84"
+      ],
+      "marks": [],
+      "notes": "Merged s022+s023. Acquisition.com job-board screenshot slide (Media dept, 'Social Coordinator $60K\u2013$75K', green text) with a cursor scrolling it, then '$250 \u2014 The clipper is paid to find outliers.' (green).",
+      "quality": "A plain dark HTML-style deck: one big claim per slide (\u224865 px cap, yellow/green/red meaning-coded), a muted grey sentence beneath, and a round face-cam \u224817 % W (\u2248320 px) in the bottom-right corner over the slide's empty space \u2014 the face stays present without boxing the content.",
+      "exemplar": false
+    },
+    {
+      "id": "s024",
+      "t_in": 289.233,
+      "t_out": 359.0,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s040",
+      "t_in": 359.0,
+      "t_out": 366.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "cta-youtube",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s040-a.jpg",
+        "stills/s040-b.jpg",
+        "stills/s040-c.jpg",
+        "stills/s040-d.jpg",
+        "stills/s040-e.jpg"
+      ],
+      "layout": {
+        "type_px": 70,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "the face scales down out of frame into the player of a YouTube watch page (\u22480.6 s); the player holds the glow title + booking page rather than the face",
+        "camera": "hold on the player (synthetic cursor clicks Fri 15) \u22481.3 s \u2192 tilt/dive down to the description link (\u22480.8 s) \u2192 hold \u22481.2 s \u2192 back up to the player (\u22480.8 s) \u2192 scale back up into the face (\u22480.8 s)",
+        "word_rate_s": null,
+        "hold_s": 1.2
+      },
+      "colours": [
+        "#E8A04A",
+        "#3EA6FF"
+      ],
+      "marks": [],
+      "notes": "Only CTA in the video (\u22486 min in, just before the long E2 stretch). Variant of the kit's watch-page-dive: player content is the booking page, not the face footage. Split from s024.",
+      "quality": "Same CTA grammar as the pilot (watch page, dive to the description link, return), but the player shows a real booking calendar under a warm-glow 'Book time with me now' title (\u224870 px cap), and a synthetic cursor clicks a date \u2014 the ask becomes an action the viewer can picture. Every element is a real, readable UI.",
+      "exemplar": true
+    },
+    {
+      "id": "s041",
+      "t_in": 366.0,
+      "t_out": 368.367,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s025",
+      "t_in": 368.367,
+      "t_out": 712.75,
+      "status": "reviewed",
+      "kind": "section",
+      "pattern": "E2",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s025-a.jpg",
+        "stills/s025-d.jpg",
+        "stills/s025-b.jpg",
+        "stills/s025-g.jpg",
+        "stills/s025-c.jpg",
+        "stills/s025-e.jpg",
+        "stills/s025-f.jpg",
+        "stills/s025-h.jpg"
+      ],
+      "layout": {
+        "type_px": 65,
+        "fill": "sparse",
+        "layers": 2
+      },
+      "motion": {
+        "entrance": "hard cut from the face into the recorded deck",
+        "camera": "none (recorded screen; hard cuts between slides, cursor visible)",
+        "word_rate_s": null,
+        "hold_s": null
+      },
+      "colours": [
+        "#F5C518",
+        "#E5484D",
+        "#3DDC84"
+      ],
+      "marks": [],
+      "notes": "Merged s025\u2013s030 (344 s, the main body). Slides: '$114 per piece of content', '$13,000 \u2013 $14,700 / day \u2026 The math is right. The conclusion is wrong.', '91%' (red) with a channel screenshot, 'Fewer views. Double the book sales.', an article screenshot, a quote '\u2026which is how we make our money \u2013 not youtube videos', and 'The volume isn't the asset. The cornerstone is.' (green). Hard cuts between slides; no overlaid graphics.",
+      "quality": "A plain dark HTML-style deck: one big claim per slide (\u224865 px cap, yellow/green/red meaning-coded), a muted grey sentence beneath, and a round face-cam \u224817 % W (\u2248320 px) in the bottom-right corner over the slide's empty space \u2014 the face stays present without boxing the content.",
+      "exemplar": true
+    },
+    {
+      "id": "s042",
+      "t_in": 712.75,
+      "t_out": 740.067,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s031",
+      "t_in": 740.067,
+      "t_out": 745.0,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A5",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s031-a.jpg",
+        "stills/s031-b.jpg",
+        "stills/s031-c.jpg",
+        "stills/s031-d.jpg",
+        "stills/s031-e.jpg",
+        "stills/s031-f.jpg"
+      ],
+      "layout": {
+        "type_px": 40,
+        "fill": "balanced",
+        "layers": 4
+      },
+      "motion": {
+        "entrance": "hard cut in; the same card stack as s006 swaps fast: $80,000 (\u22482.5 s) \u2192 Funnel (\u22480.8 s) \u2192 20 qualified (\u22481.6 s)",
+        "camera": "none",
+        "word_rate_s": null,
+        "hold_s": 1.6
+      },
+      "colours": [
+        "#F28C38",
+        "#E1251B"
+      ],
+      "marks": [
+        "highlight-block"
+      ],
+      "notes": "Merged s031+s032. Outro before the closing CTA (s034).",
+      "quality": "Reuses the hook's case-study stack as an outro recap; the faster swaps (\u22481 s) are closer to the catalogue's A5 rhythm and read as 'many results' rather than individual stories.",
+      "exemplar": false
+    },
+    {
+      "id": "s033",
+      "t_in": 745.0,
+      "t_out": 747.167,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    },
+    {
+      "id": "s034",
+      "t_in": 747.167,
+      "t_out": 751.8,
+      "status": "reviewed",
+      "kind": "graphic",
+      "pattern": "A1",
+      "placement": "full-frame",
+      "stills": [
+        "stills/s034-a.jpg",
+        "stills/s034-b.jpg",
+        "stills/s034-c.jpg"
+      ],
+      "layout": {
+        "type_px": 95,
+        "fill": "balanced",
+        "layers": 3
+      },
+      "motion": {
+        "entrance": "hard cut in on the settled card",
+        "camera": "slow push-in \u22481.0 \u2192 1.08",
+        "word_rate_s": null,
+        "hold_s": 4.6
+      },
+      "colours": [
+        "#E8743B"
+      ],
+      "marks": [
+        "underline"
+      ],
+      "notes": "Outro CTA: 'just copy me' / website. Duplicate of s004.",
+      "quality": "Same landing-page hero card on its horizontal-streak smear as s004; bookending the video with the same asset makes the closing ask feel like a promise kept.",
+      "exemplar": false
+    },
+    {
+      "id": "s035",
+      "t_in": 751.8,
+      "t_out": 753.255,
+      "status": "reviewed",
+      "kind": "face",
+      "pattern": null,
+      "placement": null,
+      "stills": [],
+      "layout": null,
+      "motion": null,
+      "colours": [],
+      "marks": [],
+      "notes": "",
+      "quality": ""
+    }
+  ]
+}

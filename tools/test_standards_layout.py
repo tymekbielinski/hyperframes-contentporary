@@ -102,7 +102,7 @@ class FormatProfileTests(unittest.TestCase):
 class QaPipelineTests(unittest.TestCase):
     def test_qa_has_ten_checks_and_signoff(self):
         t = (ROOT / "standards" / "core" / "qa.md").read_text()
-        for n in range(1, 11):
+        for n in range(1, 12):
             self.assertIn(f"| {n} |", t)
         for s in ["whoever ran the build", "Promotion rule", "exceptions:", "lib.lock"]:
             self.assertIn(s, t)
@@ -391,6 +391,21 @@ class KitDocsTests(unittest.TestCase):
                   "lib/kit/kit.js", "data-hf-mode", "proof_sheet.py", "HFText.loadFaces", "measureWidth"]:
             self.assertIn(s, t, s)
         self.assertEqual(t.count("await HFText.loadFaces(root)"), 1)
+
+
+class ReferenceLibraryTests(unittest.TestCase):
+    def test_every_registry_id_has_a_card_and_the_library_checks_clean(self):
+        import ref_index
+        import refs
+        for pid in refs.registry(ROOT):
+            self.assertTrue((ROOT / "references" / "patterns" / f"{pid}.md").is_file(), pid)
+        self.assertEqual(ref_index.run(ROOT, check=True)[0], [])
+
+    def test_docs_point_at_the_library(self):
+        self.assertIn("tools/ref_ingest.py", (ROOT / "references" / "README.md").read_text())
+        self.assertIn("references/patterns/", (ROOT / "standards" / "formats" / "long-form.md").read_text())
+        self.assertIn("tools/ref_ingest.py", (ROOT / "standards" / "core" / "pipeline.md").read_text())
+        self.assertIn("ref_board.py", (ROOT / "CLAUDE.md").read_text())
 
 
 if __name__ == "__main__":
