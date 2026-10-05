@@ -74,10 +74,10 @@ is in `references/patterns/<ID>.md`; look at it before building the pattern.
 
 | ID | Type | Layout and motion | Use for |
 |---|---|---|---|
-| A1 | Screenshot focus + highlight | sharp card ≈ 55–60 % W on a blurred, faded copy (≈ 35 %) of the same screenshot; enters 0.9 → 1 with blur→sharp over 0.25 s; highlight/marker sweeps 0.3 s after landing; optional key-text recolour; hold 0.6–1 s | a claim or quote that is real |
+| A1 | Screenshot focus + highlight | sharp card ≈ 40–60 % W on a blurred, faded copy (≈ 35 %) of the same screenshot; enters 0.9 → 1 with blur→sharp over 0.25 s; highlight/marker sweeps 0.3 s after landing; optional key-text recolour; hold 0.6–1 s | a claim or quote that is real |
 | A2 | Screenshot camera pass | page at 150–250 % (flat) or tilted ≤ 60° in 3D (a tilt, never a flip); 2–3 camera legs ≈ 2 s with readable stops; marks land at the stops; optional synthetic cursor arriving 0.3 s before its mark; may end dimmed and hand off to B1 | prices, pages, tools, long documents |
 | A3 | Counter on screenshot | push-in ≈ 0.8 s; the real number counts with deceleration (odometer, `ease.enter`); underline under its label | growth numbers |
-| A4 | Proof clip in framed card | rounded card ≈ 56 % W pushing to ≈ 72 %; the client's own words appear word by word beneath (positive words marked in `status.ok`: text colour on dark ground, block/underline behind `text.primary` on light ground); big figure lands at the end | client results |
+| A4 | Proof clip in framed card | rounded card ≈ 56 % W pushing to ≈ 72–83 %; the client's own words appear word by word beneath (positive words marked in `status.ok`: text colour on dark ground, block/underline behind `text.primary` on light ground); big figure lands at the end | client results |
 | A5 | Case-study card stack | centred card ≈ 55–62 % W, 1–2 cards peeking behind; ≈ 1 s per card; the front card steps away (3D tilt, never a flip) to reveal the next; metric chip per card | several results in a row |
 | A6 | Channel flash montage | blurred channel pages 0.7–1.3 s each, hard cuts inside one montage scene (the scene's rhythm, not a transition) | breadth of proof |
 
@@ -126,7 +126,7 @@ request. They carry IDs so reference analysis can tag them:
 
 | ID | Type | Notes | Use for |
 |---|---|---|---|
-| E1 | Board walkthrough + face PiP | recorded Miro board; PiP ≈ 25 % W bottom-right, rounded, soft shadow; zoom out to overview between sections | long structured walkthroughs |
+| E1 | Board walkthrough + face PiP | recorded Miro board; optional face PiP ≈ 25 % W bottom-right, rounded, soft shadow; zoom out to overview between sections | long structured walkthroughs |
 | E2 | Slide deck + round face-cam | recorded slides; face circle ≈ 17 % W bottom-right | lecture-style sections |
 
 ## Sound
@@ -157,7 +157,7 @@ scored to a beat grid here.
 | camera leg | 1.1–2.5 s; peak 0.75–1.2 frame-widths/s; drifts 3.5–4.5 s, peak 0.1–0.3 fw/s |
 | zoom | push/pull avg 5–16 %/s (peak 18–64 %/s) over 1.6–4 s |
 | hold | 0.2–4 s; creep ≤ 0.5 %/s |
-| word entrance | rise ≈ 7 % of frame height + fade + blur→sharp (`focus`), 0.6 s `ease.enter`, stagger 230–330 ms; word by word, never per character |
+| word entrance | rise ≈ 7 % of frame height + fade + blur→sharp (`focus`), 0.6 s `ease.enter`, stagger 110–330 ms, following the speech (≈ 110 ms on fast delivery); word by word, never per character |
 | glow title | pops to ≈ 70 % brightness, settles 0.4 s `ease.glow`, no scale; halo 60–90 px at 1080p; next word +430 ms; background rack-defocuses behind it; dark ground only — on the light ground titles take no glow: dark `text.primary` with a scribble underline or marker (`accent.block`) |
 | card entrance | rise 35–40 px at 720p, 0.43 s `ease.card`, brightens and sharpens |
 | chain gap | 450–500 ms between linked beats; peer sets (e.g. three ✕ chips) land together |
