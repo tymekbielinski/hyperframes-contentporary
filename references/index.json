@@ -1,64 +1,183 @@
 {
-  "videos": [],
+  "videos": [
+    {
+      "slug": "ultra-predictable-funnel",
+      "title": "How to build ULTRA predictable Youtube Sales Funnel for B2B High-Ticket Offer",
+      "ground": "dark",
+      "format": "long-form",
+      "duration": 597.101,
+      "shots": 82,
+      "reviewed": 82,
+      "graphics_pct": 32.1,
+      "stills_bytes": 2635488
+    }
+  ],
   "patterns": {
     "A1": {
       "name": "Screenshot focus + highlight",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s002",
+          "t_in": 1.1,
+          "t_out": 13.233,
+          "stills": [
+            "stills/s002-a.jpg",
+            "stills/s002-b.jpg",
+            "stills/s002-c.jpg",
+            "stills/s002-d.jpg",
+            "stills/s002-e.jpg",
+            "stills/s002-f.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s047",
+          "t_in": 286.467,
+          "t_out": 298.867,
+          "stills": [
+            "stills/s047-a.jpg",
+            "stills/s047-b.jpg",
+            "stills/s047-c.jpg",
+            "stills/s047-d.jpg",
+            "stills/s047-e.jpg",
+            "stills/s047-f.jpg",
+            "stills/s047-g.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s045",
+          "t_in": 276.467,
+          "t_out": 280.767,
+          "stills": [
+            "stills/s045-a.jpg",
+            "stills/s045-b.jpg",
+            "stills/s045-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s083",
+          "t_in": 358.1,
+          "t_out": 361.767,
+          "stills": [
+            "stills/s083-a.jpg",
+            "stills/s083-b.jpg",
+            "stills/s083-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "count": 4,
+        "videos": 1,
+        "duration_median": 8.22,
+        "duration_p25_p75": [
+          3.83,
+          12.33
+        ],
+        "type_px_median": 71.0,
+        "word_rate_s_median": 0.25,
+        "hold_s_median": 1.05
       }
     },
     "A2": {
       "name": "Screenshot camera pass",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s061",
+          "t_in": 405.7,
+          "t_out": 411.2,
+          "stills": [
+            "stills/s061-a.jpg",
+            "stills/s061-b.jpg",
+            "stills/s061-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 5.5,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 86,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 0.8
       }
     },
     "A3": {
       "name": "Counter on screenshot",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s057",
+          "t_in": 347.9,
+          "t_out": 358.1,
+          "stills": [
+            "stills/s057-a.jpg",
+            "stills/s057-b.jpg",
+            "stills/s057-c.jpg",
+            "stills/s057-d.jpg",
+            "stills/s057-e.jpg",
+            "stills/s057-f.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 10.2,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 87,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 1.4
       }
     },
     "A4": {
       "name": "Proof clip in framed card",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s009",
+          "t_in": 39.4,
+          "t_out": 47.9,
+          "stills": [
+            "stills/s009-a.jpg",
+            "stills/s009-b.jpg",
+            "stills/s009-c.jpg",
+            "stills/s009-d.jpg",
+            "stills/s009-e.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s012",
+          "t_in": 49.067,
+          "t_out": 52.5,
+          "stills": [
+            "stills/s012-a.jpg",
+            "stills/s012-b.jpg",
+            "stills/s012-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 2,
+        "videos": 1,
+        "duration_median": 5.97,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 260.0,
+        "word_rate_s_median": 0.28,
+        "hold_s_median": 0.7
       }
     },
     "A5": {
@@ -94,46 +213,106 @@
     "B1": {
       "name": "Backdrop headline",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s079",
+          "t_in": 66.0,
+          "t_out": 68.033,
+          "stills": [
+            "stills/s079-a.jpg",
+            "stills/s079-b.jpg",
+            "stills/s079-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s026",
+          "t_in": 141.233,
+          "t_out": 144.0,
+          "stills": [
+            "stills/s026-a.jpg",
+            "stills/s026-b.jpg",
+            "stills/s026-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s014",
+          "t_in": 55.3,
+          "t_out": 57.0,
+          "stills": [
+            "stills/s014-a.jpg",
+            "stills/s014-b.jpg",
+            "stills/s014-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 3,
+        "videos": 1,
+        "duration_median": 2.03,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 90,
+        "word_rate_s_median": 0.25,
+        "hold_s_median": 1.0
       }
     },
     "B2": {
       "name": "Headline + labelled callouts",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s018",
+          "t_in": 72.533,
+          "t_out": 79.4,
+          "stills": [
+            "stills/s018-a.jpg",
+            "stills/s018-b.jpg",
+            "stills/s018-c.jpg",
+            "stills/s018-d.jpg",
+            "stills/s018-e.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 6.87,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 55,
+        "word_rate_s_median": 0.2,
+        "hold_s_median": 1.6
       }
     },
     "B3": {
       "name": "Big stat / counter title",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s004",
+          "t_in": 18.167,
+          "t_out": 23.967,
+          "stills": [
+            "stills/s004-a.jpg",
+            "stills/s004-b.jpg",
+            "stills/s004-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 5.8,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 220,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 0.3
       }
     },
     "B4": {
@@ -154,31 +333,86 @@
     "C1": {
       "name": "Flow strip",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s082",
+          "t_in": 144.0,
+          "t_out": 152.233,
+          "stills": [
+            "stills/s082-a.jpg",
+            "stills/s082-b.jpg",
+            "stills/s082-c.jpg",
+            "stills/s082-d.jpg",
+            "stills/s082-e.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s039",
+          "t_in": 239.0,
+          "t_out": 246.1,
+          "stills": [
+            "stills/s039-a.jpg",
+            "stills/s039-b.jpg",
+            "stills/s039-c.jpg",
+            "stills/s039-d.jpg",
+            "stills/s039-e.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 2,
+        "videos": 1,
+        "duration_median": 7.67,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 56.0,
+        "word_rate_s_median": 0.3,
+        "hold_s_median": 1.15
       }
     },
     "C2": {
       "name": "Tree",
       "group": "custom",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s059",
+          "t_in": 385.667,
+          "t_out": 403.7,
+          "stills": [
+            "stills/s059-a.jpg",
+            "stills/s059-b.jpg",
+            "stills/s059-c.jpg",
+            "stills/s059-d.jpg",
+            "stills/s059-e.jpg",
+            "stills/s059-f.jpg",
+            "stills/s059-g.jpg",
+            "stills/s059-h.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s063",
+          "t_in": 412.9,
+          "t_out": 418.367,
+          "stills": [
+            "stills/s063-a.jpg",
+            "stills/s063-b.jpg",
+            "stills/s063-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 2,
+        "videos": 1,
+        "duration_median": 11.75,
         "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "type_px_median": 47.5,
+        "word_rate_s_median": 0.28,
+        "hold_s_median": 1.15
       }
     },
     "C3": {
@@ -349,14 +583,30 @@
     "E1": {
       "name": "Board walkthrough + face PiP",
       "group": "section",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s050",
+          "t_in": 302.467,
+          "t_out": 316.967,
+          "stills": [
+            "stills/s050-a.jpg",
+            "stills/s050-b.jpg",
+            "stills/s050-c.jpg",
+            "stills/s050-d.jpg",
+            "stills/s050-e.jpg",
+            "stills/s050-f.jpg",
+            "stills/s050-g.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 14.5,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 0,
         "word_rate_s_median": null,
         "hold_s_median": null
       }
@@ -379,16 +629,67 @@
     "cta-youtube": {
       "name": "HFKit.ctaYoutube",
       "group": "kit",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s086",
+          "t_in": 555.4,
+          "t_out": 565.533,
+          "stills": [
+            "stills/s086-a.jpg",
+            "stills/s086-b.jpg",
+            "stills/s086-c.jpg",
+            "stills/s086-d.jpg",
+            "stills/s086-e.jpg",
+            "stills/s086-f.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s080",
+          "t_in": 116.3,
+          "t_out": 121.8,
+          "stills": [
+            "stills/s080-a.jpg",
+            "stills/s080-b.jpg",
+            "stills/s080-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s084",
+          "t_in": 524.55,
+          "t_out": 529.9,
+          "stills": [
+            "stills/s084-a.jpg",
+            "stills/s084-b.jpg",
+            "stills/s084-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s087",
+          "t_in": 590.1,
+          "t_out": 595.6,
+          "stills": [
+            "stills/s087-a.jpg",
+            "stills/s087-b.jpg",
+            "stills/s087-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "count": 4,
+        "videos": 1,
+        "duration_median": 5.5,
+        "duration_p25_p75": [
+          5.39,
+          8.97
+        ],
+        "type_px_median": 0.0,
+        "word_rate_s_median": 0.4,
+        "hold_s_median": 1.7
       }
     },
     "lower-third": {
@@ -409,16 +710,66 @@
     "roadmap": {
       "name": "HFKit.roadmap",
       "group": "kit",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s016",
+          "t_in": 59.533,
+          "t_out": 66.0,
+          "stills": [
+            "stills/s016-a.jpg",
+            "stills/s016-b.jpg",
+            "stills/s016-c.jpg",
+            "stills/s016-d.jpg",
+            "stills/s016-e.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s024",
+          "t_in": 126.833,
+          "t_out": 131.833,
+          "stills": [
+            "stills/s024-a.jpg",
+            "stills/s024-b.jpg",
+            "stills/s024-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s037",
+          "t_in": 234.233,
+          "t_out": 237.867,
+          "stills": [
+            "stills/s037-a.jpg",
+            "stills/s037-b.jpg",
+            "stills/s037-c.jpg"
+          ]
+        },
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s055",
+          "t_in": 340.3,
+          "t_out": 345.3,
+          "stills": [
+            "stills/s055-a.jpg",
+            "stills/s055-b.jpg",
+            "stills/s055-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
-        "duration_p25_p75": null,
-        "type_px_median": null,
-        "word_rate_s_median": null,
-        "hold_s_median": null
+        "count": 4,
+        "videos": 1,
+        "duration_median": 5.0,
+        "duration_p25_p75": [
+          3.98,
+          6.1
+        ],
+        "type_px_median": 120.0,
+        "word_rate_s_median": 0.4,
+        "hold_s_median": 1.25
       }
     },
     "side-text": {
@@ -454,18 +805,45 @@
     "title": {
       "name": "HFKit.title",
       "group": "kit",
-      "card": "draft",
-      "exemplars": [],
+      "card": "ready",
+      "exemplars": [
+        {
+          "video": "ultra-predictable-funnel",
+          "shot": "s065",
+          "t_in": 424.4,
+          "t_out": 426.333,
+          "stills": [
+            "stills/s065-a.jpg",
+            "stills/s065-b.jpg",
+            "stills/s065-c.jpg"
+          ]
+        }
+      ],
       "stats": {
-        "count": 0,
-        "videos": 0,
-        "duration_median": null,
+        "count": 1,
+        "videos": 1,
+        "duration_median": 1.93,
         "duration_p25_p75": null,
-        "type_px_median": null,
+        "type_px_median": 115,
         "word_rate_s_median": null,
-        "hold_s_median": null
+        "hold_s_median": 0.7
       }
     }
   },
-  "candidates": {}
+  "candidates": {
+    "new:comparison-split": [
+      {
+        "video": "ultra-predictable-funnel",
+        "shot": "s008"
+      },
+      {
+        "video": "ultra-predictable-funnel",
+        "shot": "s041"
+      },
+      {
+        "video": "ultra-predictable-funnel",
+        "shot": "s043"
+      }
+    ]
+  }
 }
