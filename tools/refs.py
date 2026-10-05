@@ -174,6 +174,8 @@ def validate_video(d, reg: dict) -> list:
     if findings:
         return findings
     findings += [f"{label}/{f}" for f in _check_source(src, d)]
+    if not isinstance(src, dict):
+        return findings
     shots = data.get("shots") if isinstance(data, dict) else None
     if not isinstance(shots, list) or not shots:
         return findings + [f"{label}/shots.json: needs a non-empty \"shots\" list"]

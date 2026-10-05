@@ -112,6 +112,12 @@ class ValidateTests(Fixture):
         (d / "shots.json").write_text("{nope")
         self.assertIn("shots.json is not valid JSON", "\n".join(refs.validate_video(d, self.reg)))
 
+    def test_non_object_source_json_is_a_finding_not_a_crash(self):
+        d = write_video(self.root)
+        (d / "source.json").write_text("[]")
+        findings = refs.validate_video(d, self.reg)
+        self.assertIn("source.json: root must be an object", "\n".join(findings))
+
 
 class LibraryTests(Fixture):
     def test_exemplars_pinned_first_then_by_video_and_time(self):
