@@ -117,9 +117,14 @@ where marks land. 3D icons and a synthetic cursor are allowed when sourced from 
 
 ## Section formats
 
-Recorded sections — a board walkthrough or a slide deck with the face in a corner picture-in-picture —
-are not built in this pipeline. Treat them like screen-share: declare their ranges in the BRIEF under
-`screen_share`, they are exempt from the cadence rule, and graphics go on top only on request.
+Recorded sections are not built in this pipeline. Treat them like screen-share: declare their ranges in
+the BRIEF under `screen_share`, they are exempt from the cadence rule, and graphics go on top only on
+request. They carry IDs so reference analysis can tag them:
+
+| ID | Type | Notes | Use for |
+|---|---|---|---|
+| E1 | Board walkthrough + face PiP | recorded Miro board; PiP ≈ 25 % W bottom-right, rounded, soft shadow; zoom out to overview between sections | long structured walkthroughs |
+| E2 | Slide deck + round face-cam | recorded slides; face circle ≈ 17 % W bottom-right | lecture-style sections |
 
 ## Sound
 
