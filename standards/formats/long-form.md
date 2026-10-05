@@ -67,6 +67,9 @@ ground). Measured from 6 of Tymek's editor-animated videos plus the reference
 (`docs/research/2026-10-03-custom-animation-catalogue.md`). Pick the simplest type that proves the
 point: A and B first, C for structure, D when the face should stay on screen.
 
+Evidence for every ID (and every kit component) — reference stills, measured ranges and a quality bar —
+is in `references/patterns/<ID>.md`; look at it before building the pattern.
+
 **A. Proof on real UI**
 
 | ID | Type | Layout and motion | Use for |

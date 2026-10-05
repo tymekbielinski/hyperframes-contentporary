@@ -1,0 +1,471 @@
+{
+  "videos": [],
+  "patterns": {
+    "A1": {
+      "name": "Screenshot focus + highlight",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "A2": {
+      "name": "Screenshot camera pass",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "A3": {
+      "name": "Counter on screenshot",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "A4": {
+      "name": "Proof clip in framed card",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "A5": {
+      "name": "Case-study card stack",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "A6": {
+      "name": "Channel flash montage",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "B1": {
+      "name": "Backdrop headline",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "B2": {
+      "name": "Headline + labelled callouts",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "B3": {
+      "name": "Big stat / counter title",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "B4": {
+      "name": "Punch word",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C1": {
+      "name": "Flow strip",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C2": {
+      "name": "Tree",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C3": {
+      "name": "Funnel / bands",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C4": {
+      "name": "Orbit / flywheel",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C5": {
+      "name": "Card roster",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C6": {
+      "name": "Range line / annotated chart",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C7": {
+      "name": "Avatar + escalating ticker",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "C8": {
+      "name": "Focus card, dim siblings",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "D1": {
+      "name": "Tiles flanking the face",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "D2": {
+      "name": "Side screenshot + script + highlight",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "D3": {
+      "name": "Caption bar",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "D4": {
+      "name": "Tool chip stack",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "D5": {
+      "name": "Name lower third",
+      "group": "custom",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "E1": {
+      "name": "Board walkthrough + face PiP",
+      "group": "section",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "E2": {
+      "name": "Slide deck + round face-cam",
+      "group": "section",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "cta-youtube": {
+      "name": "HFKit.ctaYoutube",
+      "group": "kit",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "lower-third": {
+      "name": "HFKit.lowerThird",
+      "group": "kit",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "roadmap": {
+      "name": "HFKit.roadmap",
+      "group": "kit",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "side-text": {
+      "name": "HFKit.sideText",
+      "group": "kit",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "subtitle": {
+      "name": "HFKit.subtitle",
+      "group": "kit",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    },
+    "title": {
+      "name": "HFKit.title",
+      "group": "kit",
+      "card": "draft",
+      "exemplars": [],
+      "stats": {
+        "count": 0,
+        "videos": 0,
+        "duration_median": null,
+        "duration_p25_p75": null,
+        "type_px_median": null,
+        "word_rate_s_median": null,
+        "hold_s_median": null
+      }
+    }
+  },
+  "candidates": {}
+}
