@@ -16,7 +16,7 @@ The quality bar is **smoothness**. Scenes may run long and need not be very dyna
 
 | Kind | Types | Built with |
 |---|---|---|
-| Templated kit | full-screen title · subtitle / step card · lower third (key lines only) · side screen text (1–6 points) | `lib/kit` (Plan 4); new variants per video allowed |
+| Templated kit | full-screen title · subtitle / step card · lower third (key lines only) · side screen text (1–6 points) | `lib/kit` (see `## Kit` below); new variants per video allowed |
 | Recurring devices | chapter roadmap · CTA template | `lib/kit` |
 | Custom | screenshot-focus · diagram/flow · comparison split · proof clip · counter/odometer · mini animations | see `## Custom catalogue` below (A–D) |
 | Screen recording | full-frame framed card on plain ground | graphics on top **only on request** |
@@ -32,6 +32,33 @@ The quality bar is **smoothness**. Scenes may run long and need not be very dyna
   is identical; one may extend into website → booking page → glow title.
 - **Proof clip:** client footage in a rounded card; the client's key words appear word by word,
   positive words marked in `status.ok` (text colour on dark ground, block/underline behind `text.primary` on light ground); a big figure lands at the end.
+
+## Kit — `lib/kit`
+
+Templated graphics and the two recurring devices are kit calls:
+`HFKit.<component>(tl, host, { format: "long-form", at, … })` builds the layout inside `host` (a 1920×1080
+box), adds its tweens to the scene's paused timeline and returns `{ dur, … }` (seconds from `at` until it has
+settled). API and contract: `lib/README.md`. A brand picks one variant per component (`tokens.json` `kit`);
+new variants are added to the shared kit and become available to every brand.
+
+| Component | Variant | Placement | Layout (1920×1080) | Motion |
+|---|---|---|---|---|
+| `HFKit.title` | `glow-center` | full-frame | one centred line, 104 px (9.6 % H), warm ambient top glow; optional scribble underline under one word (`underline: <word index>`, measured with `HFText.measureWidth`, so it also builds inside a `display:none` scene) | glow title (pop 70 %, settle 0.4 s `ease.glow`, +430 ms per word); underline one chain gap after it settles (`ease.sweep`) |
+| `HFKit.subtitle` | `glass-pill-script` | full-frame | glass pill ≥ 770 px (40 % W) centred on the grid ground; script kicker 72 px (6.7 % H) over the title, 92 px (8.5 % H), in `accent.text` | card entrance (0.43 s `ease.card`) → script write-on at +0.3 s (135 ms/letter) → glow title one chain gap later |
+| `HFKit.lowerThird` | `key-line` | over-footage | one key line, 50 px (4.6 % H) body font, centred, baseline ≈ 95 % H; one white → `accent.text` gradient across the line | word entrance; fades out (0.43 s `ease.enter`), gone at `out` |
+| `HFKit.sideText` | `grid-panel-chips` | over-footage | grid panel 0–928 px (48 % W); 90 px glass number chips at x 115, rows every 145 px from y 140; labels 48 px (4.4 % H) at x 277, one line each (620 px wide, no wrap); 1–6 points; the face stays on the right | panel slides 80 px + fades (0.6 s `ease.enter`); each point = status chip + its label word by word 0.1 s later, one point every two chain gaps unless each `items[i].at` is given |
+| `HFKit.ctaYoutube` | `watch-page-dive` | full-frame, transforms the footage | the face footage inside the player rect of a real watch-page screenshot (`page: {src, width, height, player, link}`; both rects in page pixels and inside the page, else a named error) | scale to 0.80 (0.5 s) → hold 0.5 s → dive 2× onto the link (0.6 s) → hold 1.7 s → back (0.6 s) → hold 0.5 s → face (0.5 s): 4.9 s, all `ease.camera`; a DOM camera, no motion blur on the dive |
+| `HFKit.roadmap` | `wave-nodes` | full-frame | system name (92 px caps, wraps within 1300 px, two lines for a long name) above a glowing wavy path that runs 400 px past both ends of the world, so its ends never show; numbered nodes every 640 px (3–6 steps); 250×290 icon cards docked on their nodes | `visit: 0` intro: title word by word, path draws 1.2 s `ease.sweep`, each node pops (0.48 s `ease.enter`) as the line reaches it; `visit: k`: opens on visit k−1's end state, card k docks (card entrance), camera travels 1.6 s `ease.camera` to card k at 1.8× (the card reads ≈ 450 px on screen) |
+
+**Light ground** (`mode: light`): every component drops its glow — titles in dark `text.primary` (word
+entrance), the subtitle's title on an `accent.block` marker, the lower third on a frosted white pill, a
+frosted white side panel and chips, the roadmap path without bloom. Every component reads `data-hf-mode`
+from its nearest ancestor and throws when there is none.
+
+**Over-footage layouts** (lower third, side text) are standalone documents in `compositions/overlays/`: no
+`<template>`, their own `data-hf-mode` on the root, root-relative paths (`lib/kit/…`,
+`compositions/brand.css`), rendered with `-c … --format=mov`. Never give a kit element an id or class
+containing `caption` (QA check 7).
 
 ## Custom catalogue
 

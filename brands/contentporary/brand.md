@@ -46,10 +46,15 @@ visual language above must still hold.
   (Brittany Signature). Shorts burned-in captions, when a Short has them: Garet Heavy.
 
 ## Kit variants
-`glow-center` title · `glass-pill-script` subtitle ("Step 1" in script over a glowing title in a
-glass pill) · `key-line` lower third (one key line, bottom-centre, white→warm gradient) ·
-`grid-panel-chips` side text (left-half grid panel, glass number chips, face on the right) ·
-`watch-page-dive` CTA · `wave-nodes` chapter roadmap (glowing wavy line, numbered nodes, icon cards).
+The variant names are `lib/kit` variants (`tokens.json` `kit`; layouts and timings in
+`standards/formats/long-form.md` `## Kit`):
+`glow-center` title (`HFKit.title`) · `glass-pill-script` subtitle (`HFKit.subtitle`: "Step 1" in script
+over a glowing title in a glass pill) · `key-line` lower third (`HFKit.lowerThird`: one key line,
+bottom-centre, white→warm gradient) · `grid-panel-chips` side text (`HFKit.sideText`: left-half grid
+panel, glass number chips, face on the right) · `watch-page-dive` CTA (`HFKit.ctaYoutube`, over a real
+screenshot of the brand's own watch page) · `wave-nodes` chapter roadmap (`HFKit.roadmap`: glowing wavy
+line, numbered nodes, icon cards). Proof sheet of the four templated layouts in every palette:
+`python3 tools/proof_sheet.py contentporary`.
 On the light ground every kit variant drops its glow: dark `text.primary` with a scribble underline or an `accent.block` marker; the roadmap path is drawn in `accent.line` without bloom; side-text panels use frosted white glass instead of the dark grid panel.
 
 ## Never

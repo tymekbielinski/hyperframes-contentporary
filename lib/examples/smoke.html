@@ -21,6 +21,7 @@
   .odo { position: absolute; left: 1100px; top: 700px; font-size: 140px; font-weight: 700; color: var(--hf-text-primary); }
   .pill { position: absolute; height: 78px; width: 340px; border-radius: 39px; background: var(--hf-accent-block); }
   .pill span { position: absolute; left: 30px; top: 18px; font-size: 36px; }
+  .phase { position: absolute; left: 90px; top: 1500px; width: 900px; height: 300px; font-size: 200px; background: var(--hf-surface-fill); }
 </style>
 </head>
 <body>
@@ -52,6 +53,15 @@
   </div>
   <canvas id="sh-gl"></canvas>
   <svg width="0" height="0"><filter id="mb-sh"><feGaussianBlur id="sh-fe" stdDeviation="0 0"/></filter></svg>
+  <!-- chained phases on one host: A -> B at 1.0 s, then B -> C at 3.0 s (B is wiped in AND out) -->
+  <div id="ph-a" class="phase" style="visibility:hidden">A</div>
+  <div id="ph-b" class="phase" style="visibility:hidden">B</div>
+  <div id="ph-c" class="phase" style="visibility:hidden">C</div>
+  <svg width="0" height="0">
+    <filter id="mb-a"><feGaussianBlur id="fe-a" stdDeviation="0 0"/></filter>
+    <filter id="mb-b"><feGaussianBlur id="fe-b" stdDeviation="0 0"/></filter>
+    <filter id="mb-c"><feGaussianBlur id="fe-c" stdDeviation="0 0"/></filter>
+  </svg>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -103,6 +113,10 @@
       bake: function (ctx) { ctx.fillStyle = cssVar($("sh"), "--hf-surface-fill"); ctx.fillRect(90, 300, 900, 600); ctx.fillRect(90, 1300, 900, 500); } });
     HFText.words(tl, $("sh-words"), 2.4, SH);
     HFMarks.seedChip(tl, { pill: $("sh-pill"), label: $("sh-label") }, 3.0, SH);
+    function ph(k) { return { host: $("ph-" + k), fe: $("fe-" + k), filterId: "mb-" + k }; }
+    HFWipe.wipe(tl, { host: $("ph-a"), fe: $("fe-a"), filterId: "mb-a", dir: "right", inAt: 0.2 });
+    HFWipe.phase(tl, ph("a"), ph("b"), 1.0, "right");
+    HFWipe.phase(tl, ph("b"), ph("c"), 3.0, "right");
 
     await document.fonts.ready;
     await HFText.ready();   // the README contract: every async font/measure/raster has landed before any frame
@@ -113,7 +127,8 @@
     // "never rendered" and "rendered at its from-value" must look identical.
     var PROPS = ["transform", "opacity", "filter", "visibility", "maskImage", "webkitMaskImage", "strokeDashoffset", "color"];
     function els() {
-      var ids = ["lf-stage", "lf-bg", "lf-hl", "lf-ring", "lf-arrow", "w1", "w2", "lf-title", "sh-host", "sh-stage", "sh-pill", "sh-label", "sh-fe"];
+      var ids = ["lf-stage", "lf-bg", "lf-hl", "lf-ring", "lf-arrow", "w1", "w2", "lf-title", "sh-host", "sh-stage", "sh-pill", "sh-label", "sh-fe",
+        "ph-a", "ph-b", "ph-c", "fe-a", "fe-b", "fe-c"];
       var list = ids.map($);
       [].push.apply(list, document.querySelectorAll("#sh-words span, #lf-odo span"));
       list.push($("lf-odo").querySelector("div"), odoCanvas());   // the odometer's GL window + its canvas
@@ -141,13 +156,15 @@
     var times = [], forward = {}, mismatches = [];
     for (var t = 0; t <= 6; t += 0.2) times.push(+t.toFixed(2));
     // Extra samples strictly inside each wipe phase (in: 0.2..0.62, out: 5.44..5.8) so wipe mask/visibility parity is compared.
-    [0.3, 0.45, 0.55, 0.61, 0.62, 5.45, 5.5, 5.65, 5.75, 5.79, 5.9, 6].forEach(function (x) { if (times.indexOf(x) === -1) times.push(x); });
+    // ...and inside both chained phases (A->B 1.0..1.52, B->C 3.0..3.52), where B is first wiped in, then out.
+    [0.3, 0.45, 0.55, 0.61, 0.62, 5.45, 5.5, 5.65, 5.75, 5.79, 5.9, 6, 1.05, 1.15, 1.3, 1.36, 1.45, 3.05, 3.15, 3.3, 3.36, 3.45].forEach(function (x) { if (times.indexOf(x) === -1) times.push(x); });
     times.sort(function (a, b) { return a - b; });
     times.forEach(function (t) { tl.seek(t, false); forward[t] = snap(); });
     var order = times.slice(), seed = 11;
     for (var i = order.length - 1; i > 0; i--) { seed = (seed * 9301 + 49297) % 233280; var j = seed % (i + 1), tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
     // Deterministic backward seeks into the wipe windows (jump to the end, then back into each phase).
     order.push(6, 0.45, 5.9, 5.5, 5.75, 0.3, 5.45, 0.55, 0.61, 5.79, 0.62, 0);
+    order.push(6, 3.3, 1.3, 3.15, 1.15, 3.45, 1.45, 0, 3.05, 1.05);   // backward and forward across both phases of host B
     order.forEach(function (t) {
       tl.seek(t, false);
       var a = forward[t].split("\n"), b = snap().split("\n");
