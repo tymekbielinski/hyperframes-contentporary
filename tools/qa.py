@@ -1,4 +1,4 @@
-"""The automated QA gate — standards/core/qa.md §1: all 10 checks, PASS / FAIL per check.
+"""The automated QA gate — standards/core/qa.md §1: all 11 checks, PASS / FAIL per check.
 
 Usage:
   python3 tools/qa.py videos/<slug> [--render R.mp4] [--overlays DIR] [--edit CUT.mp4 [--face-ref T]
@@ -42,13 +42,14 @@ import brandcheck
 import cadence_scan
 import media
 import project as pj
+import refs
 import runtime_probe
 import scan_flicker
 import sync_lib
 
 ROOT = Path(__file__).resolve().parents[1]
 NAMES = {1: "HyperFrames validity", 2: "No lib fork", 3: "BRIEF complete", 4: "Seek-safety", 5: "Blur law",
-         6: "Easing vocabulary", 7: "Captions", 8: "Density", 9: "Settle before cut", 10: "Render traps"}
+         6: "Easing vocabulary", 7: "Captions", 8: "Density", 9: "Settle before cut", 10: "Render traps", 11: "Reference patterns"}
 SIZES = {"long-form": (1920, 1080), "shorts": (1080, 1920)}
 SETTLE_WINDOW = 0.3     # qa.md check 9: the last 0.3 s of each full-frame scene is still
 SETTLE_MAX = 1.5        # mean |Δluma| (0–255, 320×180) per frame step that still counts as "still" (hold creep passes)
@@ -221,6 +222,26 @@ def check_captions(project, brief, rows):
     if brief.get("captions") is True:
         return result(7, [] if layers else ["captions: true but no caption layer found (id/class 'captions' or data-captions)"])
     return result(7, layers, "Shorts: captions: false")
+
+
+def check_patterns(rows, fmt, root=ROOT):
+    """Check 11: every long-form storyboard row cites a kit name or catalogue ID (references/README.md);
+    an ID-shaped token that is not in the registry fails; a pattern with no reviewed exemplar warns."""
+    if fmt != "long-form":
+        return result(11, [], "shorts: no pattern registry yet")
+    lib = refs.load_library(root)
+    findings, warnings = [], []
+    for r in rows:
+        where = f"storyboard.md line {r['line']}"
+        known, unknown = refs.type_ids(r["type"], lib["registry"])
+        if unknown:
+            findings.append(f"{where}: unknown pattern ID(s) {', '.join(unknown)} — use an ID from standards/formats/long-form.md")
+        if not known and not unknown:
+            findings.append(f"{where}: type {r['type']!r} cites no kit name or catalogue ID")
+        warnings += [f"{where}: {pid} has no reviewed reference exemplar yet" for pid in known if not refs.exemplars(lib, pid)]
+    out = result(11, findings, "type column → standards/formats/long-form.md IDs; evidence in references/patterns/")
+    out["warnings"] = warnings
+    return out
 
 
 def settle_findings(diffs, scenes, fps, max_step=SETTLE_MAX) -> list:
@@ -490,6 +511,7 @@ def run_gate(project, render=None, edit=None, probe_url=None, skip_render=False,
     checks[7] = result(7, [rows_error]) if rows_error else guarded(7, check_captions, project, brief, rows)
     checks[8] = result(8, [rows_error or brief_error]) if rows_error or brief_error else \
         guarded(8, check_density, project, edit, face_ref, threshold)
+    checks[11] = result(11, [rows_error]) if rows_error else guarded(11, check_patterns, rows, fmt, root)
 
     render_path, render_note = render, None
     if not render_path and not skip_render:

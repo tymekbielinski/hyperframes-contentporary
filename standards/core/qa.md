@@ -2,7 +2,7 @@
 
 Three stages: an automated gate that blocks the render, an agent critique loop, then a human sign-off before delivery.
 Run the automated gate with `python3 tools/qa.py videos/<slug>`: it prints PASS / FAIL (or SKIP /
-WAIVED) for each of the ten checks below and writes `renders/qa-report.json` (atomically; with
+WAIVED) for each of the eleven checks below and writes `renders/qa-report.json` (atomically; with
 `generated_at`, the `render` it inspected and an `inputs_hash` over BRIEF.md, storyboard.md, index.html,
 `compositions/**`, `lib.lock` and the referenced brand's files). It renders a draft
 (`npx hyperframes render -q draft`) for checks 9–10 unless given `--render`, probes the live page
@@ -75,6 +75,7 @@ STALE (…)" and never PASS. Re-run the gate before sign-off.
 | 8 | Density | long-form: hook (first `hook_end` s, default 80) ≥ 60 % graphics, no face gap > 6 s, body gaps ≤ 30 s (face punch-ins are not graphics) (BRIEF `screen_share` ranges exempt); Shorts 35–55 % |
 | 9 | Settle before cut | the last 0.3 s of each full-frame scene and of each overlay render is still (frame difference); slots pair with the full-frame grid rows (±1.5 frames) |
 | 10 | Render traps | text verified in rendered frames, not only snapshots (`standards/formats/shorts.md` §9b traps apply to every format); seek-flicker scan |
+| 11 | Reference patterns | long-form: every storyboard `type` cites a kit name or catalogue ID from `standards/formats/long-form.md`; an unknown ID fails; a cited pattern with no reviewed exemplar in `references/` is a warning (Shorts: pass, no registry yet) |
 
 **Exceptions:** declared in the BRIEF under `exceptions:`, each with a reason (e.g. a recreated UI
 that has no real screenshot). The gate passes declared exceptions and lists them in the preview pack.
@@ -92,7 +93,11 @@ The agent that built the video reviews its own render and fixes what scores low.
 usually takes several rounds, not one shot.
 
 1. Render the preview material: a contact sheet of every graphic, three full-res frames per graphic
-   (entrance, mid, settled), and a 10 fps strip of every camera move.
+   (entrance, mid, settled), a 10 fps strip of every camera move, and the reference boards
+   (`python3 tools/ref_board.py videos/<slug> --render <reel.mp4>`; over-footage layouts with
+   `--pattern <ID> --still <frame> -o <board.jpg>`). Each board puts the candidate above settled stills of
+   the same pattern from `references/` — open the pattern card (`references/patterns/<ID>.md`) and score
+   **On-brand** and **Craft** against its quality bar and those stills, not against an imagined bar.
 2. Score **every graphic** 1–10 on six dimensions, each with one sentence of evidence:
    - **Smooth** — eases in and settles, holds before the cut, no snap, jitter or overshoot.
    - **On-brand** — ground mode, surfaces, headline treatment and marks match the brand and palette.

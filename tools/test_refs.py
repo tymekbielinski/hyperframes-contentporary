@@ -10,6 +10,7 @@ import media
 import ref_board
 import ref_index
 import ref_ingest
+import qa
 import refs
 import synth
 
@@ -282,3 +283,24 @@ class BoardTests(Fixture):
         self.assertEqual([(b["row"], b["refs"]) for b in boards], [(1, ["demo s001"])])
         self.assertTrue((p / "renders/critique/row-01.jpg").is_file())
         self.assertIn("row-01.jpg", (p / "renders/critique/boards.md").read_text())
+
+
+class PatternCheckTests(Fixture):
+    def rows(self, *types):
+        return [{"row": i + 1, "line": 10 + i, "type": t} for i, t in enumerate(types)]
+
+    def test_known_ids_pass_and_missing_exemplars_warn(self):
+        write_video(self.root)
+        r = qa.check_patterns(self.rows("A1 (card)", "title"), "long-form", self.root)
+        self.assertEqual(r["status"], "PASS")
+        self.assertEqual(r["warnings"], ["storyboard.md line 11: title has no reviewed reference exemplar yet"])
+
+    def test_unknown_or_missing_ids_fail(self):
+        r = qa.check_patterns(self.rows("B9", "glass tiles"), "long-form", self.root)
+        self.assertEqual(r["status"], "FAIL")
+        self.assertIn("storyboard.md line 10: unknown pattern ID(s) B9", r["findings"][0])
+        self.assertIn("storyboard.md line 11: type 'glass tiles' cites no kit name or catalogue ID", r["findings"][-1])
+
+    def test_shorts_pass_with_a_note(self):
+        r = qa.check_patterns(self.rows("anything"), "shorts", self.root)
+        self.assertEqual((r["status"], r["note"]), ("PASS", "shorts: no pattern registry yet"))

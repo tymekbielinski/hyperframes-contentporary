@@ -54,7 +54,7 @@ class KitGateTests(unittest.TestCase):
     def test_every_kit_component_passes_the_gate(self):
         self.fake_cli()
         r = qa.run_gate(self.p, probe=clean_probe)
-        self.assertEqual({c["n"]: c["status"] for c in r["checks"]}, {n: "PASS" for n in range(1, 11)}, qa.format_report(r))
+        self.assertEqual({c["n"]: c["status"] for c in r["checks"]}, {n: "PASS" for n in range(1, 12)}, qa.format_report(r))
         self.assertEqual(r["probe"]["overlays"], {"compositions/overlays/lower-third.html": 30, "compositions/overlays/side-text.html": 30})
 
     def test_a_kit_scene_named_caption_fails_check_7(self):

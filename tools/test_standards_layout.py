@@ -102,7 +102,7 @@ class FormatProfileTests(unittest.TestCase):
 class QaPipelineTests(unittest.TestCase):
     def test_qa_has_ten_checks_and_signoff(self):
         t = (ROOT / "standards" / "core" / "qa.md").read_text()
-        for n in range(1, 11):
+        for n in range(1, 12):
             self.assertIn(f"| {n} |", t)
         for s in ["whoever ran the build", "Promotion rule", "exceptions:", "lib.lock"]:
             self.assertIn(s, t)

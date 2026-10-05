@@ -154,7 +154,7 @@ class GateTests(unittest.TestCase):
 
     def test_good_project_passes_all_ten(self):
         r = self.gate()
-        self.assertEqual(self.status(r), {n: "PASS" for n in range(1, 11)}, qa.format_report(r))
+        self.assertEqual(self.status(r), {n: "PASS" for n in range(1, 12)}, qa.format_report(r))
         self.assertTrue(r["ok"])
         self.assertTrue((self.p / "renders" / "qa-report.json").is_file())
         self.assertIn("RESULT: PASS", qa.format_report(r))
@@ -220,7 +220,7 @@ class GateTests(unittest.TestCase):
                     "warnings": ["preview --stop failed (a preview server may still be running): boom"]}
         r = self.gate(probe=probe)
         self.assertTrue(r["ok"], qa.format_report(r))
-        self.assertEqual(r["warnings"], ["runtime probe: preview --stop failed (a preview server may still be running): boom"])
+        self.assertIn("runtime probe: preview --stop failed (a preview server may still be running): boom", r["warnings"])
         self.assertIn("warning: runtime probe: preview --stop failed", qa.format_report(r))
 
     def test_check_8_surfaces_cadence_warnings(self):
@@ -322,7 +322,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual((st[1], st[5], st[10]), ("FAIL", "FAIL", "FAIL"))
         self.assertEqual(r["checks"][0]["findings"], [qa.PLACEHOLDER_MSG])
         self.assertEqual(r["checks"][4]["findings"], ["runtime probe failed: no timeline registered on window.__timelines"])
-        checks = [qa.result(n) for n in range(1, 11)]
+        checks = [qa.result(n) for n in range(1, 12)]
         checks[8] = qa.result(9, [qa.internal(ValueError("x")), "02-proof: still moving…"])
         checks[9] = qa.result(10, [qa.Infra("draft render failed: exit 1")])
         qa.apply_waivers(checks, ["check 9: by design", "check 10: by design"])
@@ -330,7 +330,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual((checks[9]["status"], checks[9]["findings"]), ("FAIL", ["draft render failed: exit 1"]))
 
     def test_scoped_waiver_matches_whole_tokens_only(self):
-        checks = [qa.result(n) for n in range(1, 11)]
+        checks = [qa.result(n) for n in range(1, 12)]
         found = ["compositions/data.html:1: Gaussian site without…", "compositions/a.html:2: Gaussian site without…",
                  "compositions/a.html.bak:3: Gaussian site without…"]
         checks[4] = qa.result(5, list(found))
@@ -370,7 +370,7 @@ class GateTests(unittest.TestCase):
         self.assertTrue(r["ok"], qa.format_report(r))
 
     def test_scoped_waiver_keeps_other_findings(self):
-        checks = [qa.result(n) for n in range(1, 11)]
+        checks = [qa.result(n) for n in range(1, 12)]
         checks[4] = qa.result(5, ["compositions/a.html:3: Gaussian site without…", "compositions/b.html:9: Gaussian site without…"])
         listed = qa.apply_waivers(checks, ["check 5 [a.html]: legacy recreation", "check 12: nonsense"])
         self.assertEqual(checks[4]["status"], "FAIL")
@@ -509,7 +509,7 @@ class GateTests(unittest.TestCase):
     def test_clean_overlay_passes_all_ten(self):
         self.add_overlay()
         r = self.gate(probe=overlay_probe({"samples": 30, "findings": [], "errors": []}))
-        self.assertEqual(self.status(r), {n: "PASS" for n in range(1, 11)}, qa.format_report(r))
+        self.assertEqual(self.status(r), {n: "PASS" for n in range(1, 12)}, qa.format_report(r))
         self.assertTrue((self.p / "renders" / "qa-overlays" / "lt.mp4").is_file())
 
     def test_overlay_that_was_not_probed_or_failed_to_probe_is_infra(self):
