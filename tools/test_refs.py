@@ -6,6 +6,7 @@ import unittest
 from contextlib import redirect_stdout
 from pathlib import Path
 
+import ref_index
 import ref_ingest
 import refs
 import synth
@@ -184,3 +185,57 @@ class IngestTests(Fixture):
             code = ref_ingest.main(["ref_ingest.py"], self.root)
         self.assertEqual(code, 2)
         self.assertIn("usage: python3 tools/ref_ingest.py", out.getvalue())
+
+
+class IndexTests(Fixture):
+    def test_run_creates_cards_index_and_check_is_clean(self):
+        write_video(self.root)
+        findings, _ = ref_index.run(self.root)
+        self.assertEqual(findings, [])
+        card = (self.root / "references/patterns/A1.md").read_text()
+        self.assertIn("**1 exemplar** from 1 video", card)
+        self.assertIn("../videos/demo/stills/s001-a.jpg", card)
+        self.assertTrue((self.root / "references/patterns/E2.md").is_file())
+        idx = json.loads((self.root / "references/index.json").read_text())
+        self.assertEqual(idx["videos"][0]["graphics_pct"], 40.0)
+        self.assertEqual(ref_index.run(self.root, check=True)[0], [])
+
+    def test_quality_bar_survives_regeneration(self):
+        write_video(self.root)
+        ref_index.run(self.root)
+        p = self.root / "references/patterns/A1.md"
+        p.write_text(p.read_text().replace(refs.STUB + " — write it from the exemplars below (references/README.md §Quality bar)._",
+                                           "- Card ≥ 55 % W, backdrop is its own blurred copy."))
+        write_video(self.root, "second")
+        ref_index.run(self.root)
+        text = p.read_text()
+        self.assertIn("Card ≥ 55 % W", text)
+        self.assertIn("**2 exemplars** from 2 videos", text)
+        self.assertEqual(ref_index.card_status(text), "ready")
+
+    def test_check_reports_stale_index_and_drafts(self):
+        write_video(self.root)
+        ref_index.run(self.root)
+        write_video(self.root, "fresh", shots=[refs.empty_shot(1, 0.0, 10.0)], stills=())
+        findings, _ = ref_index.run(self.root, check=True)
+        text = "\n".join(findings)
+        self.assertIn("references/index.json is stale", text)
+        self.assertIn("fresh: 1 draft shot", text)
+
+    def test_prune_removes_face_stills_and_orphans(self):
+        shots = [graphic_shot("s001", 0.0, 4.0, "A1", ["stills/s001-a.jpg"]), face_shot("s002", 4.0, 10.0)]
+        d = write_video(self.root, shots=shots, stills=("stills/s001-a.jpg", "stills/s002-a.jpg"))
+        data = json.loads((d / "shots.json").read_text())
+        data["shots"][1]["stills"] = ["stills/s002-a.jpg"]
+        (d / "shots.json").write_text(json.dumps(data))
+        (d / "stills" / "orphan.jpg").write_bytes(b"x")
+        self.assertEqual(ref_index.prune(self.root), 2)
+        self.assertEqual(sorted(p.name for p in (d / "stills").iterdir()), ["s001-a.jpg"])
+        self.assertEqual(json.loads((d / "shots.json").read_text())["shots"][1]["stills"], [])
+
+    def test_candidates_are_listed(self):
+        shots = [graphic_shot("s001", 0.0, 4.0, "new:logo-row", ["stills/s001-a.jpg"]), face_shot("s002", 4.0, 10.0)]
+        write_video(self.root, shots=shots)
+        ref_index.run(self.root)
+        idx = json.loads((self.root / "references/index.json").read_text())
+        self.assertEqual(idx["candidates"], {"new:logo-row": [{"video": "demo", "shot": "s001"}]})
