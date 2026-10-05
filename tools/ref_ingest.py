@@ -107,7 +107,8 @@ def timeline_sheets(video, d: Path, duration: float) -> list:
                    "-i", str(video), "-vf",
                    f"fps={TL_FPS},scale={TL_W}:-2,tile={TL_COLS}x{TL_ROWS}:padding=2:color=0x202020",
                    "-frames:v", "1", "-q:v", "5", str(out)])
-        sheets.append(out)
+        if out.is_file():
+            sheets.append(out)
         end = min(start + TL_SPAN, duration)
         index.append(f"{out.name}: {start:g}–{end:g} s, {TL_FPS} fps, {TL_COLS} per row (row = {TL_COLS / TL_FPS:g} s)")
         n, start = n + 1, start + TL_SPAN

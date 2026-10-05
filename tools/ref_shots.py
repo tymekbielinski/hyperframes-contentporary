@@ -12,7 +12,11 @@ and re-extracts stills for the original and every new shot (needs the video).
 """
 import argparse
 import json
+import os
+import re
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 import media
@@ -34,7 +38,14 @@ def _load(d: Path) -> dict:
 
 
 def _save(d: Path, data: dict) -> None:
-    (Path(d) / "shots.json").write_text(json.dumps(data, indent=2) + "\n")
+    path = Path(d) / "shots.json"
+    tmp = path.with_name("shots.json.tmp")
+    tmp.write_text(json.dumps(data, indent=2) + "\n")
+    os.replace(tmp, path)
+
+
+def _listed_elsewhere(data: dict, shot_id: str) -> set:
+    return {rel for s in data["shots"] if s["id"] != shot_id for rel in s["stills"]}
 
 
 def _find(data: dict, shot_id: str) -> int:
@@ -57,7 +68,12 @@ def split(d, shot_id: str, times) -> list:
             raise RefShotsError(f"t={t} is not strictly inside {shot_id} ({shot['t_in']}–{shot['t_out']})")
     if len(set(ts)) != len(ts):
         raise RefShotsError("duplicate split times")
-    top = max(int(s["id"][1:]) for s in data["shots"])
+    nums = [int(s["id"][1:]) for s in data["shots"]]
+    for f in (Path(d) / "stills").glob("s*-*.jpg"):      # a freed id stays taken while its files exist
+        m = re.match(r"s(\d{3,})-", f.name)
+        if m:
+            nums.append(int(m.group(1)))
+    top = max(nums)
     edges = [shot["t_in"]] + ts + [shot["t_out"]]
     new = [refs.empty_shot(top + k, edges[k], edges[k + 1]) for k in range(1, len(edges) - 1)]
     shot["t_out"] = ts[0]
@@ -67,32 +83,67 @@ def split(d, shot_id: str, times) -> list:
 
 
 def merge(d, a: str, b: str) -> None:
-    """Merge shot b (the one right after a) into a."""
+    """Merge shot b (the one right after a) into a; b's stills are renamed to a's id so names carry their owner."""
+    d = Path(d)
     data = _load(d)
     i, j = _find(data, a), _find(data, b)
     if j != i + 1:
         raise RefShotsError(f"{b} is not the shot immediately after {a}")
     sa, sb = data["shots"][i], data["shots"][j]
+    allst = [(r, True) for r in sa["stills"]] + [(r, False) for r in sb["stills"]]
+    cap = ref_ingest.MAX_STILLS
+    if len(allst) > cap:
+        keep = {round(k * (len(allst) - 1) / (cap - 1)) for k in range(cap)}
+        for k, (rel, _) in enumerate(allst):
+            if k not in keep:
+                (d / rel).unlink(missing_ok=True)
+        allst = [x for k, x in enumerate(allst) if k in keep]
+    used = {Path(r).stem[len(a) + 1:] for r, own in allst if own}
+    out = []
+    for rel, own in allst:
+        if not own and (d / rel).is_file():
+            letter = next(chr(c) for c in range(97, 123)
+                          if chr(c) not in used and not (d / "stills" / f"{a}-{chr(c)}.jpg").exists())
+            used.add(letter)
+            new = f"stills/{a}-{letter}.jpg"
+            os.replace(d / rel, d / new)
+            rel = new
+        out.append(rel)
     sa["t_out"] = sb["t_out"]
-    sa["stills"] = sa["stills"] + sb["stills"]
+    sa["stills"] = out
     del data["shots"][j]
     _save(d, data)
 
 
 def restill(d, shot_id: str, video, times=None) -> list:
-    """Delete the shot's stills and extract new ones from the source video."""
+    """Replace the shot's stills with fresh ones from the source video; on any failure nothing changes."""
     d = Path(d)
     data = _load(d)
     shot = data["shots"][_find(data, shot_id)]
-    ts = list(times) if times else ref_ingest.still_times(shot["t_in"], shot["t_out"])
-    for rel in shot["stills"]:
-        (d / rel).unlink(missing_ok=True)
+    if times:
+        ts = list(times)
+        if len(ts) > ref_ingest.MAX_STILLS:
+            raise RefShotsError(f"at most {ref_ingest.MAX_STILLS} stills per shot")
+        for t in ts:
+            if not shot["t_in"] <= t < shot["t_out"]:
+                raise RefShotsError(f"t={t} is outside {shot_id} ({shot['t_in']}–{shot['t_out']})")
+    else:
+        ts = ref_ingest.still_times(shot["t_in"], shot["t_out"])
     (d / "stills").mkdir(exist_ok=True)
-    rels = []
-    for j, t in enumerate(ts):
-        rel = f"stills/{shot_id}-{chr(97 + j)}.jpg"
-        ref_ingest.extract_jpeg(video, t, d / rel)
-        rels.append(rel)
+    tmp = Path(tempfile.mkdtemp(dir=d / "stills", prefix=".restill-"))
+    try:
+        rels = []
+        for j, t in enumerate(ts):
+            ref_ingest.extract_jpeg(video, t, tmp / f"{j}.jpg")
+            rels.append(f"stills/{shot_id}-{chr(97 + j)}.jpg")
+        elsewhere = _listed_elsewhere(data, shot_id)
+        for rel in shot["stills"]:
+            if Path(rel).name.startswith(f"{shot_id}-") and rel not in elsewhere:
+                (d / rel).unlink(missing_ok=True)
+        for j, rel in enumerate(rels):
+            os.replace(tmp / f"{j}.jpg", d / rel)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
     shot["stills"] = rels
     _save(d, data)
     return rels
@@ -121,13 +172,19 @@ def main(argv, root=ROOT) -> int:
 
         def video():
             if a.video:
-                return Path(a.video)
-            src = json.loads((d / "source.json").read_text())["source_file"]
-            return Path.home() / "Downloads" / src
+                v = Path(a.video)
+            else:
+                try:
+                    v = Path.home() / "Downloads" / json.loads((d / "source.json").read_text())["source_file"]
+                except (KeyError, OSError, ValueError) as e:
+                    raise RefShotsError(f"cannot find source_file in source.json ({e!r}); pass --video")
+            if not v.is_file():
+                raise RefShotsError(f"source video {v} not found; pass --video")
+            return v
 
         if a.command == "split":
-            new = split(d, sid, nums)
             v = video()
+            new = split(d, sid, nums)
             for s in [sid] + new:
                 restill(d, s, v)
             print(f"split {sid} → {', '.join([sid] + new)}; stills re-extracted")

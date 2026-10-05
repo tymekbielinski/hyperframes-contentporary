@@ -67,10 +67,7 @@ For every shot, set `"status": "reviewed"` and fill in:
 | `notes` | anything else: what is said, a variant, a bug |
 | `exemplar` | `true` on the best 1–2 shots of a pattern in this video (pinned first on the card) |
 
-Face shots: `kind` only, with `pattern`, `placement`, `layout` and `motion` all `null`. Other shots need only `kind` (pattern `null`). You may **merge** shots (one canvas the detector split
-on a camera move: extend `t_out`, delete the next shot, keep its stills if useful) or **split** one (copy it,
-adjust the times, give it a new id `s<NNN>` above the highest existing; ids need not be consecutive). Shots must
-stay contiguous: each `t_in` equals the previous `t_out`.
+Face shots: `kind` only, with `pattern`, `placement`, `layout` and `motion` all `null`. Other shots need only `kind` (pattern `null`). Shots must stay contiguous: each `t_in` equals the previous `t_out` (`ref_shots.py` keeps it so).
 
 Take the grammar, never the content: logos, faces and copy in the stills are evidence, not assets.
 

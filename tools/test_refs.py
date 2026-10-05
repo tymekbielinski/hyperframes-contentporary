@@ -241,6 +241,67 @@ class ShotsTests(Fixture):
         shots = json.loads((d / "shots.json").read_text())["shots"]
         self.assertEqual(shots[0]["stills"], ["stills/s001-a.jpg"])
 
+    def _two(self, **kw):
+        s1 = graphic_shot("s001", 0.0, 4.0, "A1", ["stills/s001-a.jpg"])
+        s2 = graphic_shot("s002", 4.0, 10.0, "A1", ["stills/s002-a.jpg"])
+        return write_video(self.root, shots=[s1, s2], stills=("stills/s001-a.jpg", "stills/s002-a.jpg"))
+
+    def _snapshot(self, d):
+        return ((d / "shots.json").read_text(), sorted(p.name for p in (d / "stills").iterdir()))
+
+    def test_restill_never_touches_other_shots(self):
+        video = synth.segments(self.root / "clip.mp4", [("red", 5.0), ("blue", 5.0)], size=(320, 180))
+        d = self._two()
+        (d / "stills/s002-a.jpg").write_bytes(b"\xff\xd8keep")
+        ref_shots.restill(d, "s001", video, [1.0, 2.0])
+        self.assertEqual((d / "stills/s002-a.jpg").read_bytes(), b"\xff\xd8keep")
+
+    def test_restill_missing_video_changes_nothing(self):
+        d = self._two()
+        before = self._snapshot(d)
+        with self.assertRaises(media.MediaError):
+            ref_shots.restill(d, "s001", self.root / "nope.mp4", [1.0])
+        self.assertEqual(self._snapshot(d), before)
+
+    def test_restill_default_times_and_bad_times(self):
+        video = synth.segments(self.root / "clip.mp4", [("red", 5.0), ("blue", 5.0)], size=(320, 180))
+        d = self._two()
+        rels = ref_shots.restill(d, "s002", video)
+        self.assertEqual(len(rels), len(ref_ingest.still_times(4.0, 10.0)))
+        self.assertTrue(all((d / r).is_file() for r in rels))
+        self.assertEqual(refs.validate_video(d, self.reg), [])
+        with self.assertRaises(ref_shots.RefShotsError):
+            ref_shots.restill(d, "s001", video, [5.0])
+
+    def test_merge_renames_stills_to_owner(self):
+        d = self._two()
+        ref_shots.merge(d, "s001", "s002")
+        shots = json.loads((d / "shots.json").read_text())["shots"]
+        self.assertEqual(shots[0]["stills"], ["stills/s001-a.jpg", "stills/s001-b.jpg"])
+        self.assertTrue((d / "stills/s001-b.jpg").is_file())
+        self.assertFalse((d / "stills/s002-a.jpg").exists())
+        self.assertEqual(refs.validate_video(d, self.reg), [])
+
+    def test_split_after_merge_does_not_reuse_freed_id(self):
+        d = self._two()
+        ref_shots.merge(d, "s001", "s002")
+        (d / "stills/s002-z.jpg").write_bytes(b"x")       # a file still carrying the id keeps it taken
+        self.assertEqual(ref_shots.split(d, "s001", [5]), ["s003"])
+
+    def test_cli_split_missing_video_changes_nothing(self):
+        d = self._two()
+        before = self._snapshot(d)
+        with redirect_stdout(io.StringIO()) as out:
+            code = ref_shots.main(["ref_shots.py", "demo", "split", "s001", "2", "--video", str(self.root / "no.mp4")], self.root)
+        self.assertEqual(code, 1)
+        self.assertEqual(self._snapshot(d), before)
+        src = json.loads((d / "source.json").read_text())
+        del src["source_file"]
+        (d / "source.json").write_text(json.dumps(src))
+        with redirect_stdout(io.StringIO()):
+            self.assertEqual(ref_shots.main(["ref_shots.py", "demo", "split", "s001", "2"], self.root), 1)
+        self.assertEqual(self._snapshot(d), before)
+
     def test_cli_usage_without_arguments(self):
         out = io.StringIO()
         with redirect_stdout(out):
