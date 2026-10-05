@@ -10,6 +10,7 @@ import media
 import ref_board
 import ref_index
 import ref_ingest
+import ref_shots
 import qa
 import refs
 import synth
@@ -174,6 +175,14 @@ class IngestTests(Fixture):
         self.assertTrue(list((d / "work").glob("contact-*.jpg")))
         self.assertEqual(refs.validate_video(d, self.reg), [])
 
+    def test_timeline_sheets_written(self):
+        with redirect_stdout(io.StringIO()):
+            d = ref_ingest.ingest(self.video, META, self.root)
+        self.assertTrue((d / "work" / "timeline-01.jpg").is_file())
+        self.assertFalse((d / "work" / "timeline-02.jpg").exists())
+        txt = (d / "work" / "timeline.txt").read_text()
+        self.assertTrue("0–5" in txt or "0.0–5.0" in txt, txt)
+
     def test_existing_slug_is_refused(self):
         with redirect_stdout(io.StringIO()):
             ref_ingest.ingest(self.video, META, self.root)
@@ -188,6 +197,56 @@ class IngestTests(Fixture):
             code = ref_ingest.main(["ref_ingest.py"], self.root)
         self.assertEqual(code, 2)
         self.assertIn("usage: python3 tools/ref_ingest.py", out.getvalue())
+
+
+class ShotsTests(Fixture):
+    def test_split_makes_contiguous_draft_shots(self):
+        d = write_video(self.root, shots=[graphic_shot("s001", 0.0, 10.0, "A1", ["stills/s001-a.jpg"])])
+        ids = ref_shots.split(d, "s001", [4, 7])
+        self.assertEqual(ids, ["s002", "s003"])
+        shots = json.loads((d / "shots.json").read_text())["shots"]
+        self.assertEqual([(s["id"], s["t_in"], s["t_out"]) for s in shots],
+                         [("s001", 0.0, 4), ("s002", 4, 7), ("s003", 7, 10.0)])
+        self.assertEqual(shots[0]["stills"], ["stills/s001-a.jpg"])
+        self.assertEqual(shots[1]["status"], "draft")
+        self.assertEqual(shots[1]["stills"], [])
+        self.assertEqual(refs.validate_video(d, self.reg), [])
+
+    def test_split_outside_the_shot_raises(self):
+        d = write_video(self.root)
+        for t in (0, 4, 5, -1):
+            with self.assertRaises(ref_shots.RefShotsError):
+                ref_shots.split(d, "s001", [t])
+
+    def test_merge_adjacent_and_non_adjacent(self):
+        d = write_video(self.root, shots=[graphic_shot("s001", 0.0, 4.0, "A1", ["stills/s001-a.jpg"]),
+                                          face_shot("s002", 4.0, 7.0), face_shot("s003", 7.0, 10.0)])
+        with self.assertRaises(ref_shots.RefShotsError):
+            ref_shots.merge(d, "s001", "s003")
+        ref_shots.merge(d, "s001", "s002")
+        ref_shots.merge(d, "s001", "s003")
+        shots = json.loads((d / "shots.json").read_text())["shots"]
+        self.assertEqual([(s["id"], s["t_in"], s["t_out"], s["status"]) for s in shots],
+                         [("s001", 0.0, 10.0, "reviewed")])
+        self.assertEqual(refs.validate_video(d, self.reg), [])
+
+    def test_restill_replaces_stills(self):
+        video = synth.segments(self.root / "clip.mp4", [("red", 5.0), ("blue", 5.0)], size=(320, 180))
+        d = write_video(self.root, stills=("stills/s001-a.jpg", "stills/s001-b.jpg"))
+        out = ref_shots.restill(d, "s001", video, [1.0])
+        self.assertEqual(out, ["stills/s001-a.jpg"])
+        self.assertTrue((d / "stills/s001-a.jpg").read_bytes().startswith(b"\xff\xd8"))
+        self.assertGreater((d / "stills/s001-a.jpg").stat().st_size, 10)
+        self.assertFalse((d / "stills/s001-b.jpg").exists())
+        shots = json.loads((d / "shots.json").read_text())["shots"]
+        self.assertEqual(shots[0]["stills"], ["stills/s001-a.jpg"])
+
+    def test_cli_usage_without_arguments(self):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            code = ref_shots.main(["ref_shots.py"], self.root)
+        self.assertEqual(code, 2)
+        self.assertIn("usage: python3 tools/ref_shots.py", out.getvalue())
 
 
 class IndexTests(Fixture):

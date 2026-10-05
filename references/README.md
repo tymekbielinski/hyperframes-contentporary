@@ -33,13 +33,24 @@ references/
 
 ## Analyse
 
-Work through `work/contact-NN.jpg` (with `work/contact.txt` mapping tiles to shot ids), then each shot's
-stills. When motion matters (camera legs, word builds, holds), cut a 10 fps strip from the source video
+Start from `work/timeline-NN.jpg` (2 fps, 10 per row = 5 s per row; `work/timeline.txt` lists the span of each
+sheet). They show what the cut detector misses: scale or zoom transitions (the CTA dive), beats inside one
+canvas, punch-ins. Then work through `work/contact-NN.jpg` (with `work/contact.txt` mapping tiles to shot ids)
+and each shot's stills.
+
+**Fix the shot list first** with `python3 tools/ref_shots.py <slug> split|merge|stills …` (it keeps shots
+contiguous and re-extracts stills) before filling in fields. A long graphic shot that chains patterns: split it
+at the beat where the pattern changes when that beat is ≥ 1.5 s; otherwise tag the dominant pattern and name the
+other in `notes`. When motion matters (camera legs, word builds, holds), cut a 10 fps strip from the source video
 into `work/`:
 
 ```bash
 ffmpeg -ss <t_in> -to <t_out> -i "<video>" -vf fps=10,scale=480:-2 "references/videos/<slug>/work/<id>-%03d.jpg"
 ```
+
+For a compact overview use a tiled strip, `fps=10,scale=320:-2,tile=10x<rows>`: one row per second (this ffmpeg
+has no `drawtext`, so count tiles instead of reading timestamps). Measure `type_px` on a full-resolution frame,
+not on the 960 px stills: `ffmpeg -ss <t> -i "<video>" -frames:v 1 -vf scale=1920:1080 work/<id>-full.png`.
 
 For every shot, set `"status": "reviewed"` and fill in:
 
@@ -56,7 +67,7 @@ For every shot, set `"status": "reviewed"` and fill in:
 | `notes` | anything else: what is said, a variant, a bug |
 | `exemplar` | `true` on the best 1–2 shots of a pattern in this video (pinned first on the card) |
 
-Face and other shots need only `kind` (pattern `null`). You may **merge** shots (one canvas the detector split
+Face shots: `kind` only, with `pattern`, `placement`, `layout` and `motion` all `null`. Other shots need only `kind` (pattern `null`). You may **merge** shots (one canvas the detector split
 on a camera move: extend `t_out`, delete the next shot, keep its stills if useful) or **split** one (copy it,
 adjust the times, give it a new id `s<NNN>` above the highest existing; ids need not be consecutive). Shots must
 stay contiguous: each `t_in` equals the previous `t_out`.
@@ -69,7 +80,7 @@ The top of each card (`patterns/<id>.md`, above the generated block) is hand-wri
 regeneration. Write **4–8 checkable bullets** a reviewer can verify on a still or a 10 fps strip, drawn
 from what the exemplars share. For example:
 
-- Focus card ≥ 55 % of frame width; the backdrop is the same screenshot blurred and dimmed to ≈ 35 %.
+- Focus card ≥ 40 % of frame width; the backdrop is the same screenshot blurred and dimmed to ≈ 35 %.
 - Headline cap height ≥ 70 px at 1080; never more than 2 lines.
 - Highlight lands only after the card has settled (≥ 0.3 s), sweeping left → right in ≈ 0.3 s.
 

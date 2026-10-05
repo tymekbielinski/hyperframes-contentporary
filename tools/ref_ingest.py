@@ -9,7 +9,7 @@ Detects hard cuts (ffmpeg scene score > threshold), then writes references/video
   source.json   what the video is (file name only, never a path: media stays out of Git)
   shots.json    one draft shot per cut-to-cut span, together covering 0…duration
   stills/       JPEG stills per shot (960 px wide): entrance, middle, settled, + every 3 s on long shots
-  work/         contact sheets (gitignored) for the analyst
+  work/         contact + timeline sheets (gitignored) for the analyst
 An analyst then reviews every shot (references/README.md §Analyse) and runs tools/ref_index.py.
 Refuses a slug that already exists — delete the folder to re-ingest.
 """
@@ -31,6 +31,8 @@ STILL_Q = 6             # ffmpeg -q:v for JPEG (2 best … 31 worst); ≈ 50–8
 MAX_STILLS = 8
 LONG_STEP = 3.0         # s — extra still spacing inside shots longer than 6 s
 SHEET_COLS, SHEET_ROWS = 6, 6
+TL_FPS, TL_COLS, TL_ROWS, TL_W = 2, 10, 8, 192
+TL_SPAN = TL_COLS * TL_ROWS / TL_FPS     # s of source per timeline sheet (40)
 
 
 class IngestError(Exception):
@@ -93,6 +95,26 @@ def contact_sheets(d: Path, shots: list) -> list:
     return sheets
 
 
+def timeline_sheets(video, d: Path, duration: float) -> list:
+    """work/timeline-NN.jpg: every frame at 2 fps, 192 px wide, 10×8 per sheet (40 s each); work/timeline.txt maps them."""
+    work = Path(d) / "work"
+    work.mkdir(exist_ok=True)
+    sheets, index = [], []
+    n, start = 1, 0.0
+    while start < duration:
+        out = work / f"timeline-{n:02d}.jpg"
+        media.run([media.tool("ffmpeg"), "-v", "error", "-nostdin", "-y", "-ss", f"{start:g}", "-t", f"{TL_SPAN:g}",
+                   "-i", str(video), "-vf",
+                   f"fps={TL_FPS},scale={TL_W}:-2,tile={TL_COLS}x{TL_ROWS}:padding=2:color=0x202020",
+                   "-frames:v", "1", "-q:v", "5", str(out)])
+        sheets.append(out)
+        end = min(start + TL_SPAN, duration)
+        index.append(f"{out.name}: {start:g}–{end:g} s, {TL_FPS} fps, {TL_COLS} per row (row = {TL_COLS / TL_FPS:g} s)")
+        n, start = n + 1, start + TL_SPAN
+    (work / "timeline.txt").write_text("\n".join(index) + "\n")
+    return sheets
+
+
 def ingest(video, meta: dict, root=ROOT, threshold: float = 0.20) -> Path:
     video = Path(video)
     slug = meta["slug"]
@@ -122,12 +144,13 @@ def ingest(video, meta: dict, root=ROOT, threshold: float = 0.20) -> Path:
         (d / "source.json").write_text(json.dumps(source, indent=2) + "\n")
         (d / "shots.json").write_text(json.dumps({"version": 1, "shots": shots}, indent=2) + "\n")
         sheets = contact_sheets(d, shots)
+        timeline = timeline_sheets(video, d, info["duration"])
     except Exception:
         shutil.rmtree(d, ignore_errors=True)     # never leave a half-ingested folder that blocks a retry
         raise
     size = sum(p.stat().st_size for p in (d / "stills").iterdir())
     print(f"{len(shots)} shots, {sum(len(s['stills']) for s in shots)} stills ({size / 1e6:.1f} MB), "
-          f"{len(sheets)} contact sheets → {d}")
+          f"{len(sheets)} contact sheets, {len(timeline)} timeline sheets → {d}")
     print("next: analyse every shot (references/README.md §Analyse), then python3 tools/ref_index.py --prune")
     return d
 
